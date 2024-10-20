@@ -59,7 +59,7 @@ const Home =()=>{
            <section className="py-28">
                
                <article className="container">
-                    <h5 className="text-center capitalize text-primary text-4xl font-lato font-[700] ">happy client</h5>
+                    <h5 className="text-center capitalize text-primary text-4xl font-lato font-[700] ">our happy client</h5>
 
                     <div className="max-wj-[900px] py-12 px-4 mx-auto bordefr-[2px] py-20">
 

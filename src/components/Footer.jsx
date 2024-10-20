@@ -50,7 +50,7 @@ const Footer =()=>{
                    
             <div className="capitalize text-xl  mt-16 flex gap-3 w-[max-content] mx-auto">
                   <img src={copyright} className="w-[30px]" alt="copyright" />
-                   <h5>Styleit africa copyright 2023, all right reserved</h5> 
+                   <h5>Styleit africa copyright 2024, all right reserved</h5> 
                    </div>
         </footer>
     )
