@@ -14,7 +14,7 @@ const Trending = ()=>{
                 <p className="text-primary text-2xl ml-auto font-[helvetica] font-[400] w-[max-content] ">See more </p> 
                 <img src={next} alt="next" className="w-[14px]" />
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
                 <div className="relative"> 
                     <img src={caro} alt="cynthia" className="w-full h-full" />
                     <Remark img={bobby}/>

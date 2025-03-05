@@ -6,7 +6,7 @@
 
 
 .container{
-  @apply max-w-[1219px]  mx-auto;
+  @apply  px-5 xl:px-0 max-w-[1219px]  mx-auto;
 }
 
 .check{
@@ -20,3 +20,7 @@
   border-image-source:linear-gradient(103.99deg,rgba(255,255,2550.9,1.75%),rgba(248,248,248,0.42),97.37%) ;
   color: #000;
 }
+
+
+
+
