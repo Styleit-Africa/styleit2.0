@@ -40,4 +40,30 @@ const happyClients = [
 
 ]
 
-export {happyClients}
+const countries = [
+    { name: "Nigeria", capital: "Abuja" },
+    { name: "Ethiopia", capital: "Addis Ababa" },
+    { name: "Egypt", capital: "Cairo" },
+    { name: "Democratic Republic of the Congo", capital: "Kinshasa" },
+    { name: "Tanzania", capital: "Dodoma" },
+    { name: "South Africa", capital: "Pretoria" },
+    { name: "Kenya", capital: "Nairobi" },
+    { name: "Uganda", capital: "Kampala" },
+    { name: "Algeria", capital: "Algiers" },
+    { name: "Sudan", capital: "Khartoum" },
+    { name: "Morocco", capital: "Rabat" },
+    { name: "Angola", capital: "Luanda" },
+    { name: "Ghana", capital: "Accra" },
+    { name: "Mozambique", capital: "Maputo" },
+    { name: "Madagascar", capital: "Antananarivo" },
+    { name: "Cameroon", capital: "Yaoundé" },
+    { name: "Côte d'Ivoire", capital: "Yamoussoukro" },
+    { name: "Niger", capital: "Niamey" },
+    { name: "Burkina Faso", capital: "Ouagadougou" },
+    { name: "Mali", capital: "Bamako" },
+    { name: "Zambia", capital: "Lusaka" }
+];
+
+
+
+export {happyClients,countries}

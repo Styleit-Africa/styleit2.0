@@ -48,8 +48,8 @@ const Footer =()=>{
             </div>
             </div>
                    
-            <div className="capitalize text-xl  mt-16 flex gap-3 w-[max-content] mx-auto">
-                  <img src={copyright} className="w-[30px]" alt="copyright" />
+            <div className="capitalize md:text-xl  mt-16 flex gap-3 items-center w-[max-content] mx-auto">
+                  <img src={copyright} className="w-[20px] md:w-[30px]" alt="copyright" />
                    <h5>Styleit africa copyright {year}, all right reserved</h5> 
                    </div>
         </footer>

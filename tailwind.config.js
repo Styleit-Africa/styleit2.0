@@ -13,7 +13,7 @@ export default {    darkMode: ["class"],
 			darkGray:'#F2E6E6',
   		},
   		fontFamily: {
-  			lato: 'Lato",sans-serif'
+  			lato: '"Lato", sans-serif'
   		},
   	}
   },

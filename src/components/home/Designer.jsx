@@ -32,7 +32,7 @@ const Designer =()=>{
                   </div>
                 </form>
            </div>
-            <div className='md:-mt-24 relative '>
+            <div className='md:-mt-24 relative -z-1 '>
 
                   <img src={redLady} className=' md:-ml-32  -mt-12 md:mt-0 w-[700px]  sm:h-auto md:h-[800px] xl:h-auto' />
                   {/* <div className='absolute top-[550px] right-[130px] order font-lato font-[700] leading-[1.3]
