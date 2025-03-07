@@ -8,7 +8,7 @@ const Footer =()=>{
 
     const year = new Date().getFullYear();
     return(
-        <footer className="px-5  bg-secondary text-white font-lato font-[400] pt-16 md:pt-20 pb-5">
+        <footer className="px-5 mt-16 md:mt-20 bg-secondary text-white font-lato font-[400] pt-16 md:pt-20 pb-5">
             <div className="container">
             <div className="mb-24">
                 <h2 className="text-2xl md:text-3xl mb-6">Connect with us</h2>
@@ -48,7 +48,7 @@ const Footer =()=>{
             </div>
             </div>
                    
-            <div className="capitalize text-xl  mt-16 flex gap-3 w-[max-content] mx-auto">
+            <div className="capitalize text-sm md:text-xl  mt-16 flex items-center gap-3 w-[max-content] mx-auto">
                   <img src={copyright} className="w-[30px]" alt="copyright" />
                    <h5>Styleit africa copyright {year}, all right reserved</h5> 
                    </div>
