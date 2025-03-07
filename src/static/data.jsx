@@ -19,7 +19,7 @@ const happyClients = [
         name:'uthman',
         imageUrl,
         feedback:{
-            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui aspernatur pariatur quibusdam cum vel quae nulla eaque molestiae cupiditate sit similique incidunt eos ex obcaecati, perspiciatis facilis, aliquid voluptatum sunt"'
+            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. "'
 
         }
     },
@@ -27,14 +27,14 @@ const happyClients = [
         name:'Fatai',
         imageUrl,
         feedback:{
-            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui aspernatur pariatur quibusdam cum vel quae nulla eaque molestiae cupiditate sit similique incidunt eos ex obcaecati, perspiciatis facilis, aliquid voluptatum sunt"'
+            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. "'
         }
     },
     {
         name:'cally',
         imageUrl,
         feedback:{
-            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui aspernatur pariatur quibusdam cum vel quae nulla eaque molestiae cupiditate sit similique incidunt eos ex obcaecati, perspiciatis facilis, aliquid voluptatum sunt"'
+            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. "'
         }
     },
 

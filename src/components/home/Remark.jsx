@@ -14,4 +14,3 @@ const Remark =({img})=>{
 }
 
 export default Remark; 
-// background: linear-gradient(180deg, #FFFDFD 0%, rgba(255, 255, 255, 0.42) 100%);

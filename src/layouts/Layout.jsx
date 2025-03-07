@@ -8,7 +8,7 @@ const Layout =()=>{
     return(
         <>  
             <Header/>
-                <main className="mb-44">
+                <main className="">
                     <Outlet/>
                 </main>
             <Footer/>
