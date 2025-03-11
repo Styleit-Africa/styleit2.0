@@ -9,10 +9,10 @@ import next from '../../images/next.png';
 const Trending = ()=>{
     return(
         <section className="container mt-16">
-            <h1 className="text-center text-primary md:mb-3 text-2xl md:text-4xl font-[helvetica] font-[700]">Trending</h1>
-            <div className="flex gap-4 items-center mb-3 md:mb-5">
-                <p className="text-primary text-md md:text-2xl ml-auto font-[helvetica] font-[400] w-[max-content] ">See more </p> 
-                <img src={next} alt="next" className="h-4 w-3 md:w-[14px]" />
+            <h1 className="text-center text-primary mb-3 text-4xl font-[helvetica] font-[700]">Trending</h1>
+            <div className="flex gap-4 items-center mb-5">
+                <p className="text-primary text-2xl ml-auto font-[helvetica] font-[400] w-[max-content] ">See more </p> 
+                <img src={next} alt="next" className="w-[14px]" />
             </div>
             <div className="flex flex-col md:flex-row gap-4">
                 <div className="relative"> 

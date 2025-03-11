@@ -15,8 +15,8 @@ const Home =()=>{
             <Designer/>
             <Trending/>
            <section className="container">
-                <h3 className="text-center text-3xl md:text-4xl mt-36 mb-5 md:mb-14 text-primary font-lato font-[700]">Benefits of working with us</h3>
-                    <article className="flex flex-col md:flex-row justify-center gap-9 md:gap-5">
+                <h3 className="text-center text-4xl mt-36 mb-14 text-primary font-lato font-[700]">Benefits of working with us</h3>
+                    <article className="flex flex-col md:flex-row justify-center gap-5">
                         <div className="flex-[0.5] shadow-[1px_1px_6px_#ccc] rounded-2xl">
                             <div className="pt-12  px-10 border-b pb-14 font-lato font-[400]">
                                 <h4 className="text-primary font-[700] text-center md:text-left text-2xl md:text-3xl pb-7">What you get as a fashion designer</h4>
@@ -62,7 +62,7 @@ const Home =()=>{
 
         <section className=" px-5 pb-10 md:pb-32">
             <article className="px-5 md:px-0  max-w-[1000px] mx-auto text-center shadow-[1px_1px_6px_#ccc] pt-12 md:pt-16 pb-6 md:pb-24 rounded-3xl font-[700] font-lato">
-                <h6 className="capitalize text-primary text-xl sm:text-4xl">Become one of our representative today</h6>
+                <h6 className="capitalize text-primary text-[1.7rem] sm:text-4xl">Become one of our representative today</h6>
                 <button className="w-full md:w-[500px] mx-auto mt-5 md:mt-16 bg-primary py-4 md:py-6 text-white
                                      text-[1.4rem] font-[700] font-lato  rounded-2xl ">Join us</button>
             </article>

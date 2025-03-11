@@ -1,4 +1,6 @@
 import imageUrl from '../images/bobby.png'
+import logo from '../images/logo.png'
+
 
 const happyClients = [
     {
@@ -19,7 +21,7 @@ const happyClients = [
         name:'uthman',
         imageUrl,
         feedback:{
-            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. "'
+            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui aspernatur pariatur quibusdam cum "'
 
         }
     },
@@ -27,14 +29,14 @@ const happyClients = [
         name:'Fatai',
         imageUrl,
         feedback:{
-            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. "'
+            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui aspernatur pariatur quibusdam cum "'
         }
     },
     {
         name:'cally',
         imageUrl,
         feedback:{
-            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. "'
+            comment:'"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui aspernatur pariatur quibusdam cum "'
         }
     },
 
@@ -65,5 +67,13 @@ const countries = [
 ];
 
 
+const reasons = {
+    clientLogin:['Direct contact with Clients','Product showcase on trending','Secure payment mode'],
+    fashionLogin:['Direct contact with Creators','Book the service of a fashion designer','Prompt and secure service quality'],
+    clientSignUp:['Direct contact with Clients','Product showcase on trending','Secure payment mode'],
+    fashionSignUp:['Direct contact with Creators','Book the service of a fashion designer','Prompt and secure service quality'],
+}
 
-export {happyClients,countries}
+
+
+export {happyClients,reasons,countries,routes}

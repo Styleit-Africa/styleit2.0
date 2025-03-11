@@ -13,8 +13,8 @@ const Designer =()=>{
       
       <div className='  mx-auto lg:mx-0 xl:max-w-auto  flex flex-col md:gap-12 xl:gap-0  lg:flex-row items-start   text-light '>
            <div className='w-auto md:basis-[59%] pt-6 md:pt-28  '>
-              <h1 className='text-2xl md:text-[2.1rem] leading-[1.4]  font-[500] md:pr-40 '>Looking For A Professional Fashion Designer?</h1>
-                <p className=' text-lg md:text-[1.4rem] w-[75%] sm:w-[85%] md:max-w-[480px] leading-[1.5] md:font-[500] mt-4'>
+              <h1 className='text-2xl md:text-[2.1rem] leading-[1.4]  font-[500] md:pr-32 '>Looking For A Professional Fashion Designer?</h1>
+                <p className=' text-lg md:text-[1.4rem] w-[75%] sm:w-[85%] md:max-w-[480px] leading-[1.5] md:font-[700] mt-4'>
                 Get the best professional for your next outfit with Styleit Africa. 
                 Conveniently book a service with a professional Fashion designer to get started.
                 </p>
@@ -32,28 +32,27 @@ const Designer =()=>{
                   </div>
                 </form>
            </div>
-            <div className='md:-mt-20 relative '>
+           <div className='md:-mt-20 relative '>
 
-                  <img src={redLady} className=' md:-ml-32  -mt-12 md:mt-0 w-[700px]  sm:h-auto md:h-[800px] xl:h-auto' />
-                  <div className='absolute top-[270px] md:top-[500px] -right-2 md:right-[100px] order font-lato font-[500] leading-[1.3]
-                   pl-3 md:pl-5 pt-3 pb-8 pr-0 max-w-[200px] md:max-w-[290px] text-[0.98rem] h-[100px] md:h-[120px] rounded-2xl'>
-                      <h2 className="text-xs md:text-sm pr-5 md:pr-0">Place your order and get what you ordered. </h2>
-                  <div className="flex gap-24 md:gap-32  pr-4 mt-2 ">
-                    <div className='flex '>
-                        <img src={angelina} className='w-[30px] md:w-[45px]  absolute left-[10px] md:left-[20px] ' />
-                        <img src={bobby} className='w-[30px] md:w-[45px]  absolute left-[30px]   md:left-[50px]' />
-                        <img src={sandra} className='w-[30px] md:w-[45px]  absolute left-[50px]  md:left-[80px] ' />
-                    </div>
-                    <div className="flex  items-center mt-2 md:mt-3">
-                      <img src={starIcon} className="w-4 md:w-5" alt="" />
-                      <img src={starIcon} className="w-4 md:w-5" alt="" />
-                      <img src={starIcon} className="w-4 md:w-5" alt="" />
-                      <img src={starIcon} className="w-4 md:w-5" alt="" />
-                      <img src={starIcon} className="w-4 md:w-5" alt="" />
-                    </div>
-                  </div>
-
-                  </div>
+<img src={redLady} className=' md:-ml-32  -mt-12 md:mt-0 w-[700px]  sm:h-auto md:h-[800px] xl:h-auto' />
+<div className='absolute top-[270px] md:top-[500px] -right-2 md:right-[100px] order font-lato font-[500] leading-[1.3]
+ pl-3 md:pl-5 pt-3 pb-8 pr-4 max-w-[200px] md:max-w-[290px] text-[0.98rem] h-[100px] md:h-[120px] rounded-2xl'>
+    <h2 className="text-xs md:text-sm pr-5 md:pr-0">Place your order and get what you ordered. </h2>
+<div className="flex gap-24 md:gap-32  pr-4 mt-2 ">
+  <div className='flex '>
+      <img src={angelina} className='w-[30px] md:w-[45px]  absolute left-[10px] md:left-[20px] ' />
+      <img src={bobby} className='w-[30px] md:w-[45px]  absolute left-[30px]   md:left-[50px]' />
+      <img src={sandra} className='w-[30px] md:w-[45px]  absolute left-[50px]  md:left-[80px] ' />
+  </div>
+  <div className="flex  items-center mt-2 md:mt-3">
+    <img src={starIcon} className="w-4 md:w-5" alt="" />
+    <img src={starIcon} className="w-4 md:w-5" alt="" />
+    <img src={starIcon} className="w-4 md:w-5" alt="" />
+    <img src={starIcon} className="w-4 md:w-5" alt="" />
+    <img src={starIcon} className="w-4 md:w-5" alt="" />
+  </div>
+</div>
+</div>
 
             </div>
   </div>

@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from '../images/logo.png'
 import m_logo from '../images/m_logo.png'
 import hamburger from '../images/hamburger.png'
+import { routes } from "@/static/data";
 
 const Header = ()=>{
 
@@ -19,21 +20,23 @@ const Header = ()=>{
             </div>
                 <div className="md:flex md:gap-12 hidden  md:px-3 xl:px-0 justify-center xl:justify-between items-center container">
 
+
+                
                 <ul className="flex basis-[63.6%]  font-bold lg:font-[400] md:text-sm lg:text-[1.27rem]  borgder justify-between  text-[#000000] text-[20px] items-center">
                     <li>
-                        <NavLink className="relative inline-block after:block after:w-3/4 after:h-0.5 after:bg-primary after:mx-auto after:mt-1">Home</NavLink> 
+                        <NavLink to="/" className={({isActive})=>isActive ? 'relative after:content-[" "] after:w-2/3 after:block  after:mx-auto after:mt-0.5 after:h-0.5 rounded-lg after:bg-primary ':''}>Home</NavLink> 
                     </li>
                     <li>
-                        <NavLink>Fashion designers</NavLink>
+                        <NavLink to="/fashionDesigner" className={({isActive})=>isActive ? 'relative after:content-[" "] after:w-2/3 after:block  after:mx-auto after:mt-0.5 after:h-0.5 rounded-lg after:bg-primary ':''}>Fashion designers</NavLink>
                     </li>
                     <li>
-                        <NavLink>Trending</NavLink>
+                        <NavLink to="/trending" className={({isActive})=>isActive ? 'relative after:content-[" "] after:w-2/3 after:block  after:mx-auto after:mt-0.5 after:h-0.5 rounded-lg after:bg-primary ':''}>Trending</NavLink>
                     </li>
                     <li>
                         <img src={logo} alt="" className="w-[90px] lg:w-[115px]" />
                     </li>
                     <li>
-                        <NavLink>Blog</NavLink>
+                        <NavLink to="/blogs" className={({isActive})=>isActive ? 'relative after:content-[" "] after:w-2/3 after:block  after:mx-auto after:mt-0.5 after:h-0.5 rounded-lg after:bg-primary ':''}>Blog</NavLink>
                     </li>
                     </ul>
            <div className="flex gap-7 ">
