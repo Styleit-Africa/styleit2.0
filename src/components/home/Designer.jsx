@@ -24,7 +24,7 @@ const Designer =()=>{
                   <div className='flex'>
                     <input type='text'
                      className='text-[black] rounded-l-lg block w-full sm:w-[400px] z-30 text-dark-400 outline-none font-lato py-7 md:py-[2.2rem] pl-7 md:pl-16
-                     placeholder:text-lg placeholder:font-[helvetica] placeholder:font-[400]  placeholder-secondary' 
+                     placeholder:text-lg placeholder:font-[helvetica] placeholder:font-[400] shadow-sm shadow-primary md:shadow-none placeholder-secondary' 
                     placeholder="search fashion designers here" />
                   <button className=' rounded-r-2xl bg-[#27213C] px-9 '>
                     <img src={glass} className='w-[35px]'/>

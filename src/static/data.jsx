@@ -76,4 +76,4 @@ const reasons = {
 
 
 
-export {happyClients,reasons,countries,routes}
+export {happyClients,reasons,countries}
