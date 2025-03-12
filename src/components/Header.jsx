@@ -3,7 +3,6 @@ import { Link, NavLink } from "react-router-dom";
 import logo from '../images/logo.png'
 import m_logo from '../images/m_logo.png'
 import hamburger from '../images/hamburger.png'
-import { routes } from "@/static/data";
 
 const Header = ()=>{
 
@@ -15,7 +14,6 @@ const Header = ()=>{
                 </div>
                 <div>
                 <img src={hamburger} alt="" />
-
                 </div>
             </div>
                 <div className="md:flex md:gap-12 hidden  md:px-3 xl:px-0 justify-center xl:justify-between items-center container">

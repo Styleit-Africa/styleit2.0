@@ -1,5 +1,11 @@
 import imageUrl from '../images/bobby.png'
 import logo from '../images/logo.png'
+import profile from '../images/profile.png'
+import profile_h from '../images/profile_h.png'
+import receipt from '../images/receipt-edit.png'
+import receipt_h from '../images/receipt-edit_h.png'
+import calendar_h from '../images/calendar-edit_h.png'
+import calendar from '../images/calendar-edit.png'
 
 
 const happyClients = [
@@ -74,6 +80,94 @@ const reasons = {
     fashionSignUp:['Direct contact with Creators','Book the service of a fashion designer','Prompt and secure service quality'],
 }
 
+const dashboardTabs = [
+    {
+        id:1,
+        name:'profile',
+        icon:profile,
+        activeIcon:profile_h
+    },
+    {
+        id:2,
+        name:'post',
+        icon:receipt,
+        activeIcon:receipt_h
+    },
+    {
+        id:3,
+        name:'bookings',
+        icon:calendar,
+        activeIcon:calendar_h
+    },
+]
 
 
-export {happyClients,reasons,countries,routes}
+const userProfile = {
+    image:'',
+    firstName:'Micheal',
+    lastName:'Moses',
+    mobile:'09066778876',
+    email:'michaelmoses@gmail.com',
+    description:"i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes",
+    lga:'ifako-ijaye',
+    address:'181, fola Azeez Cresent, Akuko'
+}
+
+const appointments = [
+    {
+        id:1,
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+         collectionDate:'2024-11-15',
+         collectionTime:'2:00',
+
+    },
+    {
+        id:2,
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+         collectionDate:'2024-11-15',
+         collectionTime:'2:00',
+
+    },
+    {
+        id:3,
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+         collectionDate:'2024-11-15',
+         collectionTime:'2:00',
+
+    },
+    {
+        id:4,
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+         collectionDate:'2024-11-15',
+         collectionTime:'2:00',
+
+    },
+    {
+        id:5,
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+         collectionDate:'2024-11-15',
+         collectionTime:'2:00',
+
+    },
+    {
+        id:6,
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+         collectionDate:'2024-11-15',
+         collectionTime:'2:00',
+
+    },
+]
+
+export {happyClients,reasons,countries,dashboardTabs,userProfile,appointments}
