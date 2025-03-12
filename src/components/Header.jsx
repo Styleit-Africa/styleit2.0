@@ -3,7 +3,6 @@ import { Link, NavLink } from "react-router-dom";
 import logo from '../images/logo.png'
 import m_logo from '../images/m_logo.png'
 import hamburger from '../images/hamburger.png'
-import { routes } from "@/static/data";
 
 const Header = ()=>{
 

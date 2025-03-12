@@ -13,8 +13,8 @@ const Designer =()=>{
       
       <div className='  mx-auto lg:mx-0 xl:max-w-auto  flex flex-col md:gap-12 xl:gap-0  lg:flex-row items-start   text-light '>
            <div className='w-auto md:basis-[59%] pt-6 md:pt-28  '>
-              <h1 className='text-2xl md:text-[2.1rem] leading-[1.4]  font-[500] md:pr-32 '>Looking For A Professional Fashion Designer?</h1>
-                <p className=' text-lg md:text-[1.4rem] w-[75%] sm:w-[85%] md:max-w-[480px] leading-[1.5] md:font-[700] mt-4'>
+              <h1 className='text-2xl md:text-[2.1rem] leading-[1.4]  font-[700] md:pr-40 '>Looking For A Professional Fashion Designer?</h1>
+                <p className=' text-lg md:text-[1.4rem] w-[75%] sm:w-[85%] md:max-w-[480px] leading-[1.5] md:font-[500] mt-4'>
                 Get the best professional for your next outfit with Styleit Africa. 
                 Conveniently book a service with a professional Fashion designer to get started.
                 </p>
