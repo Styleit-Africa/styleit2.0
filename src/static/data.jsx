@@ -6,6 +6,10 @@ import receipt from '../images/receipt-edit.png'
 import receipt_h from '../images/receipt-edit_h.png'
 import calendar_h from '../images/calendar-edit_h.png'
 import calendar from '../images/calendar-edit.png'
+import userEdit from '../images/user-edit.png'
+import history from '../images/note.png'
+import subscription from '../images/cards.png'
+import createPost from '../images/edit.png'
 
 
 const happyClients = [
@@ -110,7 +114,9 @@ const userProfile = {
     email:'michaelmoses@gmail.com',
     description:"i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes",
     lga:'ifako-ijaye',
-    address:'181, fola Azeez Cresent, Akuko'
+    address:'181, fola Azeez Cresent, Akuko',
+    accountNumber:'00192207800',
+    bankName:'Guarantee trust bank'
 }
 
 const appointments = [
@@ -170,4 +176,46 @@ const appointments = [
     },
 ]
 
-export {happyClients,reasons,countries,dashboardTabs,userProfile,appointments}
+const sidebarLinks = {
+    creator:[
+        {
+            id:1,
+            name:'Create a post',
+            icon:createPost,
+        },
+        {
+            id:2,
+            name:'Subscription',
+            icon:subscription,
+        },
+        {
+            id:3,
+            name:'History',
+            icon:history,
+        },
+    ],
+    client:[
+        {
+            id:1,
+            name:'Followers'
+        },
+        {
+            id:2,
+            name:'Following'
+        },
+        {
+            id:3,
+            name:'Create a post'
+        },
+        {
+            id:4,
+            name:'Subscription'
+        },
+        {
+            id:5,
+            name:'History'
+        },
+    ],
+}
+
+export {happyClients,reasons,countries,dashboardTabs,userProfile,appointments,sidebarLinks}

@@ -1,10 +1,12 @@
 import { userProfile } from '@/static/data'
 import React, { useState } from 'react'
-import profileImage from '../../../images/profile_i.png'
-import Profile from './Profile'
+// import userEdit from '../../../images/user-edit.png'
+import userEdit from '../../../../images/user-edit.png'
+import profileImage from '../../../../images/profile_i.png'
+import Profile from '../Profile'
 import Image from '@/components/global/Image'
-
-const UserDetails = () => {
+import Indicator from '@/components/global/Indicator'
+const CreatorDetails = () => {
     const [isMore,setIsMore] = useState(false)
   return (
   <div className='flexs justisfy-between'>
@@ -21,13 +23,17 @@ const UserDetails = () => {
         </div>
         <div className=' self-center md:self-start  shadow flex flex-row-reverse md:flex-row gap-3 py-3 md:py-4 px-10 md:mt-7 rounded-xl text-gray-500 capitalize md:ml-auto w-[max-content] '>
         <h1>available</h1>
-        <div className='h-3 w-3 mt-1.5 md:mt-0 rounded-full bg-green-300 outline outline-1 outline-green-300 outline-offset-2'></div>
+
+        <Indicator className='h-3 w-3 mt-1.5 md:mt-0 rounded-full bg-green-300 outline outline-1 outline-green-300 outline-offset-2'/>
     </div>
             </div> 
             <div className="flex flex-col gap-5 md:gap-0 md:flex-row justify-between  mt-7">
 
     <div className="md:flex-[0.48] lg:flex-[0.45] shadow pl-4 rounded-xl pt-5 pb-5 pr-5">
-            <h1 className='capitalize  text-lg  mb-4'>profile description</h1>
+            <div className="flex justify-between mb-4 items-center">
+                <h1 className='capitalize  text-lg  '>profile description</h1>
+                <Image src={userEdit}/>
+            </div>
             <p className='text-gray-500 text-md pr-6'>{isMore?userProfile.description:userProfile.description.slice(0,350)+'...' }</p>
             {
                 userProfile.description.length > 400 && <button onClick={()=>setIsMore(!isMore)} className='text-primary block ml-auto mr-8 text-lg'>{isMore ? 'see less':'see more'}</button>
@@ -46,4 +52,4 @@ const UserDetails = () => {
   )
 }
 
-export default UserDetails
+export default CreatorDetails

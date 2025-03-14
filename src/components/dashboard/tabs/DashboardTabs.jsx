@@ -11,9 +11,9 @@ const DashboardTabs = ({setCurrentTab,currentTab}) => {
         <div className='flex justify-between md:gap-12 '> 
         {dashboardTabs.map((tab,index)=>{
           return(
-            <div key={tab.id} onClick={()=>setCurrentTab(index+1)} className='flex gap-2 items-center'>
+            <div key={tab.id} onClick={()=>setCurrentTab(index+1)} className='flex gap-2 items-center cursor-pointer'>
               <Image src={index+1===currentTab?tab.activeIcon:tab.icon} className='w-[20px] h-[20px]' alt="" />
-              <h3 className={`capitalize ${index+1 === currentTab && "text-green-400"}`}>{tab.name}</h3>
+              <h3 className={`capitalize  ${index+1 === currentTab && "text-green-400"}`}>{tab.name}</h3>
             </div>
           )
         })}

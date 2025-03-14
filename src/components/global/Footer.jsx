@@ -1,8 +1,8 @@
 import React from "react";
-import fb from '../images/facebook.png';
-import linkedIn from '../images/linkedIn.png';
-import instagram from '../images/instagram.png';
-import copyright from '../images/copyright.png';
+import fb from '../../images/facebook.png';
+import linkedIn from '../../images/linkedIn.png';
+import instagram from '../../images/instagram.png';
+import copyright from '../../images/copyright.png';
 
 const Footer =()=>{
 
