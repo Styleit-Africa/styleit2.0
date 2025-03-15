@@ -12,7 +12,7 @@ const SidebarLinks = ({creatorLinks})=>{
          {
                 creatorLinks.map(link=>{
                     return(
-                        <li key={link.id}  className='flex items-center gap-3.5 pl-1 border-b border-lgray py-3 '>
+                        <li key={link.id}  className='flex items-center gap-3.5 text-md md:text-lg pl-1 md:border-b border-lgray py-3 '>
                             <Image src={link.icon} className="w-6 h-6" />
                             <Link className='' onClick={()=>setIsSidebarOpened()}>{link.name}</Link>
                         </li>

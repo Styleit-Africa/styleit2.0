@@ -28,7 +28,7 @@ const Sidebar = () => {
                     image:{profileImage,styles:'w-[50px] h-[50px]'},
                     container:' flex items-center gap-4 font-[700] text-lg font-lato'
             }}/>
-        <div className='flex justify-between text-lightGray text-md mt-5'>
+        <div className='flex justify-between text-lightGray text-md border-b pt-3 pb-2  border-lgray mt-5'>
             <div className='flex items-center gap-3'>
                 <Image src={icon} className="w-6 h-6" />
                 <p>Online</p>
@@ -38,12 +38,12 @@ const Sidebar = () => {
                 Edit</div>
         </div>
         <ul className="  font-lato textmd text-lightGray ">
-            <li className='flex items-center gap-4 pl-1 border-b py-3  border-lgray '> 
-                <Followers followers={80} styles="text-lg"/>
+            <li className='flex items-center gap-4 pl-2 md:pl-1 md:border-b pb-3 pt-4  border-lgray '> 
+                <Followers followers={80} styles="text-md md:text-lg"/>
                 <p className=''>Followers</p>
             </li> 
-            <li className='flex items-center gap-4 pl-1 border-b py-3 border-lgray '> 
-                <Followers followers={42} styles="text-lg"/>
+            <li className='flex items-center gap-4 pl-2 md:pl-1 md:border-b py-3 border-lgray '> 
+                <Followers followers={42} styles="text-md md:text-lg"/>
                 <p className=''>Following</p>
             </li>
             <SidebarLinks creatorLinks={sidebarLinks.creator}/>
