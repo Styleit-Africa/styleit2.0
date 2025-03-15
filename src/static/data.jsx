@@ -218,4 +218,127 @@ const sidebarLinks = {
     ],
 }
 
-export {happyClients,reasons,countries,dashboardTabs,userProfile,appointments,sidebarLinks}
+const posts = [
+    {
+        id:1,
+        userId:2,
+        description:"i started my journey of stylist in the year 2005 with just a come and hair divider. I was managing at my friend's shop at a very extreme com..",
+        comments:[
+            {
+                userId:3,
+                name:'kolade',
+                description:"incredible jouney!... i'm so glad you made it",
+                replies:[
+                    {
+                        userId:2,
+                        name:'kolade',
+                        description:"incredible jouney!... i'm so glad you made it",
+                    }
+                ]
+            },
+            {
+                userId:4,
+                name:'james',
+                description:"Wow...that's a rough starting point,glad you made it",
+                replies:[
+                    {
+                        userId:2,
+                        name:'kolade',
+                        description:"incredible jouney!... i'm so glad you made it",
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        id:2,
+        userId:2,
+        description:"i started my journey of stylist in the year 2005 with just a come and hair divider. I was managing at my friend's shop at a very extreme com..",
+        comments:[
+            {
+                userId:3,
+                name:'kolade',
+                description:"incredible jouney!... i'm so glad you made it",
+                replies:[
+                    {
+                        userId:2,
+                        name:'kolade',
+                        description:"Thank you",
+                    }
+                ]
+            },
+            {
+                userId:4,
+                name:'james',
+                description:"Wow...that's a rough starting point,glad you made it",
+                replies:[
+                    {
+                        userId:2,
+                        name:'kolade',
+                        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed in tenetur beatae, quasi voluptatibus quisquam quis magni praesentium assumenda molestiae mollitia error repellendus officiis unde cupiditate. Necessitatibus aliquid quos nihil.",
+                    }
+                ]
+            },
+            {
+                userId:4,
+                name:'fatai',
+                description:"Wow...that's a rough starting point,glad you made it",
+                replies:[
+                    {
+                        userId:2,
+                        name:'kolade',
+                        description:"incredible jouney!... i'm so glad you made it",
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        id:3,
+        userId:2,
+        description:"i started my journey of stylist in the year 2005 with just a come and hair divider. I was managing at my friend's shop at a very extreme com..",
+        comments:[
+            {
+                userId:3,
+                name:'kolade',
+                description:"incredible jouney!... i'm so glad you made it",
+                replies:[
+                    {
+                        userId:2,
+                        name:'kolade',
+                        description:"Thank you",
+                    }
+                ]
+            },
+            {
+                userId:4,
+                name:'james',
+                description:"Wow...that's a rough starting point,glad you made it",
+                replies:[
+                    {
+                        userId:2,
+                        name:'kolade',
+                        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed in tenetur beatae, quasi voluptatibus quisquam quis magni praesentium assumenda molestiae mollitia error repellendus officiis unde cupiditate. Necessitatibus aliquid quos nihil.",
+                    }
+                ]
+            },
+            {
+                userId:4,
+                name:'fatai',
+                description:"Wow...that's a rough starting point,glad you made it",
+                replies:[
+                    {
+                        userId:2,
+                        name:'kolade',
+                        description:"incredible jouney!... i'm so glad you made it",
+                    }
+                ]
+            },
+        ]
+    }
+]
+
+export {
+    happyClients,reasons,countries,dashboardTabs,posts
+    ,userProfile,appointments,sidebarLinks
+}

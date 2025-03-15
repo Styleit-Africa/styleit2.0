@@ -6,6 +6,7 @@ import Layout from './layouts/Layout';
 import Login from './pages/auth/Login';
 import SignUp from './pages/auth/SignUp';
 import Dashboard from './pages/dashboard/Dashboard';
+import Trending from './pages/Trending';
 
 const router = createBrowserRouter(
       createRoutesFromElements(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
             <Route path="/login" element={<Login/>}/>
             <Route path="/signUp" element={<SignUp/>}/>
             <Route path='/dashboard' element={<Dashboard/>} />
+            <Route path='/trending' element={<Trending/>} />
         </Route>
       )
 )

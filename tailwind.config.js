@@ -13,7 +13,8 @@ export default {    darkMode: ["class"],
 			darkGray:'#F2E6E6',
 			sidebar:'#27213c',
 			lightGray:'#E9EBF8',
-			lgray:'#B4B8C5'
+			lgray:'#B4B8C5',
+			lPink:'#ffeff2',
   		},
   		fontFamily: {
   			lato: '"Lato", sans-serif'
