@@ -2,14 +2,13 @@ import { posts } from '@/static/data'
 import PostCard from './PostCard'
 
 
-const PostContainer = ({userProfile})=>{
-    console.log(userProfile)
+const PostContainer = ({userProfile,follow})=>{
     return(
         <div>
             {
                     posts.map(post=>{
                         return(
-                            <PostCard post={post} key={post.id}/>
+                            <PostCard follow={follow} post={post} key={post.id}/>
                 )})
             }
          </div>
