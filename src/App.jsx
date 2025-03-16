@@ -7,6 +7,7 @@ import Login from './pages/auth/Login';
 import SignUp from './pages/auth/SignUp';
 import Dashboard from './pages/dashboard/Dashboard';
 import Trending from './pages/Trending';
+import Subscriptions from './pages/creator/Subscriptions';
 
 const router = createBrowserRouter(
       createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
             <Route path="/signUp" element={<SignUp/>}/>
             <Route path='/dashboard' element={<Dashboard/>} />
             <Route path='/trending' element={<Trending/>} />
+            <Route path='/subscriptions' element={<Subscriptions/>} />
         </Route>
       )
 )

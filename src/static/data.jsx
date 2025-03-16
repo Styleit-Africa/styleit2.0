@@ -10,6 +10,8 @@ import userEdit from '../images/user-edit.png'
 import history from '../images/note.png'
 import subscription from '../images/cards.png'
 import createPost from '../images/edit.png'
+import postImage from '../images/post_i.png'
+
 
 
 const happyClients = [
@@ -182,16 +184,19 @@ const sidebarLinks = {
             id:1,
             name:'Create a post',
             icon:createPost,
+            route:'/create-post'
         },
         {
             id:2,
             name:'Subscription',
             icon:subscription,
+            route:'/subscriptions'
         },
         {
             id:3,
             name:'History',
             icon:history,
+            route:'/history'
         },
     ],
     client:[
@@ -338,7 +343,173 @@ const posts = [
     }
 ]
 
+const myPosts = [
+    {
+        id:1,
+        title:'Crosset',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:2,
+        title:'Ankara',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:3,
+        title:'seven star material',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:4,
+        title:'Crosset',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:5,
+        title:'Crosset',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:6,
+        title:'Crosset',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:7,
+        title:'Crosset',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:8,
+        title:'Crosset',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:9,
+        title:'Crosset',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:10,
+        title:'Crosset',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:11,
+        title:'Crosset',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    },
+    {
+        id:12,
+        title:'Crosset',
+        description:' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum ducimus molestiae, tenetur tempore eum deleniti?',
+        imageUrl:postImage
+    }
+]
+
+const subscriptions = [
+    {
+        id:1,
+        period:'monthly',
+        discount:'no discount benefits',
+        amount:600.00,
+    },
+    {
+        id:2,
+        period:'quarterly',
+        discount:'Enjoy 20% discount',
+        amount:1550.00,
+    },
+    {
+        id:1,
+        period:'half year ',
+        discount:'Enjoy 30% discount',
+        amount:2700.00,
+    },
+    {
+        id:1,
+        period:'monthly',
+        discount:'Enjoy 30% discount',
+        amount:4750.00,
+    }
+]
+
+
+const subscriptionDetails = [
+    {
+        id:1,
+        date:'18-08-2024',
+        time:'12:00pm',
+        planType:'monthly',
+        startDate:'18-08-2024',
+        endDate:'18-08-2024',
+        paymentStatus:'pending',
+        subStatus:'deactive'
+    },
+    {
+        id:2,
+        date:'18-08-2024',
+        time:'12:00pm',
+        planType:'monthly',
+        startDate:'18-08-2024',
+        endDate:'18-08-2024',
+        paymentStatus:'pending',
+        subStatus:'deactive'
+    },
+    {
+        id:3,
+        date:'18-08-2024',
+        time:'12:00pm',
+        planType:'monthly',
+        startDate:'18-08-2024',
+        endDate:'18-08-2024',
+        paymentStatus:'paid',
+        subStatus:'active'
+    },
+    {
+        id:4,
+        date:'18-08-2024',
+        time:'12:00pm',
+        planType:'half year',
+        startDate:'18-08-2024',
+        endDate:'18-08-2024',
+        paymentStatus:'paid',
+        subStatus:'active'
+    },
+    {
+        id:5,
+        date:'18-08-2024',
+        time:'12:00pm',
+        planType:'yearly',
+        startDate:'18-08-2024',
+        endDate:'18-08-2024',
+        paymentStatus:'paid',
+        subStatus:'active'
+    },
+    {
+        id:6,
+        date:'18-08-2024',
+        time:'12:00pm',
+        planType:'monthly',
+        startDate:'18-08-2024',
+        endDate:'18-08-2024',
+        paymentStatus:'paid',
+        subStatus:'active'
+    },
+]
+
 export {
-    happyClients,reasons,countries,dashboardTabs,posts
-    ,userProfile,appointments,sidebarLinks
+    happyClients,reasons,countries,dashboardTabs,posts,subscriptionDetails
+    ,userProfile,appointments,sidebarLinks,myPosts,subscriptions
 }
