@@ -5,9 +5,11 @@ import React, { useState } from 'react'
 import CurrentTab from '@/components/dashboard/tabs/CurrentTab';
 import SearchBar from '@/components/global/SearchBar';
 import SearchContainer from '@/components/global/SearchContainer';
+import { useGlobalStore } from '@/store/global/useGlobal';
 
 const Dashboard = () => {
-  const [currentTab,setCurrentTab] = useState(1)
+
+  const {currentTab,setCurrentTab} = useGlobalStore(state=>state)
   return (
     <section className='mt-4 font-lato  pb-20'>
       <SearchContainer/>
