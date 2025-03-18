@@ -5,7 +5,7 @@ import Bookings from '../bookings/Bookings'
 
 const tabComponents = {
     2:<Post/>,
-    3:<Bookings/>,
+    3:<Bookings page='dashboard'/>,
 }
 
 const CurrentTab = ({currentTab}) => tabComponents[currentTab] || <Profile/>

@@ -5,7 +5,7 @@ import SubscriptionCard from './SubscriptionCard'
 
 const SubscriptionItems = () => {
   return (
-    <div className='flex justify-center xl:justify-start flex-col flex-wrap md:flex-row gap-4'>
+    <div className='flex justify-center xl:justify-start flex-col flex-wrap md:flex-row gap-4 md:mt-9'>
         {
             subscriptions.map(subscription=>{
                 return(

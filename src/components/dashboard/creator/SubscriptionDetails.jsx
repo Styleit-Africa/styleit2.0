@@ -8,13 +8,13 @@ const SubscriptionDetails = () => {
         <h2 className='text-center text-xl font-[700] capitalize mb-5'>subscription details</h2>
        <div className='hidden md:block'>
             <div className='flex justify-between'>
-                    <h3 className='basis-[15%]'>date</h3>
-                    <h3 className='basis-[15%]'>time</h3>
-                    <h3 className='basis-[15%]'>plan type</h3>
-                    <h3 className='basis-[15%]'>start date</h3>
-                    <h3 className='basis-[15%]'>end date</h3>
-                    <h3 className='basis-[15%]'>payment status</h3>
-                    <h3 className='basis-[15%]'>sub status</h3>
+                    <h3 className='text-lg capitalize font-[500] basis-[15%]'>date</h3>
+                    <h3 className='text-lg capitalize font-[500] basis-[15%]'>time</h3>
+                    <h3 className='text-lg capitalize font-[500] basis-[15%]'>plan type</h3>
+                    <h3 className='text-lg capitalize font-[500] basis-[15%]'>start date</h3>
+                    <h3 className='text-lg capitalize font-[500] basis-[15%]'>end date</h3>
+                    <h3 className='text-lg capitalize font-[500] basis-[15%]'>payment status</h3>
+                    <h3 className='text-lg capitalize font-[500] basis-[15%]'>sub status</h3>
                 
             </div>
             <div>
