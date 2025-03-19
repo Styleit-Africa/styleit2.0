@@ -423,25 +423,25 @@ const subscriptions = [
         id:1,
         period:'monthly',
         discount:'no discount benefits',
-        amount:600.00,
+        amount:600,
     },
     {
         id:2,
         period:'quarterly',
         discount:'Enjoy 20% discount',
-        amount:1550.00,
+        amount:1550,
     },
     {
         id:3,
         period:'half year ',
         discount:'Enjoy 30% discount',
-        amount:2700.00,
+        amount:2700,
     },
     {
         id:4,
         period:'monthly',
         discount:'Enjoy 30% discount',
-        amount:4750.00,
+        amount:4750,
     }
 ]
 
