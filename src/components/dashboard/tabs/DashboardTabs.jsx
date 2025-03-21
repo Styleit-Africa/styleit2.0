@@ -1,8 +1,9 @@
-import { dashboardTabs } from '@/static/data'
 import React, { useState } from 'react'
-import Profile from '../profile/Profile'
+
 import Post from '../post/Post'
 import Image from '@/components/global/Image'
+import { NavLink } from 'react-router-dom'
+import { dashboardTabs } from '@/static/data'
 
 
 const DashboardTabs = ({setCurrentTab,currentTab}) => {

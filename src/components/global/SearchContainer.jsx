@@ -19,9 +19,9 @@ const SearchContainer = () => {
             input:'pl-10 w-full border placeholder-gray-400 border-green-500 outline-none  rounded-lg h-12'
         }} />        
         <div>
-          <div className='relative'>
+          <div className='relative pr-4'>
           <Image src={profileImage} className="w-[50px] " />
-          <Indicator className='h-2 w-2 absolute top-1 right-1 rounded-full bg-red-600 '/>
+          <Indicator className='h-2 w-2 absolute top-0.5 right-5 rounded-full bg-red-600 '/>
           </div>
         </div>
     </div>
