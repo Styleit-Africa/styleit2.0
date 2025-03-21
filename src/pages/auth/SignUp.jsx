@@ -32,23 +32,6 @@ import useToggleAuthPage from '@/hooks/useToggleAuthPage'
 
 
 const SignUp = ()=> {
-  const form = useForm({
-    resolver:zodResolver(registerSchema),
-    defaultValues:{
-        email:'',
-        password:'',
-        confirmPassword:'',
-        firstName:'',
-        lastName:'',
-        business:'',
-        code:'',
-        phone:'',
-        check:false,
-        gender:undefined,
-        country:''
-    },
-    reValidateMode:'onChange'
-  })
 
     const {isSignUpForm,role} = useAuthService((state)=>state)
     const {togglePage} = useToggleAuthPage()
