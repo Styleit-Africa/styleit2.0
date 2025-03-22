@@ -114,6 +114,7 @@ const userProfile = {
     lastName:'Moses',
     mobile:'09066778876',
     email:'michaelmoses@gmail.com',
+    // description:'lorem'
     description:"i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes i'm a fashion designer with 5 years of experience in designing fashionable clothes",
     lga:'ifako-ijaye',
     address:'181, fola Azeez Cresent, Akuko',

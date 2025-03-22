@@ -20,7 +20,7 @@ const PostCard=({post,follow}) => {
                  
     <div className='relative border border-gray-200 rounded-2xl  text-sm  p-3.5'>
         {
-            isReportOpened&&<div className='absolute right-6 top-7 rounded-3xl bg-transparent  backdrop-filter backdrop-blur-md text-white pl-5 py-5 w-[200px] '>
+            isReportOpened&&<div data-testid="options" className='absolute right-6 top-7 rounded-3xl bg-transparent  backdrop-filter backdrop-blur-md text-white pl-5 py-5 w-[200px] '>
             <p className='capitalize text-lg cursor-pointer text-red-500 font-[500]'>delete</p>
             <p className='capitalize text-lg cursor-pointer text-yellow-500 font-[500]'>report</p>
         </div>
@@ -43,7 +43,7 @@ const PostCard=({post,follow}) => {
                 <Button className="text-primary -mt-1.5  p-0 bg-white hover:bg-white shadow-none block text-lg">Follow</Button>
                 }
 
-                <div className='relative mt-s6 w-[25px] self-start h-[29px] cursor-pointer' onClick={()=>setIsReportOpened(!isReportOpened)}>
+                <div data-testid="options-icon" className='relative mt-s6 w-[25px] self-start h-[29px] cursor-pointer' onClick={()=>setIsReportOpened(!isReportOpened)}>
                 <Indicator className='h-1 w-1 absolute bottom-2 right-0 rounded-full bg-black'/>
                 <Indicator className='h-1 w-1 absolute bottom-4 right-0 rounded-full bg-black'/>
                 <Indicator className='h-1 w-1 absolute bottom-6 right-0 rounded-full bg-black'/>

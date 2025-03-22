@@ -6,7 +6,7 @@ import profileImage from '../../../images/bobby.png'
 
 const CommentContainer = ({userProfile,postComments}) => {
   return (
-    <div>
+    <div data-testid="comment-container">
         {
             postComments.map(comment=>{
                 return (
