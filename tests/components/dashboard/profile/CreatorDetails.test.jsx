@@ -3,8 +3,6 @@ import React from "react";
 import { describe, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 import CreatorDetails from "../../../../src/components/dashboard/profile/creator/CreatorDetails";
-// import CreatorDetatails from '../../../src/components'
-// import { userProfile } from "../../../src/static/data";
 
 
 describe('CreatorDetails',()=>{
@@ -32,12 +30,4 @@ describe('CreatorDetails',()=>{
         expect(screen.getByText(description)).toBeInTheDocument()
         expect(button).toHaveTextContent(/less/i)
     })
-
-    // it('it should  not show the button when the user details is less than 350 characters',async()=>{
-    //     render(<CreatorDetails/>)
-    //     description = 'short text';
-    //     const button = screen.queryByRole('button');
-    //     expect(screen.getByText(description)).toBeInTheDocument();
-    //     expect(button).not.toBeInTheDocument();
-    // })
 })

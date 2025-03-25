@@ -16,7 +16,6 @@ import BankDetails from './BankDetails'
 
 
 const Sidebar = () => {
-  const [role] = useState('creator')
 
   return (
     <div className='w-72 ml-auto p-5 md:pb-9 rounded-l-xl bg-sidebar font-lato'>

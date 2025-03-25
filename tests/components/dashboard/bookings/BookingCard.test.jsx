@@ -1,6 +1,6 @@
 import BookingCard from "@/components/dashboard/bookings/BookingCard";
 import { appointments } from "@/static/data";
-import { getAllByRole, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { describe, expect, it } from "vitest";
 

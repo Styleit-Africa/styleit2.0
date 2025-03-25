@@ -2,10 +2,8 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
-import useToggleAuthPage from '@/hooks/useToggleAuthPage'
 import Join from "@/components/auth/Join";
 
-// const component = (post,value)=><PostCard post={post} follow={value}/>
 
 describe('Join',()=>{
     let role = 'Fashion'
