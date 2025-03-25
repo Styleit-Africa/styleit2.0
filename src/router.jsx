@@ -1,5 +1,5 @@
 import React from "react";
-const { createBrowserRouter, createRoutesFromElements, Route } = require("react-router-dom");
+import {createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom"
 import Home from './pages/Home';
 import Layout from './layouts/Layout';
 import Login from './pages/auth/Login';
