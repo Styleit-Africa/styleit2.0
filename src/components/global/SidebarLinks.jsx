@@ -2,7 +2,7 @@ import { sidebarLinks } from '@/static/data'
 import { Link, NavLink } from 'react-router-dom'
 import Image from './Image'
 import { useGlobalStore } from '@/store/global/useGlobal'
-
+import React from 'react'
 
 const SidebarLinks = ({creatorLinks})=>{
       const {setIsSidebarOpened} = useGlobalStore(state=>state)

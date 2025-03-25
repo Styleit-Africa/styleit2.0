@@ -12,6 +12,7 @@ import Image from '../Image'
 import CommentContainer from '../comment/CommentContainer'
 import { Button } from '@/components/ui/button'
 
+
 const PostCard=({post,follow}) => {
     const [isCommentOpened,setIsCommentOpened]=useState(false)
     const [isReportOpened,setIsReportOpened]=useState(false)

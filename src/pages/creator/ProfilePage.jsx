@@ -3,7 +3,7 @@ import React from 'react'
 
 const ProfilePage = () => {
   return (
-    <section className='container'>
+    <section data-testid="profile-page"  className='container'>
       <Profile/>
     </section>
   )

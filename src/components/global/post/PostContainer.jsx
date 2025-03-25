@@ -1,5 +1,6 @@
 import { posts } from '@/static/data'
 import PostCard from './PostCard'
+import React from "react"
 
 
 const PostContainer = ({userProfile,follow})=>{

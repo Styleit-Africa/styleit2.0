@@ -1,4 +1,5 @@
 import Image from "./Image"
+import React from 'react'
 
 
 const SearchBar = ({styles:{img,input},placeholder,imageIcon})=>{

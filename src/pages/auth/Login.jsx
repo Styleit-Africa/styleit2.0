@@ -48,7 +48,7 @@ const Login = ()=> {
 
   return (
 
-    <section className='pb-16'>
+    <section data-testid="login-page"  className='pb-16'>
         {
             role == 'Fashion' ?
              <LoginForm 

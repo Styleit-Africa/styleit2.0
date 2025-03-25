@@ -14,7 +14,7 @@ const  ProceedSubscription = () => {
     }
 
   return (
-        <section className='container font-lato md:pt-16   pb-32 px-4 xl:px-0'>
+        <section data-testid="proceed-subscription" className='container font-lato md:pt-16   pb-32 px-4 xl:px-0'>
             <div className='text-center pt-7 font-lato'>
                 <SubscriptionHeader/>
             </div>

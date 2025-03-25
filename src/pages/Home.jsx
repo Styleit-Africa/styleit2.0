@@ -11,7 +11,7 @@ import HappyClient from "@/components/home/HappyClient";
 
 const Home =()=>{
     return(
-        <>
+        <section data-testid="home-page">
             <Designer/>
             <Trending/>
            <section className="container">
@@ -69,7 +69,7 @@ const Home =()=>{
         </section>
         
            <NewLetter/>
-        </>
+        </section>
     )
 }
 

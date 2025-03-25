@@ -1,4 +1,5 @@
 import star from '../../images/star.png';
+import React from "react";
 
 
 const Remark =({img})=>{

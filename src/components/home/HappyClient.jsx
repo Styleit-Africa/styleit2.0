@@ -42,11 +42,10 @@ const HappyClient = () => {
              }}
              className="w-full  px-10 xl:px-0  md:max-w-[1100px] mx-auto"
              >
-             <CarouselContent className="" >
+             <CarouselContent >
                  {happyClients.map((client,index) => (
                  <CarouselItem key={index} className=" lg:basis-1/2 xl:basis-1/2 ">
                          <CardContent className="relative font-lato font-[400] min- h-[260px]  my-4 mx-1  rounded-3xl pt-16 pb-4 px-4  text-center border-[2px]l shadow-[1px_1px_6px_#ccc]">
-                                         {/* <p className="text-md md:text-2xl text-left pl-3 md:pr-9 mb-7">{client.feedback.comment.substring(0,104)} {client.feedback.comment.length > 103 && <span className="text-dsm text-primary">...read more</span> }</p> */}
                                          <p className="text-md md:text-2xl text-left pl-3 md:pr-9 mb-7">" {client.feedback.comment}"</p>
                                          <div className=" absolute bottom-4 right-4 flex gap-2 items-end w-[max-content] ">
                                              <h6 className="text-2xl mb-2">{client.name}</h6>
@@ -65,7 +64,7 @@ const HappyClient = () => {
                         )
                       })
                     }
-            </div>
+            </div>s
              </Carousel>
     </article>
 </section>

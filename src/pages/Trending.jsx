@@ -1,10 +1,10 @@
 import PostContainer from "@/components/global/post/PostContainer"
 import { userProfile } from "@/static/data"
-
+import React from "react"
 
 const Trending = ()=>{
     return(
-        <section className="py-24 px-4 md:px-0 font-lato">
+        <section data-testid="trending-page" className="py-24 px-4 md:px-0 font-lato"><h1>trending</h1>
             <PostContainer follow={false} userProfile={userProfile}/>
         </section>
     )

@@ -5,7 +5,7 @@ import React from 'react'
 
 const PostPage = () => {
   return (
-    <section className='container'>
+    <section data-testid="posts-page"  className='container'>
         <Post/>
     </section>
   )

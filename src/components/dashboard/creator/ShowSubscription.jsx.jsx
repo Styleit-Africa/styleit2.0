@@ -14,7 +14,7 @@ const ShowSubscription = () => {
     }
 
   return (
-        <section className=' md:pt-16 pb-20  md:pb-32 px-4 md:px-0'>
+        <section data-testid="show-subscription" className=' md:pt-16 pb-20  md:pb-32 px-4 md:px-0'>
 
             <div className='text-center pt-12 font-lato'>
                 <SubscriptionHeader/>

@@ -11,7 +11,7 @@ const Dashboard = () => {
 
   const {currentTab,setCurrentTab} = useGlobalStore(state=>state)
   return (
-    <section className='mt-4 font-lato  pb-20'>
+    <section data-testid="dashboard-page"  className='mt-4 font-lato  pb-20'>
       <SearchContainer/>
       <div className="bg-green-200 px-4 xl:px-0 py-2">
       <div className=' container'>

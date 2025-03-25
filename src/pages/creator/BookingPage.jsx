@@ -4,7 +4,7 @@ import React from 'react'
 
 const  BookingPage = () => {
   return (
-    <section className='container'>
+    <section data-testid="bookings-page"  className='container'>
       <Bookings/>
     </section>
   )
