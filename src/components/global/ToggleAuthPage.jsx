@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import useTogggleAuthPage from '../../hooks/useToggleAuthPage'
 
-const ToggleAuthPage = ({role,page='login'})=>{
+const ToggleAuthPage = ({role,page})=>{
     const {togglePage} = useTogggleAuthPage()
     return(
         <p className='text-center mt-8 font-lato font-[500]'>Want to {page === 'login' ? 'log in':'sign up'} as a {role == 'Fashion' ? 'client':'fashion designer'} ? 

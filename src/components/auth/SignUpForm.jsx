@@ -29,7 +29,6 @@ import { useAuthService } from '@/store/useAuthService'
 
 
 const SignUpForm = ({reasons,header,image})=> {
-  const [isForm,setIsform] = useState(false);
   const form = useForm({
     resolver:zodResolver(registerSchema),
     defaultValues:{
@@ -197,7 +196,7 @@ const SignUpForm = ({reasons,header,image})=> {
                    value={field.value}
                    defaultValue={field.value}
                  >
-                      <SelectTrigger className="w-full md:w-[182px] border border-secondary py-6 rounded-xl">
+                      <SelectTrigger data-testid="country" className="w-full md:w-[182px] border border-secondary py-6 rounded-xl">
                         <SelectValue placeholder="Choose country" />
                       </SelectTrigger>
                       <SelectContent className="bg-white">
@@ -230,17 +229,17 @@ const SignUpForm = ({reasons,header,image})=> {
                             >
                               <FormItem className="flex items-center space-x-3 space-y-0">
                                 <FormControl>
-                                  <RadioGroupItem value="Male" className='border-green-500'/>
+                                  <RadioGroupItem value="Male" id="male" className='border-green-500'/>
                                 </FormControl>
-                                <FormLabel className="font-normal">
+                                <FormLabel htmlFor="male" className="font-normal">
                                   Male
                                 </FormLabel>
                               </FormItem>
                               <FormItem className="flex items-center space-x-3 space-y-0">
                                 <FormControl>
-                                  <RadioGroupItem value="Female" className="border-green-500" />
+                                  <RadioGroupItem value="Female" id="female" className="border-green-500" />
                                 </FormControl>
-                                <FormLabel className="font-normal">
+                                <FormLabel htmlFor="female"  className="font-normal">
                                   Female
                                 </FormLabel>
                               </FormItem>
@@ -272,7 +271,7 @@ const SignUpForm = ({reasons,header,image})=> {
                 <Input
                   type="file"
                   id="file"
-                  // {...field}
+                  data-testid="file input"
                   className='hidden'
                   accept=".jpg,.jpeg,.gif,.png"
                   onChange={(e) => {

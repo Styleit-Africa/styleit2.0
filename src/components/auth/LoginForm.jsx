@@ -36,8 +36,6 @@ const LoginForm = ({reasons,header,image})=> {
   })
 
   const {isLoginForm,role} = useAuthService((state)=>state)
-  console.log(role)
-  console.log(reasons,'te')
 
   const onSubmit = (values)=>{
     console.log(values)
@@ -47,10 +45,7 @@ const LoginForm = ({reasons,header,image})=> {
 
     <section className='md:pl-4 lg:pl-0'>
 
-        {isLoginForm||<Join page="login" header="Log in as"/>}
-        {
-            isLoginForm && 
-            <div className='flex flex-col md:flex-row max-w-[900px] mx-auto  pt-20'>
+        {!isLoginForm? <Join page="login" header="Log in as"/> :<div className='flex flex-col md:flex-row max-w-[900px] mx-auto  pt-20'>
         <Reasons reasons={reasons} image={image} isSignUp={false} header={header}/>
 
         <div className='flex-[0.5] px-4 md:px-12 flex flex-col md:flex-col'>
@@ -70,7 +65,7 @@ const LoginForm = ({reasons,header,image})=> {
 
             </div>
              
-                <Form {...form} className='flex-[0.5]'>
+                <Form {...form} className='flex-[0.5]' data-testid="login-form">
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                   <div className='relative'>
                     <img src={emailIcon} className='absolute top-5 left-4 w-[20px] h-[20px]' alt="" />

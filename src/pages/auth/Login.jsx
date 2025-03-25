@@ -60,7 +60,7 @@ const Login = ()=> {
         }
 
         {
-            isLoginForm && <ToggleAuthPage role={role}/>
+            isLoginForm && <ToggleAuthPage role={role} page='login'/>
         }
       
     </section>

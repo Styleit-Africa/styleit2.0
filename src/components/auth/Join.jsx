@@ -1,3 +1,4 @@
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import profile from '../../images/profile-circle.jpg'
 import { Button } from '../ui/button'
@@ -28,7 +29,7 @@ const Join = ({page,header})=>{
             <h1 className='text-center text-2xl text-primary mb-9'>{header}</h1>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4 ">
+                className="space-y-4 " data-testid="join-form">
 
             <FormField
                       control={form.control}
@@ -70,7 +71,7 @@ const Join = ({page,header})=>{
                     />
 
                     <div className='mt-32 md:mt-9 '>
-                        <Button type="submit" className="text-white bg-primary block pb-10 w-full  md:w-96 md:mx-auto  rounded-lg  text-lg">Proceed</Button>
+                        <Button type="submit" data-testid="proceed" className="text-white bg-primary block pb-10 w-full  md:w-96 md:mx-auto  rounded-lg  text-lg">Proceed</Button>
 
                     </div>
              
