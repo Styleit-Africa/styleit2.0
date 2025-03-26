@@ -16,10 +16,7 @@ import { useAuthService } from "@/store/useAuthService";
 import { MemoryRouter } from "react-router-dom";
 import SignUpForm from "@/components/auth/SignUpForm";
 
-    <MemoryRouter>
-            <LoginForm header="Ready to find your next client ? let's go" reasons={reasons.clientLogin} image={redLady}
- />
-    </MemoryRouter>
+
 describe('SignUpForm',()=>{
     
     const mockSignUp = vi.fn()

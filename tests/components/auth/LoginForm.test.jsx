@@ -15,10 +15,6 @@ vi.mock('../../../src/store/useAuthService',()=>({
 import { useAuthService } from "@/store/useAuthService";
 import { MemoryRouter } from "react-router-dom";
 
-    <MemoryRouter>
-            <LoginForm header="Ready to find your next client ? let's go" reasons={reasons.clientLogin} image={redLady}
- />
-    </MemoryRouter>
 describe('LoginForm',()=>{
     
     const mockLogin = vi.fn()
