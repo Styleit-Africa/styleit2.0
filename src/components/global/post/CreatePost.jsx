@@ -14,7 +14,7 @@ const CreatePost = () => {
         <Indicator className='h-2 w-2 absolute top-2.5 left-9 md:hidden rounded-full bg-red-500'/>
         <Input type="text" placeholder="Create a post" className="h-full basis-[58%] border-none shadow-none  focus-visible:ring-0 placeholder-gray-400 placeholder:text-lg"/>
         <div className='flex  gap-12 items-center  '>
-            <label htmlFor="upload">
+            <label htmlFor="upload" data-testid='upload'>
               <Image src={gallery} className="w-6 h-6 cursor-pointer"/>
             </label>
             <Input type='file'  className='hidden' id="upload"/>

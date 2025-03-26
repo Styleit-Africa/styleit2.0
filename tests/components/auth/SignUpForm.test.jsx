@@ -58,7 +58,7 @@ describe('SignUpForm',()=>{
             const button = screen.getByRole('button',{name:/Sign Up/i});
             const user = userEvent.setup()
 
-            const picture = new File(['file name'],'pic.png',{type:'image/png'})
+            const picture = new File(['uthman'],'pic.png',{type:'image/png'})
             await user.type(email,'a@gmail.com')
             await user.type(password,'pass123')
             await user.type(confirmPassword,'pass123')

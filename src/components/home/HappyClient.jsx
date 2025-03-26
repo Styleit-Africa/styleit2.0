@@ -64,7 +64,7 @@ const HappyClient = () => {
                         )
                       })
                     }
-            </div>s
+            </div>
              </Carousel>
     </article>
 </section>
