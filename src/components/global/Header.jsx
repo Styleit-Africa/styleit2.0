@@ -55,10 +55,8 @@ const Header = ()=>{
                                 <Link to='/login'   data-testid="login" className="border border-primary text-center cursor-pointer  w-[110px] text-sm lg:text-[1.5rem] lg:w-[190px] font-bold lg:font-[400]   py-4 rounded-lg">Login</Link>
                                 <Link to='/signUp'  data-testid="signUp"  className="text-white bg-primary text-center cursor-pointer  shadow-[0px_4px_4px_0px_#FF617C33]  w-[110px] text-sm  lg:text-[1.5rem] lg:w-[190px] font-bold lg:font-[400] py-4 rounded-[0.65rem]">Sign up</Link>
                            </div>):(
-                            <div className="flex items-center gap-4 cursor-pointer
-                            " onClick={()=>{
-                                setIsSidebarOpened()
-                             console.log('open')}}>
+                            <div data-testid="sidebar-button"  className="flex items-center gap-4 cursor-pointer
+                            " onClick={()=>setIsSidebarOpened()}>
                                     <div  className="flex gap-2.5 items-center">
                                         <Image src={notification}  className="w-6 h-6 "/>
                                         <Image src={arrow}  className={`w-4 h-4 transition-all duration-300 ${isSidebarOpened ? "rotate-180":"rotate-0"} `}/>
