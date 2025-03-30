@@ -56,7 +56,6 @@ const HappyClient = () => {
                  ))}
              </CarouselContent>
             <CarouselNext className="text-primary text-2xl bg-secondary p-3 stkatic right-0 md:right-[4c0px] xl:right-[-50px] xl:absolute"/>
-            {/* <CarouselPrevious  className="text-primary text-2xl bg-secondary p-5 static xl:absolute" /> */}
                 <div className="flex gap-1 justify-center  mt-2 ">
                       {Array.from({length:count}).map((_,index)=>{
                         return (

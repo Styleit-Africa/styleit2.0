@@ -11,7 +11,6 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 const LinkTabs = () => {
     const location = useLocation();
-    console.log(location.pathname)
   return (
     <div className='flex-1 md:flex-initial'>
         <ul className='flex justify-between md:gap-20 items-center '> 

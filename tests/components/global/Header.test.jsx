@@ -4,20 +4,17 @@ import {beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import Header from "@/components/global/Header";
 import { MemoryRouter } from "react-router-dom";
-import { useGlobalStore } from "@/store/global/useGlobal";
 
-vi.mock('../../../src/components/global/useStore',()=>({
-    useGlobalStore:vi.fn()
-}))
+// vi.mock('../../../src/store/useGlobal/useGlobalStore',()=>({
+//     useGlobalStore:vi.fn()
+// }))
+import { useGlobalStore } from "@/store/global/useGlobal";
 
 describe('Header',()=>{
     const mockSidebar = vi.fn()
 
     beforeEach(()=>{
-        vi.clearAllMocks();
-        useGlobalStore.mockImplementation(()=>({
-            isSidebarOpened:false
-        }))
+        useGlobalStore.setState({isSidebarOpened:false})
     })
     render(
         <MemoryRouter>

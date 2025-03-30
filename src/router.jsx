@@ -16,6 +16,7 @@ import BookingPage from './pages/creator/BookingPage';
 import PostPage from './pages/creator/PostPage';
 import Blogs from "./pages/Blogs";
 import FashionDesigner from "./pages/FashionDesigner";
+import EditProfilePage from "./pages/creator/EditProfilePage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
           <Route path='/fashionDesigner' element={<FashionDesigner/>} />
           <Route path='/creator' element={<CreatorLayout/>}>
             <Route path='profile' element={<ProfilePage/>} />
+            <Route path='profile/edit' element={<EditProfilePage/>} />
             <Route path='bookings' element={<BookingPage/>} />
             <Route path='posts' element={<PostPage/>} />
             <Route path='history' element={<History/>} />

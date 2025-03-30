@@ -8,11 +8,12 @@ import glass from '../../../images/search-normal.png'
 
 
 const LinkTabsContainer = () => {
-    const location = useLocation();
-    console.log(location.pathname)
+    const {pathname} = useLocation();
   return (
    <section className='mt-4 font-lato  '>
-    <SearchContainer/>
+    {
+      pathname !== '/creator/profile/edit' && <SearchContainer/>
+    }
     <div className="bg-green-200 px-4 xl:px-0 py-2">
     <div className=' container'>
 
