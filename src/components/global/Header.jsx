@@ -6,6 +6,7 @@ import hamburger from '../../images/hamburger.png'
 import arrow from '../../images/arrow-down.png'
 import notification from '../../images/Notication.png'
 import profileImage from '../../images/profile_i.png'
+import profileImage2 from '../../images/icon_n1.png'
 import { useAuthService } from "@/store/useAuthService";
 import User from "./User";
 import { userProfile } from "@/static/data";
@@ -65,7 +66,7 @@ const Header = ()=>{
                                 userProps={{
                                         name:{userProfile,styles:'text-black'},
                                         indicator:{styles:'h-2 w-2 absolute bottom-2 right-0 rounded-full bg-green-300',isIndicator:false},
-                                        image:{profileImage,fullname:false,styles:'w-[50px] h-[50px]'},
+                                        image:{profileImage:user.role === 'creator'?profileImage:profileImage2,fullname:false,styles:'w-[50px] h-[50px]'},
                                         container:' flex items-center gap-1 flex-row-reverse font-lato'
                                 }}/>
 

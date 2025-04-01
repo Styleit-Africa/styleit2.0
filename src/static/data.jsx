@@ -86,26 +86,48 @@ const reasons = {
     fashionSignUp:['Direct contact with Creators','Book the service of a fashion designer','Prompt and secure service quality'],
 }
 
-const dashboardTabs = [
-    {
-        id:1,
-        name:'profile',
-        icon:profile,
-        activeIcon:profile_h
-    },
-    {
-        id:2,
-        name:'post',
-        icon:receipt,
-        activeIcon:receipt_h
-    },
-    {
-        id:3,
-        name:'bookings',
-        icon:calendar,
-        activeIcon:calendar_h
-    },
-]
+const dashboardTabs = {
+    creatorTabs: [
+        {
+            id:1,
+            name:'profile',
+            icon:profile,
+            activeIcon:profile_h
+        },
+        {
+            id:2,
+            name:'post',
+            icon:receipt,
+            activeIcon:receipt_h
+        },
+        {
+            id:3,
+            name:'bookings',
+            icon:calendar,
+            activeIcon:calendar_h
+        },
+    ],
+    clientTabs: [
+        {
+            id:1,
+            name:'profile',
+            icon:profile,
+            activeIcon:profile_h
+        },
+        {
+            id:2,
+            name:'liked post',
+            icon:receipt,
+            activeIcon:receipt_h
+        },
+        {
+            id:3,
+            name:'appointment details',
+            icon:calendar,
+            activeIcon:calendar_h
+        },
+    ],
+}
 
 
 const userProfile = {

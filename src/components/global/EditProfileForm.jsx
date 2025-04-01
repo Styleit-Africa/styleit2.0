@@ -1,18 +1,18 @@
-import Profile from '@/components/dashboard/profile/Profile'
 import Image from '@/components/global/Image'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { loginSchema } from '@/validations/authValidation'
 import { zodResolver } from '@hookform/resolvers/zod'
-import profileImage from '@/images/profile_i.png'
+import profileImage from '@/images/icon_n1.png'
 
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import Indicator from '@/components/global/Indicator'
+import { Link, useLocation } from 'react-router-dom'
 
 const EditProfileForm = ({isEditable,title}) => {
-
+  const {pathname} = useLocation()
    const form = useForm({
       resolver:zodResolver(loginSchema),
       defaultValues:{
@@ -250,7 +250,13 @@ const EditProfileForm = ({isEditable,title}) => {
                         {
                             isEditable&&<div className='md:w-[400px] mx-auto '>
                             <Button className=" border border-primary w-full rounded-xl hover:text-white  font-[700] text-md bg-white py-6">Update</Button>
-                          
+                          </div>
+                        }
+                        {
+                            pathname.endsWith('/client/profile')&&<div className='md:w-[400px] mx-auto '>
+                            <Button className=" border border-primary w-full rounded-xl hover:text-white  font-[700] text-md bg-white py-6"> 
+                              <Link to='/client/profile/edit' className="w-full">Edit Profile</Link> 
+                              </Button>
                           </div>
                         }
                         
