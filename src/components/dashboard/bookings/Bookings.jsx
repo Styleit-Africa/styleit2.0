@@ -10,7 +10,7 @@ const Bookings = () => {
       
       {appointments.map(appointment=>{
         return(
-            <BookingCard key={appointment.id} appointment={appointment}/>
+            <BookingCard key={appointment.id} appointment={appointment} page="bookings"/>
         )
       })}
 

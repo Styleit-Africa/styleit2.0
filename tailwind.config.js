@@ -8,6 +8,7 @@ export default {    darkMode: ["class"],
   	extend: {
   		colors: {
 			primary:'#FF617C',
+			s_primary:'#FFCED6',
 			secondary:'#27213C',
 			light:'#FFFDFD',
 			darkGray:'#F2E6E6',

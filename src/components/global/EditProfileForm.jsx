@@ -11,7 +11,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import Indicator from '@/components/global/Indicator'
 
-const EditProfileForm = ({isEditable}) => {
+const EditProfileForm = ({isEditable,title}) => {
 
    const form = useForm({
       resolver:zodResolver(loginSchema),
@@ -43,11 +43,10 @@ const EditProfileForm = ({isEditable}) => {
                            <Input type='file'  className='hidden' id="upload"/>
                           
                         </label>
-                          {/* <Image src={profileImage}  className=" w-[40px] md:w-[120px]"/> */}
-                          <h1 className='text-lg  md:text-2xl  md:hidden font-[700] '>Edit Profile</h1>
+                          <h1 className='text-lg  md:text-2xl  md:hidden font-[700] '>{title}</h1>
 
                            <div className='relative flex-[1] hidden md:block'>
-                              <h1 className='text-2xl  mb-10 font-[700]'>Edit Profile</h1>
+                              <h1 className='text-2xl  mb-10 font-[700]'>{title}</h1>
                               <FormField
                                   control={form.control}
                                   name="firstName"

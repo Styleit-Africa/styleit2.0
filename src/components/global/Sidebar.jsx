@@ -11,11 +11,14 @@ import Followers from './Followers'
 import { Link } from 'react-router-dom'
 import SidebarLinks from './SidebarLinks'
 import BankDetails from './BankDetails'
+import { useAuthService } from '@/store/useAuthService'
 
 
 
 
 const Sidebar = () => {
+
+    const {user} = useAuthService(state=>state)
 
   return (
     <div className='w-72 ml-auto p-5 md:pb-9 rounded-l-xl bg-sidebar font-lato'>
@@ -37,15 +40,18 @@ const Sidebar = () => {
                 Edit</div>
         </div>
         <ul className="  font-lato textmd text-lightGray ">
+           {
+            user.role==='creator'&&
             <li className='flex items-center gap-4 pl-2 md:pl-1 md:border-b pb-3 pt-4  border-lgray '> 
                 <Followers followers={80} styles="text-md md:text-lg"/>
                 <p className=''>Followers</p>
             </li> 
+           }
             <li className='flex items-center gap-4 pl-2 md:pl-1 md:border-b py-3 border-lgray '> 
                 <Followers followers={42} styles="text-md md:text-lg"/>
                 <p className=''>Following</p>
             </li>
-            <SidebarLinks creatorLinks={sidebarLinks.creator}/>
+            <SidebarLinks role={user.role} links={user.role==='creator'?sidebarLinks.creator:sidebarLinks.client}/>
     </ul>
     <div className='flex items-center pl-1.5 border-b py-2 border-lgray '>
         <Image src={logout} className="w-6 h-6" />

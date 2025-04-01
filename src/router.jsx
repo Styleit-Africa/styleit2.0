@@ -17,6 +17,8 @@ import PostPage from './pages/creator/PostPage';
 import Blogs from "./pages/Blogs";
 import FashionDesigner from "./pages/FashionDesigner";
 import EditProfilePage from "./pages/creator/EditProfilePage";
+import ClientLayout from "./layouts/ClientLayout";
+import AppointmentDetails from "./pages/client/AppointmentDetails";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -37,6 +39,12 @@ const router = createBrowserRouter(
             <Route path='subscriptions' element={<Subscriptions/>} />
             <Route path='subscriptions/:id' element={<ShowSubscription/>} />
             <Route path='subscriptions/:id/proceed' element={<ProceedSubscription/>} />
+          </Route>
+          <Route path='/client' element={<ClientLayout/>}>
+            <Route path='profile' element={<ProfilePage/>} />
+            <Route path='profile/edit' element={<EditProfilePage/>} />
+            <Route path='appointmentDetails' element={<AppointmentDetails/>} />
+         
           </Route>
       </Route>
     )

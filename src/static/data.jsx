@@ -128,54 +128,130 @@ const appointments = [
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
-         collectionDate:'2024-11-15',
-         collectionTime:'2:00',
-
+        collectionDate:'2024-11-15',
+        collectionTime:'2:00',
+        status:'accepted',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
     {
         id:2,
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
-         collectionDate:'2024-11-15',
-         collectionTime:'2:00',
-
+        collectionDate:'2024-11-15',
+        collectionTime:'2:00',
+        status:'declined',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
     {
         id:3,
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
-         collectionDate:'2024-11-15',
-         collectionTime:'2:00',
-
+        collectionDate:'2024-11-15',
+        collectionTime:'2:00',
+        status:'accepted',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
     {
         id:4,
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
-         collectionDate:'2024-11-15',
-         collectionTime:'2:00',
-
+        collectionDate:'2024-11-15',
+        collectionTime:'2:00',
+        status:'declined',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
     {
         id:5,
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
-         collectionDate:'2024-11-15',
-         collectionTime:'2:00',
-
+        collectionDate:'2024-11-15',
+        collectionTime:'2:00',
+        status:'declined',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
     {
         id:6,
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
-         collectionDate:'2024-11-15',
-         collectionTime:'2:00',
-
+        collectionDate:'2024-11-15',
+        collectionTime:'2:00',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:7,
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-02-31',
+        bookingTime:'03:55',
+        collectionDate:'2024-11-15',
+        collectionTime:'3:00:08',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:8,
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-02-31',
+        bookingTime:'05:02',
+        collectionDate:'2024-11-15',
+        collectionTime:'3:00:08',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:9,
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-03-31',
+        bookingTime:'18:22',
+        collectionDate:'2025-11-15',
+        collectionTime:'3:00:08',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:10,
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-03-31',
+        bookingTime:'18:25',
+        collectionDate:'2025-11-15',
+        collectionTime:'3:00:08',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:11,
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-03-31',
+        bookingTime:'18:26',
+        collectionDate:'2025-11-15',
+        collectionTime:'3:00:08',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:12,
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-03-31',
+        bookingTime:'18:27',
+        collectionDate:'2025-11-15',
+        collectionTime:'3:00:08',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:13,
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-03-31',
+        bookingTime:'18:50',
+        collectionDate:'2025-11-15',
+        collectionTime:'3:00:08',
+        status:'paid',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
 ]
 
@@ -203,23 +279,27 @@ const sidebarLinks = {
     client:[
         {
             id:1,
-            name:'Followers'
+            name:'Liked posts',
+            icon:history,
+            route:'/likedPosts'
         },
         {
             id:2,
-            name:'Following'
+            name:'Appointment details',
+            icon:history,
+            route:'/appointmentDetails'
         },
         {
             id:3,
-            name:'Create a post'
+            name:'Settings',
+            icon:history,
+            route:'/settings'
         },
         {
             id:4,
-            name:'Subscription'
-        },
-        {
-            id:5,
-            name:'History'
+            name:'Report issues',
+            icon:history,
+            route:'/reportIssues'
         },
     ],
 }
