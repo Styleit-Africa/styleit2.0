@@ -5,8 +5,6 @@ import React from 'react'
 import { useAuthService } from '@/store/useAuthService'
 
 const SidebarLinks = ({links,role})=>{
-      const {setIsSidebarOpened} = useGlobalStore(state=>state)
-    
     return(
         <>
          {
@@ -14,7 +12,7 @@ const SidebarLinks = ({links,role})=>{
                     return(
                         <li key={link.id}  className='flex items-center gap-3.5 text-md md:text-lg pl-1 md:border-b border-lgray py-3 '>
                             <Image src={link.icon} className="w-6 h-6" />
-                            <NavLink  to={`/${role==='client'?'client':'creator'}${link.route}`} className={({isActive})=>`${isActive && 'text-primary'}`} onClick={()=>setIsSidebarOpened()}>{link.name}</NavLink>
+                            <NavLink  to={`/${role==='client'?'client':'creator'}${link.route}`} className={({isActive})=>`${isActive && 'text-primary'}`} >{link.name}</NavLink>
                         </li>
                     )
                 })
