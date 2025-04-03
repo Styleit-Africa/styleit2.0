@@ -1,7 +1,7 @@
 import { userProfile } from '@/static/data'
 import React, { useState } from 'react'
-// import userEdit from '../../../images/user-edit.png'
 import userEdit from '../../../../images/user-edit.png'
+import editUser from '../../../../images/user-edit_2.png'
 import profileImage from '../../../../images/profile_i.png'
 import Profile from '../Profile'
 import Image from '@/components/global/Image'
@@ -50,12 +50,15 @@ const CreatorDetails = () => {
     </div>
     </div>
     </div>
+
+    <Link to='/creator/profile/edit' className="block w-[max-content] ml-auto mt-5">
+
+    <div className="flex gap-2 bg-primary text-white rounded-xl px-4 py-3  ">
+        <Image src={editUser} className="w-6 h-6"  />
+            Edit
+    </div>
+    </Link> 
    
-   <div className=' ml-auto w-full md:w-[120px] mt-5'>
-        <Button className=" border border-primary w-full rounded-md hover:text-black hover:bg-white  font-[700] text-md bg-primary text-white py-7"> 
-                <Link to='/creator/profile/edit' className="w-full">Edit Profile</Link> 
-            </Button>
-   </div>
   </div>
   )
 }

@@ -41,7 +41,8 @@ const Sidebar = () => {
                 </div>
                 <div className="flex gap-2 bg-primary text-white rounded-xl px-4 py-2">
                 <Image src={userEdit} className="w-6 h-6"  />
-                    Edit</div>
+                    Edit
+                </div>
             </div>
             </Link>
         <ul className="  font-lato textmd text-lightGray ">
