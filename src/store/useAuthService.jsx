@@ -1,7 +1,7 @@
 import {create} from 'zustand'
 
 export const useAuthService = create((set)=>({
-    user:{name:'uthman',role:'client'},
+    user:{name:'uthman',role:'creator'},
     isLoginForm:false,
     isSignUpForm:false,
     role:'Fashion',

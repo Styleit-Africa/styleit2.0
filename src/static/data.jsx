@@ -6,11 +6,14 @@ import receipt from '../images/receipt-edit.png'
 import receipt_h from '../images/receipt-edit_h.png'
 import calendar_h from '../images/calendar-edit_h.png'
 import calendar from '../images/calendar-edit.png'
-import userEdit from '../images/user-edit.png'
 import history from '../images/note.png'
 import subscription from '../images/cards.png'
 import createPost from '../images/edit.png'
 import postImage from '../images/post_i.png'
+import setting from '../images/setting.png'
+import sms from '../images/sms.png'
+import ko from '../images/ko.png'
+import bag from '../images/bag-2.png'
 
 
 
@@ -302,25 +305,25 @@ const sidebarLinks = {
         {
             id:1,
             name:'Liked posts',
-            icon:history,
+            icon:ko,
             route:'/likedPosts'
         },
         {
             id:2,
             name:'Appointment details',
-            icon:history,
+            icon:bag,
             route:'/appointmentDetails'
         },
         {
             id:3,
             name:'Settings',
-            icon:history,
+            icon:setting,
             route:'/settings'
         },
         {
             id:4,
             name:'Report issues',
-            icon:history,
+            icon:sms,
             route:'/reportIssues'
         },
     ],

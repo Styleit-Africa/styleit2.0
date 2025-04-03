@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 import SidebarLinks from './SidebarLinks'
 import BankDetails from './BankDetails'
 import { useAuthService } from '@/store/useAuthService'
+import { useGlobalStore } from '@/store/global/useGlobal'
 
 
 
@@ -19,6 +20,7 @@ import { useAuthService } from '@/store/useAuthService'
 const Sidebar = () => {
 
     const {user} = useAuthService(state=>state)
+    const {setIsSidebarOpened} = useGlobalStore(state=>state);
 
   return (
     <div className='w-72 ml-auto p-5 md:pb-9 rounded-l-xl bg-sidebar font-lato relative z-50 cursor-auto '>
@@ -30,15 +32,18 @@ const Sidebar = () => {
                     image:{profileImage,styles:'w-[50px] h-[50px]'},
                     container:' flex items-center gap-4 font-[700] text-lg font-lato'
             }}/>
-        <div className='flex justify-between text-lightGray text-md border-b pt-3 pb-2  border-lgray mt-5'>
-            <div className='flex items-center gap-3'>
-                <Image src={icon} className="w-6 h-6" />
-                <p>Online</p>
+
+            <Link to={`/${user.role==='creator'?'creator':'client'}/profile/edit`} className='block' onClick={()=>setIsSidebarOpened()}>
+            <div className='flex justify-between text-lightGray text-md border-b pt-3 pb-2  border-lgray mt-5'>
+                <div className='flex items-center gap-3'>
+                    <Image src={icon} className="w-6 h-6" />
+                    <p>Online</p>
+                </div>
+                <div className="flex gap-2 bg-primary text-white rounded-xl px-4 py-2">
+                <Image src={userEdit} className="w-6 h-6"  />
+                    Edit</div>
             </div>
-            <div className="flex gap-2 bg-primary text-white rounded-xl px-4 py-2">
-            <Image src={userEdit} className="w-6 h-6"  />
-                Edit</div>
-        </div>
+            </Link>
         <ul className="  font-lato textmd text-lightGray ">
            {
             user.role==='creator'&&

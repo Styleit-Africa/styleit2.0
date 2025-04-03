@@ -7,6 +7,7 @@ const SidebarContainer = () => {
 
   const handleSideBar = (e)=>{
     const element = e.target.tagName.toLowerCase()
+    console.log(element)
     if(element.includes('a','aside')){
       setIsSidebarOpened()
     }

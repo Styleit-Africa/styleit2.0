@@ -1,8 +1,6 @@
-import { Link, NavLink } from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 import Image from './Image'
-import { useGlobalStore } from '@/store/global/useGlobal'
 import React from 'react'
-import { useAuthService } from '@/store/useAuthService'
 
 const SidebarLinks = ({links,role})=>{
     return(

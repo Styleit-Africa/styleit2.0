@@ -6,6 +6,8 @@ import profileImage from '../../../../images/profile_i.png'
 import Profile from '../Profile'
 import Image from '@/components/global/Image'
 import Indicator from '@/components/global/Indicator'
+import { Button } from '@/components/ui/button'
+import { Link } from 'react-router-dom'
 const CreatorDetails = () => {
     const [isMore,setIsMore] = useState(false)
   return (
@@ -48,6 +50,12 @@ const CreatorDetails = () => {
     </div>
     </div>
     </div>
+   
+   <div className=' ml-auto w-full md:w-[120px] mt-5'>
+        <Button className=" border border-primary w-full rounded-md hover:text-black hover:bg-white  font-[700] text-md bg-primary text-white py-7"> 
+                <Link to='/creator/profile/edit' className="w-full">Edit Profile</Link> 
+            </Button>
+   </div>
   </div>
   )
 }
