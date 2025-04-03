@@ -154,7 +154,7 @@ const appointments = [
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
         collectionDate:'2024-11-15',
-        collectionTime:'2:00',
+        collectionTime:'15:20',
         status:'accepted',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -164,7 +164,7 @@ const appointments = [
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
         collectionDate:'2024-11-15',
-        collectionTime:'2:00',
+        collectionTime:'15:20',
         status:'declined',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -174,7 +174,7 @@ const appointments = [
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
         collectionDate:'2024-11-15',
-        collectionTime:'2:00',
+        collectionTime:'15:20',
         status:'accepted',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -184,7 +184,7 @@ const appointments = [
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
         collectionDate:'2024-11-15',
-        collectionTime:'2:00',
+        collectionTime:'15:20',
         status:'declined',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -194,7 +194,7 @@ const appointments = [
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
         collectionDate:'2024-11-15',
-        collectionTime:'2:00',
+        collectionTime:'15:20',
         status:'declined',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -204,7 +204,7 @@ const appointments = [
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
         collectionDate:'2024-11-15',
-        collectionTime:'2:00',
+        collectionTime:'12:00',
         status:'pending',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -214,7 +214,7 @@ const appointments = [
         bookingDate:'2025-02-31',
         bookingTime:'03:55',
         collectionDate:'2024-11-15',
-        collectionTime:'3:00:08',
+        collectionTime:'14:32',
         status:'pending',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -224,7 +224,7 @@ const appointments = [
         bookingDate:'2025-02-31',
         bookingTime:'05:02',
         collectionDate:'2024-11-15',
-        collectionTime:'3:00:08',
+        collectionTime:'14:32',
         status:'pending',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -234,7 +234,7 @@ const appointments = [
         bookingDate:'2025-03-31',
         bookingTime:'18:22',
         collectionDate:'2025-11-15',
-        collectionTime:'3:00:08',
+        collectionTime:'14:32',
         status:'pending',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -244,7 +244,7 @@ const appointments = [
         bookingDate:'2025-03-31',
         bookingTime:'18:25',
         collectionDate:'2025-11-15',
-        collectionTime:'3:00:08',
+        collectionTime:'14:32',
         status:'pending',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -254,17 +254,17 @@ const appointments = [
         bookingDate:'2025-03-31',
         bookingTime:'18:26',
         collectionDate:'2025-11-15',
-        collectionTime:'3:00:08',
+        collectionTime:'14:32',
         status:'pending',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
     {
         id:12,
         name:'Yunus Abdullateef',
-        bookingDate:'2025-03-31',
-        bookingTime:'18:27',
+        bookingDate:'2025-04-02',
+        bookingTime:'21:54',
         collectionDate:'2025-11-15',
-        collectionTime:'3:00:08',
+        collectionTime:'14:32',
         status:'pending',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
@@ -272,9 +272,9 @@ const appointments = [
         id:13,
         name:'Yunus Abdullateef',
         bookingDate:'2025-03-31',
-        bookingTime:'18:50',
+        bookingTime:'20:38',
         collectionDate:'2025-11-15',
-        collectionTime:'3:00:08',
+        collectionTime:'14:32',
         status:'paid',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },

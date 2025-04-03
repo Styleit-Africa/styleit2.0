@@ -1,18 +1,25 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const AppointmentMessage = ({appointment:{status,reason,bookingDate,bookingTime}}) => {
+const AppointmentMessage = ({appointment:{id,status,reason,bookingDate,bookingTime}}) => {
     const [greaterThanThirtyMins,setgreaterThanThirtyMins] = useState(false)
     const exceededThirtyMins = ()=> new Date() - new Date(`${bookingDate+'T'+bookingTime}`)
     const exceededOne = ()=>new Date().getTime() - new Date(`${bookingDate}T${bookingTime}`)>60000
- 
-    const checkTimeAndStatus = ()=>{
+    const date = new Date(`${bookingDate+'T'+bookingTime}`).toLocaleDateString('en-US',{year:'numeric',month:'2-digit',
+        day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'})
+        const d = new Date(bookingDate)
+        const year = `${d.getFullYear()}-${d.getMonth()<=9&&'0'+ d.getMonth()}-${d.getDay() <=9&&'0'+ d.getDay()}`
+        console.log(year)
+        const time = date.split(', ')
+    console.log(date.split(', '))
+    console.log(date)
+    const checkTime = ()=>{
         if(status === 'pending'&&exceededOne()){
             setgreaterThanThirtyMins(true)
         }
     }
     useEffect(()=>{
-        const interval = setInterval(checkTimeAndStatus,1000);
+        const interval = setInterval(checkTime,1000);
         return ()=>clearInterval(interval)
     },[])
   return (
