@@ -150,6 +150,7 @@ const userProfile = {
 const appointments = [
     {
         id:1,
+        receiver:'ariky stitches',
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
@@ -160,6 +161,7 @@ const appointments = [
     },
     {
         id:2,
+        receiver:'ariky stitches',
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
@@ -170,6 +172,7 @@ const appointments = [
     },
     {
         id:3,
+        receiver:'ariky stitches',
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
@@ -180,6 +183,7 @@ const appointments = [
     },
     {
         id:4,
+        receiver:'ariky stitches',
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
@@ -190,6 +194,7 @@ const appointments = [
     },
     {
         id:5,
+        receiver:'ariky stitches',
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
@@ -200,6 +205,7 @@ const appointments = [
     },
     {
         id:6,
+        receiver:'ariky stitches',
         name:'Ademola Decode',
         bookingDate:'2024-11-10',
         bookingTime:'12:30',
@@ -210,6 +216,7 @@ const appointments = [
     },
     {
         id:7,
+        receiver:'ariky stitches',
         name:'Yunus Abdullateef',
         bookingDate:'2025-02-31',
         bookingTime:'03:55',
@@ -220,6 +227,7 @@ const appointments = [
     },
     {
         id:8,
+        receiver:'ariky stitches',
         name:'Yunus Abdullateef',
         bookingDate:'2025-02-31',
         bookingTime:'05:02',
@@ -230,6 +238,7 @@ const appointments = [
     },
     {
         id:9,
+        receiver:'ariky stitches',
         name:'Yunus Abdullateef',
         bookingDate:'2025-03-31',
         bookingTime:'18:22',
@@ -240,6 +249,7 @@ const appointments = [
     },
     {
         id:10,
+        receiver:'noble stitches',
         name:'Yunus Abdullateef',
         bookingDate:'2025-03-31',
         bookingTime:'18:25',
@@ -250,6 +260,7 @@ const appointments = [
     },
     {
         id:11,
+        receiver:'ariky stitches',
         name:'Yunus Abdullateef',
         bookingDate:'2025-03-31',
         bookingTime:'18:26',
@@ -260,9 +271,10 @@ const appointments = [
     },
     {
         id:12,
+        receiver:'the industrous',
         name:'Yunus Abdullateef',
         bookingDate:'2025-04-02',
-        bookingTime:'21:54',
+        bookingTime:'22:10',
         collectionDate:'2025-11-15',
         collectionTime:'14:32',
         status:'pending',
@@ -270,6 +282,7 @@ const appointments = [
     },
     {
         id:13,
+        receiver:'elegant one',
         name:'Yunus Abdullateef',
         bookingDate:'2025-03-31',
         bookingTime:'20:38',

@@ -3,7 +3,7 @@ import React from 'react'
 
 const AppointmentDetails = () => {
   return (
-    <section className='container pb-20'>
+    <section data-testid="appointment-details" className='container pb-20'>
        <Appointments/>
     </section>
 

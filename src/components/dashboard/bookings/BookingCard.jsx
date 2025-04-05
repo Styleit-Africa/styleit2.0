@@ -4,9 +4,11 @@ import React from 'react'
 const BookingCard = ({appointment,page}) => {
 
     const {bookingDate,bookingTime,name,collectionDate,collectionTime} = appointment
+    const options = {
+      year:'numeric',month:'2-digit',
+      day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}
     const getTime = (date,time)=>{
-      return new Date(`${date+'T'+time}`).toLocaleDateString('en-US',{year:'numeric',month:'2-digit',
-        day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'})
+      return new Date(`${date+'T'+time}`).toLocaleDateString('en-US',options)
     }
     const getDate = (date)=>{
       return  `${date.getFullYear()}-${date.getMonth()<=9?'0'+ date.getMonth():date.getMonth()}-${date.getDay() <=9?'0'+ date.getDay():date.getDay()}`
@@ -17,7 +19,7 @@ const BookingCard = ({appointment,page}) => {
     const _collectionDate = getDate(new Date(collectionDate))
    
     return (
-      <div className={`${page!=='AppointmentDetails'&&'shadow px-3 md:px-5 py-4'} basis-[max-content] rounded-xl `}>
+      <div role='booking-card' className={`${page!=='AppointmentDetails'&&'shadow px-3 md:px-5 py-4'} basis-[max-content] rounded-xl `}>
             {
             page !== 'AppointmentDetails'&&
             <p className='text-sm md:text-[1rem] text-gray-500 '><span className='mr-3 text-black  font-[700] capitalize '>name:</span>{name}</p>

@@ -3,7 +3,7 @@ import React from 'react'
 
 const LikedPosts = () => {
   return (
-    <section className='container px-4 md:px-0 pb-28'>
+    <section  data-testid="liked-posts" className='container px-4 md:px-0 pb-28'>
         <MyPost/>
     </section>
   )

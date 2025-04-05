@@ -19,7 +19,7 @@ describe('Routing',()=>{
         return render(<RouterProvider router={createRouter([route])}/>)
     }
     it('should render home page by default',async()=>{
-        routeProvider('/');
+        routeProvider('/'); 
         const home = screen.getByTestId('home-page')
         expect(home).toBeInTheDocument()
     })
@@ -83,4 +83,41 @@ describe('Routing',()=>{
         const signUp = screen.getByTestId('signUp-page')
         expect(signUp).toBeInTheDocument();
     })
+    it('should render liked post page',async()=>{
+        routeProvider('/client/likedPosts');
+        const likedPost = screen.getByTestId('liked-posts')
+        expect(likedPost).toBeInTheDocument();
+    })
+    it('should render appointment details page',async()=>{
+        routeProvider('/client/appointmentDetails');
+        const appointmentDetails = screen.getByTestId('appointment-details')
+        expect(appointmentDetails).toBeInTheDocument();
+    })
+    it('should render appointment details page',async()=>{
+        routeProvider('/client/profile/edit');
+        const editProfilePage = screen.getByTestId('edit-profile-page')
+        expect(editProfilePage).toBeInTheDocument();
+    })
+    it('should render reports page',async()=>{
+        routeProvider('/client/reportIssues');
+        const reportsPage = screen.getByTestId('reports-page')
+        expect(reportsPage).toBeInTheDocument();
+    })
+    it('should render settings page',async()=>{
+        routeProvider('/client/settings');
+        const settings = screen.getByTestId('settings-page')
+        expect(settings).toBeInTheDocument();
+    })
+    it('should render book appointment page',async()=>{
+        routeProvider('/client/bookAppointment');
+        const settings = screen.getByTestId('book-appointment')
+        expect(settings).toBeInTheDocument();
+    })
+    it('should render client payment page',async()=>{
+        routeProvider('/client/payment');
+        const clientPage = screen.getByTestId('client-payment-page')
+        expect(clientPage).toBeInTheDocument();
+    })
+
+
 })

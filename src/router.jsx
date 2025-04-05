@@ -20,6 +20,10 @@ import EditProfilePage from "./pages/creator/EditProfilePage";
 import ClientLayout from "./layouts/ClientLayout";
 import AppointmentDetails from "./pages/client/AppointmentDetails";
 import LikedPosts from "./pages/client/LikedPosts";
+import Settings from "./pages/client/Settings";
+import Reports from "./pages/client/Reports";
+import BookAppointment from "./pages/client/bookAppointment";
+import ClientPayment from "./pages/client/ClientPayment";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -46,6 +50,10 @@ const router = createBrowserRouter(
             <Route path='profile/edit' element={<EditProfilePage/>} />
             <Route path='likedPosts' element={<LikedPosts/>} />
             <Route path='appointmentDetails' element={<AppointmentDetails/>} />
+            <Route path='settings' element={<Settings/>} />
+            <Route path='reportIssues' element={<Reports/>} />
+            <Route path='bookAppointment' element={<BookAppointment/>} />
+            <Route path='payment' element={<ClientPayment/>} />
          
           </Route>
       </Route>

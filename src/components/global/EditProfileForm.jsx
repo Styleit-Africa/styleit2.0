@@ -32,15 +32,15 @@ const EditProfileForm = ({isEditable,title}) => {
       console.log(values)
     }
   return (
-      <Form {...form} className='' data-testid="edit-creator-profile-form ">
+      <Form {...form} className='' data-testid="edit-profile-form ">
                       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 mt-6 md:mt-10 mb-20 px-4 xl:px-0">
                        <div className='flex  flex-col md:flex-row justify-between gap-10 md:mb-10'>
                           <div className='flex-[0.48]'>
                           <div className=' relative  flex gap-3 items-center md:gap-9 md:items-end'>
                           <Indicator className='h-1.5 w-1.5  absolute top-1 left-8 rounded-full md:hidden bg-red-600 '/>
-                          <label htmlFor="upload" data-testid='upload'>
-                          <Image src={profileImage}  className=" w-[40px] md:w-[120px]"/>
-                           <Input type='file'  className='hidden' id="upload"/>
+                          <label htmlFor="upload" >
+                          <Image src={profileImage} data-testid="image" className=" w-[40px] md:w-[120px]"/>
+                           <Input type='file'  className='hidden' id="upload" />
                           
                         </label>
                           <h1 className='text-lg  md:text-2xl  md:hidden font-[700] '>{title}</h1>
@@ -54,9 +54,9 @@ const EditProfileForm = ({isEditable,title}) => {
                                       <FormItem>
                                         <FormControl>
                                         <Input type="text" className='text-lg  shadow-none pl-4 block h-12 text-gray-500
-                                          focus-visible:ring-0' {...field} />
+                                          focus-visible:ring-0' {...field} data-testid="firstName"/>
                                         </FormControl>
-                                        <FormLabel htmlFor="namse" 
+                                        <FormLabel 
                                         className='absolute left-3 top-[3.5rem]  transition-all duration-300 
                                          bg-white font-[700]'>First Name</FormLabel>
                                       <FormMessage className="text-red-500" />
@@ -75,9 +75,9 @@ const EditProfileForm = ({isEditable,title}) => {
                                             <FormItem>
                                               <FormControl>
                                               <Input type="text" className='text-lg shadow-none pl-4 block h-12 text-gray-500
-                                                focus-visible:ring-0' {...field} />
+                                                focus-visible:ring-0' {...field} data-testid="firstName"/>
                                               </FormControl>
-                                              <FormLabel htmlFor="namse" 
+                                              <FormLabel 
                                               className='absolute left-3 -top-4  transition-all duration-300 
                                               bg-white font-[700]'>First Name</FormLabel>
                                             <FormMessage className="text-red-500" />
@@ -95,9 +95,9 @@ const EditProfileForm = ({isEditable,title}) => {
                                             <FormItem>
                                               <FormControl>
                                               <Input type="text" className='text-lg shadow-none pl-4 block h-12 text-gray-500
-                                                focus-visible:ring-0' {...field} />
+                                                focus-visible:ring-0' {...field} data-testid="lastName" />
                                               </FormControl>
-                                              <FormLabel htmlFor="namse" 
+                                              <FormLabel 
                                               className='absolute left-3 -top-4  transition-all duration-300 
                                               bg-white font-[700]'>Last Name</FormLabel>
                                             <FormMessage className="text-red-500" />
@@ -114,9 +114,9 @@ const EditProfileForm = ({isEditable,title}) => {
                                       <FormItem>
                                         <FormControl>
                                         <Input type="email" className='text-lg shadow-none pl-4 block h-12 text-gray-500
-                                          focus-visible:ring-0' {...field} />
+                                          focus-visible:ring-0' {...field} data-testid="email"/>
                                         </FormControl>
-                                        <FormLabel htmlFor="namse" 
+                                        <FormLabel 
                                         className='absolute left-3 -top-4  transition-all duration-300 
                                          bg-white font-[700]'>Email</FormLabel>
                                       <FormMessage className="text-red-500" />
@@ -132,9 +132,9 @@ const EditProfileForm = ({isEditable,title}) => {
                                       <FormItem>
                                         <FormControl>
                                         <Input type="text" className='text-lg shadow-none pl-4 block h-12 text-gray-500
-                                          focus-visible:ring-0' {...field} />
+                                          focus-visible:ring-0' {...field} data-testid="address" />
                                         </FormControl>
-                                        <FormLabel htmlFor="namse" 
+                                        <FormLabel 
                                         className='absolute left-3 -top-4  transition-all duration-300 
                                          bg-white font-[700]'>Address</FormLabel>
                                       <FormMessage className="text-red-500" />
@@ -151,9 +151,9 @@ const EditProfileForm = ({isEditable,title}) => {
                                       <FormItem>
                                         <FormControl>
                                         <Input type="text" className='text-lg shadow-none pl-4 block h-12 text-gray-500
-                                          focus-visible:ring-0' {...field} />
+                                          focus-visible:ring-0' {...field} data-testid="bank" />
                                         </FormControl>
-                                        <FormLabel htmlFor="namse" 
+                                        <FormLabel 
                                         className='absolute left-3 -top-4  transition-all duration-300 
                                          bg-white font-[700]'>Bank Name</FormLabel>
                                       <FormMessage className="text-red-500" />
@@ -172,9 +172,9 @@ const EditProfileForm = ({isEditable,title}) => {
                                       <FormItem>
                                         <FormControl>
                                         <Input type="text" className='text-lg shadow-none pl-4 block h-12 text-gray-500
-                                          focus-visible:ring-0' {...field} />
+                                          focus-visible:ring-0' {...field} data-testid="lastName"/>
                                         </FormControl>
-                                        <FormLabel htmlFor="namse" 
+                                        <FormLabel 
                                         className='absolute left-3 -top-4  transition-all duration-300 
                                          bg-white font-[700]'>Last Name</FormLabel>
                                       <FormMessage className="text-red-500" />
@@ -192,9 +192,9 @@ const EditProfileForm = ({isEditable,title}) => {
                                       <FormItem>
                                         <FormControl>
                                         <Input type="tel"  className='text-lg shadow-none pl-4 block h-12 text-gray-500
-                                          focus-visible:ring-0' {...field} />
+                                          focus-visible:ring-0' {...field} data-testid="mobile"/>
                                         </FormControl>
-                                        <FormLabel htmlFor="namse" 
+                                        <FormLabel 
                                         className='absolute left-3 -top-4  transition-all duration-300 
                                          bg-white font-[700]'>Mobile No</FormLabel>
                                       <FormMessage className="text-red-500" />
@@ -210,9 +210,9 @@ const EditProfileForm = ({isEditable,title}) => {
                                       <FormItem>
                                         <FormControl>
                                         <Input type="text" className='text-lg shadow-none pl-4 block h-12 text-gray-500
-                                          focus-visible:ring-0' {...field} />
+                                          focus-visible:ring-0' {...field} data-testid="lga" />
                                         </FormControl>
-                                        <FormLabel htmlFor="namse" 
+                                        <FormLabel 
                                         className='absolute left-3 -top-4  transition-all duration-300 
                                          bg-white font-[700]'>L.G.A</FormLabel>
                                       <FormMessage className="text-red-500" />
@@ -233,9 +233,9 @@ const EditProfileForm = ({isEditable,title}) => {
                                         <Input type="text" className='text-lg shadow-none pl-4 block h-12 text-gray-500
                                           focus-visible:ring-0' 
                                           
-                                          {...field} />
+                                          {...field} data-testid="bank_acc" />
                                         </FormControl>
-                                        <FormLabel htmlFor="namse" 
+                                        <FormLabel 
                                         className='absolute left-3 -top-4  transition-all duration-300 
                                          bg-white font-[700]'>Bank Account Number</FormLabel>
                                       <FormMessage className="text-red-500" />
@@ -249,12 +249,12 @@ const EditProfileForm = ({isEditable,title}) => {
                                 
                         {
                             isEditable&&<div className='md:w-[400px] mx-auto '>
-                            <Button className=" border border-primary w-full rounded-xl hover:text-white  font-[700] text-md bg-white py-6">Update</Button>
+                            <Button data-testid="update-btn" className=" border border-primary w-full rounded-xl hover:text-white  font-[700] text-md bg-white py-6">Update</Button>
                           </div>
                         }
                         {
                             pathname.endsWith('/client/profile')&&<div className='md:w-[400px] mx-auto '>
-                            <Button className=" border border-primary w-full rounded-xl hover:text-white  font-[700] text-md bg-white py-6"> 
+                            <Button data-testid="edit-btn" className=" border border-primary w-full rounded-xl hover:text-white  font-[700] text-md bg-white py-6"> 
                               <Link to='/client/profile/edit' className="w-full">Edit Profile</Link> 
                               </Button>
                           </div>
