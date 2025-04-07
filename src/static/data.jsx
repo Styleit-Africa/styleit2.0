@@ -3,6 +3,7 @@ import logo from '../images/logo.png'
 import profile from '../images/profile.png'
 import profile_h from '../images/profile_h.png'
 import receipt from '../images/receipt-edit.png'
+import userEdit from '../images/user-edit.png'
 import receipt_h from '../images/receipt-edit_h.png'
 import calendar_h from '../images/calendar-edit_h.png'
 import calendar from '../images/calendar-edit.png'
@@ -297,18 +298,24 @@ const sidebarLinks = {
     creator:[
         {
             id:1,
+            name:'Profile',
+            icon:ko,
+            route:'/profile'
+        },
+        {
+            id:2,
             name:'Create a post',
             icon:createPost,
             route:'/create-post'
         },
         {
-            id:2,
+            id:3,
             name:'Subscription',
             icon:subscription,
             route:'/subscriptions'
         },
         {
-            id:3,
+            id:4,
             name:'History',
             icon:history,
             route:'/history'
@@ -317,18 +324,24 @@ const sidebarLinks = {
     client:[
         {
             id:1,
+            name:'Profile',
+            icon:createPost,
+            route:'/profile'
+        },
+        {
+            id:2,
             name:'Liked posts',
             icon:ko,
             route:'/likedPosts'
         },
         {
-            id:2,
+            id:3,
             name:'Appointment details',
             icon:bag,
             route:'/appointmentDetails'
         },
         {
-            id:3,
+            id:4,
             name:'Settings',
             icon:setting,
             route:'/settings'
