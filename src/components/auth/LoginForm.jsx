@@ -10,10 +10,8 @@ import passwordIcon from '../../images/mdi_password-outline.png'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -26,7 +24,6 @@ import Join from '@/components/auth/Join'
 
 
 const LoginForm = ({reasons,header,image})=> {
-    // const [isLoginForm,setIsLoginForm] = useState(false)
   const form = useForm({
     resolver:zodResolver(loginSchema),
     defaultValues:{

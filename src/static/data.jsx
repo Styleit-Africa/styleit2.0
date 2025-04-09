@@ -347,7 +347,7 @@ const sidebarLinks = {
             route:'/settings'
         },
         {
-            id:4,
+            id:5,
             name:'Report issues',
             icon:sms,
             route:'/reportIssues'
@@ -577,7 +577,6 @@ const subscriptions = [
     }
 ]
 
-
 const subscriptionDetails = [
     {
         id:1,
@@ -641,7 +640,9 @@ const subscriptionDetails = [
     },
 ]
 
+const nonSubscriptionPages = ['','signUp','login']
+
 export {
     happyClients,reasons,countries,dashboardTabs,posts,subscriptionDetails
-    ,userProfile,appointments,sidebarLinks,myPosts,subscriptions
+    ,userProfile,appointments,sidebarLinks,myPosts,subscriptions,nonSubscriptionPages
 }

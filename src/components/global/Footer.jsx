@@ -3,19 +3,30 @@ import fb from '../../images/facebook.png';
 import linkedIn from '../../images/linkedIn.png';
 import instagram from '../../images/instagram.png';
 import copyright from '../../images/copyright.png';
+import { useLocation } from "react-router-dom";
+import { nonSubscriptionPages } from "@/static/data";
+import Subscribe from "./Subscribe";
+import Image from "./Image";
 
 const Footer =()=>{
 
+    const {pathname} = useLocation();
     const year = new Date().getFullYear();
+    const path = pathname.split('/');
+    const showSubscribe = nonSubscriptionPages.includes(path[path.length-1]);
+    
     return(
-        <footer className="px-5  bg-secondary text-white font-lato font-[400] pt-16 md:pt-20 pb-5">
+        <footer className="px-5  bg-secondary text-white font-lato font-[400] pt-8 md:pt-12 pb-5">
             <div className="container">
+                {
+                   showSubscribe||<Subscribe/>
+                }
             <div className="mb-24">
                 <h2 className="text-2xl md:text-3xl mb-6">Connect with us</h2>
                 <div className="flex gap-4">
-                    <img src={linkedIn} className="w-[25px] md:w-[32px]" alt="linkedIn" />
-                    <img src={fb} className="w-[25px] md:w-[32px]" alt="facebook" />
-                    <img src={instagram} className="w-[25px] md:w-[32px]" alt="instagram" />
+                    <Image src={linkedIn} className="w-[25px] md:w-[32px]" alt="linkedIn" />
+                    <Image src={fb} className="w-[25px] md:w-[32px]" alt="facebook" />
+                    <Image src={instagram} className="w-[25px] md:w-[32px]" alt="instagram" />
                 </div>
             </div>
             <div className="flex justify-between max-w-[630px] text-darkGray">
@@ -49,7 +60,7 @@ const Footer =()=>{
             </div>
                    
             <div className="capitalize md:text-xl  mt-16 flex gap-3 items-center w-[max-content] mx-auto">
-                  <img src={copyright} className="w-[20px] md:w-[30px]" alt="copyright" />
+                  <Image src={copyright} className="w-[20px] md:w-[30px]" alt="copyright" />
                    <h5>Styleit africa copyright {year}, all right reserved</h5> 
                    </div>
         </footer>
