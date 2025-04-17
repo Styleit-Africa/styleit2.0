@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import african from '../../images/african.png'
@@ -8,7 +8,7 @@ import passwordIcon from '../../images/mdi_password-outline.png'
 import upload from '../../images/upload.png' 
 
 import {
-  Form,FormControl,FormDescription,
+  Form,FormControl,
   FormField,FormItem,FormLabel,FormMessage,
 } from "@/components/ui/form"
 import {
@@ -34,7 +34,7 @@ const SignUpForm = ({reasons,header,image})=> {
     defaultValues:{
         email:'',
         password:'',
-        confirmPassword:'',
+        confirmPassword:null,
         firstName:'',
         lastName:'',
         business:'',
@@ -49,10 +49,13 @@ const SignUpForm = ({reasons,header,image})=> {
 
     const {isSignUpForm} = useAuthService((state)=>state)
   
-  const onSubmit = (values)=>{
-    console.log(form)
+    const onSubmit = (values)=>{
+    console.log(form.formState.errors)
     console.log(values)
   }
+  console.log(form.formState.errors)
+  console.log(form.formState,3)
+
 
   return (
     <section className='md:pl-4 lg:pl-0'>

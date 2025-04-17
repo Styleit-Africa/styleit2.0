@@ -22,8 +22,9 @@ import AppointmentDetails from "./pages/client/AppointmentDetails";
 import LikedPosts from "./pages/client/LikedPosts";
 import Settings from "./pages/client/Settings";
 import Reports from "./pages/client/Reports";
-import BookAppointment from "./pages/client/bookAppointment";
+import BookAppointmentPage from "./pages/client/BookAppointmentPage";
 import ClientPayment from "./pages/client/ClientPayment";
+import TaskPaymentPage from "./pages/client/TaskPaymentPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -52,8 +53,9 @@ const router = createBrowserRouter(
             <Route path='appointmentDetails' element={<AppointmentDetails/>} />
             <Route path='settings' element={<Settings/>} />
             <Route path='reportIssues' element={<Reports/>} />
-            <Route path='bookAppointment' element={<BookAppointment/>} />
+            <Route path='bookAppointment' element={<BookAppointmentPage/>} />
             <Route path='payment' element={<ClientPayment/>} />
+            <Route path='taskPayment' element={<TaskPaymentPage/>} />
          
           </Route>
       </Route>
