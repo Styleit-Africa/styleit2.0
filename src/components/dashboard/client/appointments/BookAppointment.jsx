@@ -19,14 +19,13 @@ const BookAppointment = () => {
       defaultValues:{
         collectionTime:'',
         fullName:'',
+        time:'',
         collectionDate:undefined,
         bookingDate:undefined,
         bookingTime:'',
       }
     })
 
-    console.log(form?.formState?.errors)
-    console.log(form)
     const onSubmit = (values)=>{
 
       console.log(values)
@@ -42,7 +41,7 @@ const BookAppointment = () => {
                                   render={({ field }) => (
                                       <FormItem>
                                         <FormControl>
-                                        <Input type="text" className='text-lg shadow-none pl-4 block h-12 text-gray-500
+                                        <Input type="text" className='text-lg shadow-none pl-3 block h-12 text-gray-500
                                           focus-visible:ring-0' {...field} data-testid="fullName"/>
                                         </FormControl>
                                         <FormLabel 
@@ -53,6 +52,8 @@ const BookAppointment = () => {
                                   )}
                                   />
                         </div>
+                 
+                    
                        <div className='flex  flex-col md:flex-row justify-between gap-6 md:gap-10  md:mb-10'>
                           <div className='flex-[0.48]'>
 
@@ -79,7 +80,7 @@ const BookAppointment = () => {
                                 "w-full justify-between text-left h-12"
                               )}> 
                               {
-                                  field.value ? format(field.value, "PPP"):<span className='text-gray-500 uppercase'>mm/dd/yyy</span>
+                                  field.value ? format(field.value, "PPP"):<span className='text-gray-400 uppercase'>mm/dd/yyy</span>
                                 }
                                   <Image src={calendarImage} className=' h-5 w-5'/>
                               </Button>
@@ -90,7 +91,6 @@ const BookAppointment = () => {
                               mode="single"
                               selected={field.value}
                               onSelect={field.onChange}
-                              disabled={(date)=>date>new Date()||date<new Date('1900-01-01')}
                               initialFocus
                               
                               />
@@ -117,7 +117,7 @@ const BookAppointment = () => {
                                      <FormLabel 
                                         className={`absolute left-3 -top-2  transition-all duration-300 
                                          bg-white font-[700]`}>Booking Time</FormLabel>
-                                        <Input type="time" id="bookingTime" className='cursor-pointer text-lg shadow-none pl-4 block h-12 text-gray-500
+                                        <Input type="text" placeholder="00:00" id="bookingTime" className='placeholder-gray-400 placeholder:text-[1.07rem] cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
                                           focus-visible:ring-0'  {...field} data-testid="bookingTime" />
                                      </div>
                                         </FormControl>
@@ -152,7 +152,7 @@ const BookAppointment = () => {
                                   "w-full justify-between text-left h-12"
                                 )}> 
                                 {
-                                  field.value ? format(field.value, "PPP"):<span className='text-gray-500 uppercase'>mm/dd/yyy</span>
+                                  field.value ? format(field.value, "PPP"):<span className='text-gray-400 uppercase'>mm/dd/yyy</span>
                                 }
                                   <Image src={calendarImage} className=' h-5 w-5'/>
                                 </Button>
@@ -174,6 +174,7 @@ const BookAppointment = () => {
                                     )}
                                     />
                           </div>
+                         
                        <div className="flex gap-5 md:block">
                         
                        <div className='relative w-full md:w-auto md:flex-[0.5] mt-8 md:mt-11 '>
@@ -187,7 +188,7 @@ const BookAppointment = () => {
                                           <FormLabel htmlFor='collectionTime' className={`${form?.formState?.errors?.bookingTime?.message?' bottom-10':' bottom-3.5'} block bg-white absolute   right-4 w-[max-content]  h-[max-content] `}>
                                           <Image src={clock} className=' h-5 w-5 cursor-pointer'/>
                                             </FormLabel>
-                                            <Input type="time" id="collectionTime" className='cursor-pointer text-lg shadow-none pl-4 block h-12 text-gray-500
+                                            <Input type="text" placeholder="00:00" id="collectionTime" className='placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
                                               focus-visible:ring-0' {...field} data-testid="collectionTime"/>
                                           </div>
                                         </FormControl>

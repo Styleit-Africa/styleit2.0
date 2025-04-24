@@ -1,26 +1,26 @@
 import { z }  from "zod";
 
 export const bookAppointmentSchema = z.object({
-   fullName:z.string().min(2,'full name is required'),
+   fullName:z.string().min(2,'Full name is required'),
   bookingDate: z.date({
-    required_error: "booking date  is required",
+    required_error: "Booking date  is required",
   }).refine(
     (date) => !isNaN(date.getTime()),
     {
-      message:  "booking date  is required",
+      message:  "Booking date  is required",
     }
   ),
   collectionDate: z.date({
-    required_error: "collection date  is required",
+    required_error: "Collection date  is required",
   }).refine(
     (date) => !isNaN(date.getTime()),
     {
-      message:  "collection date  is required",
+      message:  "Collection date  is required",
     }
   ),
    
-   bookingTime: z.string().min(6,'booking time is required'),
-   collectionTime: z.string().min(6,'collection time is required')
+   bookingTime: z.string().min(5,'Booking time is required and must be in 00:00 format'),
+   collectionTime: z.string().min(5,'Collection time is required and must be in 00:00 format')
  })
 
  
