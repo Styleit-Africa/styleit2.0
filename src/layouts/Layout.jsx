@@ -1,11 +1,13 @@
 import React from "react";
 import Header from "../components/global/Header";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/global/Footer";
 import SidebarContainer from "@/components/global/SidebarContainer";
 
 
 const Layout =()=>{
+    const {pathname} = useLocation();
+    console.log()
     return(
         <>  
             <Header/>
@@ -13,9 +15,11 @@ const Layout =()=>{
                 <main className="">
                     <Outlet/>
                 </main>
-            <Footer/>
 
-
+                {
+                    pathname.split('/')[1] !== 'admin'&&<Footer/>
+                }
+            
         </>
     )
 }

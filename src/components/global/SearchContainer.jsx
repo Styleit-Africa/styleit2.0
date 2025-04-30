@@ -1,6 +1,5 @@
 import React from 'react'
 import profileImage from '../../images/profile_i.png'
-import notification from '../../images/Notication.png'
 import glass from '../../images/search-normal.png';
 
 import Image from './Image'

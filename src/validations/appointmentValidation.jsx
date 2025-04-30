@@ -15,7 +15,7 @@ export const bookAppointmentSchema = z.object({
   }).refine(
     (date) => !isNaN(date.getTime()),
     {
-      message:  "Collection date  is required",
+      message:  "Collection date  is required", 
     }
   ),
    

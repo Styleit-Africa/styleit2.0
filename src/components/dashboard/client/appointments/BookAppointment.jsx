@@ -71,7 +71,7 @@ const BookAppointment = () => {
                           <Popover>
                             <PopoverTrigger asChild>
                               <FormControl>
-
+  
                               <Button 
                                 data-testid="bookingDate"
 

@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import Trending from "../components/home/Trending";
 import Designer from "../components/home/Designer";
 import mark from '../images/mark.png'
-import bobby from '../images/bobby.png'
+import dr from '../images/dr.jfif'
 import { happyClients } from "@/static/data";
 import { Button } from "@/components/ui/button"
 import NewLetter from "@/components/home/NewLetter";
@@ -57,7 +57,7 @@ const Home =()=>{
 
            </section>
 
-          
+      
         <HappyClient/>
 
         <section className=" px-5 pb-10 md:pb-32">

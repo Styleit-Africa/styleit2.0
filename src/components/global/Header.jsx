@@ -16,11 +16,16 @@ import { useGlobalStore } from "@/store/global/useGlobal";
 const Header = ()=>{
     
     const {user} = useAuthService(state=>state)
-    const {setIsSidebarOpened,isSidebarOpened} = useGlobalStore(state=>state)
+    const {setIsSidebarOpened,isSidebarOpened,setIsAdminOpened} = useGlobalStore(state=>state)
 
     return( 
         <header  className="relative z-50 shadow-[2px_0px_10px_#ccc]  py-5 px-5 md:px-0 font-[400] font-[helvetica]">
-            <div className="flex justify-between md:hidden">
+          {
+            user.role !== 'admin' ?
+            (
+        <div>
+
+<div className="flex justify-between md:hidden">
                 <div>
                 <img src={m_logo} alt="logo"  />
                 </div>
@@ -76,6 +81,16 @@ const Header = ()=>{
                     </div>
            
                 </div>
+          </div>
+            ):
+            (
+                <div>
+                    hello
+                    <button onClick={()=>setIsAdminOpened()}>open</button>
+                </div>
+            )
+            
+          }
         </header>
     )
 }

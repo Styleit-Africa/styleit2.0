@@ -25,6 +25,15 @@ import Reports from "./pages/client/Reports";
 import BookAppointmentPage from "./pages/client/BookAppointmentPage";
 import ClientPayment from "./pages/client/ClientPayment";
 import TaskPaymentPage from "./pages/client/TaskPaymentPage";
+import AdminLayout from "./layouts/AdminLayout";
+import DashboardPage from "./pages/admin/DashboardPage";
+import AdminCreatorLayout from "./layouts/AdminCreatorLayout";
+import AdminCreatorsPage from "./pages/admin/creator/AdminCreatorsPage";
+import AdminCreatorProfilePage from "./pages/admin/creator/AdminCreatorProfilePage";
+import CreatorSubscriptionPage from "./pages/admin/creator/CreatorSubscriptionPage";
+import SingleCreatorSubscriptions from "./components/admin/creator/subscription/SingleCreatorSubscriptions";
+import CreatorPayments from "./components/admin/creator/payment/CreatorPayments";
+import SingleCreatorPayments from "./components/admin/creator/payment/SingleCreatorPayments";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -56,7 +65,17 @@ const router = createBrowserRouter(
             <Route path='bookAppointment' element={<BookAppointmentPage/>} />
             <Route path='payment' element={<ClientPayment/>} />
             <Route path='taskPayment' element={<TaskPaymentPage/>} />
-         
+          </Route>
+          <Route path='/admin' element={<AdminLayout/>}>
+            <Route path='dashboard' element={<DashboardPage/>} />
+            <Route path='creators' element={<AdminCreatorLayout/>} >
+                <Route index element={<AdminCreatorsPage/>}/>
+                <Route path="subscriptions" element={<CreatorSubscriptionPage/>}/>
+                <Route path="subscriptions/:id" element={<SingleCreatorSubscriptions/>}/>
+                <Route path=":id/profile" element={<AdminCreatorProfilePage/>}/>
+                <Route path="payments" element={<CreatorPayments/>}/>
+                <Route path="payments/:id" element={<SingleCreatorPayments/>}/>
+            </Route>
           </Route>
       </Route>
     )
