@@ -1,24 +1,32 @@
 import React, { useState } from "react";
 import glass from '@/images/search-normal.png';
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import SearchBar from "@/components/global/SearchBar";
 import { SortAsc } from "lucide-react";
-import { useGlobalStore } from "@/store/global/useGlobal";
+import { useCreatorStore } from "@/store/useCreator";
 
 
 const AdminCreatorLayout =()=>{
   const [sortOptions,setSortOptions] = useState(false);
-  const {sortCreators,sortCreatorSubscriptions} = useGlobalStore(state=>state)
+  const {sortCreators,sortPayments,sortCreatorSubscriptions} = useCreatorStore(state=>state)
+  const {id} = useParams();
   const {pathname} = useLocation();
   const path = pathname.split('/');
-  console.log(path)
-  console.log(pathname)
+
   const handleSort = (e)=>{
-    if(pathname.endsWith('subscriptions')){
+    if(pathname.endsWith('subscriptions')||pathname.endsWith(id)){
       sortCreatorSubscriptions(e.target.dataset.id)
-    }else{
+      console.log('yes')
+    }else if(pathname.endsWith('creators')){
       sortCreators(e.target.dataset.id)
-    } 
+    // }else if(pathname.endsWith('payments')||pathname.endsWith(id)){
+    }else if(pathname.endsWith('payments')||pathname.endsWith(id)){
+      sortPayments(e.target.dataset.id)
+      console.log('yes')
+    }else{
+      sortCreatorSubscriptions(e.target.dataset.id)
+
+    }
   }
   
     return(

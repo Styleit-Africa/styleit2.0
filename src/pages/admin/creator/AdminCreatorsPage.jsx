@@ -3,7 +3,7 @@ import React from 'react'
 
 const AdminCreatorsPage = () => {
   return (
-    <section className='px-5'>
+    <section className='px-5' data-testid="admin-creators">
         <Creators/>
     </section>
   )

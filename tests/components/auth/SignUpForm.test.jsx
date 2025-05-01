@@ -1,8 +1,7 @@
 import React from "react";
 import {render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import redLady from '@/images/redLady.png'
-import LoginForm from "@/components/auth/LoginForm";
+import redLady from '@/images/redLady.png';
 import { reasons } from "@/static/data";
 import userEvent from "@testing-library/user-event";
 

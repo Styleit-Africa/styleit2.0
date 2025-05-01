@@ -1,6 +1,5 @@
 import router from "@/router";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import React from "react";
 import { createMemoryRouter,RouterProvider } from "react-router-dom";
 import { describe, expect, it } from "vitest";
@@ -118,6 +117,36 @@ describe('Routing',()=>{
         const clientPage = screen.getByTestId('client-payment-page')
         expect(clientPage).toBeInTheDocument();
     })
-
+    // admin pages
+    it('should render admin creator subscriptions page',async()=>{
+        routeProvider('/admin/creators/subscriptions/');
+        const adminCreatorSubscriptionPage = screen.getByTestId('admin-creator-subscription')
+        expect(adminCreatorSubscriptionPage).toBeInTheDocument();
+    })
+    it('should render admin single creator subscriptions page',async()=>{
+        routeProvider('/admin/creators/subscriptions/1');
+        const adminSingleCreatorSubscriptionPage = screen.getByTestId('admin-single-creator-subscription')
+        expect(adminSingleCreatorSubscriptionPage).toBeInTheDocument();
+    })
+    it('should render admin creator payment page',async()=>{ 
+        routeProvider('/admin/creators/payments');
+        const adminCreatorPaymentPage = screen.getByTestId('admin-creator-payment')
+        expect(adminCreatorPaymentPage).toBeInTheDocument();
+    })
+    it('should render admin creator single payment page',async()=>{
+        routeProvider('/admin/creators/payments/1');
+        const adminCreatorSinglePaymentPage = screen.getByTestId('admin-single-creator-payment')
+        expect(adminCreatorSinglePaymentPage).toBeInTheDocument();
+    })
+    it('should render admin creators page',async()=>{
+        routeProvider('/admin/creators');
+        const adminCreatorPage = screen.getByTestId('admin-creators')
+        expect(adminCreatorPage).toBeInTheDocument();
+    })
+    it('should render admin creator profile page',async()=>{
+        routeProvider('/admin/creators/1/profile');
+        const adminCreatorProfilePage = screen.getByTestId('admin-creator-profile')
+        expect(adminCreatorProfilePage).toBeInTheDocument();
+    })
 
 })

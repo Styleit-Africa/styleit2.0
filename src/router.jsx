@@ -31,9 +31,9 @@ import AdminCreatorLayout from "./layouts/AdminCreatorLayout";
 import AdminCreatorsPage from "./pages/admin/creator/AdminCreatorsPage";
 import AdminCreatorProfilePage from "./pages/admin/creator/AdminCreatorProfilePage";
 import CreatorSubscriptionPage from "./pages/admin/creator/CreatorSubscriptionPage";
-import SingleCreatorSubscriptions from "./components/admin/creator/subscription/SingleCreatorSubscriptions";
-import CreatorPayments from "./components/admin/creator/payment/CreatorPayments";
-import SingleCreatorPayments from "./components/admin/creator/payment/SingleCreatorPayments";
+import CreatorSingleSubscriptionPage from "./pages/admin/creator/CreatorSingleSubscriptionPage";
+import CreatorPaymentPage from "./pages/admin/creator/CreatorPaymentsPage";
+import CreatorSinglePaymentPage from "./pages/admin/creator/CreatorSinglePaymentsPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -71,10 +71,10 @@ const router = createBrowserRouter(
             <Route path='creators' element={<AdminCreatorLayout/>} >
                 <Route index element={<AdminCreatorsPage/>}/>
                 <Route path="subscriptions" element={<CreatorSubscriptionPage/>}/>
-                <Route path="subscriptions/:id" element={<SingleCreatorSubscriptions/>}/>
+                <Route path="subscriptions/:id" element={<CreatorSingleSubscriptionPage/>}/>
                 <Route path=":id/profile" element={<AdminCreatorProfilePage/>}/>
-                <Route path="payments" element={<CreatorPayments/>}/>
-                <Route path="payments/:id" element={<SingleCreatorPayments/>}/>
+                <Route path="payments" element={<CreatorPaymentPage/>}/>
+                <Route path="payments/:id" element={<CreatorSinglePaymentPage/>}/>
             </Route>
           </Route>
       </Route>

@@ -1,475 +1,19 @@
-import { format } from "date-fns"
-
-const adminLinks = [
-    {
-        id:1,
-        name:'creators',
-        links:['subscriptions','payments']
-    },
-    {
-        id:2,
-        name:'client',
-        links:['subscriptions','payments']
-    },
-    {
-        id:3,
-        name:'bookings',
-        links:['subscriptions','payments']
-    },
-    {
-        id:4,
-        name:'platform management',
-        links:['subscriptions','payments']
-    },
-    {
-        id:5,
-        name:'analytics & reports',
-        links:['subscriptions','payments']
-    },
-    {
-        id:6,
-        name:'supports & notifications',
-        links:['subscriptions','payments']
-    }
-    
-]
+import React from 'react'
+import { render,screen, within } from '@testing-library/react'
+import {beforeEach, describe,expect,it, vi} from 'vitest'
+import { MemoryRouter } from 'react-router-dom'
+import CreatorPayments from '@/components/admin/creator/payment/CreatorPayments'
+import { changeDateFormat, useCreatorStore } from '@/store/useCreator'
+import userEvent from '@testing-library/user-event'
+import { format } from 'date-fns'
+import SingleCreatorPayments from '@/components/admin/creator/payment/SingleCreatorPayments'
 
 
-const creators = [
-    {
-        id:1,
-        name:'uthman fatai',
-        email:'u@gmail.com',
-        status:'suspended',
-        gender:'male',
-        phoneNumber:'07040834109',
-        businessName:'Noble stiches',
-        street:'49,Suraju Orile Iganmu',
-        state:'Lagos',
-        lga:'Surulere',
-        country:'Nigeria',
-    },
-    {
-        id:2,
-        name:'abdullahi fatai',
-        email:'u@gmail.com',
-        status:'banned',
-        gender:'male',
-        phoneNumber:'07040834109',
-        businessName:'The neatly done',
-        street:'49,Suraju Orile Iganmu',
-        state:'Lagos',
-        lga:'Surulere',
-        country:'Nigeria',
-    },
-    {
-        id:3,
-        name:'Faruq Sulaiman',
-        email:'u@gmail.com',
-        status:'approved',
-        gender:'male',
-        phoneNumber:'07040834109',
-        businessName:'stitching lord',
-        street:'49,Suraju Orile Iganmu',
-        state:'Lagos',
-        lga:'Surulere',
-        country:'Nigeria',
-    },
-    {
-        id:4,
-        name:'salam Yusuf',
-        email:'a@gmail.com',
-        status:'banned',
-        gender:'male',
-        phoneNumber:'07040834109',
-        businessName:'stitching lord',
-        street:'49,Suraju Orile Iganmu',
-        state:'Lagos',
-        lga:'Surulere',
-        country:'Nigeria',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        email:'c@gmail.com',
-        status:'banned',
-        gender:'male',
-        phoneNumber:'07040834109',
-        businessName:'stitching lord',
-        street:'49,Suraju Orile Iganmu',
-        state:'Lagos',
-        lga:'Surulere',
-        country:'Nigeria',
-    },
-    {
-        id:6,
-        name:'Adeleke Muminat',
-        email:'b@gmail.com',
-        status:'suspended',
-        gender:'male',
-        phoneNumber:'07040834109',
-        businessName:'stitching lord',
-        street:'49,Suraju Orile Iganmu',
-        state:'Lagos',
-        lga:'Surulere',
-        country:'Nigeria',
-    },
-    {
-        id:7,
-        name:'uthman fatai',
-        email:'o@gmail.com',
-        status:'approved',
-        gender:'male',
-        phoneNumber:'07040834109',
-        businessName:'stitching lord',
-        street:'49,Suraju Orile Iganmu',
-        state:'Lagos',
-        lga:'Surulere',
-        country:'Nigeria',
-    },
-    {
-        id:8,
-        name:'uthman fatai',
-        email:'p@gmail.com',
-        status:'banned',
-        gender:'male',
-        phoneNumber:'07040834109',
-        businessName:'stitching lord',
-        street:'49,Suraju Orile Iganmu',
-        state:'Lagos',
-        lga:'Surulere',
-        country:'Nigeria',
-    },
-    {
-        id:9,
-        name:'uthman fatai',
-        email:'u@gmail.com',
-        status:'suspended',
-        gender:'male',
-        phoneNumber:'07040834109',
-        businessName:'stitching lord',
-        street:'49,Suraju Orile Iganmu',
-        state:'Lagos',
-        lga:'Surulere',
-        country:'Nigeria',
-    },
-]
+vi.mock('../../../../../store/useCreator',()=>({
+  useCreatorStore:vi.fn()
+}))
 
-
-
-const creatorSubscriptions = [
-
-    {
-        id:1,
-        name:'uthman fatai',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-        lastSubscriptions:[
-                {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    }
-        ]
-    },
-    {
-        id:2,
-        name:'abdullahi fatai',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-03-01',
-        to:'2025-08-01',
-        lastSubscriptions:[
-                {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    }
-        ]
-    },
-    {
-        id:3,
-        name:'Faruq Sulaiman',
-        plan:'4 months ',
-        status:'active',
-        from:'2025-05-01',
-        to:'2025-08-01',
-        lastSubscriptions:[
-                {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    }
-        ]
-    },
-    {
-        id:4,
-        name:'salam Yusuf',
-        plan:'4 months ',
-        status:'active',
-        from:'2025-03-01',
-        to:'2026-08-01',
-        lastSubscriptions:[
-                {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    }
-        ]
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-        lastSubscriptions:[
-                {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    }
-        ]
-    },
-    {
-        id:6,
-        name:'Adeleke Muminat',
-        plan:'4 months ',
-        status:'active',
-        from:'2025-05-01',
-        to:'2027-08-01',
-        lastSubscriptions:[
-                {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    }
-        ]
-    },
-    {
-        id:7,
-        name:'uthman fatai',
-        plan:'4 months ',
-        status:'active',
-        from:'2025-02-01',
-        to:'2025-08-01',
-        lastSubscriptions:[
-                {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    }
-        ]
-    },
-    {
-        id:8,
-        name:'uthman fatai',
-        plan:'4 months ',
-        status:'active',
-        from:'2025-05-01',
-        to:'2025-08-01',
-        lastSubscriptions:[
-                {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    }
-        ]
-    },
-    {
-        id:9,
-        name:'uthman fatai',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-        lastSubscriptions:[
-                {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    },
-    {
-        id:5,
-        name:'fatai Yusrat ',
-        plan:'4 months ',
-        status:'expired',
-        from:'2025-05-01',
-        to:'2025-08-01',
-    }
-        ]
-    }
-]
-
-
-
-const creatorPayments = [
+const payments = [
 
     {
         id:1,
@@ -850,12 +394,40 @@ const creatorPayments = [
     }
 ]
 
-const check = ()=>{
-    const p = creatorPayments.map(pay=>{
-    console.log(format(new Date(pay.date),'MMMM do, yyyy'))
-    // console.log(format(new Date(pay.to),'MMMM do, yyyy'))
+describe('CreatorPayments',()=>{
+    
+    
+
+    beforeEach(()=>{
+        vi.clearAllMocks()
+        useCreatorStore.setState({
+            creatorPayments:changeDateFormat(payments,'payments'),
+     })
+    })
+    it('should render single creator payments',async()=>{
+        render(<MemoryRouter>  
+            <SingleCreatorPayments payments={payments}/>
+               </MemoryRouter> 
+        )
+
+        // const creator = screen.getByTestId('creator-name')
+        // expect(creator).toHaveTextContent(singleCreator.name)
+
+
+        payments.forEach(async(payment)=>{
+           const email = screen.getByTestId(`email-${payment.id}`)
+           expect(email).toHaveTextContent(payment.email.trim())
+           const date = screen.getByTestId(`date-${payment.id}`)
+           expect(date).toHaveTextContent(format(new Date(payment.date),'MMMM do, yyyy'))
+           const amount = screen.getByTestId(`amount-${payment.id}`)
+           expect(amount).toHaveTextContent(payment.amount)  
+           const ref = screen.getByTestId(`ref-${payment.id}`)
+           expect(ref).toHaveTextContent(payment.ref)
+           const status = screen.getByTestId(`status-${payment.id}`)
+           expect(status).toHaveTextContent(payment.status)
+           
     })
      
-}
-
-export {adminLinks,creators,creatorSubscriptions,creatorPayments,check}
+    })
+})
+        

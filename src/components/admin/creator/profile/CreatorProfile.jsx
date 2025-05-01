@@ -13,7 +13,7 @@ const CreatorProfile = () => {
     const [section,setSection] = useState({
         businessName:true,
         personalInfo:true,
-        address:true,
+        address:true, 
     })
     const [currentId,setCurrentId] = useState(null)
     const {id} = useParams();
@@ -21,8 +21,8 @@ const CreatorProfile = () => {
       const form = useForm({
           resolver:zodResolver(),
           defaultValues:{
-            firstName:singleCreator.name.split(' ')[0],
-            lastName:singleCreator.name.split(' ')[1],
+            firstName:singleCreator?.name?.split(' ')[0],
+            lastName:singleCreator?.name?.split(' ')[1],
             email:singleCreator.email,
             phoneNumber:singleCreator.phoneNumber,
             gender:singleCreator.gender,
@@ -56,7 +56,7 @@ const CreatorProfile = () => {
   return (
     <div>
            
-             <Form {...form} className='' data-testid="edit-profile-form ">
+             <Form {...form} data-testid="edit-profile-form ">
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 px-4 xl:px-0">
                         <CreatorProfileCard cardProps = {{sectionId:'businessName',title:singleCreator.businessName,currentId,handleEdit}}  >
 
@@ -94,8 +94,8 @@ const CreatorProfile = () => {
                                               <FormLabel 
                                                     className=' left-3  transition-all duration-300 
                                                      bg-white font-[700]'>First Name</FormLabel>
-                                                         <Input type="text" id="email"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
-                                                          focus-visible:ring-0' {...field} data-testid="email"/>
+                                                         <Input type="text" id="firstName"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                          focus-visible:ring-0' {...field} data-testid="firstName"/>
                                                   
                                                   <FormMessage className="text-red-500" />
                                                   </FormItem>
@@ -116,8 +116,8 @@ const CreatorProfile = () => {
                                                     className={` left-3 -top-2  transition-all duration-300 
                                                      bg-white font-[700]`}>Last Name</FormLabel>
                                                    
-                                                   <Input type="text" id="email"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
-                                                          focus-visible:ring-0' {...field} data-testid="email"/>
+                                                   <Input type="text" id="lastName"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                          focus-visible:ring-0' {...field} data-testid="lastName"/>
                                                  </div>
                                                     </FormControl>
                                                   <FormMessage className="text-red-500" />

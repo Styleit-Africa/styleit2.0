@@ -3,21 +3,26 @@ import { ChevronRight} from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import userPicture from '@/images/profile_i.png'
-import { useGlobalStore } from '@/store/global/useGlobal'
 import { creatorSubscriptions as subscriptionData } from '@/static/adminData'
 import LastSubscriptions from './LastSubscriptions'
+import { useCreatorStore } from '@/store/useCreator'
+import { useGlobalStore } from '@/store/global/useGlobal'
+import CreatorSubscrptionHeader from './CreatorSubscrptionHeader'
 
 const CreatorSubscriptions = () => {
       const [id,setId] = useState(null)
-    const {searchData,setCreatorSubscriptions,creatorSubscriptions} = useGlobalStore(state=>state);
+    const {setCreatorSubscriptions,creatorSubscriptions} = useCreatorStore(state=>state);
+        const {searchData} = useGlobalStore(state=>state);
+    
+        const searchItem = searchData.trim()
     const filterCreatorSubscriptions = ()=>{
         const filteredItems = creatorSubscriptions.filter(subscription=>{
-            return subscription.name.toLowerCase().includes(searchData)||
-            subscription.status.toLowerCase().includes(searchData)||
-            subscription.from.toLowerCase().includes(searchData)||
-            subscription.to.toLowerCase().includes(searchData)
+            return subscription.name.toLowerCase().includes(searchItem)||
+            subscription.status.toLowerCase().includes(searchItem)||
+            subscription.from.toLowerCase().includes(searchItem)||
+            subscription.to.toLowerCase().includes(searchItem)
         })
-            if(searchData == ''){
+            if(searchItem == ''){
                 setCreatorSubscriptions(subscriptionData)
             }else{
                 setCreatorSubscriptions(filteredItems)
@@ -26,7 +31,7 @@ const CreatorSubscriptions = () => {
     
     useEffect(()=>{
         filterCreatorSubscriptions()
-    },[searchData])
+    },[searchItem])
       
     const handleAction = (creatorId)=>{
         if(id === creatorId){
@@ -37,14 +42,7 @@ const CreatorSubscriptions = () => {
       }
   return (
     <div className='font-lato  w-full'>
-        <ul className=' hidden md:flex flex-row justify-between capitalize w-full font-[700] p-3 '>
-            <li className='basis-[15%]'>name</li>
-            <li className='basis-[15%]'>plan</li>
-            <li className='basis-[15%]'>from</li>
-            <li className='basis-[15%]'>to</li>
-            <li className='basis-[15%]'>status</li>
-            <li className='basis-[15%]'>action</li>
-        </ul>
+       <CreatorSubscrptionHeader full={true}/>
         <ul>
             {
                 creatorSubscriptions.map(sub=>{
@@ -58,24 +56,24 @@ const CreatorSubscriptions = () => {
                               <p className='font-[700] capitalize md:hidden'>name:</p>
                               <div className='flex items-center gap-3 '>
                               <Image src={userPicture} className="w-[50px] h-[50px] rounded-full"/>
-                             <p>{sub.name}</p>
+                             <p data-testid={`name-${sub.id}`} >{sub.name}</p>
                              </div>
                               </div>
                               <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                               <p className='font-[700] capitalize md:hidden'>plan:</p>
-                              <p>{sub.plan}</p>
+                              <p data-testid={`plan-${sub.id}`} >{sub.plan}</p>
                               </div>
                               <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                               <p className='font-[700] capitalize md:hidden'>from:</p>
-                              <p className='md:basis-[15%]'>{sub.from}</p>
+                              <p data-testid={`from-${sub.id}`}  className='md:basis-[15%]'>{sub.from}</p>
                               </div>
                               <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                               <p className='font-[700] capitalize md:hidden'>to:</p>
-                              <p className='md:basis-[15%]'>{sub.to}</p>
+                              <p data-testid={`to-${sub.id}`}  className='md:basis-[15%]'>{sub.to}</p>
                               </div>
                               <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                               <p className='font-[700] capitalize md:hidden'>status:</p>
-                              <p className={` md:basis-[15%] ${sub.status == 'expired' &&' text-red-500'} ${sub.status=='active'  &&' text-green-500 '} `}>{sub.status}</p>
+                              <p data-testid={`to-${sub.id}`}  className={` md:basis-[15%] ${sub.status == 'expired' &&' text-red-500'} ${sub.status=='active'  &&' text-green-500 '} `}>{sub.status}</p>
                               </div>
                               <p className='basis-[15%] ' ><ChevronRight className={`transition-all duration-300 ${id === sub.id&& 'rotate-90'} cursor-pointer`}
                                onClick={()=>handleAction(sub.id)}/> </p>
