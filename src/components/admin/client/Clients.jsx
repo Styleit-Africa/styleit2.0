@@ -6,9 +6,8 @@ import userPicture from '@/images/profile_i.png'
 import { creators as creatorsData } from '@/static/adminData'
 import { useCreatorStore } from '@/store/useCreator'
 import { useGlobalStore } from '@/store/global/useGlobal'
-// creators
 
-const Creators = () => {
+const Clients = () => {
     const [id,setId] = useState(null)
     const {setCreators,creators} = useCreatorStore(state=>state);
     const {searchData} = useGlobalStore(state=>state);
@@ -53,10 +52,10 @@ const Creators = () => {
                 creators.map(creator=>{
                     return(
                         <li className="relative" data-role="creators">
-                            <div className={`${creator.status=='approved'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-green-500'}
-                             ${creator.status=='banned'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-red-500'}
-                              ${creator.status=='suspended'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-black'}
-                             flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center mt-5 shadow-md capitalize p-5 rounded-md relative`}>
+                            <div className={`${creator.status=='approved'&&'border-r-[3px] md:border-r-0 md:border-x-[3px] border-green-500'} 
+                            ${creator.status=='banned'&&'border-r-[3px] md:border-r-0 md:border-x-[3px] border-red-500'}
+                             ${creator.status=='suspended'&&'border-r-[3px] md:border-r-0 md:border-x-[3px] border-black'}
+                              flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center mt-5 shadow-md capitalize p-5 roundced-md relative`}>
                               
                                 <div className='flex items-end md:items-center justify-between  w-full md:w-auto md:basis-[15%]'>
                                 <p className='font-[700] capitalize md:hidden'>name:</p>
@@ -75,7 +74,8 @@ const Creators = () => {
                                 </div>
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                                 <p className='font-[700] capitalize md:hidden'>status:</p>
-                                <p data-testid={`status-${creator.id}`} className={`basis-[15%] ${creator.status=='approved'&&' md:border-y-0  text-green-500'} ${creator.status=='banned'&&' md:border-y-0  text-red-500'} ${creator.status=='suspended'&&' md:border-y-0  text-black'} `}>{creator.status}</p>
+                                <p data-testid={`status-${creator.id}`} className={`basis-[15%] ${creator.status=='approved'&&' md:border-r-0  text-green-500'}
+                                 ${creator.status=='banned'&&' md:border-r-0  text-red-500'} ${creator.status=='suspended'&&' md:border-r-0  text-black'} `}>{creator.status}</p>
                                 </div>
                                 <p className='basis-[15%]' data-testid={`actionButton-${creator.id}`} ><MoreHorizontal className='cursor-pointer'
                                  onClick={()=>handleOptions(creator.id)}/> </p>
@@ -96,4 +96,4 @@ const Creators = () => {
   )
 }
 
-export default Creators
+export default Clients

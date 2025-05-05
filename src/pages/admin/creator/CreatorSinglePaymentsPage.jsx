@@ -4,7 +4,7 @@ import React from 'react'
 const CreatorSinglePaymentPage = () => {
   
   return (
-    <section className='px-5' data-testid="admin-single-creator-payment">
+    <section data-testid="admin-single-creator-payment">
         <SingleCreatorPayments/>
     </section>
   )

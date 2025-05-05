@@ -1,4 +1,4 @@
-import { format } from "date-fns"
+import profile from '@/images/profile_i.png'
 
 const adminLinks = [
     {
@@ -8,8 +8,8 @@ const adminLinks = [
     },
     {
         id:2,
-        name:'client',
-        links:['subscriptions','payments']
+        name:'clients',
+        links:['bookings','activities','complaints & disputes']
     },
     {
         id:3,
@@ -30,8 +30,138 @@ const adminLinks = [
         id:6,
         name:'supports & notifications',
         links:['subscriptions','payments']
-    }
+    },
+    {
+        id:6,
+        name:'admin',
+        links:['activities','payments']
+    },
     
+]
+
+const admins = [
+    {
+        id:1,
+        name:'uthman fatai',
+        activities:[
+            {
+                id:1,
+                user_id:2,                
+                activityName:'active times',
+                activity:6,
+            },
+            {
+                id:2,
+                user_id:2,                
+                activityName:'banned users',
+                activity:13,
+            },
+            {
+                id:3,
+                activityName:'reset user password',
+            }
+        ]
+    },
+    {
+        id:2,
+        name:'abdullahi fatai',
+        activities:[
+            {
+                id:1,
+                name:'active times',
+                activity:6,
+            },
+            {
+                id:2,
+                name:'banned users',
+                activity:13,
+            },
+            {
+                id:3,
+                name:'reset user password',
+            }
+        ]
+    },
+    {
+        id:3,
+        name:'Faruq Sulaiman',
+        activities:[
+            {
+                id:1,
+                name:'active times',
+                activity:6,
+            },
+            {
+                id:2,
+                name:'banned users',
+                activity:13,
+            },
+            {
+                id:3,
+                name:'reset user password',
+            }
+        ]
+    },
+    {
+        id:4,
+        name:'salam Yusuf',
+        activities:[
+            {
+                id:1,
+                name:'active times',
+                activity:6,
+            },
+            {
+                id:2,
+                name:'banned users',
+                activity:13,
+            },
+            {
+                id:3,
+                name:'reset user password',
+            }
+        ]
+    },
+    {
+        id:5,
+        name:'fatai Yusrat ',
+        activities:[
+            {
+                id:1,
+                name:'active times',
+                activity:6,
+            },
+            {
+                id:2,
+                name:'banned users',
+                activity:13,
+            },
+            {
+                id:3,
+                name:'reset user password',
+            }
+        ]
+    },
+    {
+        id:6,
+        name:'Adeleke Muminat',
+        activities:[
+            {
+                id:1,
+                name:'active times',
+                activity:6,
+            },
+            {
+                id:2,
+                name:'banned users',
+                activity:13,
+            },
+            {
+                id:3,
+                name:'reset user password',
+            }
+        ]
+    }
 ]
 
 
@@ -155,6 +285,152 @@ const creators = [
     },
 ]
 
+
+const bookings = [
+    {
+        id:1,
+        receiver:'ariky stitches',
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+        collectionDate:'2024-11-15',
+        collectionTime:'15:20',
+        status:'accepted',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:2,
+        receiver:'ariky stitches',
+        name:'Sulaiman fatai',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+        collectionDate:'2024-11-15',
+        collectionTime:'15:20',
+        status:'declined',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:3,
+        receiver:'noble stitches',
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+        collectionDate:'2024-11-15',
+        collectionTime:'15:20',
+        status:'accepted',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:4,
+        receiver:'ariky stitches',
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+        collectionDate:'2024-11-15',
+        collectionTime:'15:20',
+        status:'declined',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:5,
+        receiver:'ariky stitches',
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+        collectionDate:'2024-11-15',
+        collectionTime:'15:20',
+        status:'declined',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:6,
+        receiver:'ariky stitches',
+        name:'Ademola Decode',
+        bookingDate:'2024-11-10',
+        bookingTime:'12:30',
+        collectionDate:'2024-11-15',
+        collectionTime:'12:00',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:7,
+        receiver:'ariky stitches',
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-02-31',
+        bookingTime:'03:55',
+        collectionDate:'2024-11-15',
+        collectionTime:'14:32',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:8,
+        receiver:'ariky stitches',
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-02-31',
+        bookingTime:'05:02',
+        collectionDate:'2024-11-15',
+        collectionTime:'14:32',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:9,
+        receiver:'ariky stitches',
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-03-31',
+        bookingTime:'18:22',
+        collectionDate:'2025-11-15',
+        collectionTime:'14:32',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:10,
+        receiver:'noble stitches',
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-03-31',
+        bookingTime:'18:25',
+        collectionDate:'2025-11-15',
+        collectionTime:'14:32',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:11,
+        receiver:'ariky stitches',
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-03-31',
+        bookingTime:'18:26',
+        collectionDate:'2025-11-15',
+        collectionTime:'14:32',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:12,
+        receiver:'the industrous',
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-04-02',
+        bookingTime:'22:10',
+        collectionDate:'2025-11-15',
+        collectionTime:'14:32',
+        status:'pending',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+    {
+        id:13,
+        receiver:'elegant one',
+        name:'Yunus Abdullateef',
+        bookingDate:'2025-03-31',
+        bookingTime:'20:38',
+        collectionDate:'2025-11-15',
+        collectionTime:'14:32',
+        status:'paid',
+        reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
+    },
+]
 
 
 const creatorSubscriptions = [
@@ -850,12 +1126,242 @@ const creatorPayments = [
     }
 ]
 
-const check = ()=>{
-    const p = creatorPayments.map(pay=>{
-    console.log(format(new Date(pay.date),'MMMM do, yyyy'))
-    // console.log(format(new Date(pay.to),'MMMM do, yyyy'))
-    })
-     
-}
+const complaints = [
+    {
+        id:1,
+        userId:2,
+        name:'uthman Bello',
+        image:profile,
+        message:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+        replies:[
+            {
+                id:1,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:2,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:3,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:4,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+       ],
+    },
+    {
+        id:2,
+        userId:2,
+        name:'fatai sulaiman',
+        image:'',
+        message:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+        replies:[
+            {
+                id:3,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:4,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+       ],
+    },
+    {
+        id:3,
+        userId:2,
+        name:'dele Japa',
+        image:'',
+        message:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+        replies:[
+            {
+                id:5,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:6,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+       ],
+    },
+    {
+        id:4,
+        userId:2,
+        name:'Salman Yusuf',
+        image:profile,
+        message:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+        replies:[
+            {
+                id:7,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:8,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+       ],
+    },
+    {
+        id:5,
+        userId:2,
+        name:'uthman Bello',
+        image:'',
+        message:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+        replies:[
+            {
+                id:9,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:10,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+       ],
+    },
+    {
+        id:6,
+        userId:2,
+        name:'Ademola Hakeem',
+        image:'',
+        message:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+        replies:[
+            {
+                id:11,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:12,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+       ],
+    },
+    {
+        id:7,
+        userId:2,
+        name:'Yunus Abdullateef',
+        image:'',
+        message:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+        replies:[
+            {
+                id:13,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:14,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+       ],
+    },
+    {
+        id:8,
+        userId:2,
+        name:'Bamidele Mutiat',
+        image:'',
+        message:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+        replies:[
+            {
+                id:15,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:16,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+       ],
+    },
+    {
+        id:9,
+        userId:2,
+        name:'uthman Bello',
+        image:'',
+        message:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+        replies:[
+            {
+                id:17,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:18,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+       ],
+    },
+    {
+        id:10,
+        userId:2,
+        name:'uthman Bello',
+        image:'',
+        message:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+        replies:[
+            {
+                id:19,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+            {
+                id:20,
+                userId:3,
+                name:'Yusuf ibrahim',
+                response:' Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde omnis cumque, itaque, corporis nam, praesentium iure neque alias dolorum nostrum earum dolor est dignissimos necessitatibus cum. Molestias quaerat ullam repudiandae.',
+            },
+       ],
+    },
+]
 
-export {adminLinks,creators,creatorSubscriptions,creatorPayments,check}
+
+const bgColors = [
+    'bg-red-500', 'bg-purple-500', 
+    'bg-blue-500', 'bg-yellow-500', 
+    'bg-indigo-500', 'bg-green-500', 
+    'bg-violet-500', 'bg-black-500', 
+    'bg-cyan-500', 'bg-teal-500', 
+]
+
+const randomIndex = ()=>Math.floor(Math.random()*bgColors.length)
+
+
+export {adminLinks,creators,creatorSubscriptions,bgColors,
+    bookings,creatorPayments,complaints,randomIndex}

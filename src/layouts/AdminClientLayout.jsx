@@ -6,22 +6,27 @@ import { SortAsc } from "lucide-react";
 import { useCreatorStore } from "@/store/useCreator";
 
 
-const AdminCreatorLayout =()=>{
+const AdminClientLayout =()=>{
   const [sortOptions,setSortOptions] = useState(false);
   const {sortCreators,sortPayments,sortCreatorSubscriptions} = useCreatorStore(state=>state)
   const {id} = useParams();
   const {pathname} = useLocation();
   const path = pathname.split('/');
+  console.log(path)
 
   const handleSort = (e)=>{
     if(pathname.endsWith('subscriptions')||pathname.endsWith(id)){
       sortCreatorSubscriptions(e.target.dataset.id)
+      console.log('yes')
     }else if(pathname.endsWith('creators')){
       sortCreators(e.target.dataset.id)
+    // }else if(pathname.endsWith('payments')||pathname.endsWith(id)){
     }else if(pathname.endsWith('payments')||pathname.endsWith(id)){
       sortPayments(e.target.dataset.id)
+      console.log('yes')
     }else{
       sortCreatorSubscriptions(e.target.dataset.id)
+
     }
   }
   
@@ -29,16 +34,18 @@ const AdminCreatorLayout =()=>{
         <>  
           <section  className="px-5 py-10">
             {
+              // path[path.length-1] !== 'profile' || !path[path.length-1].contains('complaints') &&(
               path[path.length-1] !== 'profile'&&(
-                <div className="px-4 flex justify-between mb-8"> 
+                <div className="md:px-4 md:flex justify-between mb-8"> 
                 <SearchBar
                       placeholder='Search for creators'
                       imageIcon={glass}
                       styles={{
                       img:'absolute top-3 left-3.5  w-[20px]',
+                      parent:'ml-0',
                       input:'pl-10 w-full border placeholder-gray-400 border-gray-500 outline-none  rounded-lg h-12'
                   }} />            
-                 <div className=" basis-[12%] relative ">
+                 <div className=" basis-[12%] relative mt-3 md:mt-0">
                  <div className="flex justify-between border border-gray-500 px-6 py-2 rounded-md" 
                  onClick={()=>setSortOptions(!sortOptions)}>
                     <SortAsc/>
@@ -59,4 +66,4 @@ const AdminCreatorLayout =()=>{
         </>
     )
 }
-export default AdminCreatorLayout
+export default AdminClientLayout

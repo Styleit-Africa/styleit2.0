@@ -13,7 +13,6 @@ const createRouter = (initialEntries = ['/'])=>{
 }
 
 describe('Routing',()=>{
-    
     const routeProvider = (route)=>{
         return render(<RouterProvider router={createRouter([route])}/>)
     }

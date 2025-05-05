@@ -4,7 +4,7 @@ import React from 'react'
 const CreatorSubscriptionPage = () => {
   
   return (
-    <section className='px-5' data-testid="admin-creator-subscription">
+    <section  data-testid="admin-creator-subscription">
         <CreatorSubscriptions/>
     </section>
   )

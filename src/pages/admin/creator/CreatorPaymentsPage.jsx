@@ -4,7 +4,7 @@ import CreatorPayments from '@/components/admin/creator/payment/CreatorPayments'
 const CreatorPaymentPage = () => {
   
   return (
-    <section className='px-5' data-testid="admin-creator-payment">
+    <section data-testid="admin-creator-payment">
         <CreatorPayments/>
     </section>
   )

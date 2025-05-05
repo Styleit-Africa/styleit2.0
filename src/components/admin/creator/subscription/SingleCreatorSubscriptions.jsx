@@ -36,11 +36,9 @@ const SingleCreatorSubscriptions = () => {
   return (
     <div className=' font-lato '>
 
-         <div  className=' flex items-center md:items-center justify-between mt-5 md:mt-0 w-full'>
-                <div className='flex items-center gap-3 capitalize text-xl '>
-                <Image src={userPicture} className=" w-[50px] h-[5s0px] rounded-full"/>
-                <p>{creatorSubscriptions[Number(id)-1].name}</p>
-        </div>
+        <div className='flex items-center gap-3 capitalize text-xl '>
+            <Image src={userPicture} className=" w-[50px] h-[5s0px] rounded-full"/>
+            <p>{creatorSubscriptions[Number(id)-1].name}</p>
         </div>
        <CreatorSubscrptionHeader full={false} />
         <ul>
