@@ -11,7 +11,6 @@ const Complainants = () => {
     const {complaints,setCurrentMessages,setComplaints} = useClientStore(state=>state);
     const {searchData} = useGlobalStore(state=>state);
     const [currentIndex,setCurrentIndex] = useState(0)
-    console.log()
     const filterComplaints = ()=>{
         const filteredItems = complaints.filter(complaint=>
             complaint.name.toLowerCase().includes(searchData)
@@ -68,11 +67,7 @@ const Complainants = () => {
         })}
 
      <div className='hidden md:flex justify-between my-2  '>
-    {/* <div className='animate-bounce bg-sidebar mx-auto w-[max-content] p-4 rounded-full'>
-            <Image src={logo} />
-    </div> */}
             <Image src={logo} className="h-[40px] w-[230px] mx-auto mt-2 transition-all hover:scale-[1.7]" />
-    
      </div>
     </ul>
   )

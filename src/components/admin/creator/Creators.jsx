@@ -13,12 +13,14 @@ const Creators = () => {
     const {setCreators,creators} = useCreatorStore(state=>state);
     const {searchData} = useGlobalStore(state=>state);
         
+    // console.log(creators)
      const searchItem = searchData.trim()
     const filterCreators = ()=>{
         const filteredItems = creators.filter(creator=>
-            creator.name.toLocaleLowerCase().includes(searchItem)||
-            creator.email.toLocaleLowerCase().includes(searchItem)||
-            creator.status.toLocaleLowerCase().includes(searchItem)
+            creator.name.toLowerCase().includes(searchItem)||
+            creator.email.toLowerCase().includes(searchItem)||
+            creator.gender.toLowerCase().includes(searchItem)||
+            creator.status.toLowerCase().includes(searchItem)
         )
             if(searchItem == ''){
                 setCreators(creatorsData)

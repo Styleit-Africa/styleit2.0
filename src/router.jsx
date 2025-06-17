@@ -42,6 +42,9 @@ import AdminSingleClientComplaints from "./pages/admin/client/AdminSingleClientC
 import AdminClientActivitiesPage from "./pages/admin/client/AdminClientActivitiesPage";
 import StaffActivitiesPage from "./pages/admin/staff/StaffActivitiesPage";
 import StaffPage from "./pages/admin/staff/StaffPage";
+import AdminClientProfilePage from "./pages/admin/client/AdminClientProfilePage";
+import AdminPage from "./pages/admin/admin/AdminPage";
+import SuperAdminPage from "./pages/admin/superAdmin/SuperAdminPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -88,14 +91,18 @@ const router = createBrowserRouter(
                 <Route index element={<AdminClientsPage/>}/>
                 <Route path="bookings" element={<AdminClientBookingPage/>}/>
                 <Route path="bookings/:id" element={<AdminSingleClientBookingPage/>}/>
+                <Route path=":id/profile" element={<AdminClientProfilePage/>}/>
                 <Route path="complaints & disputes" element={<AdminClientComplaints/>}/>
                 <Route path="complaints & disputes/:id" element={<AdminSingleClientComplaints/>}/>
                 <Route path="activities" element={<AdminClientActivitiesPage/>}/>
             </Route>
             <Route path='admin' element={<AdminClientLayout/>} >
-                <Route path="activities" element={<StaffPage/>}/>
+                <Route index element={<AdminPage/>}/>
                 <Route path="staffActivities/" element={<StaffActivitiesPage/>}/>
-
+            </Route>
+            <Route path='super admin' element={<AdminClientLayout/>} >
+                <Route index element={<SuperAdminPage/>}/>
+                <Route path="staffActivities/" element={<StaffActivitiesPage/>}/>
             </Route>
           </Route>
       </Route>

@@ -40,7 +40,7 @@ const Complaints = ({currentMessages}) => {
         }
 
         
-<div className='fixed bottom-0 right-3 left-[3%] md:left-[35%] lg:left-[50%]  z-40 bg-white  py-5'>
+<div className='fixed bottom-0 right-3 left-[3%] md:left-[35%] lg:left-[50%]  z-40 backdrop-blur-[0.2rem] bg-white/20  py-5'>
             <Input className='shadow-lg w-full py-8 block rounded-[2rem] outline-none'/>
               <div className='bg-sidebar p-2 rounded-full absolute right-5 top-8 z-20 w-[max-content]'>
               <Send className='text-white' />

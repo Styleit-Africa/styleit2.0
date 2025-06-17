@@ -7,18 +7,26 @@ const AdminLink = ({link}) => {
     const {pathname} = useLocation()
     console.log(pathname.split('http://localhost:5173'))
     const path = pathname.split('http://localhost:5173')
+    const locate = pathname.split('/')[2]
+    
   return (
-    <li className={` text-lg text-grayd-400 ${isChildrenOpened ? "items-start":"items-stcenterrt"}  border-b-[1px] border-b-gray-400  mb-4 pb-3 px-4 capitalize text-left`}>
+    <li className={` text-lg  ${isChildrenOpened ? "items-start":""}  border-b-[1px] border-b-gray-400  mb-4 pb-3 px-4 capitalize text-left`}>
         <div className='flex justify-between'>
-            <Link to={`/admin/${link.name}`} className={`block ${path ==  `/admin/${link.name}` &&'text-primary'}`}>{link.name}</Link>
-            <ChevronRight className={`${isChildrenOpened ? 'rotate-90':'rotate-0'} "bg-sidebar  "`} onClick={()=>setIsChildrenOpened(!isChildrenOpened)}/>
+            <Link to={`/admin/${link.name}`} className={`block ${locate == link.name &&'text-primary'}`}>{link.name}</Link>
+        {
+            link.links&&<ChevronRight className={`${isChildrenOpened ? 'rotate-90':'rotate-0'} "bg-sidebar  "`} onClick={()=>setIsChildrenOpened(!isChildrenOpened)}/>
+        }
         </div>
         {
             isChildrenOpened && <ul>
             {
                 link.links.map(item=>{
                     return(
-                        <Link to={`/admin/${link.name}/${item}`}  className={`ml-5 mt-2 block text-lightGray ${path ==  `/admin/${link.name}/${item}` &&'text-primary'}`}>{item}</Link>
+                        <Link to={`/admin/${link.name}/${item}`}  className={`ml-5 mt-2 block text-lightGray
+                             ${(path ==  `/admin/${link.name}/${item}`|| 
+                                path ==  `/admin/${link.name}/${item.split(' & ')[0]+'%20&%20'+item.split(' & ')[1]}`||
+                                path ==  `/admin/${link.name}/${item.split(' ')[0]+'%20'+item.split(' ')[1]}`
+                            ) &&'text-primary'}`}>{item}</Link>
 
                     )
                 })

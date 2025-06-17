@@ -9,7 +9,7 @@ const adminLinks = [
     {
         id:2,
         name:'clients',
-        links:['bookings','activities','complaints & disputes']
+        links:['bookings','complaints & disputes']
     },
     {
         id:3,
@@ -36,7 +36,34 @@ const adminLinks = [
         name:'admin',
         links:['activities','payments']
     },
+    {
+        id:7,
+        name:'super admin'
+    },
     
+]
+
+const period = [
+    {
+        id:1,
+        name:'daily',
+        times:7
+    },
+    {
+        id:2,
+        name:'weekly',
+        times:3
+    },
+    {
+        id:3,
+        name:'monthly',
+        times:14
+    },
+    {
+        id:4,
+        name:'yearly',
+        times:44
+    }
 ]
 
 const admins = [
@@ -46,19 +73,24 @@ const admins = [
         activities:[
             {
                 id:1,
-                user_id:2,                
                 activityName:'active times',
                 activity:6,
             },
             {
                 id:2,
-                user_id:2,                
                 activityName:'banned users',
                 activity:13,
             },
             {
+                id:4,
+                activityName:'suspended users',
+                activity:12
+            },
+            {
                 id:3,
-                activityName:'reset user password',
+                activityName:'reset password',
+                activity:16,
+
             }
         ]
     },
@@ -68,17 +100,24 @@ const admins = [
         activities:[
             {
                 id:1,
-                name:'active times',
-                activity:6,
+                activityName:'active times',
+                activity:4,
             },
             {
                 id:2,
-                name:'banned users',
-                activity:13,
+                activityName:'banned users',
+                activity:5,
+            },
+            {
+                id:4,
+                activityName:'suspended users',
+                activity:20
             },
             {
                 id:3,
-                name:'reset user password',
+                activityName:'reset password',
+                activity:20,
+
             }
         ]
     },
@@ -88,17 +127,24 @@ const admins = [
         activities:[
             {
                 id:1,
-                name:'active times',
-                activity:6,
+                activityName:'active times',
+                activity:9,
             },
             {
                 id:2,
-                name:'banned users',
-                activity:13,
+                activityName:'banned users',
+                activity:130,
+            },
+            {
+                id:4,
+                activityName:'suspended users',
+                activity:43
             },
             {
                 id:3,
-                name:'reset user password',
+                activityName:'reset password',
+                activity:60,
+
             }
         ]
     },
@@ -108,17 +154,24 @@ const admins = [
         activities:[
             {
                 id:1,
-                name:'active times',
+                activityName:'active times',
                 activity:6,
             },
             {
                 id:2,
-                name:'banned users',
+                activityName:'banned users',
                 activity:13,
             },
             {
+                id:4,
+                activityName:'suspended users',
+                activity:2
+            },
+            {
                 id:3,
-                name:'reset user password',
+                activityName:'reset password',
+                activity:16,
+
             }
         ]
     },
@@ -128,17 +181,24 @@ const admins = [
         activities:[
             {
                 id:1,
-                name:'active times',
+                activityName:'active times',
                 activity:6,
             },
             {
                 id:2,
-                name:'banned users',
+                activityName:'banned users',
                 activity:13,
             },
             {
+                id:4,
+                activityName:'suspended users',
+                activity:1
+            },
+            {
                 id:3,
-                name:'reset user password',
+                activityName:'reset password',
+                activity:16,
+
             }
         ]
     },
@@ -148,17 +208,23 @@ const admins = [
         activities:[
             {
                 id:1,
-                name:'active times',
+                activityName:'active times',
                 activity:6,
             },
             {
                 id:2,
-                name:'banned users',
+                activityName:'banned users',
                 activity:13,
             },
             {
+                id:4,
+                activityName:'suspended users',
+                activity:12
+            },
+            {
                 id:3,
-                name:'reset user password',
+                activityName:'reset password',
+                activity:16,
             }
         ]
     }
@@ -197,7 +263,7 @@ const creators = [
         name:'Faruq Sulaiman',
         email:'u@gmail.com',
         status:'approved',
-        gender:'male',
+        gender:'female',
         phoneNumber:'07040834109',
         businessName:'stitching lord',
         street:'49,Suraju Orile Iganmu',
@@ -223,7 +289,7 @@ const creators = [
         name:'fatai Yusrat ',
         email:'c@gmail.com',
         status:'banned',
-        gender:'male',
+        gender:'female',
         phoneNumber:'07040834109',
         businessName:'stitching lord',
         street:'49,Suraju Orile Iganmu',
@@ -427,7 +493,7 @@ const bookings = [
         bookingTime:'20:38',
         collectionDate:'2025-11-15',
         collectionTime:'14:32',
-        status:'paid',
+        status:'accepted',
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
 ]
@@ -749,6 +815,7 @@ const creatorPayments = [
 
     {
         id:1,
+        
         name:'uthman fatai',
         date:'2025-05-01',
         email:'sulaiman@gmail.com ',
@@ -1364,4 +1431,4 @@ const randomIndex = ()=>Math.floor(Math.random()*bgColors.length)
 
 
 export {adminLinks,creators,creatorSubscriptions,bgColors,
-    bookings,creatorPayments,complaints,randomIndex}
+    bookings,creatorPayments,complaints,randomIndex,admins,period}

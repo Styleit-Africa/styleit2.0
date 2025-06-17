@@ -1,93 +1,36 @@
+import AdminActivities from '@/components/admin/admin/AdminActivities'
+import StaffActivityIcon from '@/components/admin/superAdmin/staff/StaffActivityIcon'
 import Avatar from '@/components/global/Avatar'
-import { complaints } from '@/static/adminData'
-import { ActivitySquareIcon, BanIcon, LockKeyholeOpen, TrashIcon } from 'lucide-react'
-import React from 'react'
+import { admins, period } from '@/static/adminData'
+import React, { useState } from 'react'
 
 const StaffPage = () => {
+    const [currentAdmin,setCurrentAdmin] = useState(0)
   return (
     <section className='font-lato font-[700]'>
-        <div className='flex gap-6'>
-            <div className='flex-[0.25]'>
+        <div className='flex md:hidden items-center gap-2  mb-8 w-[max-content] mx-auto pr-5'>
+                    <Avatar data={{complaint:{name:admins[currentAdmin].name},section:1}}/>
+                    <h1 className='capitalize'>{admins[currentAdmin].name}</h1>
+                </div>
+                               
+        <div className='flex gap-6 items-start justify-center md:justify-normal'>
+            <div className='md:flex-[0.25]'>
                 <ul>
-                    <li className='flex items-center gap-4 mt-5'>
-                        <Avatar data={{complaint:{name:'uthman sulaiman'},section:3}}/>
-                        <p className='capitalize'>abdullahi sulaiman</p>
+                    {
+                        admins.map((admin,index)=>{
+                            return (
+                                 <li className={`flex items-center gap-4 mb-4 hover:bg-sidebar hover:text-lightGray cursor-pointer
+                     p-3 rounded-md shadow-md ${index===currentAdmin&&'bg-sidebar text-lightGray' }`} onClick={()=>setCurrentAdmin(index)}>
+                        <Avatar data={{complaint:{name:admin.name},section:3}}/>
+                        <p className='capitalize text-sm md:text-md font-[700]'>{admin.name}</p>
                     </li>
-                    <li className='flex items-center gap-4 mt-5'>
-                        <Avatar data={{complaint:{name:'fatai saliu'},section:3}}/>
-                        <p className='capitalize'>fatai saliu</p>
-                    </li>
-                    <li className='flex items-center gap-4 mt-5'>
-                        <Avatar data={{complaint:{name:'ismail fatimat'},section:3}}/>
-                        <p className='capitalize'>ismail fatimat</p>
-                    </li>
-                    <li className='flex items-center gap-4 mt-5'>
-                        <Avatar data={{complaint:{name:'Ahmad yusuf'},section:3}}/>
-                        <p className='capitalize'>Ahmad yusuf</p>
-                    </li>
-                    <li className='flex items-center gap-4 mt-5'>
-                        <Avatar data={{complaint:{name:'uthman sulaiman'},section:3}}/>
-                        <p className='capitalize'>uthman sulaiman</p>
-                    </li>
+                            )
+                        })
+                    }
                 </ul>
             </div>
 
-            <div className='flex-[0.75]  flex  gap-6 flex-wrap'>
-                <div className='basis-[30%] bg-green-500 pt-12f p-6 rounded-lg'>
-                    <div className=' justify-between text-white capitalize  text-lg'>
-                        <div className='flex justify-between '>
-                            <p>active times</p> 
-                            <p className='text-lg'>5</p>                  
-                        </div>
-                        <ActivitySquareIcon className='mx-auto mt-4 w-[60px] h-[60px] text-4xl'/>
-                    </div>  
-                </div>
-                <div className='basis-[30%] bg-red-500  pt-12f p-6 rounded-lg'>
-                    <div className=' justify-between text-white capitalize  text-lg'>
-                        <div className='flex justify-between '>
-                            <p>banned users</p> 
-                            <p className='text-lg'>5</p>                  
-                        </div>
-                        <BanIcon className='mx-auto mt-4 w-[60px] h-[60px] text-4xl'/>
-                    </div>  
-                </div>
-                <div className='basis-[30%] bg-black pt-12f p-6 rounded-lg'>
-                    <div className=' justify-between text-white capitalize  text-lg'>
-                        <div className='flex justify-between '>
-                            <p>suspended users</p> 
-                            <p className='text-lg'>5</p>                  
-                        </div>
-                        <TrashIcon className='mx-auto mt-4 w-[60px] h-[60px] text-4xl'/>
-                    </div>  
-                </div>
-                <div className='basis-[30%] bg-blue-600 pt-12f p-6 rounded-lg'>
-                    <div className=' justify-between text-white capitalize  text-lg'>
-                        <div className='flex justify-between '>
-                            <p>reset passwords</p> 
-                            <p className='text-lg'>5</p>                  
-                        </div>
-                        <LockKeyholeOpen className='mx-auto mt-4 w-[60px] h-[60px] text-4xl'/>
-                    </div>  
-                </div>
-                <div className='basis-[30%] bg-red-500 pt-12f p-6 rounded-lg'>
-                    <div className=' justify-between text-white capitalize  text-lg'>
-                        <div className='flex justify-between '>
-                            <p>banned users</p> 
-                            <p className='text-lg'>5</p>                  
-                        </div>
-                        <ActivitySquareIcon className='mx-auto mt-4 w-[60px] h-[60px] text-4xl'/>
-                    </div>  
-                </div>
-                <div className='basis-[30%] bg-red-500 pt-12f p-6 rounded-lg'>
-                    <div className=' justify-between text-white capitalize  text-lg'>
-                        <div className='flex justify-between '>
-                            <p>banned users</p> 
-                            <p className='text-lg'>5</p>                  
-                        </div>
-                        <ActivitySquareIcon className='mx-auto mt-4 w-[60px] h-[60px] text-4xl'/>
-                    </div>  
-                </div>
-            </div>
+           <AdminActivities currentAdmin={currentAdmin}/>
         </div>
     </section>
   )

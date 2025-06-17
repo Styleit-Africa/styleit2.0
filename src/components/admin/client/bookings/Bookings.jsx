@@ -3,52 +3,46 @@ import { ChevronRight, Eye,MoreHorizontal, Trash2, UserX } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import userPicture from '@/images/profile_i.png'
-import { bookings, creators as creatorsData } from '@/static/adminData'
-import { useCreatorStore } from '@/store/useCreator'
+import { bookings as bookingData } from '@/static/adminData'
+import { useClientStore } from '@/store/useClient'
 import { useGlobalStore } from '@/store/global/useGlobal'
 
 const Bookings = () => {
     const [id,setId] = useState(null)
-    const {setCreators,creators} = useCreatorStore(state=>state);
+    const {bookings,setBookings} = useClientStore(state=>state);
+   console.log(bookings)
     const {searchData} = useGlobalStore(state=>state);
-        
-     const searchItem = searchData.trim()
-    const filterCreators = ()=>{
-        const filteredItems = creators.filter(booking=> 
-            booking.name.toLocaleLowerCase().includes(searchItem)||
-            booking.email.toLocaleLowerCase().includes(searchItem)||
-            booking.status.toLocaleLowerCase().includes(searchItem)
+    const filterBookings = ()=>{
+        const filteredItems = bookings.filter(booking=> 
+            booking.name.toLowerCase().includes(searchData)||
+            booking.collectionDate.toLowerCase().includes(searchData)||
+            booking.bookingDate.toLowerCase().includes(searchData)||
+            booking.status.toLowerCase().includes(searchData)
         )
-            if(searchItem == ''){
-                setCreators(creatorsData)
+            if(searchData == ''){
+                setBookings(bookingData)
             }else{
-                setCreators(filteredItems)
+                setBookings(filteredItems)
             }
         }
     
     useEffect(()=>{
-        filterCreators()
-    },[searchItem])
+        filterBookings()
+    },[searchData])
 
       
-    const handleAction = (creatorId)=>{
-    if(id === creatorId){
+    const handleAction = (bookingId)=>{
+    if(id === bookingId){
             setId(null)
         }else{
-            setId(creatorId)
+            setId(bookingId)
         }
     }
-    const handleOptions = (creatorId)=>{
-        if(id === creatorId){
-            setId(null)
-        }else{
-            setId(creatorId)
-        }
-      }
+    
   return (
     <div className='font-lato  w-full'>
         <ul className=' hidden md:flex flex-row justify-between capitalize w-full font-[700] p-3 '>
-            <li className='basis-[16%]'>name</li>
+            <li className='basis-[20%]'>name</li>
             <li className='basis-[16%]'>collection date</li>
             <li className='basis-[16%]'>booking date</li>
             <li className='basis-[16%]'>status</li>
@@ -99,8 +93,6 @@ const Bookings = () => {
                         </ul>
                            
                               <div className='flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center '>
-                              
-                              
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[25%]'>
                                 <p data-testid={`gender-${booking.id}`} >{booking.receiver} </p>
                                 </div>
@@ -112,8 +104,6 @@ const Bookings = () => {
                                 <p className='font-[700] capitalize md:hidden'>booking time:</p>
                                 <p data-testid={`gender-${booking.id}`} className='basis-[16%]'>{booking.bookingTime}</p>
                                 </div>
-                                
-                      
                             </div>
                             
                             <Link to={`${booking.id}`} className='text-center capitalize  block text-primary mt-7 animate-bounce pr-4'>view all</Link>
@@ -143,8 +133,6 @@ const Bookings = () => {
                                 <p className='font-[700] capitalize md:hidden'>booking time:</p>
                                 <p data-testid={`gender-${booking.id}`} className='basis-[16%]'>{booking.bookingTime}</p>
                                 </div>
-                                
-                      
                             </div>
                             
                             <Link to={`${booking.id}`} className='text-center capitalize  block text-primary mt-7 animate-bounce pr-4'>view all</Link>

@@ -1,39 +1,8 @@
 import {create} from 'zustand';
-import { format } from "date-fns";
-import { bookings, complaints, creatorPayments, creatorSubscriptions } from "@/static/adminData";
+import { bookings, complaints, creators as clients } from "@/static/adminData";
 import { useGlobalStore } from './global/useGlobal';
-
-
-export const changeDateFormat = (data,id)=>data.map((dataItem)=>{
-    if(id ==='subscriptions'){
-         return {...dataItem,from:format(new Date(dataItem.from),'MMMM do, yyyy'),to:format(new Date(dataItem.to),'MMMM do, yyyy'),
-            lastSubscriptions:dataItem.lastSubscriptions.map(subItem=>{
-             return {...subItem,from:format(new Date(dataItem.from),'MMMM do, yyyy'),to:format(new Date(dataItem.to),'MMMM do, yyyy')}
-         })}
-    }else if(id ==='payments'){
-        return {...dataItem,date:format(new Date(dataItem.date),'MMMM do, yyyy'),lastPayments:dataItem.lastPayments.map(payItem=>{
-            return {...payItem,date:format(new Date(dataItem.date),'MMMM do, yyyy')}
-        })}
-    }
-    else{
-     return {...dataItem,bookingDate:format(new Date(dataItem.bookingDate),'MMMM do, yyyy'),
-            collectionDate:format(new Date(dataItem.collectionDate),'MMMM do, yyyy')
-
-     }
-    }
- })
-
- const sortItems = (items,sortData)=>{
-    return items.sort((a,b)=>{
-        if(sortData == 'oldest'){
-            return a.id - b.id;
-        }else if(sortData == 'newest'){
-            return b.id - a.id
-        }
-        return null;
-    })
- }
- 
+import { changeDateFormat, sortItems } from '@/lib/utils';
+console.log(clients,'here')
 
 export const useClientStore = create((set,get)=>({ 
     currentMessages:complaints[0],
@@ -44,14 +13,17 @@ export const useClientStore = create((set,get)=>({
         }))
     },
     complaints,
+    clients,
     bookings:changeDateFormat(bookings,'bookings'),
-    creatorSubscriptions:changeDateFormat(creatorSubscriptions,'subscriptions'),
-    creatorPayments:changeDateFormat(creatorPayments,'payments'),
-
-    setCreatorPayments:(creatorPayments)=>{
+    setClients:(clients)=>{
+        set(state=>({
+            ...state,clients
+        }))
+    },
+    setBookings:(bookings)=>{
         const {searchData} = useGlobalStore.getState();
         set(state=>({
-            ...state,creatorPayments:searchData==''?changeDateFormat(creatorPayments,'payments'):creatorPayments
+            ...state,bookings:searchData==''?changeDateFormat(bookings,'bookings'):bookings
         }))
     },
     setComplaints:(complaints)=>{
@@ -59,27 +31,21 @@ export const useClientStore = create((set,get)=>({
             ...state,complaints
         }))
     },
-    sortCreatorSubscriptions:(sortData)=>{
-      const {creatorSubscriptions} = get();
-      const sortedCreatorSubscriptions = sortItems(creatorSubscriptions,sortData)
-          set({sortedCreatorSubscriptions:sortedCreatorSubscriptions})
-        
+    // sort
+     sortClients:(sortData)=>{
+      const {clients} = get();
+      const sortedClients =  sortItems(clients,sortData)
+        set({clients:sortedClients})  
     },
-    setCreators:(creators)=>{
-        set(state=>({
-            ...state,creators
-        }))
+     sortBookings:(sortData)=>{
+      const {bookings} = get();
+      const sortedBookings =  sortItems(bookings,sortData)
+        set({bookings:sortedBookings})  
     },
-    sortCreators:(sortData)=>{
-      const {creators} = get();
-      const sortedCreators =  sortItems(creators,sortData)
-          set({creators:sortedCreators})
-        
+     sortComplainants:(sortData)=>{
+      const {complaints} = get();
+      const sortedComplainants =  sortItems(complaints,sortData)
+        set({complaints:sortedComplainants})  
     },
-    sortPayments:(sortData)=>{
-      const {creatorPayments} = get();
-      const sortedPayments = sortItems(creatorPayments,sortData)
-          set({creatorPayments:sortedPayments})
-        
-    }
+   
 }))

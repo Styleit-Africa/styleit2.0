@@ -8,6 +8,7 @@ const Avatar = ({data}) => {
     const name = complaint.name.split(' ').length > 0 ? 
     `${complaint.name.split(' ')[0].slice(0,1)} ${complaint.name.split(' ')[1].slice(0,1)} `: complaint.name.split(' ')[0].slice(0,1)
     const randomIndex = Math.floor(Math.random()*bgColors.length)
+    console.log(bgColors[randomIndex])
     return (
    <div>
         {

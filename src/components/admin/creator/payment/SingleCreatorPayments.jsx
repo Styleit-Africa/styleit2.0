@@ -10,7 +10,7 @@ import CreatorPaymentHeader from './CreatorPaymentHeader'
 const SingleCreatorPayments = () => {
     const {id} = useParams();
     const {setCreatorPayments,creatorPayments} = useCreatorStore(state=>state);
-    const [singleCreator] = useState(creatorPayments[Number(id)-1])
+    // const [singleCreator] = useState(creatorPayments[Number(id)-1])
 
     const {searchData} = useGlobalStore(state=>state);
     const searchItem = searchData.trim()
@@ -33,7 +33,7 @@ const SingleCreatorPayments = () => {
            filterCreatorPayments()
        },[searchItem])
          
-    //   const singleCreator = creatorPayments[Number(id)-1]
+      const singleCreator = creatorPayments[Number(id)-1]
     
   return (
     <div className='font-lato  w-full'>
@@ -41,7 +41,7 @@ const SingleCreatorPayments = () => {
 <div className='flex items-center md:items-center justify-between mt-5 md:mt-0 w-full md:w-auto md:basis-[15%]'>
                 <div className='flex items-center gap-3 capitalize text-xl '>
                 <Image src={userPicture} className=" w-[50px] h-[5s0px] rounded-full"/>
-                {/* <p data-testid="creator-name" >{singleCreator.name}</p> */}
+                <p data-testid="creator-name" >{singleCreator.name}</p>
                 </div>
         </div>
 
