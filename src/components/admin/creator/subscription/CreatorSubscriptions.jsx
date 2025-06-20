@@ -73,9 +73,9 @@ const CreatorSubscriptions = () => {
                               </div>
                               <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                               <p className='font-[700] capitalize md:hidden'>status:</p>
-                              <p data-testid={`to-${sub.id}`}  className={` md:basis-[15%] ${sub.status == 'expired' &&' text-red-500'} ${sub.status=='active'  &&' text-green-500 '} `}>{sub.status}</p>
+                              <p data-testid={`status-${sub.id}`}  className={` md:basis-[15%] ${sub.status == 'expired' &&' text-red-500'} ${sub.status=='active'  &&' text-green-500 '} `}>{sub.status}</p>
                               </div>
-                              <p className='basis-[15%] ' ><ChevronRight className={`transition-all duration-300 ${id === sub.id&& 'rotate-90'} cursor-pointer`}
+                              <p className='basis-[15%] ' data-testid={`actionButton-${sub.id}`} ><ChevronRight className={`transition-all duration-300 ${id === sub.id&& 'rotate-90'} cursor-pointer`}
                                onClick={()=>handleAction(sub.id)}/> </p>
                           </div>
 

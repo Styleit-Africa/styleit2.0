@@ -46,18 +46,23 @@ const UserProfile = ({user={
             lga:user.lga,
           }
         })
+        const handelSection = (id,data)=>{
+            setSection(data)
+            setCurrentId(id)
+        }
         
     const handleEdit = (e)=>{
         const id = e.currentTarget.dataset.id
-        if(id == 'personal info'){
-            setSection({...section,personalInfo:false})
-            setCurrentId(id)
-        }else if(id == 'address'){
-            setSection({...section,address:false})
-            setCurrentId(id)
-    }else if(id == 'all')
-            setSection({personalInfo:false,address:false})
-            setCurrentId(id)
+        switch(id){
+          case 'personal info':
+            handelSection(id,{...section,personalInfo:false})
+          break;
+          case 'address':
+            handelSection(id,{...section,address:false})
+          break;
+          default :
+            handelSection(id,{personalInfo:false,address:false})
+        }
     }
     const onSubmit = (values)=>{
 
@@ -65,9 +70,7 @@ const UserProfile = ({user={
       }
   return (
     <div>
-           <div>
-            
-           </div>
+        
              <Form {...form} data-testid="edit-profile-form ">
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 px-4 xl:px-0">
                         <UserProfileCard name='ff' age={78} cardProps = {{sectionId:'businessName',

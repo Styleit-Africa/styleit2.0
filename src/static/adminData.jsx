@@ -43,6 +43,8 @@ const adminLinks = [
     
 ]
 
+
+
 const period = [
     {
         id:1,
@@ -1429,6 +1431,195 @@ const bgColors = [
 
 const randomIndex = ()=>Math.floor(Math.random()*bgColors.length)
 
+const loginDetails =  [
+        {
+            id:1,
+            name:'daily',
+            value:3
+        },
+        {
+            id:2,
+            name:'weekly',
+            value:15
+        },
+        {
+            id:3,
+            name:'montly',
+            value:18
+        }
+    ]
+const months = [
+  'Jan','Feb','Match','April','May','June','July',
+  'August','September','October','November','December'
+];
 
-export {adminLinks,creators,creatorSubscriptions,bgColors,
-    bookings,creatorPayments,complaints,randomIndex,admins,period}
+const reviews = [
+  {
+    id: 1,
+    image:profile,
+    name: "Alex Chen",
+    rating: 5,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Excellent service and quality!",
+    date: "2024-06-15"
+  },
+  {
+    id: 2,
+    image:profile,
+    name: "Maria Garcia",
+    rating: 4,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Very good, will order again.",
+    date: "2024-06-14"
+  },
+  {
+    id: 3,
+    image:profile,
+    name: "David Brown",
+    rating: 3,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? It's okay, nothing special.",
+    date: "2024-06-13"
+  },
+  {
+    id: 4,
+    image:'',
+    name: "Sarah Johnson",
+    rating: 5,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Amazing product! Exceeded my expectations completely.",
+    date: "2024-06-12"
+  },
+  {
+    id: 5,
+    image:profile,
+    name: "Michael Wilson",
+    rating: 2,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Not what I expected. Quality could be better.",
+    date: "2024-06-11"
+  },
+  {
+    id: 6,
+    image:profile,
+    name: "Emily Davis",
+    rating: 4,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Good value for money. Fast delivery too.",
+    date: "2024-06-10"
+  },
+  {
+    id: 7,
+    image:'',
+    name: "James Rodriguez",
+    rating: 5,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Perfect! Exactly what I was looking for.",
+    date: "2024-06-09"
+  },
+  {
+    id: 8,
+    image:profile,
+    name: "Lisa Thompson",
+    rating: 3,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Average product. Works but nothing outstanding.",
+    date: "2024-06-08"
+  },
+  {
+    id: 9,
+    image:profile,
+    name: "Robert Lee",
+    rating: 4,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Solid purchase. Would recommend to others.",
+    date: "2024-06-07"
+  },
+  {
+    id: 10,
+    image:profile,
+    name: "Jennifer White",
+    rating: 5,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Outstanding quality and customer service!",
+    date: "2024-06-06"
+  },
+  {
+    id: 11,
+    image:profile,
+    name: "Kevin Martinez",
+    rating: 1,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Very disappointed. Product broke after one day.",
+    date: "2024-06-05"
+  },
+  {
+    id: 12,
+    image:profile,
+    name: "Amanda Clark",
+    rating: 4,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Really nice! Minor issues but overall satisfied.",
+    date: "2024-06-04"
+  },
+  {
+    id: 13,
+    image:profile,
+    name: "Daniel Anderson",
+    rating: 5,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Best purchase I've made this year!",
+    date: "2024-06-03"
+  },
+  {
+    id: 14,
+    image:profile,
+    name: "Michelle Taylor",
+    rating: 3,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? It's decent. Does what it's supposed to do.",
+    date: "2024-06-02"
+  },
+  {
+    id: 15,
+    image:profile,
+    name: "Christopher Moore",
+    rating: 4,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Great product with quick shipping!",
+    date: "2024-06-01"
+  },
+  {
+    id: 16,
+    image:profile,
+    name: "Ashley Harris",
+    rating: 2,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Overpriced for what you get. Expected more.",
+    date: "2024-05-31"
+  },
+  {
+    id: 17,
+    image:profile,
+    name: "Ryan Jackson",
+    rating: 5,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Incredible! Will definitely buy again.",
+    date: "2024-05-30"
+  },
+  {
+    id: 18,
+    image:profile,
+    name: "Nicole Lewis",
+    rating: 4,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Good product, easy to use and reliable.",
+    date: "2024-05-29"
+  },
+  {
+    id: 19,
+    image:profile,
+    name: "Brandon Walker",
+    rating: 3,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Fair quality. Could use some improvements.",
+    date: "2024-05-28"
+  },
+  {
+    id: 20,
+    image:profile,
+    name: "Stephanie Young",
+    rating: 5,
+    comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam animi unde maiores explicabo deserunt accusamus dolore praesentium earum modi eveniet? Love it! Fantastic quality and great price.",
+    date: "2024-05-27"
+  }
+];
+// function calculateAverageRating(reviews) {
+//   if (reviews.length === 0) return 0;
+//   const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+//   return (total / reviews.length).toFixed(1);
+// }
+
+export {adminLinks,creators,creatorSubscriptions,bgColors,loginDetails,months,
+    bookings,creatorPayments,complaints,randomIndex,admins,period,reviews}

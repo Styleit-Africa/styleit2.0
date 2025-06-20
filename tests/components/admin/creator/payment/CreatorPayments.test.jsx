@@ -3,9 +3,10 @@ import { render,screen, within } from '@testing-library/react'
 import {beforeEach, describe,expect,it, vi} from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import CreatorPayments from '@/components/admin/creator/payment/CreatorPayments'
-import { changeDateFormat, useCreatorStore } from '@/store/useCreator'
+import {useCreatorStore } from '@/store/useCreator'
 import userEvent from '@testing-library/user-event'
 import { format } from 'date-fns'
+import { changeDateFormat } from '@/lib/utils'
 
 
 vi.mock('../../../../../store/useCreator',()=>({
@@ -408,9 +409,10 @@ describe('CreatorPayments',()=>{
             <CreatorPayments />
                </MemoryRouter> 
         )
-        let id = null;
 
+        const paymentIds = [];
         payments.forEach(async(payment)=>{
+            paymentIds.push(payment.id)
            const title = screen.getByTestId(`name-${payment.id}`)
            expect(title).toHaveTextContent(payment.name.trim())
            const date = screen.getByTestId(`date-${payment.id}`)
@@ -424,7 +426,7 @@ describe('CreatorPayments',()=>{
            const actionButton = screen.getByTestId(`actionButton-${payment.id}`)
            const user = userEvent.setup();
             await user.click(actionButton);
-            if(payment.id === id){
+            if(paymentIds.includes(payment.id)){
                 expect(screen.getByTestId(`last-payments-${payment.id}`)).toBeInTheDocument()
             }else{
                 expect(screen.queryByTestId(`last-payments-${payment.id}`)).not.toBeInTheDocument()

@@ -15,9 +15,9 @@ const Clients = () => {
      const searchItem = searchData.trim()
     const filterClients = ()=>{
         const filteredItems = clients.filter(client=>
-            client.name.toLocaleLowerCase().includes(searchItem)||
-            client.email.toLocaleLowerCase().includes(searchItem)||
-            client.status.toLocaleLowerCase().includes(searchItem)
+            client.name.toLowerCase().includes(searchItem)||
+            client.email.toLowerCase().includes(searchItem)||
+            client.status.toLowerCase().includes(searchItem)
         )
             if(searchItem == ''){
                 setClients(clientsData)

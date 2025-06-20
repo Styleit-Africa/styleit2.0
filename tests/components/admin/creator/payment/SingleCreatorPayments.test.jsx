@@ -3,10 +3,11 @@ import { render,screen, within } from '@testing-library/react'
 import {beforeEach, describe,expect,it, vi} from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import CreatorPayments from '@/components/admin/creator/payment/CreatorPayments'
-import { changeDateFormat, useCreatorStore } from '@/store/useCreator'
+import { useCreatorStore } from '@/store/useCreator'
 import userEvent from '@testing-library/user-event'
 import { format } from 'date-fns'
 import SingleCreatorPayments from '@/components/admin/creator/payment/SingleCreatorPayments'
+import { changeDateFormat } from '@/lib/utils'
 
 
 vi.mock('../../../../../store/useCreator',()=>({
@@ -395,8 +396,6 @@ const payments = [
 ]
 
 describe('CreatorPayments',()=>{
-    
-    
 
     beforeEach(()=>{
         vi.clearAllMocks()
@@ -409,9 +408,6 @@ describe('CreatorPayments',()=>{
             <SingleCreatorPayments payments={payments}/>
                </MemoryRouter> 
         )
-
-        // const creator = screen.getByTestId('creator-name')
-        // expect(creator).toHaveTextContent(singleCreator.name)
 
 
         payments.forEach(async(payment)=>{

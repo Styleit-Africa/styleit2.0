@@ -3,33 +3,34 @@ import { ChevronRight } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import userPicture from '@/images/profile_i.png'
-import { bookings, creators as creatorsData } from '@/static/adminData'
+import { bookings, bookings as creatorsData } from '@/static/adminData'
 import { useGlobalStore } from '@/store/global/useGlobal'
 import { useClientStore } from '@/store/useClient'
 
 const SingleBooking = () => {
     const [bookingId,setBookingId] = useState(null)
     const {id} = useParams()
-    const {setCreators,creators} = useClientStore(state=>state);
+    const {setBookings,bookings} = useClientStore(state=>state);
     const {searchData} = useGlobalStore(state=>state);
-        const {userId} = useParams();
-     const searchItem = searchData.trim()
-    const filterCreators = ()=>{
-        const filteredItems = creators.filter(booking=> 
-            booking.name.toLocaleLowerCase().includes(searchItem)||
-            booking.email.toLocaleLowerCase().includes(searchItem)||
-            booking.status.toLocaleLowerCase().includes(searchItem)
+    const filterBookings = ()=>{
+        const filteredItems = bookings.filter(booking=> 
+            booking.name.toLowerCase().includes(searchData)||
+            booking.status.toLowerCase().includes(searchData)||
+            booking.bookingDate.toLowerCase().includes(searchData)||
+            booking.receiver.toLowerCase().includes(searchData)||
+            booking.collectionDate.toLowerCase().includes(searchData)
+
         )
-            if(searchItem == ''){
-                setCreators(creatorsData)
+            if(searchData == ''){
+                setBookings(creatorsData)
             }else{
-                setCreators(filteredItems)
+                setBookings(filteredItems)
             }
         }
     
     useEffect(()=>{
-        filterCreators()
-    },[searchItem])
+        filterBookings()
+    },[searchData])
 
       
     const handleAction = (_bookingId)=>{
@@ -78,12 +79,12 @@ const SingleBooking = () => {
                               
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>collection date:</p>
-                                <p data-testid={`email-${booking.id}`} >{booking.collectionDate}</p>
+                                <p data-testid={`collectionDate-${booking.id}`} >{booking.collectionDate}</p>
                                 </div>
                              
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>booking date:</p>
-                                <p data-testid={`email-${booking.id}`} >{booking.bookingDate}</p>
+                                <p data-testid={`bookingDate-${booking.id}`} >{booking.bookingDate}</p>
                                 </div>
                                 <div className='flex justify-between text-right md:text-left w-full  md:w-auto md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>status:</p>
@@ -105,11 +106,11 @@ const SingleBooking = () => {
                               
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[25%] '>
                                 <p className='font-[700] capitalize md:hidden md:basis-[25%]'>collection time:</p>
-                                <p data-testid={`gender-${booking.id}`} className=' md:ml-4'>{booking.collectionTime}</p>
+                                <p data-testid={`collectionTime-${booking.id}`} className=' md:ml-4'>{booking.collectionTime}</p>
                                 </div>
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[25%]'>
                                 <p className='font-[700] capitalize md:hidden'>booking time:</p>
-                                <p data-testid={`gender-${booking.id}`} className='basis-[16%]'>{booking.bookingTime}</p>
+                                <p data-testid={`bookingTime-${booking.id}`} className='basis-[16%]'>{booking.bookingTime}</p>
                                 </div>
                                 
                       
@@ -128,11 +129,11 @@ const SingleBooking = () => {
                               
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[25%]'>
                                 <p className='font-[700] capitalize md:hidden'>collection time:</p>
-                                <p data-testid={`gender-${booking.id}`} className='md:basis-[25%]'>{booking.collectionTime}</p>
+                                <p data-testid={`collectionTime-${booking.id}`} className='md:basis-[25%]'>{booking.collectionTime}</p>
                                 </div>
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[25%]'>
                                 <p className='font-[700] capitalize md:hidden'>booking time:</p>
-                                <p data-testid={`gender-${booking.id}`} className='md:basis-[25%]'>{booking.bookingTime}</p>
+                                <p data-testid={`bookingTime-${booking.id}`} className='md:basis-[25%]'>{booking.bookingTime}</p>
                                 </div>
                                 
                       

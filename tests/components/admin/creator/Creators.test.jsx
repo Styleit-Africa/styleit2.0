@@ -30,8 +30,9 @@ describe('Creator',()=>{
                </MemoryRouter> 
         )
         
-        let id = null;
+        let creatorIds = [];
         creators.forEach(async(creator)=>{
+           creatorIds.push(creator.id)
            const name = screen.getByTestId(`name-${creator.id}`)
            expect(name).toHaveTextContent(creator.name.trim())
            const email = screen.getByTestId(`email-${creator.id}`)
@@ -43,7 +44,7 @@ describe('Creator',()=>{
            const actionButton = screen.getByTestId(`actionButton-${creator.id}`)
            const user = userEvent.setup();
             await user.click(actionButton);
-            if(creator.id === id){
+            if(creatorIds.includes(bookings.id)){
                 expect(screen.getByTestId(`menu-${creator.id}`)).toBeInTheDocument()
             }else{
                 expect(screen.queryByTestId(`menu-${creator.id}`)).not.toBeInTheDocument()

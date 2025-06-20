@@ -69,23 +69,24 @@ const Bookings = () => {
                               
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>collection date:</p>
-                                <p data-testid={`email-${booking.id}`} >{booking.collectionDate}</p>
+                                <p data-testid={`collectionDate-${booking.id}`} >{booking.collectionDate}</p>
                                 </div>
                              
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>booking date:</p>
-                                <p data-testid={`email-${booking.id}`} >{booking.bookingDate}</p>
+                                <p data-testid={`bookingDate-${booking.id}`} >{booking.bookingDate}</p>
                                 </div>
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>status:</p>
                                 <p data-testid={`status-${booking.id}`} className={`basis-[16%] ${booking.status=='accepted'&&' md:border-r-0  text-green-500'}
                                  ${booking.status=='declined'&&' md:border-r-0  text-red-500'} ${booking.status=='pending'&&' md:border-r-0  text-yellow-500'} `}>{booking.status}</p>
                                 </div>
-                                <p className='basis-[10%] hidden md:block' ><ChevronRight className={`transition-all duration-300 ${id === booking.id&& 'rotate-90'} cursor-pointer`}
+                                <p data-testid={`actionButton-${booking.id}`} className='basis-[10%] hidden md:block' >
+                                    <ChevronRight className={`transition-all duration-300 ${id === booking.id&& 'rotate-90'} cursor-pointer`}
                                onClick={()=>handleAction(booking.id)}/> </p>
                             </div>
 
-                          {id === booking.id&& <div className='mt-8 md:max-w-[800px]'>
+                          {id === booking.id&& <div data-testid='otherColumns' className='mt-8 md:max-w-[800px]'>
                             <ul className=' hidden md:flex flex-row justify-between capitalize w-full font-[700] p-3 '>
                             <li className='basis-[16%]'>receiver</li>
                             <li className='basis-[25%]'>collection time</li> 
@@ -94,15 +95,15 @@ const Bookings = () => {
                            
                               <div className='flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center '>
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[25%]'>
-                                <p data-testid={`gender-${booking.id}`} >{booking.receiver} </p>
+                                <p data-testid={`receiver-${booking.id}`} >{booking.receiver} </p>
                                 </div>
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[25%]'>
                                 <p className='font-[700] capitalize md:hidden'>collection time:</p>
-                                <p data-testid={`gender-${booking.id}`} className='basis-[16%]'>{booking.collectionTime}</p>
+                                <p data-testid={`collectionTime-${booking.id}`} className='basis-[16%]'>{booking.collectionTime}</p>
                                 </div>
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>booking time:</p>
-                                <p data-testid={`gender-${booking.id}`} className='basis-[16%]'>{booking.bookingTime}</p>
+                                <p data-testid={`bookingTime-${booking.id}`} className='basis-[16%]'>{booking.bookingTime}</p>
                                 </div>
                             </div>
                             

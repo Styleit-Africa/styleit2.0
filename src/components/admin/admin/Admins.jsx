@@ -10,10 +10,9 @@ const Admins = ({currentAdmin,setCurrentAdmin,superAdmin=true}) => {
         }else{
             setOpen(false)
         }
-            console.log('yes')
     }
   return (
-        <ul className='border-r-2s shadow-md md:shadow-none p-5 rounded-md'
+        <ul className=' shadow-md md:shadow-none p-5 rounded-md'
                  onMouseLeave={()=>handleMouse('leave')} onMouseEnter={()=>handleMouse('enter')}
         >
             {
@@ -24,7 +23,6 @@ const Admins = ({currentAdmin,setCurrentAdmin,superAdmin=true}) => {
                 onClick={()=>setCurrentAdmin(index)}>
                     <Avatar data={{complaint:{name:admin.name},section:3}} />
                     {
-                
                         superAdmin ? <p className={`capitalize text-sm md:text-md font-[700] ${open ? 'block':'hidden'} sm:block`} 
                         >{admin.name}</p>:
                         <p className='capitalize text-sm md:text-md font-[700]'>{admin.name}</p>

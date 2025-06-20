@@ -5,6 +5,8 @@ import { MemoryRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import { format } from 'date-fns'
 import CreatorSubscriptions from '@/components/admin/creator/subscription/CreatorSubscriptions'
+import { changeDateFormat } from '@/lib/utils'
+import { useCreatorStore } from '@/store/useCreator'
 
 
 vi.mock('../../../../../store/useCreator',()=>({
@@ -337,22 +339,22 @@ describe('CreatorSubscriptions',()=>{
                </MemoryRouter> 
         )
 
-        creatorSubscriptions.forEach(async(sub)=>{
+        const subscriptionIds = [];
+        changeDateFormat(creatorSubscriptions,'subscriptions').forEach(async(sub)=>{
            const name = screen.getByTestId(`name-${sub.id}`)
            expect(name).toHaveTextContent(sub.name.trim())
            const from = screen.getByTestId(`from-${sub.id}`)
            const to = screen.getByTestId(`to-${sub.id}`)
-           expect(from).toHaveTextContent(format(new Date(sub.from),'MMMM do, yyyy'))
-           expect(to).toHaveTextContent(format(new Date(sub.to),'MMMM do, yyyy'))
+           expect(to).toHaveTextContent(sub.to)
+           expect(from).toHaveTextContent(sub.from.trim())
            const plan = screen.getByTestId(`plan-${sub.id}`)
-           expect(plan).toHaveTextContent(sub.plan)
+           expect(plan).toHaveTextContent(sub.plan.trim())
            const status = screen.getByTestId(`status-${sub.id}`)
-           expect(status).toHaveTextContent(sub.status)
-          
+           expect(status).toHaveTextContent(sub.status.trim())
            const actionButton = screen.getByTestId(`actionButton-${sub.id}`)
            const user = userEvent.setup();
             await user.click(actionButton);
-            if(sub.id === id){
+            if(subscriptionIds.includes(sub.id)){
                 expect(screen.getByTestId(`last-subscriptions-${sub.id}`)).toBeInTheDocument()
             }else{
                 expect(screen.queryByTestId(`last-subscriptions-${sub.id}`)).not.toBeInTheDocument()

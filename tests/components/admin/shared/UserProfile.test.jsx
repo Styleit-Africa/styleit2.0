@@ -3,10 +3,8 @@ import {render, screen } from "@testing-library/react";
 import {beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import EditProfileForm from "@/components/global/EditProfileForm";
-import profileImage from '@/images/icon_n1.png'
-import CreatorProfile from "@/components/admin/creator/profile/CreatorProfile";
 import { useForm } from "react-hook-form";
+import UserProfile from "@/components/admin/shared/profile/UserProfile";
 
 vi.mock('react-hook-form',async()=>{
     const actual = await vi.importActual('react-hook-form');
@@ -68,7 +66,7 @@ vi.mock('../../../../static/adminData',()=>({
 }))
 
 
-describe('CreatorProfile',()=>{
+describe('UserProfile',()=>{
     const inputData = [
         'uthman','fatai','u@gmail.com','181,Fola Azeez Cresent,Akulo',
         'Guarantee trust Bank','00192207800','09066778876','Ifako-ijaye'
@@ -78,7 +76,7 @@ describe('CreatorProfile',()=>{
         vi.clearAllMocks();
         render(
             <MemoryRouter>
-                <CreatorProfile onSubmit={mockSubmit(inputData)} />
+                <UserProfile onSubmit={mockSubmit(inputData)} />
             </MemoryRouter>
         )
     })

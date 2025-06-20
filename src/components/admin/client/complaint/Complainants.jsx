@@ -34,17 +34,17 @@ const Complainants = () => {
         {complaints.map((complaint,index)=>{
             return(
                 
-                    <li className={`transition-all hover:scale-[1.1] cursor-pointer md:cursor-auto shadow-md md:shadow-none md:border-b border-gray-300  p-4 ${currentIndex === index&&'bg-sidebar text-white'} `} onClick={()=>updateMessage(index)}>
+                    <li key={complaint.id} className={`transition-all hover:scale-[1.1] cursor-pointer md:cursor-auto shadow-md md:shadow-none md:border-b border-gray-300  p-4 ${currentIndex === index&&'bg-sidebar text-white'} `} onClick={()=>updateMessage(index)}>
                         <div className='hidden md:flex items-center  gap-4'>
                         <Avatar data={{complaint,section:3}}/>
                             
                             <div className='w-full'>
                                 <div className='flex justify-between items-center'>
-                                <h1 className='text-md font-[700] capitalize'>{complaint.name}</h1>
-                                <p>3hrs ago</p>
+                                <h1 className='text-md font-[700] capitalize' data-testid={`name-${complaint.id}`}>{complaint.name}</h1>
+                                <p  data-testid={`time-${complaint.id}`}>3hrs ago</p>
                                 </div>
-                                <p className='hidden md:block mt-2'>{complaint.message.substring(0,30)}...</p>
-                                <p className='md:hidden mt-2 '>{complaint.message.substring(0,80)}...</p>
+                                <p className='hidden md:block mt-2' data-testid={`message-${complaint.id}`}>{complaint.message.substring(0,30)}...</p>
+                                <p className='md:hidden mt-2 ' data-testid={`message-${complaint.id}`}>{complaint.message.substring(0,80)}...</p>
 
                             </div>
                             </div>
@@ -53,11 +53,11 @@ const Complainants = () => {
                             
                             <div className='w-full'>
                                 <div className='flex justify-between items-center'>
-                                <h1 className='text-md font-[700] capitalize'>{complaint.name}</h1>
-                                <p>3hrs ago</p>
+                                <h1  data-testid='name' className='text-md font-[700] capitalize'>{complaint.name}</h1>
+                                <p  data-testid={`time-${complaint.id}`}>3hrs ago</p>
                                 </div>
-                                <p className='hidden md:block mt-2'>{complaint.message.substring(0,30)}...</p>
-                                <p className='md:hidden mt-2'>{complaint.message.substring(0,80)}...</p>
+                                <p  data-testid={`message-${complaint.id}`} className='hidden md:block mt-2'>{complaint.message.substring(0,30)}...</p>
+                                <p  data-testid={`message-${complaint.id}`} className='md:hidden mt-2'>{complaint.message.substring(0,80)}...</p>
 
                             </div>
                     </Link> 

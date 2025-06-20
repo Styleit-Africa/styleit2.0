@@ -1,6 +1,5 @@
 import Avatar from '@/components/global/Avatar';
 import { Input } from '@/components/ui/input';
-import { useClientStore } from '@/store/useClient'
 import { Send } from 'lucide-react';
 import React from 'react'
 
@@ -15,9 +14,9 @@ const Complaints = ({currentMessages}) => {
                    <Avatar data={{complaint:currentMessages,section:1}}/>
                    <h3 className='font-[700] capitalize'>{currentMessages.name}</h3>
                     </div>
-                    <p>3:15am</p>
+                    <p data-testid='time'>3:15am</p>
                    </div>
-                   <p className='mt-3'> <span className='text-blue-500 cursor-pointer'>@Fatai Ahmad</span>
+                   <p data-testid='complaint' className='mt-3'> <span className='text-blue-500 cursor-pointer'>@Fatai Ahmad</span>
                    {currentMessages.message}</p>                            </div>
         </div>
         {
@@ -28,11 +27,11 @@ const Complaints = ({currentMessages}) => {
                             <div className="flex justify-between">
                    <div className='flex gap-4 items-center'>
                     <Avatar data={{complaint:reply,section:2}}/>
-                    <h3 className='font-[700] capitalize'>{reply.name}</h3>
+                    <h3  data-testid={`replyName-${reply.id}`} className='font-[700] capitalize'>{reply.name}</h3>
                     </div>
-                    <p>3:15am</p>
+                    <p  data-testid={`replyTime-${reply.id}`}>3:15am</p>
                    </div>
-                            <p className='mt-2'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia numquam totam illo incidunt dicta saepe quam quasi voluptatibus. Quasi quia iste atque minus laboriosam aliquam ipsum placeat temporibus cupiditate aut.</p>
+                            <p  data-testid={`replyMessage-${reply.id}`} className='mt-2'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia numquam totam illo incidunt dicta saepe quam quasi voluptatibus. Quasi quia iste atque minus laboriosam aliquam ipsum placeat temporibus cupiditate aut.</p>
                             </div>
                 </div>
                 )
