@@ -11,8 +11,8 @@ const ratingData = [
 ];
 const RatingAnalysis = ()=>{
     return(
-      <div className="flex gap-5 font-lato items-center mb-5">
-          <div className="flex-[0.5]">
+      <div className="flex flex-col-reverse md:flex-row gap-5 font-lato items-center mb-5">
+          <div className=" w-full md:w-auto md:flex-[0.5]">
             {ratingData.map((item, index) => (
   <div key={index} className="flex items-center gap-3">
     <div className="w-12 text-xs  mb-5 font-[700] uppercase">
@@ -34,7 +34,7 @@ const RatingAnalysis = ()=>{
 ))}
         </div>
 
-        <div className="mb-5 text-center bg-gradient-to-tr rounded-lg text-lightGray p-10 from-primary to-sidebar to-[35%] flex-[0.5]">
+        <div className="w-full md:w-auto md:flex-[0.5] mb-5 text-center bg-gradient-to-tr rounded-lg text-lightGray p-10 from-primary to-sidebar to-[35%] ">
             <h3 className="font-[700] text-3xl">4.3</h3>
             <div className="mx-auto w-[max-content]">
 

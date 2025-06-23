@@ -1,15 +1,30 @@
 import Avatar from '@/components/global/Avatar'
 import Stars from '@/components/global/Stars'
 import { Button } from '@/components/ui/button'
-import { reviews } from '@/static/adminData'
+import { reviews as reviewData } from '@/static/adminData'
 import { format } from 'date-fns'
-import React from 'react'
+import React, { useState } from 'react'
 import StarTabs from './StarTabs'
 
 const Review = () => {
+    const [reviews,setReviews] = useState(reviewData)
+    const [currentIndex,setCurrentIndex] = useState('all')
+    const handleStarTabs =rating=>{
+
+        setCurrentIndex(rating-1)
+        if(rating === 'all'){
+            setReviews(reviewData)
+            setCurrentIndex('all')
+        }else{
+            const currentTabReview = reviewData.filter(review=>review.rating == rating)
+            setReviews(currentTabReview)
+            console.log(currentTabReview)
+        }
+    }
+
   return (
     <div>
-       <StarTabs/>
+       <StarTabs currentIndex={currentIndex} handleStarTabs={handleStarTabs}/>
         {
             reviews.map(review=>{
                 return(
@@ -17,10 +32,10 @@ const Review = () => {
                         <div className='flex justify-between '>
                             <div className='flex gap-2  items-center '>
                             <Avatar data={{complaint:review,section:3,
-                                style:'w-[60px] h-[60px] rounded-full'}} />
+                                style:'w-[40px] md:w-[60px] h-[40px] md:h-[60px] rounded-full'}} />
                             <div>
-                                <h2 className=' capitalize font-[700]'>{review.name}</h2>
-                                <p className='capitalize'>{format(new Date(review.date),'MMMM do, yyyy')}</p>
+                                <h2 className=' capitalize font-[700] text-sm md:text-lg'>{review.name}</h2>
+                                <p className='capitalize texd-xs md:text-lg'>{format(new Date(review.date),'MMMM do, yyyy')}</p>
                             </div>
                         </div>
                         <Stars rating={review.rating}/>

@@ -5,14 +5,18 @@ import RatingAnalysis from '../creator/ratingAndReview/RatingAnalysis'
 const RatingAndReviews = () => {
   const [currentTab,setCurrentTab] = useState(false)
 
-  const updateTab = ()=>{
-    setCurrentTab(!currentTab)
+  const updateTab =tabId=>{
+    if(tabId === 'feedback'){
+      setCurrentTab(false)
+    }else{
+      setCurrentTab(true)
+    }
   }
   return (
-   <div>
+   <div className='font-lato'>
     <div className='flex '>
-        <button className={`flex-[0.5] capitalize ${!currentTab ? 'border-b-4  text-primary border-primary':'border-b-4 text-sidebar border-sidebar'}  mb-9 py-3 rounded-bl-lg`} onClick={updateTab} > customers feedback</button>
-        <button className={`flex-[0.5] capitalize ${currentTab ? 'border-b-4  text-primary border-primary':'border-b-4 text-sidebar border-sidebar'}  mb-9 py-3 rounded-br-lg`}  onClick={updateTab}>rating analysis</button>
+        <button className={`flex-[0.5] capitalize font-[700] ${!currentTab ? 'border-b-4  text-primary border-primary':'border-b-4 text-sidebar border-sidebar'}  mb-9 py-3 rounded-bl-lg`} onClick={()=>updateTab('feedback')} > customers feedback</button>
+        <button className={`flex-[0.5] capitalize font-[700] ${currentTab ? 'border-b-4  text-primary border-primary':'border-b-4 text-sidebar border-sidebar'}  mb-9 py-3 rounded-br-lg`}  onClick={()=>updateTab('rating')}>rating analysis</button>
     </div>
 
     {

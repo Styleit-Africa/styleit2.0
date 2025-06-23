@@ -13,7 +13,7 @@ const UserInformation = () => {
          currentTab={currentTab} 
          handleTabs={handleTabs} 
         setCurrentTab={setCurrentTab} />
-        <div className='mt-8'>
+        <div className='mt-2'>
           <CurrentInformation currentTab={currentTab} />
         </div>
         

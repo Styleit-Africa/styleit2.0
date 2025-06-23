@@ -9,7 +9,7 @@ const Stars = ({rating,className}) => {
                 console.log(index+1)
                 return(
                     <div key={index}>
-                          <Star className={`${index+1<=rating?'text-yellow-400 text-sm':''}`}/>
+                          <Star className={`h-4 md:h-6 w-4 md:w-6 ${index+1<=rating?'text-yellow-400 text-sm':''}`}/>
                           {/* <StarHalf className={`${index+1<=rating?'text-yellow-400 text-sm':''}`}/> */}
                     </div>
                 )
