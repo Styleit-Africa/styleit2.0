@@ -2,6 +2,11 @@ import profile from '@/images/profile_i.png'
 
 const adminLinks = [
     {
+        id:8,
+        name:'dashboard',
+        links:null
+    },
+    {
         id:1,
         name:'creators',
         links:['subscriptions','payments']
@@ -38,12 +43,11 @@ const adminLinks = [
     },
     {
         id:7,
-        name:'super admin'
+        name:'super admin',
+        links:null
     },
     
 ]
-
-
 
 const period = [
     {

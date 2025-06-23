@@ -1,9 +1,9 @@
 import { Star, StarHalf } from 'lucide-react'
 import React from 'react'
 
-const Stars = ({rating}) => {
+const Stars = ({rating,className}) => {
   return (
-    <div className='flex gap-1'>
+    <div className={`flex gap-1 ${className}`}>
         {
             Array(5).fill(0).map((_,index)=>{
                 console.log(index+1)

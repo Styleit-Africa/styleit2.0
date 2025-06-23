@@ -1,17 +1,18 @@
 import Avatar from '@/components/global/Avatar'
 import Stars from '@/components/global/Stars'
+import { Button } from '@/components/ui/button'
 import { reviews } from '@/static/adminData'
 import { format } from 'date-fns'
-import { Star, StarIcon, StarOff } from 'lucide-react'
 import React from 'react'
+import StarTabs from './StarTabs'
 
 const Review = () => {
   return (
     <div>
+       <StarTabs/>
         {
             reviews.map(review=>{
                 return(
-                    // <div className='shadow-lg p-5 rounded-lg mb-5 '>
                     <div className='shadow-lg p-8 rounded-lg mb-5 bg-gradient-to-tr from-primary to-sidebar to-[35%] text-lightGray'>
                         <div className='flex justify-between '>
                             <div className='flex gap-2  items-center '>

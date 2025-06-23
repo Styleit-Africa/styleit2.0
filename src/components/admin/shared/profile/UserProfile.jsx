@@ -107,8 +107,8 @@ const UserProfile = ({user={
                                             <FormItem>
                                               <FormLabel 
                                                     className=' left-3  transition-all duration-300 
-                                                     bg-white font-[700]'>First Name</FormLabel>
-                                                         <Input type="text" id="firstName"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                      font-[700]'>First Name</FormLabel>
+                                                         <Input type="text" id="firstName"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-white
                                                           focus-visible:ring-0' {...field} data-testid="firstName"/>
                                                   
                                                   <FormMessage className="text-red-500" />
@@ -128,9 +128,9 @@ const UserProfile = ({user={
                                                   
                                                  <FormLabel 
                                                     className={` left-3 -top-2  transition-all duration-300 
-                                                     bg-white font-[700]`}>Last Name</FormLabel>
+                                                      font-[700]`}>Last Name</FormLabel>
                                                    
-                                                   <Input type="text" id="lastName"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                   <Input type="text" id="lastName"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-white
                                                           focus-visible:ring-0' {...field} data-testid="lastName"/>
                                                  </div>
                                                     </FormControl>
@@ -154,9 +154,9 @@ const UserProfile = ({user={
                                             <FormItem>
                                               <FormLabel 
                                                     className=' left-3  transition-all duration-300 
-                                                     bg-white font-[700]'>Email</FormLabel>
+                                                      font-[700]'>Email</FormLabel>
                                                        
-                                                       <Input type="text" id="email"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                       <Input type="text" id="email"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-white
                                                           focus-visible:ring-0' {...field} data-testid="email"/>
                                                   
                                                   <FormMessage className="text-red-500" />
@@ -177,9 +177,9 @@ const UserProfile = ({user={
                                                   </FormLabel>
                                                  <FormLabel 
                                                     className={` left-3 -top-2  transition-all duration-300 
-                                                     bg-white font-[700]`}>Phone number</FormLabel>
+                                                      font-[700]`}>Phone number</FormLabel>
                                                   
-                                                  <Input type="text" id="phoneNumber"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem] cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                  <Input type="text" id="phoneNumber"  disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem] cursor-pointer text-lg shadow-none pl-3 block h-12 text-white
                                                             focus-visible:ring-0'  {...field} data-testid="phoneNumber" />
                                                           
                                                  </div>
@@ -205,9 +205,9 @@ const UserProfile = ({user={
                                             <FormItem>
                                               <FormLabel 
                                                     className=' left-3  transition-all duration-300 flex-[0.48] 
-                                                     bg-white font-[700]'>Business Name</FormLabel>
+                                                      font-[700]'>Business Name</FormLabel>
                                                         
-                                                        <Input type="text" id="businessName" disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                        <Input type="text" id="businessName" disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-white
                                                             focus-visible:ring-0' {...field} data-testid="businessName"/>
                                                   <FormMessage className="text-red-500" />
                                                   </FormItem>
@@ -224,8 +224,8 @@ const UserProfile = ({user={
                                             <FormItem>
                                               <FormLabel 
                                                     className=' left-3  transition-all duration-300 flex-[0.48] 
-                                                     bg-white font-[700]'> Gender</FormLabel>
-                                                      <Input type="text" id="gender" disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                      font-[700]'> Gender</FormLabel>
+                                                      <Input type="text" id="gender" disabled={ section.personalInfo?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-white
                                                             focus-visible:ring-0' {...field} data-testid="gender"/>
                                                   <FormMessage className="text-red-500" />
                                                   </FormItem>
@@ -252,8 +252,8 @@ const UserProfile = ({user={
                                                           <FormItem>
                                                             <FormLabel 
                                                                   className=' left-3  transition-all duration-300 
-                                                                  bg-white font-[700]'>Country</FormLabel>
-                                                                      <Input type="text" id="country"  disabled={ section.address?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                                   font-[700]'>Country</FormLabel>
+                                                                      <Input type="text" id="country"  disabled={ section.address?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-white
                                                                         focus-visible:ring-0' {...field} data-testid="country"/>
                                                                 
                                                                 <FormMessage className="text-red-500" />
@@ -273,8 +273,8 @@ const UserProfile = ({user={
                                                               
                                                               <FormLabel 
                                                                   className={` left-3 -top-2  transition-all duration-300 
-                                                                  bg-white font-[700]`}>City</FormLabel>
-                                                                  <Input type="text" id="state"  disabled={ section.address?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem] cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                                   font-[700]`}>City</FormLabel>
+                                                                  <Input type="text" id="state"  disabled={ section.address?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem] cursor-pointer text-lg shadow-none pl-3 block h-12 text-white
                                                                     focus-visible:ring-0'  {...field} data-testid="state" />
                                                               </div>
                                                                   </FormControl>
@@ -299,8 +299,8 @@ const UserProfile = ({user={
                                                           <FormItem>
                                                             <FormLabel 
                                                                   className=' left-3  transition-all duration-300 
-                                                                  bg-white font-[700]'>Street</FormLabel>
-                                                                      <Input type="text" id="street" disabled={ section.address?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                                   font-[700]'>Street</FormLabel>
+                                                                      <Input type="text" id="street" disabled={ section.address?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem]  cursor-pointer text-lg shadow-none pl-3 block h-12 text-white
                                                                         focus-visible:ring-0' {...field} data-testid="street"/>
                                                                 
                                                                 <FormMessage className="text-red-500" />
@@ -320,8 +320,8 @@ const UserProfile = ({user={
                                                               
                                                               <FormLabel 
                                                                   className={` left-3 -top-2  transition-all duration-300 
-                                                                  bg-white font-[700]`}>Local Government</FormLabel>
-                                                                  <Input type="text" id="lga"  disabled={ section.address?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem] cursor-pointer text-lg shadow-none pl-3 block h-12 text-gray-500
+                                                                   font-[700]`}>Local Government</FormLabel>
+                                                                  <Input type="text" id="lga"  disabled={ section.address?true:false} className='capitalize disabled:bg-white disabled:text-gray-900 placeholder-gray-400 placeholder:text-[1.07rem] cursor-pointer text-lg shadow-none pl-3 block h-12 text-white
                                                                     focus-visible:ring-0'  {...field} data-testid="lga" />
                                                               </div>
                                                                   </FormControl>
