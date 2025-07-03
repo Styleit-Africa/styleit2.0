@@ -12,6 +12,7 @@ const Creators = () => {
     const [id,setId] = useState(null)
     const {setCreators,creators} = useCreatorStore(state=>state);
     const {searchData} = useGlobalStore(state=>state);
+    console.log(creators,'cc')
         
     // console.log(creators)
      const searchItem = searchData.trim()
@@ -57,6 +58,7 @@ const Creators = () => {
                         <li className="relative" data-role="creators">
                             <div className={`${creator.status=='approved'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-green-500'}
                              ${creator.status=='banned'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-red-500'}
+                             ${creator.status=='pending'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-yellow-500'}
                               ${creator.status=='suspended'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-black'}
                              flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center mt-5 shadow-md capitalize p-5 rounded-md relative`}>
                               
@@ -77,7 +79,7 @@ const Creators = () => {
                                 </div>
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                                 <p className='font-[700] capitalize md:hidden'>status:</p>
-                                <p data-testid={`status-${creator.id}`} className={`basis-[15%] ${creator.status=='approved'&&' md:border-y-0  text-green-500'} ${creator.status=='banned'&&' md:border-y-0  text-red-500'} ${creator.status=='suspended'&&' md:border-y-0  text-black'} `}>{creator.status}</p>
+                                <p data-testid={`status-${creator.id}`} className={`basis-[15%]  ${creator.status=='pending'&&' md:border-y-0  text-yellow-500'}  ${creator.status=='approved'&&' md:border-y-0  text-green-500'} ${creator.status=='banned'&&' md:border-y-0  text-red-500'} ${creator.status=='suspended'&&' md:border-y-0  text-black'} `}>{creator.status}</p>
                                 </div>
                                 <p className='basis-[15%]' data-testid={`actionButton-${creator.id}`} ><MoreHorizontal className='cursor-pointer'
                                  onClick={()=>handleOptions(creator.id)}/> </p>

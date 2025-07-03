@@ -10,7 +10,7 @@
 }
 
 .check{
-  /* background:rgba(255,255,255,0.8); */
+  /* color: #faf7f799; */
   background: linear-gradient(180deg, #FFFDFD 0%, rgba(255, 255, 255, 0.42) 100%);
 }
 
@@ -39,6 +39,7 @@
     --chart-3: oklch(0.769 0.188 70.08);
     --chart-4: oklch(0.627 0.265 303.9);
     --chart-5: oklch(0.645 0.246 16.439);
+    --chart-6:linear-gradient('red','green');
   }
 }
 

@@ -35,7 +35,7 @@ const Review = () => {
                                 style:'w-[40px] md:w-[60px] h-[40px] md:h-[60px] rounded-full'}} />
                             <div>
                                 <h2 className=' capitalize font-[700] text-sm md:text-lg'>{review.name}</h2>
-                                <p className='capitalize texd-xs md:text-lg'>{format(new Date(review.date),'MMMM do, yyyy')}</p>
+                                <p className='capitalize texd-xs md:text-sm'>{format(new Date(review.date),'MMMM do, yyyy')}</p>
                             </div>
                         </div>
                         <Stars rating={review.rating}/>

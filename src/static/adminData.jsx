@@ -1,3 +1,12 @@
+import DashboardAdmin from '@/components/admin/dashboard/admin/DashboardAdmin'
+import DashboardBookings from '@/components/admin/dashboard/booking/DashboardBookings'
+import DashboardClient from '@/components/admin/dashboard/client/DashboardClient'
+import DashboardCreator from '@/components/admin/dashboard/creator/DashboardCreator'
+import Revenue from '@/components/admin/dashboard/revenue/Revenue'
+import ActiveUsers from '@/components/admin/dashboard/user/ActiveUsers'
+import DashboardUser from '@/components/admin/dashboard/user/DashboardUser'
+import NewUsers from '@/components/admin/dashboard/user/NewUsers'
+import UserRetentionRate from '@/components/admin/dashboard/user/UserRetentionRate'
 import profile from '@/images/profile_i.png'
 
 const adminLinks = [
@@ -237,7 +246,7 @@ const admins = [
 ]
 
 
-const creators = [
+const dadmins = [
     {
         id:1,
         name:'uthman fatai',
@@ -249,6 +258,7 @@ const creators = [
         street:'49,Suraju Orile Iganmu',
         state:'Lagos',
         lga:'Surulere',
+        role:'admin',
         country:'Nigeria',
     },
     {
@@ -262,6 +272,7 @@ const creators = [
         street:'49,Suraju Orile Iganmu',
         state:'Lagos',
         lga:'Surulere',
+        role:'admin',
         country:'Nigeria',
     },
     {
@@ -275,6 +286,7 @@ const creators = [
         street:'49,Suraju Orile Iganmu',
         state:'Lagos',
         lga:'Surulere',
+        role:'creator',
         country:'Nigeria',
     },
     {
@@ -288,6 +300,7 @@ const creators = [
         street:'49,Suraju Orile Iganmu',
         state:'Lagos',
         lga:'Surulere',
+        role:'client',
         country:'Nigeria',
     },
     {
@@ -301,6 +314,7 @@ const creators = [
         street:'49,Suraju Orile Iganmu',
         state:'Lagos',
         lga:'Surulere',
+        role:'creator',
         country:'Nigeria',
     },
     {
@@ -314,6 +328,7 @@ const creators = [
         street:'49,Suraju Orile Iganmu',
         state:'Lagos',
         lga:'Surulere',
+        role:'client',
         country:'Nigeria',
     },
     {
@@ -327,6 +342,7 @@ const creators = [
         street:'49,Suraju Orile Iganmu',
         state:'Lagos',
         lga:'Surulere',
+        role:'admin',
         country:'Nigeria',
     },
     {
@@ -340,10 +356,67 @@ const creators = [
         street:'49,Suraju Orile Iganmu',
         state:'Lagos',
         lga:'Surulere',
+        role:'admin',
         country:'Nigeria',
     },
     {
         id:9,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'active',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:10,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'pending',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:11,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'active',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:12,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'pending',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:13,
         name:'uthman fatai',
         email:'u@gmail.com',
         status:'suspended',
@@ -353,6 +426,220 @@ const creators = [
         street:'49,Suraju Orile Iganmu',
         state:'Lagos',
         lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:14,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'pending',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+]
+
+const creators = [
+    {
+        id:1,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'suspended',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'Noble stiches',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'admin',
+        country:'Nigeria',
+    },
+    {
+        id:2,
+        name:'abdullahi fatai',
+        email:'u@gmail.com',
+        status:'banned',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'The neatly done',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'admin',
+        country:'Nigeria',
+    },
+    {
+        id:3,
+        name:'Faruq Sulaiman',
+        email:'u@gmail.com',
+        status:'approved',
+        gender:'female',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'creator',
+        country:'Nigeria',
+    },
+    {
+        id:4,
+        name:'salam Yusuf',
+        email:'a@gmail.com',
+        status:'banned',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:5,
+        name:'fatai Yusrat ',
+        email:'c@gmail.com',
+        status:'banned',
+        gender:'female',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'creator',
+        country:'Nigeria',
+    },
+    {
+        id:6,
+        name:'Adeleke Muminat',
+        email:'b@gmail.com',
+        status:'suspended',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:7,
+        name:'uthman fatai',
+        email:'o@gmail.com',
+        status:'approved',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'admin',
+        country:'Nigeria',
+    },
+    {
+        id:8,
+        name:'uthman fatai',
+        email:'p@gmail.com',
+        status:'banned',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'admin',
+        country:'Nigeria',
+    },
+    {
+        id:9,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'active',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:10,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'pending',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:11,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'active',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:12,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'pending',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:13,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'suspended',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
+        country:'Nigeria',
+    },
+    {
+        id:14,
+        name:'uthman fatai',
+        email:'u@gmail.com',
+        status:'pending',
+        gender:'male',
+        phoneNumber:'07040834109',
+        businessName:'stitching lord',
+        street:'49,Suraju Orile Iganmu',
+        state:'Lagos',
+        lga:'Surulere',
+        role:'client',
         country:'Nigeria',
     },
 ]
@@ -814,9 +1101,6 @@ const creatorSubscriptions = [
         ]
     }
 ]
-
-
-
 const creatorPayments = [
 
     {
@@ -1198,6 +1482,102 @@ const creatorPayments = [
         ]
     }
 ]
+
+// dashboard
+
+const bookingDashboardTabs = ['all','in progress','pending','completed','cancelled']
+
+const creatorDashboardTabs = ['all','active subscribers','pending','suspended/banned','top performance']
+
+const userDashboardTabs = [
+    {
+        id:1,
+        name:'active users',
+        component:<ActiveUsers />,
+        tabs:[
+            {
+                id:1,
+                name:'weekly'
+            },
+            {
+                id:2,
+                name:'monthly'
+            }
+        ]
+    },
+    {
+        id:2,
+        name:'new users',
+        component:<NewUsers />,
+        tabs:[
+            {
+                id:1,
+                name:'weekly'
+            },
+            {
+                id:2,
+                name:'monthly'
+            }
+        ]
+    },
+    {
+        id:3,
+        name:'retention rate',
+        component:<UserRetentionRate />,
+        tabs:[
+            {
+                id:1,
+                name:'weekly'
+            },
+            {
+                id:2,
+                name:'monthly'
+            }
+        ]
+    },
+]
+
+const dashboardTabs = [
+    {
+        id:1,
+        name:'users',
+        total:5463,
+        component:<DashboardUser/>
+    },
+    {
+        id:2,
+        name:'creators',
+        total:7463,
+        component:<DashboardCreator/>
+    },
+    {
+        id:3,
+        name:'client',
+        total:7463,
+        component:<DashboardClient/>
+    },
+    {
+        id:4,
+        name:'Admin',
+        total:63,
+        component:<DashboardAdmin/>
+    },
+    {
+        id:5,
+        name:'bookings',
+        total:463,
+        component:<DashboardBookings/>
+    },
+    {
+        id:6,
+        name:'revenue',
+        total:'$7868',
+        component:<Revenue/>
+    },
+]
+
+
+
 
 const complaints = [
     {
@@ -1619,11 +1999,11 @@ const reviews = [
     date: "2024-05-27"
   }
 ];
-// function calculateAverageRating(reviews) {
-//   if (reviews.length === 0) return 0;
-//   const total = reviews.reduce((sum, review) => sum + review.rating, 0);
-//   return (total / reviews.length).toFixed(1);
-// }
 
-export {adminLinks,creators,creatorSubscriptions,bgColors,loginDetails,months,
-    bookings,creatorPayments,complaints,randomIndex,admins,period,reviews}
+
+export {
+    adminLinks,creators,creatorSubscriptions,bgColors,loginDetails,
+    months,userDashboardTabs,bookingDashboardTabs,
+    bookings,creatorPayments,complaints,randomIndex,dadmins,
+    admins,period,reviews,dashboardTabs,creatorDashboardTabs
+}

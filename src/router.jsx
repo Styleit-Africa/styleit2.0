@@ -45,6 +45,7 @@ import StaffPage from "./pages/admin/staff/StaffPage";
 import AdminClientProfilePage from "./pages/admin/client/AdminClientProfilePage";
 import AdminPage from "./pages/admin/admin/AdminPage";
 import SuperAdminPage from "./pages/admin/superAdmin/SuperAdminPage";
+import DashboardPage from "./pages/admin/DashboardPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -79,6 +80,9 @@ const router = createBrowserRouter(
           </Route>
           {/* admin */}
           <Route path='/admin' element={<AdminLayout/>}>
+            <Route path="dashboard" element={<DashboardPage/>} />
+            <Route path="dashboard/:id/profile" element={<AdminCreatorProfilePage/>} />
+
             <Route path='creators' element={<AdminCreatorLayout/>} >
                 <Route index element={<AdminCreatorsPage/>}/>
                 <Route path="subscriptions" element={<CreatorSubscriptionPage/>}/>

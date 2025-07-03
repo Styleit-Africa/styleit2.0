@@ -55,6 +55,7 @@ const Bookings = () => {
                         <li key={booking.id} className="relative mt-20 md:mt-0">
                             <div  className={`${booking.status=='accepted'&&' shadow-sm shadow-green-300 '} 
                         ${booking.status=='declined'&&' shadow-sm shadow-red-300'}
+                        ${booking.status=='completed'&&' shadow-sm shadow-blue-300'}
                         ${booking.status=='pending'&&' shadow-sm shadow-yellow-300'}
                           mt-5 shadow-md capitalize p-5 rounded-md relative`}>
                               
@@ -79,7 +80,8 @@ const Bookings = () => {
                                 <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>status:</p>
                                 <p data-testid={`status-${booking.id}`} className={`basis-[16%] ${booking.status=='accepted'&&' md:border-r-0  text-green-500'}
-                                 ${booking.status=='declined'&&' md:border-r-0  text-red-500'} ${booking.status=='pending'&&' md:border-r-0  text-yellow-500'} `}>{booking.status}</p>
+                                 ${booking.status=='declined'&&' md:border-r-0  text-red-500'}  ${booking.status=='completed'&&' md:border-r-0  text-blue-500'}
+                                 ${booking.status=='pending'&&' md:border-r-0  text-yellow-500'} `}>{booking.status}</p>
                                 </div>
                                 <p data-testid={`actionButton-${booking.id}`} className='basis-[10%] hidden md:block' >
                                     <ChevronRight className={`transition-all duration-300 ${id === booking.id&& 'rotate-90'} cursor-pointer`}
