@@ -41,11 +41,11 @@ import AdminClientComplaints from "./pages/admin/client/AdminClientComplaints";
 import AdminSingleClientComplaints from "./pages/admin/client/AdminSingleClientComplaints";
 import AdminClientActivitiesPage from "./pages/admin/client/AdminClientActivitiesPage";
 import StaffActivitiesPage from "./pages/admin/staff/StaffActivitiesPage";
-import StaffPage from "./pages/admin/staff/StaffPage";
 import AdminClientProfilePage from "./pages/admin/client/AdminClientProfilePage";
 import AdminPage from "./pages/admin/admin/AdminPage";
 import SuperAdminPage from "./pages/admin/superAdmin/SuperAdminPage";
 import DashboardPage from "./pages/admin/DashboardPage";
+import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -80,22 +80,30 @@ const router = createBrowserRouter(
           </Route>
           {/* admin */}
           <Route path='/admin' element={<AdminLayout/>}>
-            <Route path="dashboard" element={<DashboardPage/>} />
-            <Route path="dashboard/:id/profile" element={<AdminCreatorProfilePage/>} />
-
+            <Route path='dashboard' element={<AdminDashboardLayout/>} >
+              <Route index element={<DashboardPage/>} />
+              <Route path=":id/profile" element={<AdminPage/>} />
+              <Route path=":id/b" element={<AdminSingleClientBookingPage/>} />
+              <Route path=":id/p" element={<CreatorSinglePaymentPage/>} />
+              <Route path=":id/s" element={<CreatorSingleSubscriptionPage/>} />
+              <Route path=":id/profile/ct" element={<AdminCreatorProfilePage/>} />
+              <Route path=":id/profile/cn" element={<AdminCreatorProfilePage/>} />
+            </Route>
             <Route path='creators' element={<AdminCreatorLayout/>} >
                 <Route index element={<AdminCreatorsPage/>}/>
                 <Route path="subscriptions" element={<CreatorSubscriptionPage/>}/>
-                <Route path="subscriptions/:id" element={<CreatorSingleSubscriptionPage/>}/>
-                <Route path=":id/profile" element={<AdminCreatorProfilePage/>}/>
+                <Route path="subscriptions/:id/s" element={<CreatorSingleSubscriptionPage/>}/>
+                <Route path=":id/profile/ct" element={<AdminCreatorProfilePage/>}/>
                 <Route path="payments" element={<CreatorPaymentPage/>}/>
-                <Route path="payments/:id" element={<CreatorSinglePaymentPage/>}/>
+                <Route path="payments/:id/p" element={<CreatorSinglePaymentPage/>}/>
             </Route>
+
+            {/* client */}
             <Route path='clients' element={<AdminClientLayout/>} >
                 <Route index element={<AdminClientsPage/>}/>
                 <Route path="bookings" element={<AdminClientBookingPage/>}/>
-                <Route path="bookings/:id" element={<AdminSingleClientBookingPage/>}/>
-                <Route path=":id/profile" element={<AdminClientProfilePage/>}/>
+                <Route path="bookings/:id/b" element={<AdminSingleClientBookingPage/>}/>
+                <Route path=":id/profile/cn" element={<AdminClientProfilePage/>}/>
                 <Route path="complaints & disputes" element={<AdminClientComplaints/>}/>
                 <Route path="complaints & disputes/:id" element={<AdminSingleClientComplaints/>}/>
                 <Route path="activities" element={<AdminClientActivitiesPage/>}/>

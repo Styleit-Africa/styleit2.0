@@ -3,7 +3,7 @@ import React from 'react'
 
 const DashboardPage = () => {
   return (
-    <section className='font-lato px-5'>
+    <section className='font-lato'>
         <Dashboard/>
     </section>
 

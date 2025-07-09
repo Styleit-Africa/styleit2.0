@@ -77,16 +77,16 @@ const SingleBooking = () => {
                                <p data-testid={`name-${booking.id}`}  >{booking.receiver}</p>
                                 </div>
                               
-                                <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
+                                <div className='flex justify-between md:-indent-12 w-full md:w-auto  md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>collection date:</p>
-                                <p data-testid={`collectionDate-${booking.id}`} >{booking.collectionDate}</p>
+                                <p data-testid={`collectionDate-${booking.id}`} className='text-left ' >{booking.collectionDate}</p>
                                 </div>
                              
-                                <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
+                                <div className='flex justify-between md:-indent-10  w-full md:w-auto md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>booking date:</p>
                                 <p data-testid={`bookingDate-${booking.id}`} >{booking.bookingDate}</p>
                                 </div>
-                                <div className='flex justify-between text-right md:text-left w-full  md:w-auto md:basis-[16%]'>
+                                <div className='flex justify-between md:-indent-2 text-right md:text-left w-full  md:w-auto md:basis-[16%]'>
                                 <p className='font-[700] capitalize md:hidden'>status:</p>
                                 <p data-testid={`status-${booking.id}`} className={`basis-[16%] ${booking.status=='accepted'&&' md:border-r-0  text-green-500'}
                                  ${booking.status=='declined'&&' md:border-r-0  text-red-500'} ${booking.status=='pending'&&' md:border-r-0  text-yellow-500'} `}>{booking.status}</p>

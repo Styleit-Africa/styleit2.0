@@ -4,8 +4,8 @@ import React, { useState } from 'react'
 const numerals = ['one','two','three','four','five']
 
 const StarTabs = ({handleStarTabs,currentIndex}) => {
-    const [overflow,setOverflow] = useState(true)
-    console.log(currentIndex)
+    const [overflow,setOverflow] = useState(true);
+    
     const handleMouseIn =()=>{
         setOverflow(true)
     }

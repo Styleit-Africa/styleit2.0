@@ -84,7 +84,7 @@ return (
                           {payment.lastPayments.map(lastPayment=>{
                               return <CreatorLastPayments key={lastPayment.id} payment={lastPayment} data-testid="creatorLastPayment" />
                           })}
-                             <Link to={`${payment.id}`} className='text-center capitalize  block text-primary mt-7 animate-bounce'>view all</Link>
+                             <Link to={`${payment.id}/p`} className='text-center capitalize  block text-primary mt-7 animate-bounce'>view all</Link>
                         </div>
                                                          }
 

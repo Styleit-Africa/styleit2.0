@@ -2,7 +2,9 @@ import DashboardAdmin from '@/components/admin/dashboard/admin/DashboardAdmin'
 import DashboardBookings from '@/components/admin/dashboard/booking/DashboardBookings'
 import DashboardClient from '@/components/admin/dashboard/client/DashboardClient'
 import DashboardCreator from '@/components/admin/dashboard/creator/DashboardCreator'
+import Payments from '@/components/admin/dashboard/payment/payments'
 import Revenue from '@/components/admin/dashboard/revenue/Revenue'
+import DashboardSubscription from '@/components/admin/dashboard/subscription/DashboardSubscription'
 import ActiveUsers from '@/components/admin/dashboard/user/ActiveUsers'
 import DashboardUser from '@/components/admin/dashboard/user/DashboardUser'
 import NewUsers from '@/components/admin/dashboard/user/NewUsers'
@@ -790,6 +792,13 @@ const bookings = [
         reason:'Hi, i am sorry i have a tight schedule this month.Kindly book ahead in the coming month if not urgent.I will be available'
     },
 ]
+const ratingData = [
+  { label: "ONE", stars: 1, value: 12, percentage: 2 },
+  { label: "TWO", stars: 2, value: 28, percentage: 5 },
+  { label: "THREE", stars: 3, value: 156, percentage: 12 },
+  { label: "FOUR", stars: 4, value: "4.5K", percentage: 75 },
+  { label: "FIVE", stars: 5, value: 969, percentage: 95 }
+];
 
 
 const creatorSubscriptions = [
@@ -801,6 +810,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free',
         lastSubscriptions:[
                 {
         id:5,
@@ -809,6 +819,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -817,6 +828,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -825,6 +837,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     }
         ]
     },
@@ -835,6 +848,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-03-01',
         to:'2025-08-01',
+        type:'free',
         lastSubscriptions:[
                 {
         id:5,
@@ -843,6 +857,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -851,6 +866,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -859,6 +875,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     }
         ]
     },
@@ -869,6 +886,7 @@ const creatorSubscriptions = [
         status:'active',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free',
         lastSubscriptions:[
                 {
         id:5,
@@ -877,6 +895,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -885,6 +904,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -893,6 +913,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     }
         ]
     },
@@ -903,6 +924,7 @@ const creatorSubscriptions = [
         status:'active',
         from:'2025-03-01',
         to:'2026-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -911,6 +933,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -919,6 +942,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -927,6 +951,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     },
@@ -937,6 +962,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -945,6 +971,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -953,6 +980,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -961,6 +989,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     },
@@ -971,6 +1000,7 @@ const creatorSubscriptions = [
         status:'active',
         from:'2025-05-01',
         to:'2027-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -979,6 +1009,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -987,6 +1018,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -995,6 +1027,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     },
@@ -1005,6 +1038,7 @@ const creatorSubscriptions = [
         status:'active',
         from:'2025-02-01',
         to:'2025-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -1013,6 +1047,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -1021,6 +1056,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -1029,6 +1065,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     },
@@ -1039,6 +1076,7 @@ const creatorSubscriptions = [
         status:'active',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -1047,6 +1085,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -1055,6 +1094,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -1063,6 +1103,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     },
@@ -1073,6 +1114,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -1081,6 +1123,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -1089,6 +1132,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -1097,6 +1141,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     }
@@ -1486,8 +1531,12 @@ const creatorPayments = [
 // dashboard
 
 const bookingDashboardTabs = ['all','in progress','pending','completed','cancelled']
+const clientDashboardTabs = ['all','approved','banned','suspended']
+const paymentDashboardTabs = ['all','successful','pending','declined']
+const dashboardSubscriptionTabs = ['all','free subscribers','paid subscribers','active','expired']
 
-const creatorDashboardTabs = ['all','active subscribers','pending','suspended/banned','top performance']
+const creatorDashboardTabs = ['all','active subscribers','pending','suspended/banned','top performance','most booked']
+const adminDashboardTabs = ['all','leader board','banned','suspended']
 
 const userDashboardTabs = [
     {
@@ -1574,8 +1623,19 @@ const dashboardTabs = [
         total:'$7868',
         component:<Revenue/>
     },
+    {
+        id:6,
+        name:'payments',
+        total:'$7868',
+        component:<Payments/>
+    },
+    {
+        id:6,
+        name:'subscriptions',
+        total:'$7868',
+        component:<DashboardSubscription/>
+    },
 ]
-
 
 
 
@@ -2002,8 +2062,8 @@ const reviews = [
 
 
 export {
-    adminLinks,creators,creatorSubscriptions,bgColors,loginDetails,
-    months,userDashboardTabs,bookingDashboardTabs,
-    bookings,creatorPayments,complaints,randomIndex,dadmins,
-    admins,period,reviews,dashboardTabs,creatorDashboardTabs
+    adminLinks,creators,creatorSubscriptions,bgColors,loginDetails,ratingData,
+    months,userDashboardTabs,bookingDashboardTabs,adminDashboardTabs,clientDashboardTabs,
+    bookings,creatorPayments,complaints,randomIndex,dadmins,paymentDashboardTabs,
+    admins,period,reviews,dashboardTabs,creatorDashboardTabs,dashboardSubscriptionTabs
 }

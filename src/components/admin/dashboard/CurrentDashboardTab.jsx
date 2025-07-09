@@ -5,7 +5,7 @@ const CurrentDashboardTab = ({currentTab}) => {
   return (
     <div className='mt-12'>
          {
-            dashboardTabs[currentTab].component
+          dashboardTabs[currentTab].component
          }
     </div>
   )

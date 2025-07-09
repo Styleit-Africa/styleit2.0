@@ -8,12 +8,11 @@ const DashboardTabs = ({currentTab,setCurrentTab}) => {
         setCurrentTab(index)
     }
   return (
-    <div>
-          <div className='flex flex-col md:flex-row gap-5 flex-wrap mt-9'>
+          <div className='flex flex-col md:flex-row gap-5 flex-wrap '>
         {
             dashboardTabs.map((tab,index)=>{
                 return(
-                    <div className={`shadow-md rounded-md grow-1 py-5 px-7 basis-[23%] text-lightGray
+                    <div className={`shadow-md rounded-md grow-1 py-5 px-7 md:basis-[30%]  xl:basis-[23%] text-lightGray
                      ${index === currentTab ? 'bg-gradient-to-l to-[55%] ':'bg-gradient-to-tr'} from-primary to-sidebar to-[35%] 
                       hover:bg-gradient-to-bl cursor-pointer `} onClick={()=>updateTab(index)} >
                         <div className='flex items-center justify-between'>
@@ -25,7 +24,6 @@ const DashboardTabs = ({currentTab,setCurrentTab}) => {
                 )
             })
         }
-    </div>
     </div>
   )
 }

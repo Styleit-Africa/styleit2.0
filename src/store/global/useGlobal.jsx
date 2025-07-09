@@ -5,6 +5,10 @@ export const useGlobalStore = create((set,get)=>({
     headerHeight:null,
     currentTab:1,
     searchData:'',
+    currentDashboardTab:0,
+    setCurrentDashboardTab:(currentDashboardTab)=>{
+        set({currentDashboardTab})
+    },
     setSearchData:(searchData)=>set(state=>({
         ...state,searchData
     })),

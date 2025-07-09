@@ -23,7 +23,7 @@ const Sidebar = () => {
     const {setIsSidebarOpened} = useGlobalStore(state=>state);
 
   return (
-    <div className='w-72 ml-auto p-5 md:pb-9 rounded-l-xl bg-sidebar font-lato relative z-50 cursor-auto '>
+    <div className='w-72 ml-auto p-5 md:pb-9 rounded-l-xl bg-sidebar  font-lato relative z-50 cursor-auto '>
         
         <User
             userProps={{

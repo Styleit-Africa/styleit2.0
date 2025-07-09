@@ -1,6 +1,4 @@
 import {create} from 'zustand';
-// import { creatorPayments, creators, creatorSubscriptions } from "@/static/adminData";
-// import { creatorPayments, creatorSubscriptions } from "@/static/adminData";
 import { useGlobalStore } from './global/useGlobal';
 import { changeDateFormat, sortItems } from '@/lib/utils';
 const creators =[
@@ -211,6 +209,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free',
         lastSubscriptions:[
                 {
         id:5,
@@ -219,6 +218,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -227,6 +227,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -235,6 +236,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     }
         ]
     },
@@ -245,6 +247,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-03-01',
         to:'2025-08-01',
+        type:'free',
         lastSubscriptions:[
                 {
         id:5,
@@ -253,6 +256,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -261,6 +265,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -269,6 +274,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     }
         ]
     },
@@ -279,6 +285,7 @@ const creatorSubscriptions = [
         status:'active',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free',
         lastSubscriptions:[
                 {
         id:5,
@@ -287,6 +294,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -295,6 +303,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     },
     {
         id:5,
@@ -303,6 +312,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'free'
     }
         ]
     },
@@ -313,6 +323,7 @@ const creatorSubscriptions = [
         status:'active',
         from:'2025-03-01',
         to:'2026-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -321,6 +332,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -329,6 +341,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -337,6 +350,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     },
@@ -347,6 +361,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -355,6 +370,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -363,6 +379,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -371,6 +388,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     },
@@ -381,6 +399,7 @@ const creatorSubscriptions = [
         status:'active',
         from:'2025-05-01',
         to:'2027-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -389,6 +408,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -397,6 +417,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -405,6 +426,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     },
@@ -415,6 +437,7 @@ const creatorSubscriptions = [
         status:'active',
         from:'2025-02-01',
         to:'2025-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -423,6 +446,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -431,6 +455,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -439,6 +464,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     },
@@ -449,6 +475,7 @@ const creatorSubscriptions = [
         status:'active',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -457,6 +484,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -465,6 +493,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -473,6 +502,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     },
@@ -483,6 +513,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
         lastSubscriptions:[
                 {
         id:5,
@@ -491,6 +522,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -499,6 +531,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     },
     {
         id:5,
@@ -507,6 +540,7 @@ const creatorSubscriptions = [
         status:'expired',
         from:'2025-05-01',
         to:'2025-08-01',
+        type:'paid',
     }
         ]
     }
@@ -921,21 +955,50 @@ export const useCreatorStore = create((set,get)=>({
             ...state,creators
         }))
     },
-    setFilterCreator:(data = null)=>{
-        const getCreators = data !== 'two' ? creators.filter(creator=>creator.status === data):
-        creators.filter(creator=>creator.status === 'suspended'||creator.status === 'banned')
-        set({creators:data === 'all'?creators:getCreators})
+    filterCreators:(data)=>{
+          
+        switch(data){
+            case 'active subscribers':
+                const activePerformance = creators.filter(creator=>creator.status == 'active')
+                set({creators:activePerformance})
+            break;
+            case 'top performance':
+                const topPerformance = creators.filter(creator=>creator.status == 'active')
+                set({creators:topPerformance})
+            break;
+            case 'suspended/banned':
+                const bannedOrSuspendedCreators = creators.filter(creator=>creator.status === 'suspended'||creator.status === 'banned')
+                set({creators:bannedOrSuspendedCreators})
+                break;
+            case 'pending':
+                const pendingCreators = creators.filter(creator=>creator.status == 'pending')
+                set({creators:pendingCreators})
+            break;
+            case 'most booked':
+                set({creators:creators.slice(0,3)})
+            break;
+            default:
+                set({creators:creators})
+        }
     },
     sortCreators:(sortData)=>{
       const {creators} = get();
       const sortedCreators =  sortItems(creators,sortData)
           set({creators:sortedCreators})
-        
     },
     sortPayments:(sortData)=>{
       const {creatorPayments} = get();
       const sortedPayments = sortItems(creatorPayments,sortData)
           set({creatorPayments:sortedPayments})
-        
+    },
+    filterPayments:(status)=>{
+        const filterPayments = changeDateFormat(creatorPayments,'payments').filter(payment=>payment.status === status)
+        set({creatorPayments:status == 'all'?changeDateFormat(creatorPayments,'payments'):filterPayments})
+    },
+    filterSubscriptions:(status)=>{
+        const filterSubscription = status.endsWith('subscribers') ?  
+        changeDateFormat(creatorSubscriptions,'subscriptions').filter(subscription=>subscription.type === status.split(' ')[0]) : 
+        changeDateFormat(creatorSubscriptions,'subscriptions').filter(subscription=>subscription.status === status)
+        set({creatorSubscriptions:status === 'all'?changeDateFormat(creatorSubscriptions,'subscriptions'):filterSubscription})
     }
 }))

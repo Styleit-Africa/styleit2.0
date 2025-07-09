@@ -12,6 +12,10 @@ const LastSubscriptions = ({sub}) => {
             <p>{sub.plan}</p>
             </div>
             <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
+            <p className='font-[700] capitalize md:hidden'>type:</p>
+            <p>{sub.type}</p>
+            </div>
+            <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
             <p className='font-[700] capitalize md:hidden'>from:</p>
             <p className='md:basis-[15%]'>{sub.from}</p>
             </div>

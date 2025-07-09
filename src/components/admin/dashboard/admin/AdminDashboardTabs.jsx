@@ -1,25 +1,28 @@
-import Creators from '../../creator/Creators'
-import {creatorDashboardTabs } from '@/static/adminData'
-import { useCreatorStore } from '@/store/useCreator'
+import { adminDashboardTabs, dadmins } from '@/static/adminData'
 import React, { useState } from 'react'
 import OverflowHandler from '../../shared/OverflowHandler'
 
 
-const CreatorDashboardTabs = () => {
-    const {filterCreators} = useCreatorStore(state=>state)
+const  AdminDashboardTabs = ({setAdmins}) => {
     const [currentIndex,setCurrentIndex] = useState(0)
         const updateSearchData = (tab,index)=>{
             setCurrentIndex(index)
-            filterCreators(tab)
-            console.log(tab)
+           const currentTabData = dadmins.filter(admin=>admin.status === tab);
+           if(tab === 'all'){
+                setAdmins(dadmins)
+           }else if(tab === 'leader board'){
+                setAdmins(dadmins.slice(0,2))
+           }else{
+               setAdmins(currentTabData)
+           }
         }
     
   return (
-        <OverflowHandler className='max-w-[900px] pb-2 md:pb-0  mx-auto lg:mx-0  xl:max-w-none  md:w-full'>
+<OverflowHandler className='max-w-[600px]  pb-2 md:pb-0 mx-auto lg:mx-0  md:max-w-none  md:w-full'>
 
-        <div className={`flex w-[1000px] xl:w-auto`} >
+        <div className={`flex w-[600px]  md:w-auto`} >  
         {
-            creatorDashboardTabs.map((tab,index)=>{
+            adminDashboardTabs.map((tab,index)=>{
                 return(
 
                     <div className='flex-[0.4]'>
@@ -38,4 +41,4 @@ const CreatorDashboardTabs = () => {
   )
 }
 
-export default CreatorDashboardTabs
+export default  AdminDashboardTabs

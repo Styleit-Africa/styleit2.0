@@ -6,7 +6,10 @@ const DashboardBookings = () => {
   return (
     <div>
         <DashboardBookingTabs/>
+      <div className='mt-5'>
         <Bookings/>
+      </div>
+
     </div>
   )
 }

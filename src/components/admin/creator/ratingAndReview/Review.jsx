@@ -39,7 +39,6 @@ const Review = () => {
                             </div>
                         </div>
                         <Stars rating={review.rating}/>
-                        {/* <Star className='text-yellow-400'/> */}
                         </div>
                         <p className='mt-3'>{review.comment}</p>
                     </div>

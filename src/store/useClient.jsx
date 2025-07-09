@@ -640,6 +640,13 @@ export const useClientStore = create((set,get)=>({
             changeDateFormat(filterBookings,'bookings')
         })
     },
+    filterClients:(data)=>{
+        const filterClients = clients.filter(client=>client.status === data);
+        set({clients:data === 'all' ? 
+            clients :
+            filterClients         
+        })
+    },
     // sort
      sortClients:(sortData)=>{
       const {clients} = get();

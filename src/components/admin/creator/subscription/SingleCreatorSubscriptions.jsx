@@ -19,7 +19,8 @@ const SingleCreatorSubscriptions = () => {
             return subscription.name.toLowerCase().includes(searchItem)||
             subscription.status.toLowerCase().includes(searchItem)||
             subscription.from.toLowerCase().includes(searchItem)||
-            subscription.to.toLowerCase().includes(searchItem)
+            subscription.to.toLowerCase().includes(searchItem)||
+            subscription.type.toLowerCase().includes(searchItem)
         })
             if(searchItem == ''){
                 setCreatorSubscriptions(subscriptionData)
@@ -56,6 +57,10 @@ const SingleCreatorSubscriptions = () => {
                               <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                               <p className='font-[700] capitalize md:hidden'>plan:</p>
                               <p data-testid={`name-${sub.id}`} >{sub.plan}</p>
+                              </div>
+                              <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
+                              <p className='font-[700] capitalize md:hidden'>type:</p>
+                              <p data-testid={`type-${sub.id}`} >{sub.type}</p>
                               </div>
                               <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                               <p className='font-[700] capitalize md:hidden'>from:</p>

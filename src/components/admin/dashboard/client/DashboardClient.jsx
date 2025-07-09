@@ -1,10 +1,14 @@
 import React from 'react'
 import Clients from '../../client/Clients'
+import ClientDashboardTabs from './ClientDashboardTabs'
 
 const DashboardClient = () => {
   return (
     <div>
-        <Clients/>
+      <ClientDashboardTabs/>
+      <div className='mt-5'>
+          <Clients/>
+        </div>
     </div>
   )
 }

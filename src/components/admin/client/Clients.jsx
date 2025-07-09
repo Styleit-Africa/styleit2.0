@@ -82,7 +82,7 @@ const Clients = () => {
                             </div>
 
                             {id === client.id&& <div data-testid={`menu-${client.id}`} className='shadow-lg flex gap-3  py-5 z-30 px-4 bg-white rounded-md w-[max-content] absolute top-6 right-0'>
-                                <Link to={`${client.id}/profile`}><Eye  className='text-green-500 text-lg'/></Link>
+                                <Link to={`${client.id}/profile/cn`}><Eye  className='text-green-500 text-lg'/></Link>
                                 <Trash2 className='text-red-500 text-lg'/>
                                 <UserX  className='text-red-500 text-lg'/>
                             </div> }

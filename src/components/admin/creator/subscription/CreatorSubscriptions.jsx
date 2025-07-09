@@ -18,6 +18,7 @@ const CreatorSubscriptions = () => {
     const filterCreatorSubscriptions = ()=>{
         const filteredItems = creatorSubscriptions.filter(subscription=>{
             return subscription.name.toLowerCase().includes(searchItem)||
+            subscription.type.toLowerCase().includes(searchItem)||
             subscription.status.toLowerCase().includes(searchItem)||
             subscription.from.toLowerCase().includes(searchItem)||
             subscription.to.toLowerCase().includes(searchItem)
@@ -46,6 +47,7 @@ const CreatorSubscriptions = () => {
         <ul>
             {
                 creatorSubscriptions.map(sub=>{
+                    console.log(sub)
 
                     return(
                         <li key={sub.id} className="relative mt-12 md:mt-0">
@@ -62,6 +64,10 @@ const CreatorSubscriptions = () => {
                               <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                               <p className='font-[700] capitalize md:hidden'>plan:</p>
                               <p data-testid={`plan-${sub.id}`} >{sub.plan}</p>
+                              </div>
+                              <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
+                              <p className='font-[700] capitalize md:hidden'>type:</p>
+                              <p data-testid={`type-${sub.id}`} >{sub.type}</p>
                               </div>
                               <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
                               <p className='font-[700] capitalize md:hidden'>from:</p>
@@ -84,7 +90,7 @@ const CreatorSubscriptions = () => {
                             {sub.lastSubscriptions.map(lastSub=>{
                                 return <LastSubscriptions key={lastSub.id} sub={lastSub}/>
                             })}
-                               <Link to={`${sub.id}`} className='text-center capitalize  block text-primary mt-7 animate-bounce'>view all</Link>
+                               <Link to={`${sub.id}/s`} className='text-center capitalize  block text-primary mt-7 animate-bounce'>view all</Link>
                           </div>
                                }
                             </div>

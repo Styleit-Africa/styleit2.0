@@ -109,7 +109,7 @@ const Bookings = () => {
                                 </div>
                             </div>
                             
-                            <Link to={`${booking.id}`} className='text-center capitalize  block text-primary mt-7 animate-bounce pr-4'>view all</Link>
+                            <Link to={`${booking.id}/b`} className='text-center capitalize  block text-primary mt-7 animate-bounce pr-4'>view all</Link>
                            
                           </div>
                                }

@@ -1,25 +1,25 @@
-import Creators from '../../creator/Creators'
-import {creatorDashboardTabs } from '@/static/adminData'
-import { useCreatorStore } from '@/store/useCreator'
+import {clientDashboardTabs } from '@/static/adminData'
 import React, { useState } from 'react'
 import OverflowHandler from '../../shared/OverflowHandler'
+import { useClientStore } from '@/store/useClient'
 
 
-const CreatorDashboardTabs = () => {
-    const {filterCreators} = useCreatorStore(state=>state)
+const ClientDashboardTabs = () => {
+    const {filterClients} = useClientStore(state=>state)
     const [currentIndex,setCurrentIndex] = useState(0)
         const updateSearchData = (tab,index)=>{
             setCurrentIndex(index)
-            filterCreators(tab)
+            filterClients(tab)
             console.log(tab)
         }
     
   return (
+    <div>
         <OverflowHandler className='max-w-[900px] pb-2 md:pb-0  mx-auto lg:mx-0  xl:max-w-none  md:w-full'>
 
         <div className={`flex w-[1000px] xl:w-auto`} >
         {
-            creatorDashboardTabs.map((tab,index)=>{
+            clientDashboardTabs.map((tab,index)=>{
                 return(
 
                     <div className='flex-[0.4]'>
@@ -35,7 +35,8 @@ const CreatorDashboardTabs = () => {
     </div>
    
    </OverflowHandler>
+    </div>
   )
 }
 
-export default CreatorDashboardTabs
+export default ClientDashboardTabs

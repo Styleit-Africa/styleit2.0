@@ -86,7 +86,7 @@ const Creators = () => {
                             </div>
 
                             {id === creator.id&& <div data-testid={`menu-${creator.id}`} className='shadow-lg flex gap-3  py-5 z-30 px-4 bg-white rounded-md w-[max-content] absolute top-6 right-0'>
-                                <Link to={`${creator.id}/profile`}><Eye  className='text-green-500 text-lg'/></Link>
+                                <Link to={`${creator.id}/profile/ct`}><Eye  className='text-green-500 text-lg'/></Link>
                                 <Trash2 className='text-red-500 text-lg'/>
                                 <UserX  className='text-red-500 text-lg'/>
                             </div> }

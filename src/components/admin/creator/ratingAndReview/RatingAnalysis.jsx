@@ -1,14 +1,9 @@
 import Stars from "@/components/global/Stars";
 import { Progress } from "@/components/ui/progress"
+import { ratingData } from "@/static/adminData";
 import { Star } from "lucide-react"
 
-const ratingData = [
-  { label: "ONE", stars: 1, value: 12, percentage: 2 },
-  { label: "TWO", stars: 2, value: 28, percentage: 5 },
-  { label: "THREE", stars: 3, value: 156, percentage: 12 },
-  { label: "FOUR", stars: 4, value: "4.5K", percentage: 75 },
-  { label: "FIVE", stars: 5, value: 969, percentage: 95 }
-];
+
 const RatingAnalysis = ()=>{
     return(
       <div className="flex flex-col-reverse md:flex-row gap-5 font-lato items-center mb-5">
