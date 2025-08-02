@@ -3,6 +3,7 @@ import Header from "../components/global/Header";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/global/Footer";
 import SidebarContainer from "@/components/global/SidebarContainer";
+import { Toaster } from "@/components/ui/sonner";
 
 
 const Layout =()=>{
@@ -19,6 +20,23 @@ const Layout =()=>{
                 {
                     pathname.split('/')[1] !== 'admin'&&<Footer/>
                 }
+                {/* <Toaster toastOpttions={{
+                    className:"text-xl text-gray-300 bg-gradient-to-tr  from-primary to-sidebar" 
+                }} /> */}
+
+                <Toaster 
+            toastOptions={{
+                className: "text-xl text-white bg-gradient-to-tr from-primary to-sidebar",
+                style: {
+                background: 'linear-gradient(to top right, #FF617C, #27213c)',
+                color: '#fff',
+                border:'none'
+                // fontSize: '1.25rem'
+                },
+                        descriptionClassName: "text-white",
+
+            }}
+            />
             
         </>
     )

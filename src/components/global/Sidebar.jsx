@@ -8,11 +8,12 @@ import icon from '../../images/icon.png'
 import logout from '../../images/logout.png'
 import profileImage from '../../images/profile_i.png'
 import Followers from './Followers'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import SidebarLinks from './SidebarLinks'
 import BankDetails from './BankDetails'
 import { useAuthService } from '@/store/useAuthService'
 import { useGlobalStore } from '@/store/global/useGlobal'
+import { useAuth } from '@/store/useAuth'
 
 
 
@@ -20,7 +21,15 @@ import { useGlobalStore } from '@/store/global/useGlobal'
 const Sidebar = () => {
 
     const {user} = useAuthService(state=>state)
+    const navigate = useNavigate()
+    const {logout} = useAuth(state=>state)
     const {setIsSidebarOpened} = useGlobalStore(state=>state);
+    const handleLogout = ()=>{
+        logout()
+        setIsSidebarOpened()
+        navigate('/login')
+
+    }
 
   return (
     <div className='w-72 ml-auto p-5 md:pb-9 rounded-l-xl bg-sidebar  font-lato relative z-50 cursor-auto '>
@@ -61,7 +70,7 @@ const Sidebar = () => {
     </ul>
     <div className='flex items-center pl-1.5 border-b py-2 border-lgray '>
         <Image src={logout} className="w-6 h-6" />
-        <Button className="-indent-1 bg-sidebar hover:bg-sidebar shadow-none text-lg text-red-600">Logout</Button>
+        <Button className="-indent-1 bg-sidebar hover:bg-sidebar shadow-none text-lg text-red-600" onClick={handleLogout}>Logout</Button>
     </div>
     <BankDetails userProfile={userProfile}/>
     </div>

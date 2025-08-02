@@ -1,11 +1,11 @@
 import React from 'react'
 import Image from './Image'
-import { userProfile } from '@/static/data'
 import Indicator from './Indicator'
 
 
 const User = ({userProps}) => {
     const {image,indicator,name,container} = userProps
+    console.log(name,'nn')
   return (
     <div className={container}>
     <div className=' relative '>
@@ -14,8 +14,8 @@ const User = ({userProps}) => {
     </div>
     {
         name.fullName ? 
-        <p className={name.styles}>{name.userProfile.firstName} {name.userProfile.lastName}</p>
-        :<p className={name.styles}>{name.userProfile.firstName} </p>
+        <p className={name.styles}>{name.userProfile.fname} {name.userProfile.lname}</p>
+        :<p className={name.styles}>{name.userProfile.fname} </p>
     }
 </div>
   )

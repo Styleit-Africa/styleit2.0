@@ -31,37 +31,37 @@ const Footer =()=>{
             </div>
             <div className="flex justify-between max-w-[630px] text-darkGray">
                 <div>
-                    <h3 className='font-[700] mb-8 text-xl md:text-2xl'>Company</h3>
-                    <ul className="capitalize text-xl md:text-2xl">
+                    <h3 className='font-[700] mb-8 text-lg md:text-2xl'>Company</h3>
+                    <ul className="capitalize text-lg md:text-2xl">
                         <li className="mb-7">About us</li>
                         <li className="mb-7">support</li>
                     </ul>
-                        <h4 className="mt-[8.5rem] capitalize text-xl md:text-2xl font-[700]">report</h4>
+                        <h4 className="mt-[8.5rem] capitalize text-lg md:text-2xl font-[700]">report</h4>
                 </div>
                 <div>
-                    <h3 className='font-[700] mb-8 text-xl md:text-2xl'>Resources</h3>
-                    <ul className="capitalize text-xl md:text-2xl">
+                    <h3 className='font-[700] mb-8 text-lg md:text-2xl'>Resources</h3>
+                    <ul className="capitalize text-lg md:text-2xl">
                         <li className="mb-7">services</li>
                         <li className="mb-7">contact</li>
                         <li className="mb-7">event</li>
                     </ul>
-                        <h4 className="mt-20 capitalize text-xl md:text-2xl font-[700]">ban</h4>
+                        <h4 className="mt-20 capitalize text-lg md:text-2xl font-[700]">ban</h4>
                 </div>
                 <div>
-                    <h3 className='font-[700] mb-8 text-xl md:text-2xl'>Privacy policy</h3>
-                    <ul className="capitalize text-xl md:text-2xl">
+                    <h3 className='font-[700] mb-8 text-lg md:text-2xl'>Privacy policy</h3>
+                    <ul className="capitalize text-lg md:text-2xl">
                         <li className="mb-7">help</li>
                         <li className="mb-7">FAQ</li>
                         <li className="mb-7">career</li>
                     </ul>
-                        <h4 className="mt-20 capitalize text-xl md:text-2xl font-[700]">admin</h4>
+                        <h4 className="mt-20 capitalize text-lg md:text-2xl font-[700]">admin</h4>
                 </div>
             </div>
             </div>
                    
-            <div className="capitalize md:text-xl  mt-16 flex gap-3 items-center w-[max-content] mx-auto">
+            <div className="capitalize  mt-16 flex gap-3 items-center w-[max-content] mx-auto">
                   <Image src={copyright} className="w-[20px] md:w-[30px]" alt="copyright" />
-                   <h5>Styleit africa copyright {year}, all right reserved</h5> 
+                   <h5 className="text-sm md:text-xl">Styleit africa copyright {year}, all right reserved</h5> 
                    </div>
         </footer>
     )

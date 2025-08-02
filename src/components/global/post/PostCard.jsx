@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import profileImage from '../../../images/profile_i.png'
 import User from '../User'
 import postImage from '../../../images/post_i.png'
-import { userProfile } from '@/static/data'
 import Indicator from '../Indicator'
 import PostDescription from './PostDescription'
 import send from '../../../images/send.png'
@@ -11,11 +10,14 @@ import { Input } from '@/components/ui/input'
 import Image from '../Image'
 import CommentContainer from '../comment/CommentContainer'
 import { Button } from '@/components/ui/button'
+import PostTitle from './PostTitle'
 
 
-const PostCard=({post,follow}) => {
+const PostCard=({post,follow,userProfile}) => {
     const [isCommentOpened,setIsCommentOpened]=useState(false)
     const [isReportOpened,setIsReportOpened]=useState(false)
+    console.log(userProfile,'kk')
+    
   return (
     <div className='max-w-[480px] mx-auto mt-10'>
                  
@@ -29,7 +31,7 @@ const PostCard=({post,follow}) => {
         <div className='flex justify-between items-center '>
         <User
         userProps={{
-                name:{userProfile,fullName:false,styles:'text-black font-[500]'},
+                name:{userProfile,fullName:false,styles:'text-black capitalize font-[500]'},
                 indicator:{isIndicator:false,styles:'h-2 w-2 absolute bottom-2 right-0 rounded-full bg-green-300 '},
                 image:{profileImage,styles:'w-[35px] h-[35px]'},
                 container:' flex items-center gap-3 font-[700] text-lg font-lato'
@@ -38,13 +40,13 @@ const PostCard=({post,follow}) => {
            
             {
 
-            <div className='flex gap-3s items-center '  >
+            <div className='flex items-center '  >
                 {
                 follow&&
                 <Button className="text-primary -mt-1.5  p-0 bg-white hover:bg-white shadow-none block text-lg">Follow</Button>
                 }
 
-                <div data-testid="options-icon" className='relative mt-s6 w-[25px] self-start h-[29px] cursor-pointer' onClick={()=>setIsReportOpened(!isReportOpened)}>
+                <div data-testid="options-icon" className='relative  w-[25px] self-start h-[29px] cursor-pointer' onClick={()=>setIsReportOpened(!isReportOpened)}>
                 <Indicator className='h-1 w-1 absolute bottom-2 right-0 rounded-full bg-black'/>
                 <Indicator className='h-1 w-1 absolute bottom-4 right-0 rounded-full bg-black'/>
                 <Indicator className='h-1 w-1 absolute bottom-6 right-0 rounded-full bg-black'/>
@@ -52,9 +54,10 @@ const PostCard=({post,follow}) => {
                 </div>
             </div>
             }
-
         </div>
-        <PostDescription description={post.description}/>
+        <PostTitle title={post.postTitle}/>
+        <PostDescription description={post.content}/>
+        {/* <Image src={post.postImageUrl} className="mt-4" /> */}
         <Image src={postImage} className="mt-4" />
         <PostActivities
          comments={post.comments} 

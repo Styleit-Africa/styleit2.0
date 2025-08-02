@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import african from '../../images/african.png'
@@ -22,13 +22,26 @@ import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
 import { registerSchema } from '@/validations/authValidation'
 import Reasons from '@/components/auth/Reasons'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { countries } from '@/static/data'
 import Join from '@/components/auth/Join'
 import { useAuthService } from '@/store/useAuthService'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 
 const SignUpForm = ({reasons,header,image})=> {
+  const [picture,setPicture] = useState(upload);
+  const navigate = useNavigate()
+  const handleUpload = (e) => {
+    const file = e.target.files[0] 
+    if (!file) return ;
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = function(result) {
+      setPicture(result.target.result)
+    }
+}
   const form = useForm({
     resolver:zodResolver(registerSchema),
     defaultValues:{
@@ -49,20 +62,64 @@ const SignUpForm = ({reasons,header,image})=> {
 
     const {isSignUpForm} = useAuthService((state)=>state)
   
-    const onSubmit = (values)=>{
-    console.log(form.formState.errors)
-    console.log(values)
-  }
-  console.log(form.formState.errors)
-  console.log(form.formState,3)
 
+    const onSubmit = async(values)=>{
+    console.log(values)
+
+    const data = {
+      fname:values.firstName,
+      lname:values.lastName,
+      busname:values.business,
+      email:values.email,
+      phone:values.phone,
+      pwd:values.password,
+      cpwd:values.confirmPassword,
+      address:'45,sulaiman street Orile Iganmu Lagos',
+      country:'161',
+      gender:'female',
+      state:'24',
+      lga:'522',
+      cities:'none',
+      nin:'12345678912',
+      // passport:'BA1234566',
+      pic:values.image
+    }
+
+    try{
+        
+        const response = await axios.post('https://styleitafrica.pythonanywhere.com/api/designer/signup',data,
+          {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: false, 
+      })
+        console.log(response)
+        Cookies.set('creator',JSON.stringify(response.data))
+            if(response.status === 201){
+              navigate('/verifyAccount')
+            }
+    
+    }catch(e){
+      console.log(form)
+      console.log(e)
+      if(e.status === 409){
+         form.setError('email', {
+        type: 'manual',
+        message: 'This email is already registered'
+      });
+      }
+    }
+
+    
+
+  }
 
   return (
     <section className='md:pl-4 lg:pl-0'>
       {isSignUpForm || <Join page="signUp" header="Join us as"/>}
         {isSignUpForm &&<div className='flex flex-col md:flex-row md:max-w-[800px] mx-auto  pt-20 font-lato '>
         <Reasons reasons={reasons} isSignUp={true} image={african} header={header}/>
-
         <div className='md:flex-[0.55] px-3 py-4 '>
                   <img src={logo} className='block mx-auto w-24 ' alt="" />
           
@@ -264,14 +321,14 @@ const SignUpForm = ({reasons,header,image})=> {
             <FormControl>
               <div className='flex items-center gap-3'>
                 <label htmlFor="file" className='block'>
-                  <img src={upload} alt="Upload Icon" className='w-[100px]' />
+                  <img src={picture} alt="Upload Icon" className='w-[100px] h-[100px] rounded-full' />
                 </label>
                 <div>
                   <label>Profile image</label>
                   <p className='text-primary text-sm'>Supports only [jpg, gif, png]</p>
                 </div>
                 {/* Hidden file input */}
-                <Input
+                <Input 
                   type="file"
                   id="file"
                   data-testid="file input"
@@ -279,6 +336,7 @@ const SignUpForm = ({reasons,header,image})=> {
                   accept=".jpg,.jpeg,.gif,.png"
                   onChange={(e) => {
                     field.onChange(e.target.files);
+                    handleUpload(e)
                   }}
                   onBlur={field.onBlur}
                   name={field.name}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import logo from '../../images/logo.png'
@@ -18,17 +18,12 @@ import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
 import { loginSchema } from '@/validations/authValidation'
 import Reasons from '@/components/auth/Reasons'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuthService } from '../../store/useAuthService'
 import Join from '@/components/auth/Join'
-import axios from 'axios'
-import { useAuth } from '@/store/useAuth'
-import { Backpack, DessertIcon, Loader, LucideTrash, X } from 'lucide-react'
-import { toast } from 'sonner'
 
 
 const LoginForm = ({reasons,header,image})=> {
-    const navigate = useNavigate()
   const form = useForm({
     resolver:zodResolver(loginSchema),
     defaultValues:{
@@ -36,33 +31,16 @@ const LoginForm = ({reasons,header,image})=> {
         password:''
     }
   })
+
   const {isLoginForm,role} = useAuthService((state)=>state)
-  const {login,error,token,isLoading} = useAuth(state=>state)
- 
-  const onSubmit = async(values)=>{
-    const data = {
-        email:values.email,
-        pwd:values.password
-    }
-         await login(data)
-         toast("Logged in successfully", {
-            action: {
-            label: <X size={16} />,
-          },
-        })
+
+  const onSubmit = (values)=>{
+    console.log(values)
   }
-
-  useEffect(()=>{
- if(token){
-    navigate('/creator/profile')
-}
-  },[token])
-
 
   return (
 
     <section className='md:pl-4 lg:pl-0'>
-          
 
         {!isLoginForm? <Join page="login" header="Log in as"/> :<div className='flex flex-col md:flex-row max-w-[900px] mx-auto  pt-20'>
         <Reasons reasons={reasons} image={image} isSignUp={false} header={header}/>
@@ -101,7 +79,6 @@ const LoginForm = ({reasons,header,image})=> {
                             )}
                             />
                   </div>
-                  {error&&<span className='text-red-500 block mt-5'>{error}</span>}
                   <div className='relative'>
                     <img src={passwordIcon} className='absolute top-5 left-4 w-[20px] h-[20px]' alt="" />
                         <FormField
@@ -118,10 +95,8 @@ const LoginForm = ({reasons,header,image})=> {
                             />
                   </div>
 
-                        
-                    <Button type="submit" className='w-full text-white rounded-xl text-lg py-6'>
-                        {isLoading?<Loader className='animate-spin' />:'Login'} 
-                        </Button>
+
+                    <Button type="submit" className='w-full text-white rounded-xl text-lg py-6'>Login</Button>
                 </form>
             </Form>
             <div className='text-center md:hidden'>

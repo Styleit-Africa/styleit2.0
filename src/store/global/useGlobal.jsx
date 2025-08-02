@@ -5,6 +5,8 @@ export const useGlobalStore = create((set,get)=>({
     headerHeight:null,
     currentTab:1,
     searchData:'',
+    postModal:false,
+    setPostModal:()=>set((state)=>({postModal:!state.postModal})),
     currentDashboardTab:0,
     setCurrentDashboardTab:(currentDashboardTab)=>{
         set({currentDashboardTab})

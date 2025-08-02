@@ -1,30 +1,6 @@
-import React, { useState } from 'react'
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import React from 'react'
 import african from '../../images/african.png'
-import logo from '../../images/logo.png'
-import emailIcon from '../../images/mdi-light_email.png' 
-import passwordIcon from '../../images/mdi_password-outline.png' 
-import upload from '../../images/upload.png' 
-
-import {
-  Form,FormControl,FormDescription,
-  FormField,FormItem,FormLabel,FormMessage,
-} from "@/components/ui/form"
-import {
-  Select,SelectContent,
-  SelectItem,SelectTrigger,SelectValue,
-} from "@/components/ui/select"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Checkbox } from "@/components/ui/checkbox"
-
-import { Input } from "@/components/ui/input"
-import { Button } from '@/components/ui/button'
-import { registerSchema } from '@/validations/authValidation'
-import Reasons from '@/components/auth/Reasons'
-import { Link } from 'react-router-dom'
-import { countries, reasons } from '@/static/data'
-import Join from '@/components/auth/Join'
+import { reasons } from '@/static/data'
 import { useAuthService } from '@/store/useAuthService'
 import SignUpForm from '@/components/auth/SignUpForm'
 import ToggleAuthPage from '@/components/global/ToggleAuthPage'
