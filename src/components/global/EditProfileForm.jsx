@@ -50,8 +50,8 @@ const EditProfileForm = ({ isEditable, title }) => {
   useEffect(() => {
     if (data?.data) {
       const formValues = {
-        firstName: data.data.creator?.fname || '',
-        lastName: data.data.creator?.lname || '',
+        firstName: data.data.creator?.firstName || '',
+        lastName: data.data.creator?.lastName || '',
         email: data.data.creator?.email || '',
         lga: data.data.creator?.lga?.[0]?.name || '',
         mobile: data.data.creator?.phone || '',

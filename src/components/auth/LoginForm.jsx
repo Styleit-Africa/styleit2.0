@@ -37,25 +37,36 @@ const LoginForm = ({reasons,header,image})=> {
     }
   })
   const {isLoginForm,role} = useAuthService((state)=>state)
-  const {login,error,token,isLoading} = useAuth(state=>state)
+  const {login,error,token,user,isLoading} = useAuth(state=>state)
  
   const onSubmit = async(values)=>{
     const data = {
         email:values.email,
         pwd:values.password
     }
-         await login(data)
-         toast("Logged in successfully", {
-            action: {
-            label: <X size={16} />,
-          },
-        })
+         const result = await login(data);
+         console.log(result)
+         if(result?.status === 200 && user.status === 'actived'){
+             toast("Logged in successfully", {
+                action: {
+                label: <X size={16} />,
+              },
+            })
+         }
   }
 
   useEffect(()=>{
- if(token){
+ if(token&&user.status === 'actived'){
     navigate('/creator/profile')
-}
+ }
+ if(token&&user.status === 'deactived'){
+    navigate('/resendVerificationLink')
+     toast("Kindly verify your account", {
+                action: {
+                label: <X size={16} />,
+              },
+            })
+ }
   },[token])
 
 
@@ -119,7 +130,7 @@ const LoginForm = ({reasons,header,image})=> {
                   </div>
 
                         
-                    <Button type="submit" className='w-full text-white rounded-xl text-lg py-6'>
+                    <Button type="submit" disabled={isLoading} className='w-full text-white rounded-xl text-lg py-6'>
                         {isLoading?<Loader className='animate-spin' />:'Login'} 
                         </Button>
                 </form>

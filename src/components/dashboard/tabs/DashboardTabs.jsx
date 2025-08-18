@@ -20,7 +20,6 @@ const DashboardTabs = ({setCurrentTab,currentTab}) => {
 //         })} */}
 {/* //     </div> */}
 
-      hello
 
     </div>
   )

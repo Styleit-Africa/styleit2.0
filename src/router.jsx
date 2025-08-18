@@ -48,6 +48,7 @@ import DashboardPage from "./pages/admin/DashboardPage";
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
 import AccountVerificationPage from "./pages/auth/AccountVerificationPage";
 import ResendActivationLinkPage from "./pages/auth/ResendActivationLinkPage";
+import ViewTrendingPost from "./pages/ViewTrendingPost";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -57,6 +58,7 @@ const router = createBrowserRouter(
           <Route path="/signUp" element={<SignUp/>}/>
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/trending' element={<Trending/>} />
+          <Route path='/trending/:id' element={<ViewTrendingPost/>} />
           <Route path='/blogs' element={<Blogs/>} />
           <Route path='/fashionDesigner' element={<FashionDesigner/>} />
             <Route path='verifyAccount' element={<AccountVerificationPage/>} />

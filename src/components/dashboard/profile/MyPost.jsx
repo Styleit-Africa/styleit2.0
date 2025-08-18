@@ -9,9 +9,8 @@ const MyPost = ({postData}) => {
     <section className='mt-20'>
        {
            isLoading ?
-           (
                <PostListLoader/>
-        ):(
+        :(
            <div>
             {
                 isError?<h1>try again later</h1>:(

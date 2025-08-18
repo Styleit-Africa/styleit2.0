@@ -1,12 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import profileImage from '../../../images/profile_i.png'
 import Image from '../Image'
-import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import Indicator from '../Indicator'
 import gallery from '../../../images/gallery-add.png'
-import axios from 'axios'
-import Cookies from 'js-cookie'
 import PostModal from '@/components/dashboard/profile/creator/PostModal'
 import { useGlobalStore } from '@/store/global/useGlobal'
 
@@ -14,7 +11,7 @@ import { useGlobalStore } from '@/store/global/useGlobal'
 const CreatePost = () => {
   const {postModal,setPostModal} = useGlobalStore(state=>state)
 
- 
+  
   return (
     <div>
         <div >

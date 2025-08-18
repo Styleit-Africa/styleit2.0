@@ -27,7 +27,7 @@ const changeDateFormat = (data,id)=>data.map((dataItem)=>{
  })
 
 const sortItems = (items,sortData)=>{
-    return items.sort((a,b)=>{
+    return items?.sort((a,b)=>{
         if(sortData == 'oldest'){
             return a.id - b.id;
         }else if(sortData == 'latest'){
@@ -37,5 +37,17 @@ const sortItems = (items,sortData)=>{
     })
  }
 
+// const sortItems = (items,sortData)=>{
+//     return items?.sort((a,b)=>{
+//         if(sortData == 'oldest'){
+//             return a.id - b.id;
+//         }else if(sortData == 'latest'){
+//             return b.id - a.id
+//         }
+//         return sortData;
+//     })
+//  }
 
- export{sortItems,cn,changeDateFormat}
+ const sortByDate = (items)=>  items?.sort((a,b)=> new Date(a.date).getTime() - new Date(b.date).getTime())
+
+ export{sortItems,cn,changeDateFormat,sortByDate}

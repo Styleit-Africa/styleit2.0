@@ -11,9 +11,9 @@ import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import UserProfileLoader from '@/components/global/loaders/ProfileLoaders'
 const CreatorDetails = ({creatorDetails}) => {
-    const {creator,isLoading,isError} = creatorDetails
-    console.log(creator,'mm')
+    const {creator,isLoading} = creatorDetails
     const [isMore,setIsMore] = useState(false)
+    console.log(creatorDetails)
 
 
 
@@ -32,8 +32,8 @@ const CreatorDetails = ({creatorDetails}) => {
                 <Image src={profileImage} />
             </div>
             <div className='shadow py-3 pl-3 pr-4 md:pr-0 w-[max-content]  rounded-xl md:w-[75%]'>
-                <p className='text-gray-500'><span className='mr-3 md:mr-0 text-black  font-[700] capitalize '>first name:</span>{creator.fname}</p>
-                <p className='text-gray-500 mt-2'><span className='mr-3 md:mr-0 text-black  font-[700] capitalize '>last name:</span>{creator.lname}</p>
+                <p className='text-gray-500'><span className='mr-3 md:mr-0 text-black  font-[700] capitalize '>first name:</span>{creator.firstName}</p>
+                <p className='text-gray-500 mt-2'><span className='mr-3 md:mr-0 text-black  font-[700] capitalize '>last name:</span>{creator.lastName}</p>
             </div>
         </div>
         <div className=' self-center md:self-start  shadow flex flex-row-reverse md:flex-row gap-3 py-3 md:py-4 px-10 md:mt-7 rounded-xl text-gray-500 capitalize md:ml-auto w-[max-content] '>

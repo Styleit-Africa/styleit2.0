@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useGlobalStore } from '@/store/global/useGlobal'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 const PostModal = () => {
     const [postData,setPostData] = useState({title:'',body:''})
@@ -48,6 +49,25 @@ const PostModal = () => {
         setImages([])
         setShowSlicedImages(false)
     }
+
+    const storePost = async(data)=>{
+        return await axios.post('https://styleitafrica.pythonanywhere.com/api/posting',data,{
+          headers: {
+                 Authorization: `Bearer ${Cookies.get('token')}`,
+                 'Content-Type': 'multipart/form-data'
+        }
+      })
+    }
+
+    const queryClient = useQueryClient();
+      const {mutate} = useMutation({
+        mutationFn:storePost,
+        onSuccess:()=>{
+            queryClient.invalidateQueries('myPosts')
+        }
+    })
+
+
    const handlePost = async(e)=>{
     e.preventDefault()
     setPostModal()
@@ -57,19 +77,8 @@ const PostModal = () => {
   });
     formData.append("title", postData.title); 
     formData.append("body", postData.body); 
-
-    const data = formData
-     try{
-    const response = await axios.post('https://styleitafrica.pythonanywhere.com/api/posting',data,{
-          headers: {
-                 Authorization: `Bearer ${Cookies.get('token')}`,
-                 'Content-Type': 'multipart/form-data'
-        }
-      })
-      console.log(response)
-     }catch(e){
-        console.log(e)
-     }
+    
+   mutate(formData)
    }
 
   return (

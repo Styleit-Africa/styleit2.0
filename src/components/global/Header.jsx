@@ -19,7 +19,7 @@ const Header = ()=>{
     const {setIsSidebarOpened,isSidebarOpened,setIsAdminOpened} = useGlobalStore(state=>state)
 
     return( 
-        <header  className="relative z-50 shadow-[2px_0px_10px_#ccc]  py-5 px-5 md:px-0 font-[400] font-[helvetica]">
+        <header  className="relative z-20 shadow-[2px_0px_10px_#ccc]  py-5 px-5 md:px-0 font-[400] font-[helvetica]">
           {
             user.role !== 'admin' ?
             (
@@ -85,7 +85,6 @@ const Header = ()=>{
             ):
             (
                 <div>
-                    hello
                     <button onClick={()=>setIsAdminOpened()}>open</button>
                 </div>
             )

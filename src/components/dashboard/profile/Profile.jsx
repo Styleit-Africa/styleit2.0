@@ -11,20 +11,18 @@ const Profile = () => {
 
   const{user} = useAuthService(state=>state)
   
-  const {data,isLoading,isError,error,isFetching} = useQuery({
+  const {data,isLoading,isError,error} = useQuery({
         queryKey:['profile'],
         queryFn:async()=>await axios.get('https://styleitafrica.pythonanywhere.com/api/designer/profile',{
             headers:{
               Authorization:`Bearer ${Cookies.get('token')}`,
               'Content-Type': 'application/json',
               Accept:'application/json'
-            }
+            },
+            withCredentials:true
           })
         })
-        console.log(data?.data)
-        console.log(isError)
-        console.log(error)
-  
+       
   return (
     <>
     {
@@ -37,7 +35,7 @@ const Profile = () => {
           ):(
             <div className='my-12  mx-4 xl:mx-0'>
             <CreatorDetails creatorDetails={{creator:data?.data?.creator,isError,isLoading}} />
-            <MyPost  postData={{posts:data?.data?.post,isLoading,isError}} />
+            <MyPost  postData={{posts:data?.data?.posts,isLoading,isError}} />
           </div>
           )
         }

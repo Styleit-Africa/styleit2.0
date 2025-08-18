@@ -3,12 +3,11 @@ import User from '../User'
 import profileImage from '../../../images/bobby.png'
 
 
-
 const CommentContainer = ({userProfile,postComments}) => {
   return (
     <div data-testid="comment-container">
         {
-            postComments.map(comment=>{
+            postComments?.map(comment=>{
                 return (
                     <div key={comment.id}>
                             
@@ -20,9 +19,9 @@ const CommentContainer = ({userProfile,postComments}) => {
                                         image:{profileImage,styles:'w-[28px] h-[28px]'},
                                         container:' flex items-center gap-3 font-[500] text-xs font-lato'
                             }}/>
-                        <p className='text-xs pl-10'>{comment.description}</p>
+                        <p className='text-xs pl-10'>{comment.body}</p>
                         </div>
-                        {
+                        {/* {
                             comment.replies.map(reply=>{
                                 return(
                                 <div key={reply.id} className={`mt-3 bg-lPink rounded-2xl py-2 pl-3 pr-5 ${reply.userId !== comment.userId && "max-w-[320px] ml-auto"}`}>
@@ -38,7 +37,7 @@ const CommentContainer = ({userProfile,postComments}) => {
 
                                 )
                             })
-                        }
+                        } */}
                     </div>
            )
         

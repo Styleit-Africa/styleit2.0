@@ -5,7 +5,6 @@ import Indicator from './Indicator'
 
 const User = ({userProps}) => {
     const {image,indicator,name,container} = userProps
-    console.log(name,'nn')
   return (
     <div className={container}>
     <div className=' relative '>
@@ -13,9 +12,12 @@ const User = ({userProps}) => {
        {indicator.isIndicator && <Indicator className={indicator.styles}/>}
     </div>
     {
+        // name.fullName ? 
+        // <p className={name.styles}>{name.userProfile.fname} {name.userProfile.lname}</p>
+        // :<p className={name.styles}>{name.userProfile.lname} </p>
         name.fullName ? 
-        <p className={name.styles}>{name.userProfile.fname} {name.userProfile.lname}</p>
-        :<p className={name.styles}>{name.userProfile.fname} </p>
+        <p className={name.styles}>{name.userProfile.firstName} {name.userProfile.lastName}</p>
+        :<p className={name.styles}>{name.userProfile.lastName} </p>
     }
 </div>
   )

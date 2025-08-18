@@ -6,6 +6,8 @@ export const useGlobalStore = create((set,get)=>({
     currentTab:1,
     searchData:'',
     postModal:false,
+    isShared:false,
+    setIsShared:()=>set({isShared:true}),
     setPostModal:()=>set((state)=>({postModal:!state.postModal})),
     currentDashboardTab:0,
     setCurrentDashboardTab:(currentDashboardTab)=>{

@@ -28,10 +28,13 @@ import Join from '@/components/auth/Join'
 import { useAuthService } from '@/store/useAuthService'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { useAuth } from '@/store/useAuth'
+import { Loader } from 'lucide-react'
 
 
 const SignUpForm = ({reasons,header,image})=> {
   const [picture,setPicture] = useState(upload);
+  const {signUp,isLoading} = useAuth();
   const navigate = useNavigate()
   const handleUpload = (e) => {
     const file = e.target.files[0] 
@@ -45,14 +48,14 @@ const SignUpForm = ({reasons,header,image})=> {
   const form = useForm({
     resolver:zodResolver(registerSchema),
     defaultValues:{
-        email:'',
-        password:'',
-        confirmPassword:null,
-        firstName:'',
-        lastName:'',
-        business:'',
-        code:'',
-        phone:'',
+        email:'abu19@gmail.com',
+        password:'11111111',
+        confirmPassword:'11111111',
+        firstName:'aaa',
+        lastName:'aaa',
+        business:'aaaa',
+        code:'0000',
+        phone:'11111111111',
         check:false,
         gender:undefined,
         country:''
@@ -64,7 +67,6 @@ const SignUpForm = ({reasons,header,image})=> {
   
 
     const onSubmit = async(values)=>{
-    console.log(values)
 
     const data = {
       fname:values.firstName,
@@ -85,25 +87,13 @@ const SignUpForm = ({reasons,header,image})=> {
       pic:values.image
     }
 
-    try{
-        
-        const response = await axios.post('https://styleitafrica.pythonanywhere.com/api/designer/signup',data,
-          {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        withCredentials: false, 
-      })
-        console.log(response)
-        Cookies.set('creator',JSON.stringify(response.data))
-            if(response.status === 201){
-              navigate('/verifyAccount')
-            }
-    
-    }catch(e){
-      console.log(form)
-      console.log(e)
-      if(e.status === 409){
+    const result = await signUp(data);
+
+    if(result.status === 201){
+      Cookies.set('activationLink',result.data.activation_link)
+      navigate('/verifyAccount')
+    }
+      if(result.status === 409){
          form.setError('email', {
         type: 'manual',
         message: 'This email is already registered'
@@ -111,9 +101,6 @@ const SignUpForm = ({reasons,header,image})=> {
       }
     }
 
-    
-
-  }
 
   return (
     <section className='md:pl-4 lg:pl-0'>
@@ -384,7 +371,8 @@ const SignUpForm = ({reasons,header,image})=> {
                                 </FormItem>
                             )}/>
                          
-                    <Button type="submit" className='w-full md:w-3/4 md:ml-8  text-white rounded-xl text-lg py-6'>Sign Up</Button>
+                    <Button type="submit" className='w-full md:w-3/4 md:ml-8  text-white rounded-xl text-lg py-6'>
+                       {isLoading?<Loader className='animate-spin' />:'Sign Up'} </Button>
                     <p className="text-secondary mb-5 md:hidden text-center  block">Already have an account ? <Link to='/login' className='text-primary capitalize font-[500]'>login</Link></p>             
                
                 </form>

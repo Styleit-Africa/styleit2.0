@@ -6,7 +6,7 @@ import axios from 'axios';
 export const useAuth = create((set,get)=>({
     token:Cookies.get('token')||null,
     user:Cookies.get('user')?JSON.parse(Cookies.get('user')):null,
-    // user:null,
+    status:null,
     error:null,
     isLoading:false,
     login:async(data)=>{
@@ -16,12 +16,16 @@ export const useAuth = create((set,get)=>({
             if(response.status == 200){
                 Cookies.set('token',response.data.token)
                 Cookies.set('user',JSON.stringify(response.data.creator))
-                set({token:response.data.token,error:null,user:response.data.creator})
+                set({token:response.data.token,
+                    isLoading:false,error:null,user:response.data.creator})
+                    return response
             }
        }catch(e){
+        console.log(e)
         if(e.status === 400){
-                set({isLoading:false,error:e.response.data.error})
+                set({isLoading:false,status:e.status,error:e.response.data.error})
        }
+       return e.response;
        }
     }, 
     signUp:async(data)=>{
@@ -32,21 +36,28 @@ export const useAuth = create((set,get)=>({
                headers: {
                  'Content-Type': 'multipart/form-data',
                },
-               withCredentials: false, // Important for CORS
+               withCredentials: false, 
              }
                )
-            if(response.status == 200){
-                Cookies.set('token',response.data.token)
-                set({token:response.data.token,error:null})
+            if(response.status === 201){
+                Cookies.set('token',response.data.access_token)
+                Cookies.set('user',JSON.stringify(response.data.creator))
+                set({token:response.data.token,isLoading:true,user:response.data.creator,error:null})
+                return response;
             }
+            console.log(response)
        }catch(e){
         if(e.status === 400){
                 set({isLoading:false,error:e.response.data.error})
-            }
+        }
+        console.log(e)
+            return e.response
        }
     },
     logout:async()=>{
         Cookies.remove('token')
+        Cookies.remove('user')
+        Cookies.remove('creator')
         set({token:null,isLoading:false})
     }
 }))
