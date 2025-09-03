@@ -9,7 +9,7 @@ const AppointmentCard = ({appointment}) => {
             <AppointmentMessage appointment={appointment} />
             <BookingCard  appointment={appointment} page='AppointmentDetails'  />
             {
-              appointment.status === 'accepted'&&
+              appointment.status === 'accept'&&
               <Accepted appointment={appointment}/>
             }
             {

@@ -3,6 +3,7 @@ import CreatePost from '@/components/global/post/CreatePost'
 import PostContainer from '@/components/global/post/PostContainer'
 import { sortByDate, sortItems } from '@/lib/utils'
 import { useGlobalStore } from '@/store/global/useGlobal'
+import { useAuth } from '@/store/useAuth'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Cookies from 'js-cookie'
@@ -10,9 +11,10 @@ import React from 'react'
 
 const Post = () => {
   const {postModal,setPostModal} = useGlobalStore(state=>state)
+  const {user} = useAuth();
     const {data,isLoading,isError,error,isFetching} = useQuery({
         queryKey:['myPosts'],
-        queryFn:async()=>await axios.get('https://styleitafrica.pythonanywhere.com/api/designer/profile',{
+        queryFn:async()=>await axios.get(`https://styleitafrica.pythonanywhere.com/api/${user.role === 'designer'?'designer':'customer'}/profile`,{
             headers:{
               Authorization:`Bearer ${Cookies.get('token')}`,
               'Content-Type': 'application/json',
@@ -21,19 +23,10 @@ const Post = () => {
           }),
           staleTime:1
         })
-        console.log(data)
+        // console.log(data)
   return (
     <section className='px-4 xl:px-0'>
       <CreatePost />
-
-      {
-                data?.data?.posts?.length === 0&&<div>
-
-                    
-                </div>
-      }
-
-     
       {
           isLoading ?
                <PostListLoader/>:

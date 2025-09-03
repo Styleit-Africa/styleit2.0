@@ -6,22 +6,25 @@ import EditProfileForm from '@/components/global/EditProfileForm'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useQuery } from '@tanstack/react-query'
+import { useAuth } from '@/store/useAuth'
 
 const Profile = () => {
 
-  const{user} = useAuthService(state=>state)
-  
-  const {data,isLoading,isError,error} = useQuery({
+  const {user} = useAuth()
+  console.log(user,'user')
+  const {data,isLoading,isError} = useQuery({
         queryKey:['profile'],
-        queryFn:async()=>await axios.get('https://styleitafrica.pythonanywhere.com/api/designer/profile',{
+        queryFn:async()=>await axios.get(`https://styleitafrica.pythonanywhere.com/api/${user.role==='designer'?'designer':'customer'}/profile`,{
             headers:{
               Authorization:`Bearer ${Cookies.get('token')}`,
               'Content-Type': 'application/json',
               Accept:'application/json'
             },
             withCredentials:true
-          })
+          }),
+          staleTime:1
         })
+
        
   return (
     <>
@@ -35,7 +38,7 @@ const Profile = () => {
           ):(
             <div className='my-12  mx-4 xl:mx-0'>
             <CreatorDetails creatorDetails={{creator:data?.data?.creator,isError,isLoading}} />
-            <MyPost  postData={{posts:data?.data?.posts,isLoading,isError}} />
+           {user.role === 'designer'&& <MyPost  postData={{posts:data?.data?.posts,isLoading,isError}} />}
           </div>
           )
         }

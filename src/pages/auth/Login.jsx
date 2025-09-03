@@ -8,6 +8,7 @@ import { useAuthService } from '../../store/useAuthService'
 import LoginForm from '@/components/auth/LoginForm'
 import { reasons } from '@/static/data'
 import ToggleAuthPage from '@/components/global/ToggleAuthPage'
+import { useAuth } from '@/store/useAuth'
 
 
 const Login = ()=> {
@@ -19,7 +20,8 @@ const Login = ()=> {
     }
   })
 
-  const {isLoginForm,role,setIsLoginForm} = useAuthService((state)=>state)
+  const {isLoginForm,setIsLoginForm} = useAuthService((state)=>state)
+  const {role} = useAuth();
   console.log(role)
 
   const onSubmit = (values)=>{
@@ -30,7 +32,7 @@ const Login = ()=> {
 
     <section data-testid="login-page"  className='pb-16'>
         {
-            role == 'Fashion' ?
+            role == 'designer' ?
              <LoginForm 
             reasons={reasons.clientLogin} image={young} 
             header="Ready to find your next client ? let's go"/>:   

@@ -9,7 +9,6 @@ const CreatorLayout =()=>{
   console.log(JSON.parse(Cookies.get('user')),'here')
   if(JSON.stringify(Cookies.get('user'))?.status === 'deactived'){
     navigate('/verifyAccount')
-    
   }
     return(
         <>  

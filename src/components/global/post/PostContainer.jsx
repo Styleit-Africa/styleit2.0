@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 const PostContainer = ({data,userProfile,follow})=>{
     const {pathname} = useLocation();
     const user = Cookies.get('user')
-    console.log(pathname+'sdv')
+    console.log(data)
     return(
         <div>
             
@@ -16,12 +16,11 @@ const PostContainer = ({data,userProfile,follow})=>{
                     {
                     data?.posts?.map(post=>{
                         return(
-                            // <PostCard follow={follow} data={data} userProfile={post.creator} post={post} key={post.id}/>
                             <PostCard 
                              follow={follow} 
                              data={data}
-                             userProfile={pathname=== '/creator/posts'?data.creator:
-                                {firstName:user?.fname,lastName:user?.lname,businessname:user?.businessName}} 
+                             userProfile={pathname !== '/creator/posts'?data.creator:
+                                {firstName:user?.firstName,lastName:user?.lastName,businessname:user?.businessName}} 
                                 post={post} key={post.id}/>
                 )})
             }

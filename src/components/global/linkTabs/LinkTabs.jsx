@@ -15,10 +15,11 @@ import { useAuthService } from '@/store/useAuthService'
 const LinkTabs = () => {
     const location = useLocation();
     const {user} = useAuthService(state=>state)
+    console.log(user,'here')
   return (
     <div className='flex-1 md:flex-initial'>
               {
-                user.role === 'creator'?<ul className='flex justify-between md:gap-20 items-center '> 
+                user?.role !== 'client'?<ul className='flex justify-between md:gap-20 items-center '> 
                 <li> 
                   <NavLink to={`/creator/profile`} className={ ({isActive})=>`flex  items-center md:gap-1 capitalize  ${isActive && "text-green-400"}`}>
                     <Image src={location.pathname.endsWith('profile') ? profile_h:profile} className='w-[20px] h-[20px]' alt="" />

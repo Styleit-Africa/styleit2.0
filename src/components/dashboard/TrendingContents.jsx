@@ -15,7 +15,8 @@ const TrendingContents = () => {
               'Content-Type': 'application/json',
               Accept:'application/json'
             }
-          })
+          }),
+          staleTime:1
         })
   return (
     <div>

@@ -84,12 +84,13 @@ const SignUpForm = ({reasons,header,image})=> {
       cities:'none',
       nin:'12345678912',
       // passport:'BA1234566',
-      pic:values.image
+      pic:values.image,
+      username:'fatai'
     }
-
+    console.log(data)
     const result = await signUp(data);
 
-    if(result.status === 201){
+    if(result.status === 201||result.status === 200){
       Cookies.set('activationLink',result.data.activation_link)
       navigate('/verifyAccount')
     }

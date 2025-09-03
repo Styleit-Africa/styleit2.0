@@ -1,6 +1,8 @@
 import {create} from 'zustand';
 import { useGlobalStore } from './global/useGlobal';
 import { changeDateFormat, sortItems } from '@/lib/utils';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 const creators =[
     {
         id:1,
@@ -1000,5 +1002,20 @@ export const useCreatorStore = create((set,get)=>({
         changeDateFormat(creatorSubscriptions,'subscriptions').filter(subscription=>subscription.type === status.split(' ')[0]) : 
         changeDateFormat(creatorSubscriptions,'subscriptions').filter(subscription=>subscription.status === status)
         set({creatorSubscriptions:status === 'all'?changeDateFormat(creatorSubscriptions,'subscriptions'):filterSubscription})
-    }
+    },
+    storeFollow:async(id)=>{
+         try{
+               const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/follow/${id}/`,{},{
+              headers: {
+                     Authorization: `Bearer ${Cookies.get('token')}`,
+                     'Content-Type': 'application/json',
+                     Accept:'application/json'
+            },
+            withCredentials:true
+          })
+          console.log(response)
+             }catch(e){
+                console.log(e)
+             }
+       }
 }))

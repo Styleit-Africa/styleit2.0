@@ -17,6 +17,11 @@ import ko from '../images/ko.png'
 import bag from '../images/bag-2.png'
 
 
+const numbers = [1,2,3,4,5,6,7]
+
+export const postTopImages = [postImage,postImage,postImage,postImage]
+export const postImages = [postImage,postImage,profile,postImage,postImage,postImage,postImage]
+
 
 const happyClients = [
     {

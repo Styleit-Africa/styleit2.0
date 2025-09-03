@@ -32,8 +32,8 @@ const CreatorDetails = ({creatorDetails}) => {
                 <Image src={profileImage} />
             </div>
             <div className='shadow py-3 pl-3 pr-4 md:pr-0 w-[max-content]  rounded-xl md:w-[75%]'>
-                <p className='text-gray-500'><span className='mr-3 md:mr-0 text-black  font-[700] capitalize '>first name:</span>{creator.firstName}</p>
-                <p className='text-gray-500 mt-2'><span className='mr-3 md:mr-0 text-black  font-[700] capitalize '>last name:</span>{creator.lastName}</p>
+                <p className='text-gray-500'><span className='mr-3 md:mr-0 text-black  font-[700] capitalize '>first name:</span>{creator?.firstName}</p>
+                <p className='text-gray-500 mt-2'><span className='mr-3 md:mr-0 text-black  font-[700] capitalize '>last name:</span>{creator?.lastName}</p>
             </div>
         </div>
         <div className=' self-center md:self-start  shadow flex flex-row-reverse md:flex-row gap-3 py-3 md:py-4 px-10 md:mt-7 rounded-xl text-gray-500 capitalize md:ml-auto w-[max-content] '>
@@ -56,10 +56,10 @@ const CreatorDetails = ({creatorDetails}) => {
          </div>
     
     <div className='md:flex-[0.48] lg:flex-[0.45] shadow py-3  rounded-xl pt-7 pb-16 pl-4 '>
-        <p className='text-gray-500'><span className='font-[700] text-black capitalize '>Email</span>:{creator.email}</p>
-        <p className='text-gray-500 mt-4'><span className='font-[700] text-black capitalize '>L.G.A</span>:{creator.lga[0].name}</p>
-        <p className='text-gray-500 mt-4'><span className='font-[700] text-black capitalize '>mobile number</span>:{creator.phone}</p>
-        <p className='text-gray-500 mt-4'><span className='font-[700] text-black capitalize '>address</span>:{creator.address}</p>
+        <p className='text-gray-500'><span className='font-[700] text-black capitalize '>Email</span>:{creator?.email}</p>
+        <p className='text-gray-500 mt-4'><span className='font-[700] text-black capitalize '>L.G.A</span>:{creator?.lga[0].name}</p>
+        <p className='text-gray-500 mt-4'><span className='font-[700] text-black capitalize '>mobile number</span>:{creator?.phone}</p>
+        <p className='text-gray-500 mt-4'><span className='font-[700] text-black capitalize '>address</span>:{creator?.address}</p>
     </div>
     </div>
     </div>
@@ -148,7 +148,7 @@ export default CreatorDetails
 //         <div className=' self-center md:self-start  shadow flex flex-row-reverse md:flex-row gap-3 py-3 md:py-4 px-10 md:mt-7 rounded-xl text-gray-500 capitalize md:ml-auto w-[max-content] '>
 //         <h1>available</h1>
 
-//         <Indicator className='h-3 w-3 mt-1.5 md:mt-0 rounded-full bg-green-300 outline outline-1 outline-green-300 outline-offset-2'/>
+        
 //     </div>
 //             </div> 
 //             <div className="flex flex-col gap-5 md:gap-0 md:flex-row justify-between  mt-7">

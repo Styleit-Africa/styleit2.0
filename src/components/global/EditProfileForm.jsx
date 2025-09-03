@@ -8,20 +8,23 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import Indicator from '@/components/global/Indicator'
 import { Link, useLocation } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Cookies from 'js-cookie' 
 import { editFormSchema } from '@/validations/editFormValidation'
 import UserProfileLoader from './loaders/ProfileLoaders'
 import { toast } from 'sonner'
 import { X } from 'lucide-react'
+import { useAuth } from '@/store/useAuth'
 
 const EditProfileForm = ({ isEditable, title }) => {
   const { pathname } = useLocation();
+  const {role} = useAuth();
+  console.log(role)
 
   const { data, isLoading, isError, error, isFetching } = useQuery({
     queryKey: ['editProfile'],
-    queryFn: async () => await axios.get('https://styleitafrica.pythonanywhere.com/api/designer/profile', {
+    queryFn: async () => await axios.get(`https://styleitafrica.pythonanywhere.com/api/${role==='designer'?'designer':'customer'}/profile`, {
       headers: {
         Authorization: `Bearer ${Cookies.get('token')}`,
         'Content-Type': 'application/json',
@@ -30,7 +33,7 @@ const EditProfileForm = ({ isEditable, title }) => {
     })
   })
 
-  // console.log(data)
+  console.log(data)
 
   const form = useForm({
     resolver: zodResolver(editFormSchema),
@@ -48,34 +51,60 @@ const EditProfileForm = ({ isEditable, title }) => {
   })
 
   useEffect(() => {
+    let formValues;
     if (data?.data) {
-      const formValues = {
-        firstName: data.data.creator?.firstName || '',
-        lastName: data.data.creator?.lastName || '',
-        email: data.data.creator?.email || '',
-        lga: data.data.creator?.lga?.[0]?.name || '',
-        mobile: data.data.creator?.phone || '',
-        bank: data.data.bank?.[0]?.bankName || '',
-        bank_acc: data.data.bank?.[0]?.accountNo || '', 
-        address: data.data.creator?.address || '',
-        image: data.data.creator?.profile_pic || profileImage,
-      }
+        if(role === 'designer'){
+          formValues = {
+           firstName: data.data.creator?.firstName || '',
+           lastName: data.data.creator?.lastName || '',
+           email: data.data.creator?.email || '',
+           lga: data.data.creator?.lga?.[0]?.name || '',
+           mobile: data.data.creator?.phone || '',
+           bank: data.data.bank?.[0]?.bankName || '',
+           bank_acc: data.data.bank?.[0]?.accountNo || '', 
+           address: data.data.creator?.address || '',
+           image: data.data.creator?.profile_pic || profileImage,
+         }
+
+        }else{
+
+          formValues = {
+               firstName: data.data.customer?.fname || '',
+               lastName: data.data.customer?.lname || '',
+               email: data.data.customer?.email || '',
+               lga: data.data.customer?.lga?.[0]?.name || '',
+               mobile: data.data.customer?.phone || '',
+               bank: data.data.bank?.[0]?.bankName || '',
+               bank_acc: data.data.bank?.[0]?.accountNo || '', 
+               address: data.data.customer?.address || '',
+               image: data.data.customer?.profile_pic || profileImage,
+         }
+        }
+
       
       form.reset(formValues)
-    }
+    } 
   }, [data, form])
 
-  const handleSubmit = async(e,values) => {
-    e.preventDefault();
-    const data = {fname:values.firstName,email:values.email,lname:values.lastName,profile_pic:values.image,
-      phone:values.mobile,address:values.address,bankName:values.bank,accountNo:values.bank_acc}
-   const response = await axios.put('https://styleitafrica.pythonanywhere.com/api/designer/profile',data,{
+  const updateProfile = async(data)=>{
+    return  await axios.put(`https://styleitafrica.pythonanywhere.com/api/${role==='designer'?'designer':'customer'}/profile`,data,{
      headers: {
         Authorization: `Bearer ${Cookies.get('token')}`,
         'Content-Type': 'application/json',
         Accept: 'application/json'
       }
    })
+  }
+
+  const {mutate} = useMutation({
+    mutationFn:updateProfile
+  })
+
+  const handleSubmit = async(e,values) => {
+    e.preventDefault();
+    const data = {fname:values.firstName,email:values.email,lname:values.lastName,profile_pic:values.image,
+      phone:values.mobile,address:values.address,bankName:values.bank,accountNo:values.bank_acc}
+      mutate(data)
     toast("Profile updated successfully", {
             action: {
             label: <X size={16} />,

@@ -1,7 +1,7 @@
 import { z }  from "zod";
 
 export const bookAppointmentSchema = z.object({
-   fullName:z.string().min(2,'Full name is required'),
+   fullName:z.string().min(1,'select a designer'),
   bookingDate: z.date({
     required_error: "Booking date  is required",
   }).refine(

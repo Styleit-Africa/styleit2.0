@@ -5,27 +5,22 @@ import shareIcon  from '../../../images/share.png'
 import message from '../../../images/message.png'
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query'
 // import { useGlobalStore } from '@/store/global/useGlobal'
 
-const PostActivities = ({post,share,comments,isCommentOpened,setIsCommentOpened}) => {
+const PostActivities = (activitiesData) => {
+  const {post,share,comments,isCommentOpened,setIsCommentOpened,likePost} = activitiesData
+
+        const queryClient = useQueryClient();
+        const {mutate} = useMutation({
+            mutationFn:likePost,
+          onSuccess:()=>{
+              queryClient.invalidateQueries('trending')
+          }
+        })
+
       const handleLike = async(id)=>{
-        console.log(Cookies.get('token'))
-        
-      try{
-         const response =  await axios.post(`https://styleitafrica.pythonanywhere.com/api/like/${id}/`,{
-          headers: {
-                 Authorization: `Bearer ${Cookies.get('token')}`,
-                 'Content-Type': 'application/json',
-                  Accept:'application/json',
-        },
-        withCredentials:true
-      })
-      console.log(response)
-
-      }catch(e){
-
-        console.log(e)
-      }
+        mutate(id)
     }
     
     const handleShare = ()=>{

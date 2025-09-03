@@ -7,21 +7,21 @@ import arrow from '../../images/arrow-down.png'
 import notification from '../../images/Notication.png'
 import profileImage from '../../images/profile_i.png'
 import profileImage2 from '../../images/icon_n1.png'
-import { useAuthService } from "@/store/useAuthService";
 import User from "./User";
 import { userProfile } from "@/static/data";
 import Image from "./Image";
 import { useGlobalStore } from "@/store/global/useGlobal";
+import { useAuth } from "@/store/useAuth";
 
 const Header = ()=>{
     
-    const {user} = useAuthService(state=>state)
-    const {setIsSidebarOpened,isSidebarOpened,setIsAdminOpened} = useGlobalStore(state=>state)
-
+    const {user} = useAuth()
+    console.log(user)
+    const {setIsSidebarOpened,isSidebarOpened,setIsAdminOpened} = useGlobalStore()
     return( 
         <header  className="relative z-20 shadow-[2px_0px_10px_#ccc]  py-5 px-5 md:px-0 font-[400] font-[helvetica]">
           {
-            user.role !== 'admin' ?
+            user?.role !== 'admin' ?
             (
         <div>
 
@@ -69,9 +69,9 @@ const Header = ()=>{
                                     </div>
                                     <User
                                 userProps={{
-                                        name:{userProfile,styles:'text-black'},
+                                        name:{userProfile:user,styles:'text-black'},
                                         indicator:{styles:'h-2 w-2 absolute bottom-2 right-0 rounded-full bg-green-300',isIndicator:false},
-                                        image:{profileImage:user.role === 'creator'?profileImage:profileImage2,fullname:false,styles:'w-[50px] h-[50px]'},
+                                        image:{profileImage:user.role === 'designer'?profileImage:profileImage2,fullname:false,styles:'w-[50px] h-[50px]'},
                                         container:' flex items-center gap-1 flex-row-reverse font-lato'
                                 }}/>
 

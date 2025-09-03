@@ -36,9 +36,9 @@ const LoginForm = ({reasons,header,image})=> {
         password:''
     }
   })
-  const {isLoginForm,role} = useAuthService((state)=>state)
-  const {login,error,token,user,isLoading} = useAuth(state=>state)
- 
+  const {isLoginForm} = useAuthService((state)=>state)
+  const {login,error,token,user,isLoading,role} = useAuth(state=>state)
+  console.log(role)
   const onSubmit = async(values)=>{
     const data = {
         email:values.email,
@@ -46,7 +46,8 @@ const LoginForm = ({reasons,header,image})=> {
     }
          const result = await login(data);
          console.log(result)
-         if(result?.status === 200 && user.status === 'actived'){
+         console.log(user)
+         if(result?.status === 200 && user?.status === 'actived'){
              toast("Logged in successfully", {
                 action: {
                 label: <X size={16} />,
@@ -55,11 +56,16 @@ const LoginForm = ({reasons,header,image})=> {
          }
   }
 
+
   useEffect(()=>{
- if(token&&user.status === 'actived'){
+    if(token&&role==='client'&&user?.status === 'actived'){
+    navigate('/client/profile')
+ }
+ if(token&&user?.status === 'actived'&&role==='designer'){
     navigate('/creator/profile')
  }
- if(token&&user.status === 'deactived'){
+
+ if(token&&user?.status === 'deactived'){
     navigate('/resendVerificationLink')
      toast("Kindly verify your account", {
                 action: {
@@ -67,7 +73,7 @@ const LoginForm = ({reasons,header,image})=> {
               },
             })
  }
-  },[token])
+  },[token,role,isLoading])
 
 
   return (

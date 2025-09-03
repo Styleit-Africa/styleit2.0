@@ -19,7 +19,7 @@ const SignUp = ()=> {
   return (
     <section data-testid="signUp-page"  className='pb-16'>
            {
-            role == 'Fashion' ?
+            role == 'designer' ?
              <SignUpForm 
             reasons={reasons.clientSignUp} image={african} 
             header="join as fashion designers and make your works known"/>:   
