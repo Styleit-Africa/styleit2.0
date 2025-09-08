@@ -1,30 +1,6 @@
-import React, { useState } from 'react'
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import React from 'react'
 import african from '../../images/african.png'
-import logo from '../../images/logo.png'
-import emailIcon from '../../images/mdi-light_email.png' 
-import passwordIcon from '../../images/mdi_password-outline.png' 
-import upload from '../../images/upload.png' 
-
-import {
-  Form,FormControl,FormDescription,
-  FormField,FormItem,FormLabel,FormMessage,
-} from "@/components/ui/form"
-import {
-  Select,SelectContent,
-  SelectItem,SelectTrigger,SelectValue,
-} from "@/components/ui/select"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Checkbox } from "@/components/ui/checkbox"
-
-import { Input } from "@/components/ui/input"
-import { Button } from '@/components/ui/button'
-import { registerSchema } from '@/validations/authValidation'
-import Reasons from '@/components/auth/Reasons'
-import { Link } from 'react-router-dom'
-import { countries, reasons } from '@/static/data'
-import Join from '@/components/auth/Join'
+import { reasons } from '@/static/data'
 import { useAuthService } from '@/store/useAuthService'
 import SignUpForm from '@/components/auth/SignUpForm'
 import ToggleAuthPage from '@/components/global/ToggleAuthPage'
@@ -32,23 +8,6 @@ import useToggleAuthPage from '@/hooks/useToggleAuthPage'
 
 
 const SignUp = ()=> {
-  const form = useForm({
-    resolver:zodResolver(registerSchema),
-    defaultValues:{
-        email:'',
-        password:'',
-        confirmPassword:'',
-        firstName:'',
-        lastName:'',
-        business:'',
-        code:'',
-        phone:'',
-        check:false,
-        gender:undefined,
-        country:''
-    },
-    reValidateMode:'onChange'
-  })
 
     const {isSignUpForm,role} = useAuthService((state)=>state)
     const {togglePage} = useToggleAuthPage()
@@ -58,9 +17,9 @@ const SignUp = ()=> {
   }
 
   return (
-    <section className='pb-16'>
+    <section data-testid="signUp-page"  className='pb-16'>
            {
-            role == 'Fashion' ?
+            role == 'designer' ?
              <SignUpForm 
             reasons={reasons.clientSignUp} image={african} 
             header="join as fashion designers and make your works known"/>:   

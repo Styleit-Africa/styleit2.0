@@ -2,18 +2,16 @@ import React,{useState} from "react";
 import Trending from "../components/home/Trending";
 import Designer from "../components/home/Designer";
 import mark from '../images/mark.png'
-import bobby from '../images/bobby.png'
-import { happyClients } from "@/static/data";
-import { Button } from "@/components/ui/button"
 import NewLetter from "@/components/home/NewLetter";
 import HappyClient from "@/components/home/HappyClient";
 
 
 const Home =()=>{
     return(
-        <>
+        <section data-testid="home-page">
             <Designer/>
             <Trending/>
+
            <section className="container">
                 <h3 className="text-center text-4xl mt-36 mb-14 text-primary font-lato font-[700]">Benefits of working with us</h3>
                     <article className="flex flex-col md:flex-row justify-center gap-5">
@@ -57,7 +55,7 @@ const Home =()=>{
 
            </section>
 
-          
+      
         <HappyClient/>
 
         <section className=" px-5 pb-10 md:pb-32">
@@ -69,7 +67,7 @@ const Home =()=>{
         </section>
         
            <NewLetter/>
-        </>
+        </section>
     )
 }
 

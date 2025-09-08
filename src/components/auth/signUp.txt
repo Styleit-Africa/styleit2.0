@@ -1,0 +1,123 @@
+
+
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { usePostStore } from '../../store/postStore';
+
+
+const PostQR = ()=>{
+
+    const {posts,setPosts} = usePostStore()
+    const [title,setTitle] = useState('')
+    const [body,setBody] = useState('')
+    const queryClient = useQueryClient()
+    const {data,isLoading,isError,error,isFetching,refetch} = useQuery({
+        queryKey:['posts'],
+        queryFn:()=>{  
+            return axios.get('http://localhost:8000/posts')
+            // return axios.get('https://jsonplaceholder.typicode.com/posts')
+        },
+        onSUccess:()=>{
+            setPosts(data)
+            console.log(posts)
+        }
+        // staleTime:30000
+        // refetchInterval:1000,
+        // refetchIntervalInBackground:true
+        // enabled:false
+    })
+
+    useEffect(()=>{
+        if(data){
+            setPosts(data)
+        }
+    },[data])
+
+    // console.log('here',posts.data.sort((a,b)=>b.id-a.id))
+    // console.log(data,isLoading)
+
+    const {mutateAsync:addPost} = useMutation({
+        mutationFn:async()=>{
+            return await axios.post('http://localhost:8000/posts',{title,body,userId:1})
+        },
+        onSUccess:(newData)=>{
+            // queryClient.invalidateQueries('posts')
+            // queryClient.setQueryData(['posts'],(oldQueryData)=>{
+            //     return {
+            //         ...oldQueryData,data:[...oldQueryData.data,newData.data]
+            //     }
+            // })
+        //     onMutate:()=>{},
+        //     onError:()=>{},
+        //     onSettle:()=>{} 
+        }
+    })
+    
+
+    const {mutateAsync:destroyPost} = useMutation({
+        mutationFn:async(id)=>{
+            return await axios.delete(`http://localhost:8000/posts/${id}`)
+        }
+    })
+    if(isLoading){
+        return <h1>Loading....</h1>
+    }
+
+
+    // const {mutateAsync:updatePost} = useMutation({
+    //     mutationFn:async()=>{
+    //         return  axios.put(`http://localhost:8000/posts/${id}`,data)
+    //     }
+    // })
+
+    // console.log(title,body)
+
+    // console.log(addPost)
+    return(
+        <div>
+            <h1>post</h1> 
+            <form>
+               <div>
+                    <label htmlFor="">title</label>
+                    <input type="text" onChange={(e)=>setTitle(e.target.value)} name="title" />        
+               </div>
+               <div>
+                    <label htmlFor="">body</label>
+                    <textarea name="body" id="" onChange={(e)=>setBody(e.target.value)}></textarea>       
+               </div>
+            <button onClick={async(e)=>{
+                e.preventDefault();
+                    try{
+                        console.log('gone')
+                         await addPost()
+                    }catch(e){
+                        console.log(e)
+                    }
+            }}> posts</button>
+            </form>
+            <ul>
+                {/* {posts?.data.sort((a,b)=>b.id-a.id).map(post=>{ */}
+                {posts?.data?.map(post=>{
+                    return (
+                        <li key={post.id} >
+                            <h1 style={{fontWeight:'bold'}}>{post.title}</h1>
+                            <p>{post.body}</p>
+                            <p>{post.id}</p>
+                            <Link to={`/postqr/${post.id}`}>view post</Link>
+                            <button onClick={()=>{
+                                destroyPost(post.id)
+                            }}>delete post</button>
+
+                            <Link to={`/postqr/${post.id}/edit`}> Edit post</Link>
+                        </li>
+                    )
+                })}
+            </ul>
+        </div>
+    )
+}
+
+
+export default PostQR;

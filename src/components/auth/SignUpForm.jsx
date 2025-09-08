@@ -8,7 +8,7 @@ import passwordIcon from '../../images/mdi_password-outline.png'
 import upload from '../../images/upload.png' 
 
 import {
-  Form,FormControl,FormDescription,
+  Form,FormControl,
   FormField,FormItem,FormLabel,FormMessage,
 } from "@/components/ui/form"
 import {
@@ -22,25 +22,40 @@ import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
 import { registerSchema } from '@/validations/authValidation'
 import Reasons from '@/components/auth/Reasons'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { countries } from '@/static/data'
 import Join from '@/components/auth/Join'
 import { useAuthService } from '@/store/useAuthService'
+import axios from 'axios'
+import Cookies from 'js-cookie'
+import { useAuth } from '@/store/useAuth'
+import { Loader } from 'lucide-react'
 
 
 const SignUpForm = ({reasons,header,image})=> {
-  const [isForm,setIsform] = useState(false);
+  const [picture,setPicture] = useState(upload);
+  const {signUp,isLoading} = useAuth();
+  const navigate = useNavigate()
+  const handleUpload = (e) => {
+    const file = e.target.files[0] 
+    if (!file) return ;
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = function(result) {
+      setPicture(result.target.result)
+    }
+}
   const form = useForm({
     resolver:zodResolver(registerSchema),
     defaultValues:{
-        email:'',
-        password:'',
-        confirmPassword:'',
-        firstName:'',
-        lastName:'',
-        business:'',
-        code:'',
-        phone:'',
+        email:'abu19@gmail.com',
+        password:'11111111',
+        confirmPassword:'11111111',
+        firstName:'aaa',
+        lastName:'aaa',
+        business:'aaaa',
+        code:'0000',
+        phone:'11111111111',
         check:false,
         gender:undefined,
         country:''
@@ -50,17 +65,49 @@ const SignUpForm = ({reasons,header,image})=> {
 
     const {isSignUpForm} = useAuthService((state)=>state)
   
-  const onSubmit = (values)=>{
-    console.log(form)
-    console.log(values)
-  }
+
+    const onSubmit = async(values)=>{
+
+    const data = {
+      fname:values.firstName,
+      lname:values.lastName,
+      busname:values.business,
+      email:values.email,
+      phone:values.phone,
+      pwd:values.password,
+      cpwd:values.confirmPassword,
+      address:'45,sulaiman street Orile Iganmu Lagos',
+      country:'161',
+      gender:'female',
+      state:'24',
+      lga:'522',
+      cities:'none',
+      nin:'12345678912',
+      // passport:'BA1234566',
+      pic:values.image,
+      username:'fatai'
+    }
+    console.log(data)
+    const result = await signUp(data);
+
+    if(result.status === 201||result.status === 200){
+      Cookies.set('activationLink',result.data.activation_link)
+      navigate('/verifyAccount')
+    }
+      if(result.status === 409){
+         form.setError('email', {
+        type: 'manual',
+        message: 'This email is already registered'
+      });
+      }
+    }
+
 
   return (
     <section className='md:pl-4 lg:pl-0'>
       {isSignUpForm || <Join page="signUp" header="Join us as"/>}
         {isSignUpForm &&<div className='flex flex-col md:flex-row md:max-w-[800px] mx-auto  pt-20 font-lato '>
         <Reasons reasons={reasons} isSignUp={true} image={african} header={header}/>
-
         <div className='md:flex-[0.55] px-3 py-4 '>
                   <img src={logo} className='block mx-auto w-24 ' alt="" />
           
@@ -197,7 +244,7 @@ const SignUpForm = ({reasons,header,image})=> {
                    value={field.value}
                    defaultValue={field.value}
                  >
-                      <SelectTrigger className="w-full md:w-[182px] border border-secondary py-6 rounded-xl">
+                      <SelectTrigger data-testid="country" className="w-full md:w-[182px] border border-secondary py-6 rounded-xl">
                         <SelectValue placeholder="Choose country" />
                       </SelectTrigger>
                       <SelectContent className="bg-white">
@@ -230,17 +277,17 @@ const SignUpForm = ({reasons,header,image})=> {
                             >
                               <FormItem className="flex items-center space-x-3 space-y-0">
                                 <FormControl>
-                                  <RadioGroupItem value="Male" className='border-green-500'/>
+                                  <RadioGroupItem value="Male" id="male" className='border-green-500'/>
                                 </FormControl>
-                                <FormLabel className="font-normal">
+                                <FormLabel htmlFor="male" className="font-normal">
                                   Male
                                 </FormLabel>
                               </FormItem>
                               <FormItem className="flex items-center space-x-3 space-y-0">
                                 <FormControl>
-                                  <RadioGroupItem value="Female" className="border-green-500" />
+                                  <RadioGroupItem value="Female" id="female" className="border-green-500" />
                                 </FormControl>
-                                <FormLabel className="font-normal">
+                                <FormLabel htmlFor="female"  className="font-normal">
                                   Female
                                 </FormLabel>
                               </FormItem>
@@ -262,21 +309,22 @@ const SignUpForm = ({reasons,header,image})=> {
             <FormControl>
               <div className='flex items-center gap-3'>
                 <label htmlFor="file" className='block'>
-                  <img src={upload} alt="Upload Icon" className='w-[100px]' />
+                  <img src={picture} alt="Upload Icon" className='w-[100px] h-[100px] rounded-full' />
                 </label>
                 <div>
                   <label>Profile image</label>
                   <p className='text-primary text-sm'>Supports only [jpg, gif, png]</p>
                 </div>
                 {/* Hidden file input */}
-                <Input
+                <Input 
                   type="file"
                   id="file"
-                  // {...field}
+                  data-testid="file input"
                   className='hidden'
                   accept=".jpg,.jpeg,.gif,.png"
                   onChange={(e) => {
                     field.onChange(e.target.files);
+                    handleUpload(e)
                   }}
                   onBlur={field.onBlur}
                   name={field.name}
@@ -324,7 +372,8 @@ const SignUpForm = ({reasons,header,image})=> {
                                 </FormItem>
                             )}/>
                          
-                    <Button type="submit" className='w-full md:w-3/4 md:ml-8  text-white rounded-xl text-lg py-6'>Sign Up</Button>
+                    <Button type="submit" className='w-full md:w-3/4 md:ml-8  text-white rounded-xl text-lg py-6'>
+                       {isLoading?<Loader className='animate-spin' />:'Sign Up'} </Button>
                     <p className="text-secondary mb-5 md:hidden text-center  block">Already have an account ? <Link to='/login' className='text-primary capitalize font-[500]'>login</Link></p>             
                
                 </form>

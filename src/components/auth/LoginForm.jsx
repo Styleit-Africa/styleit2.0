@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import logo from '../../images/logo.png'
@@ -10,23 +10,25 @@ import passwordIcon from '../../images/mdi_password-outline.png'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
 import { loginSchema } from '@/validations/authValidation'
 import Reasons from '@/components/auth/Reasons'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useAuthService } from '../../store/useAuthService'
 import Join from '@/components/auth/Join'
+import axios from 'axios'
+import { useAuth } from '@/store/useAuth'
+import { Backpack, DessertIcon, Loader, LucideTrash, X } from 'lucide-react'
+import { toast } from 'sonner'
 
 
 const LoginForm = ({reasons,header,image})=> {
-    // const [isLoginForm,setIsLoginForm] = useState(false)
+    const navigate = useNavigate()
   const form = useForm({
     resolver:zodResolver(loginSchema),
     defaultValues:{
@@ -34,23 +36,52 @@ const LoginForm = ({reasons,header,image})=> {
         password:''
     }
   })
-
-  const {isLoginForm,role} = useAuthService((state)=>state)
+  const {isLoginForm} = useAuthService((state)=>state)
+  const {login,error,token,user,isLoading,role} = useAuth(state=>state)
   console.log(role)
-  console.log(reasons,'te')
-
-  const onSubmit = (values)=>{
-    console.log(values)
+  const onSubmit = async(values)=>{
+    const data = {
+        email:values.email,
+        pwd:values.password
+    }
+         const result = await login(data);
+         console.log(result)
+         console.log(user)
+         if(result?.status === 200 && user?.status === 'actived'){
+             toast("Logged in successfully", {
+                action: {
+                label: <X size={16} />,
+              },
+            })
+         }
   }
+
+
+  useEffect(()=>{
+    if(token&&role==='client'&&user?.status === 'actived'){
+    navigate('/client/profile')
+ }
+ if(token&&user?.status === 'actived'&&role==='designer'){
+    navigate('/creator/profile')
+ }
+
+ if(token&&user?.status === 'deactived'){
+    navigate('/resendVerificationLink')
+     toast("Kindly verify your account", {
+                action: {
+                label: <X size={16} />,
+              },
+            })
+ }
+  },[token,role,isLoading])
+
 
   return (
 
     <section className='md:pl-4 lg:pl-0'>
+          
 
-        {isLoginForm||<Join page="login" header="Log in as"/>}
-        {
-            isLoginForm && 
-            <div className='flex flex-col md:flex-row max-w-[900px] mx-auto  pt-20'>
+        {!isLoginForm? <Join page="login" header="Log in as"/> :<div className='flex flex-col md:flex-row max-w-[900px] mx-auto  pt-20'>
         <Reasons reasons={reasons} image={image} isSignUp={false} header={header}/>
 
         <div className='flex-[0.5] px-4 md:px-12 flex flex-col md:flex-col'>
@@ -70,7 +101,7 @@ const LoginForm = ({reasons,header,image})=> {
 
             </div>
              
-                <Form {...form} className='flex-[0.5]'>
+                <Form {...form} className='flex-[0.5]' data-testid="login-form">
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                   <div className='relative'>
                     <img src={emailIcon} className='absolute top-5 left-4 w-[20px] h-[20px]' alt="" />
@@ -87,6 +118,7 @@ const LoginForm = ({reasons,header,image})=> {
                             )}
                             />
                   </div>
+                  {error&&<span className='text-red-500 block mt-5'>{error}</span>}
                   <div className='relative'>
                     <img src={passwordIcon} className='absolute top-5 left-4 w-[20px] h-[20px]' alt="" />
                         <FormField
@@ -103,8 +135,10 @@ const LoginForm = ({reasons,header,image})=> {
                             />
                   </div>
 
-
-                    <Button type="submit" className='w-full text-white rounded-xl text-lg py-6'>Login</Button>
+                        
+                    <Button type="submit" disabled={isLoading} className='w-full text-white rounded-xl text-lg py-6'>
+                        {isLoading?<Loader className='animate-spin' />:'Login'} 
+                        </Button>
                 </form>
             </Form>
             <div className='text-center md:hidden'>

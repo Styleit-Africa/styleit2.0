@@ -1,9 +1,8 @@
 import React from 'react'
 import check from '../../images/check.png'
 const Reasons = ({reasons,header,image,isSignUp,isClient=true}) => {
-  console.log(reasons,'here')
   return (
-    <div className='relative font-lato font-[500] bg-primary text-white flex-[0.45] px-12 pt-12 hidden md:block'>
+    <div data-testid="reasons" className='relative font-lato font-[500] bg-primary text-white flex-[0.45] px-12 pt-12 hidden md:block'>
         <h1 className=' capitalize text-xl'>{header}</h1>
         <ul>
           {

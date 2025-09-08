@@ -6,11 +6,11 @@
 
 
 .container{
-  @apply  px-5 xl:px-0 max-w-[1219px]  mx-auto;
+  @apply  max-w-[1219px]  mx-auto;
 }
 
 .check{
-  /* background:rgba(255,255,255,0.8); */
+  /* color: #faf7f799; */
   background: linear-gradient(180deg, #FFFDFD 0%, rgba(255, 255, 255, 0.42) 100%);
 }
 
@@ -19,8 +19,27 @@
   border: 3px solid #FFFDFD;
   border-image-source:linear-gradient(103.99deg,rgba(255,255,2550.9,1.75%),rgba(248,248,248,0.42),97.37%) ;
   color: #000;
+  /* color: rgba(57, 54, 66, 0.486); */
 }
 
 
 
+@layer base {
+  :root {
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+  }
+
+  .dark {
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    --chart-6:linear-gradient('red','green');
+  }
+}
 

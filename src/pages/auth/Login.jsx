@@ -1,36 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import young from '../../images/young.png'
 import redLady from '../../images/redLady.png'
-import logo from '../../images/logo.png'
-import google from '../../images/devicon_google.png'
-import emailIcon from '../../images/mdi-light_email.png' 
-import passwordIcon from '../../images/mdi_password-outline.png' 
-
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Button } from '@/components/ui/button'
 import { loginSchema } from '@/validations/authValidation'
-import Reasons from '@/components/auth/Reasons'
-import { Link } from 'react-router-dom'
 import { useAuthService } from '../../store/useAuthService'
-import Join from '@/components/auth/Join'
 import LoginForm from '@/components/auth/LoginForm'
 import { reasons } from '@/static/data'
 import ToggleAuthPage from '@/components/global/ToggleAuthPage'
+import { useAuth } from '@/store/useAuth'
 
 
 const Login = ()=> {
-    // const [isLoginForm,setIsLoginForm] = useState(false)
   const form = useForm({
     resolver:zodResolver(loginSchema),
     defaultValues:{
@@ -39,7 +20,8 @@ const Login = ()=> {
     }
   })
 
-  const {isLoginForm,role,setIsLoginForm} = useAuthService((state)=>state)
+  const {isLoginForm,setIsLoginForm} = useAuthService((state)=>state)
+  const {role} = useAuth();
   console.log(role)
 
   const onSubmit = (values)=>{
@@ -48,9 +30,9 @@ const Login = ()=> {
 
   return (
 
-    <section className='pb-16'>
+    <section data-testid="login-page"  className='pb-16'>
         {
-            role == 'Fashion' ?
+            role == 'designer' ?
              <LoginForm 
             reasons={reasons.clientLogin} image={young} 
             header="Ready to find your next client ? let's go"/>:   
@@ -60,7 +42,7 @@ const Login = ()=> {
         }
 
         {
-            isLoginForm && <ToggleAuthPage role={role}/>
+            isLoginForm && <ToggleAuthPage role={role} page='login'/>
         }
       
     </section>
