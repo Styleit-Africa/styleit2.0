@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 
 const SearchContainer = () => {
   const location = useLocation()
-  console.log(location)
+  // console.log(location)
   return (
     <div className="container mb-2  md:hidden">
         <div className='flex justify-between items-center'>

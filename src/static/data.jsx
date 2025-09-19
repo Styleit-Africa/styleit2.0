@@ -1,5 +1,4 @@
 import imageUrl from '../images/bobby.png'
-import logo from '../images/logo.png'
 import profile from '../images/profile.png'
 import profile_h from '../images/profile_h.png'
 import receipt from '../images/receipt-edit.png'
@@ -17,7 +16,6 @@ import ko from '../images/ko.png'
 import bag from '../images/bag-2.png'
 
 
-const numbers = [1,2,3,4,5,6,7]
 
 export const postTopImages = [postImage,postImage,postImage,postImage]
 export const postImages = [postImage,postImage,profile,postImage,postImage,postImage,postImage]
@@ -645,9 +643,53 @@ const subscriptionDetails = [
     },
 ]
 
-const nonSubscriptionPages = ['','signUp','login']
+const nonSubscriptionPages = ['','signUp','login'];
+
+const faqs = [
+    {
+        id:1,
+        question:'Why Styleit Africa ?',
+        answer:'Styleit Africa is a B2C social networking platforms for professional fashionistas. It is a home where user meet with professional designers in all forms of fashion world such as tailors, hair and hairstyles, cobblers, belt, hat and bags designers including bangles.'
+    },
+    {
+        id:3,
+        question:'Who is a Clients?',
+        answer:'A client is a user who requested for the services of a creator in exchange for money and quality product design to suit his/her needs.'
+    },
+    {
+        id:4,
+        question:'How will I receive payment ?',
+        answer:`Payment are made to creators on completion and delivery of services rendered. Ensure to have your client payment reference number handy incase there is a delay in payment.
+        Note: For complaint on delayed payment after delivery send email to Admin.`
+    },
+    {
+        id:5,
+        question:'Can I pay offline ?',
+        answer:'A creator is a professional fashionista who render a professional services to a client who needs personal brand wears for his or her next occasion.'
+    },
+    {
+        id:6,
+        question:'Why should I pay online ?',
+        answer:'All payments should be carried out online to prevent been scammed by an imposter and fraudsters.'
+    },
+    {
+        id:7,
+        question:'How can I get a refund of service not rendered ?',
+        answer:'If service not rendered send a mail stating your request in detail to support@styleit.africa.'
+    },
+    {
+        id:8,
+        question:'Can I get a refund for a poor service delivery ?',
+        answer:'No refund for a service delivery so far your service have been rendered. You are advise to book creators within your locality so you can have accurate measurements, judge creators skills and monitor the progress of your outfits.'
+    },
+    {
+        id:9,
+        question:'How can I prevent the scandal of What I order vs what I got ?',
+        answer:'Booking creators of fashion wears within your locality will enable you to have access to the office and confirm the genuineness and professionalism of the creators skills.'
+    }
+]
 
 export {
-    happyClients,reasons,countries,dashboardTabs,posts,subscriptionDetails
+    happyClients,reasons,countries,dashboardTabs,posts,subscriptionDetails,faqs
     ,userProfile,appointments,sidebarLinks,myPosts,subscriptions,nonSubscriptionPages
 }

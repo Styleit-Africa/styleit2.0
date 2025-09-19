@@ -20,10 +20,6 @@ const Layout =()=>{
                 {
                     pathname.split('/')[1] !== 'admin'&&<Footer/>
                 }
-                {/* <Toaster toastOpttions={{
-                    className:"text-xl text-gray-300 bg-gradient-to-tr  from-primary to-sidebar" 
-                }} /> */}
-
                 <Toaster 
             toastOptions={{
                 className: "text-xl text-white bg-gradient-to-tr from-primary to-sidebar",
@@ -31,7 +27,6 @@ const Layout =()=>{
                 background: 'linear-gradient(to top right, #FF617C, #27213c)',
                 color: '#fff',
                 border:'none'
-                // fontSize: '1.25rem'
                 },
                         descriptionClassName: "text-white",
 

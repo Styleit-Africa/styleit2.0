@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 const PostContainer = ({data,userProfile,follow})=>{
     const {pathname} = useLocation();
     const user = Cookies.get('user')
-    console.log(data)
+    // console.log(data)
     return(
         <div>
             

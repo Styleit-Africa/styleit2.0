@@ -3,7 +3,7 @@ import fb from '../../images/facebook.png';
 import linkedIn from '../../images/linkedIn.png';
 import instagram from '../../images/instagram.png';
 import copyright from '../../images/copyright.png';
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { nonSubscriptionPages } from "@/static/data";
 import Subscribe from "./Subscribe";
 import Image from "./Image";
@@ -51,7 +51,7 @@ const Footer =()=>{
                     <h3 className='font-[700] mb-8 text-lg md:text-2xl'>Privacy policy</h3>
                     <ul className="capitalize text-lg md:text-2xl">
                         <li className="mb-7">help</li>
-                        <li className="mb-7">FAQ</li>
+                        <li className="mb-7"><Link to='/faqs'>FAQ</Link></li>
                         <li className="mb-7">career</li>
                     </ul>
                         <h4 className="mt-20 capitalize text-lg md:text-2xl font-[700]">admin</h4>

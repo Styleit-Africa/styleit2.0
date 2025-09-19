@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 
 const CreatorLayout =()=>{
   const navigate = useNavigate();
-  console.log(JSON.parse(Cookies.get('user')),'here')
+  // console.log(JSON.parse(Cookies.get('user')),'here')
   if(JSON.stringify(Cookies.get('user'))?.status === 'deactived'){
     navigate('/verifyAccount')
   }

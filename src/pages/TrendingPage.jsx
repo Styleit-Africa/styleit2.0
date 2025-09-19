@@ -1,12 +1,12 @@
 import TrendingContents from "@/components/dashboard/TrendingContents"
 import React from "react"
 
-const Trending = ()=>{
+const TrendingPage = ()=>{
     return(
-        <section data-testid="trending-page" className="py-24 px-4 md:px-0 font-lato">
+        <section data-testid="trending-page" className="py-20 px-4  font-lato">
             <TrendingContents/>
         </section>
     )
 }
 
-export default Trending
+export default TrendingPage

@@ -15,7 +15,7 @@ import { useAuthService } from '@/store/useAuthService'
 const LinkTabs = () => {
     const location = useLocation();
     const {user} = useAuthService(state=>state)
-    console.log(user,'here')
+    // console.log(user,'here')
   return (
     <div className='flex-1 md:flex-initial'>
               {
