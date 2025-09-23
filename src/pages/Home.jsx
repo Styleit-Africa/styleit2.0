@@ -5,6 +5,7 @@ import mark from '../images/mark.png'
 import NewLetter from "@/components/home/NewLetter";
 import HappyClient from "@/components/home/HappyClient";
 import { Link } from "react-router-dom";
+import Navbar from "@/components/global/Navbar";
 
 
 const Home =()=>{

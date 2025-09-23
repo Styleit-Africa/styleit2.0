@@ -2,6 +2,7 @@ import React from "react";
 import fb from '../../images/facebook.png';
 import linkedIn from '../../images/linkedIn.png';
 import instagram from '../../images/instagram.png';
+import X from '../../images/X.webp';
 import copyright from '../../images/copyright.png';
 import { Link, useLocation } from "react-router-dom";
 import { nonSubscriptionPages } from "@/static/data";
@@ -24,9 +25,18 @@ const Footer =()=>{
             <div className="mb-24">
                 <h2 className="text-2xl md:text-3xl mb-6">Connect with us</h2>
                 <div className="flex gap-4">
-                    <Image src={linkedIn} className="w-[25px] md:w-[32px]" alt="linkedIn" />
-                    <Image src={fb} className="w-[25px] md:w-[32px]" alt="facebook" />
-                    <Image src={instagram} className="w-[25px] md:w-[32px]" alt="instagram" />
+                    <Link to='https://linkedin.com/company/styleit-africa' target="_blank">
+                        <Image src={linkedIn} className="w-[25px] md:w-[32px]" alt="linkedIn" />
+                    </Link>
+                    <Link to='https://facebook.com/HqStyleitafrica' target="_blank">
+                        <Image src={fb} className="w-[25px] md:w-[32px]" alt="facebook" />
+                    </Link>
+                    <Link to='https://x.com/hqstyleitafrica' target="_blank">
+                        <Image src={X} className="w-[25px] md:w-[32px] rounded-full" alt="instagram" />
+                    </Link>
+                    <Link to='https://linkedin.com/company/styleit-africa' target="_blank">
+                        <Image src={instagram} className="w-[25px] md:w-[32px]" alt="instagram" />
+                    </Link>
                 </div>
             </div>
             <div className="flex justify-between max-w-[630px] text-darkGray">

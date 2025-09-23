@@ -27,7 +27,7 @@ const SearchModal = ({page,creators}) => {
                   <div>
                       <Image src={m_logo} />
                   </div>
-                  <X className="h-8 w-8 scale-[0.8] transition-all duration-300 hover:scale-[1.5] cursor-pointer" onClick={()=>setSearchModal(false)}/>
+                  <X  className="h-8 w-8 scale-[0.8] transition-all duration-300 hover:scale-[1.5] cursor-pointer" onClick={()=>setSearchModal(false)}/>
                 </div>
                         <div className="relative ">
                                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />

@@ -16,7 +16,8 @@ import { useAuth } from "@/store/useAuth";
 const Header = ()=>{
     
     const {user} = useAuth()
-    const {setIsSidebarOpened,isSidebarOpened,setIsAdminOpened} = useGlobalStore()
+    const {setIsSidebarOpened,isSidebarOpened,setIsAdminOpened
+        ,isNavbarOpened,setIsNavbarOpened} = useGlobalStore()
     return( 
         <header  className="relative z-20 shadow-[2px_0px_10px_#ccc]  py-5 px-5 md:px-0 font-[400] font-[helvetica]">
           {
@@ -24,11 +25,11 @@ const Header = ()=>{
             (
         <div>
 
-<div className="flex justify-between md:hidden">
-                <div>
+    <div className="flex justify-between md:hidden">
+                <div >
                 <img src={m_logo} alt="logo"  />
                 </div>
-                <div>
+                <div onClick={()=>setIsNavbarOpened()}>
                 <img src={hamburger} alt="" />
                 </div>
             </div>

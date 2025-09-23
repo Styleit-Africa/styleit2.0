@@ -21,6 +21,22 @@ export const postTopImages = [postImage,postImage,postImage,postImage]
 export const postImages = [postImage,postImage,profile,postImage,postImage,postImage,postImage]
 
 
+// mobile routes
+
+
+  const navItems = [
+    { name: 'Home', route: '/' },
+    { name: 'trending', route: '/trending' },
+    { name: 'fashion designer', route: '/fashionDesigners' }
+  ];
+ 
+  const dashboardLinks = [
+    { name: 'profile', route: '/creator/profile' },
+    { name: 'create post', route: '/creator/create-post' },
+    { name: 'history', route: '/creator/history' },
+    { name: 'subscriptions', route: '/creator/subscriptions' }
+  ];
+
 const happyClients = [
     {
         name:'Mike.J',
@@ -690,6 +706,6 @@ const faqs = [
 ]
 
 export {
-    happyClients,reasons,countries,dashboardTabs,posts,subscriptionDetails,faqs
+    happyClients,reasons,countries,dashboardTabs,posts,subscriptionDetails,faqs, dashboardLinks,navItems
     ,userProfile,appointments,sidebarLinks,myPosts,subscriptions,nonSubscriptionPages
 }

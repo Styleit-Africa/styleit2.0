@@ -20,7 +20,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
-import { registerSchema } from '@/validations/authValidation'
+import { clientRegisterSchema, designerRegisterSchema } from '@/validations/authValidation'
 import Reasons from '@/components/auth/Reasons'
 import { Link, useNavigate } from 'react-router-dom'
 import { countries } from '@/static/data'
@@ -34,6 +34,8 @@ import { Loader } from 'lucide-react'
 
 const SignUpForm = ({reasons,header,image})=> {
   const [picture,setPicture] = useState(upload);
+  const {role} = useAuth();
+  console.log(role)
   const {signUp,isLoading} = useAuth();
   const navigate = useNavigate()
   const handleUpload = (e) => {
@@ -45,14 +47,18 @@ const SignUpForm = ({reasons,header,image})=> {
       setPicture(result.target.result)
     }
 }
+// check user validation schema
+const validateUser = role ==='client'?clientRegisterSchema:designerRegisterSchema;
+
   const form = useForm({
-    resolver:zodResolver(registerSchema),
+    resolver:zodResolver(validateUser),
     defaultValues:{
         email:'abu19@gmail.com',
         password:'11111111',
         confirmPassword:'11111111',
         firstName:'aaa',
         lastName:'aaa',
+        username:'',
         business:'aaaa',
         code:'0000',
         phone:'11111111111',
@@ -68,7 +74,7 @@ const SignUpForm = ({reasons,header,image})=> {
 
     const onSubmit = async(values)=>{
 
-    const data = {
+    const formData = {
       fname:values.firstName,
       lname:values.lastName,
       busname:values.business,
@@ -84,9 +90,9 @@ const SignUpForm = ({reasons,header,image})=> {
       cities:'none',
       nin:'12345678912',
       // passport:'BA1234566',
-      pic:values.image,
-      username:'fatai'
+      pic:values.image
     }
+    const data = role === 'client'?{...formData,username:values.username}:formData
     console.log(data)
     const result = await signUp(data);
 
@@ -147,6 +153,21 @@ const SignUpForm = ({reasons,header,image})=> {
                   </div>
                   </div>
 
+                {/* display the username input when it is client signing up */}
+                     {
+                      role === 'client'&&   <FormField
+                            control={form.control}
+                            name="username"
+                            render={({ field }) => (
+                                <FormItem>
+                                <FormControl>
+                                    <Input type="text" placeholder="Enter Username" className="text-lg border border-secondary  placeholder-secondary pl-4 py-6 rounded-xl outline-[0]" {...field} />
+                                </FormControl>
+                                <FormMessage className="text-red-500" />
+                                </FormItem>
+                            )}
+                            />
+                     }
                   <div className='relative'>
                     <img src={emailIcon} className='absolute top-4 left-4 w-[20px] h-[20px]' alt="" />
                         <FormField

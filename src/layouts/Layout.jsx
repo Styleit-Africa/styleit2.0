@@ -4,14 +4,20 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/global/Footer";
 import SidebarContainer from "@/components/global/SidebarContainer";
 import { Toaster } from "@/components/ui/sonner";
+import Navbar from "@/components/global/Navbar";
+import { useGlobalStore } from "@/store/global/useGlobal";
 
 
 const Layout =()=>{
     const {pathname} = useLocation();
-    console.log()
+    const {isNavbarOpened} = useGlobalStore()
     return(
         <>  
             <Header/>
+            {
+                isNavbarOpened&& <Navbar/>
+            }
+           
             <SidebarContainer/>
                 <main className="">
                     <Outlet/>

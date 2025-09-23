@@ -7,6 +7,11 @@ export const useGlobalStore = create((set,get)=>({
     headerHeight:null,
     currentTab:1,
     searchData:'',
+    isNavbarOpened:false,
+    setIsNavbarOpened:()=>{
+      const {isNavbarOpened} = get();
+      set({isNavbarOpened:!isNavbarOpened})
+    },
     userDashboardSearchData:'',
     creators:[],
     posts:[],
@@ -51,6 +56,7 @@ export const useGlobalStore = create((set,get)=>({
             }
       })
       console.log(response.data.results,'search')
+      setPosts(response.data.results)
      }catch(e){
       console.log(e,'e2')
      }
