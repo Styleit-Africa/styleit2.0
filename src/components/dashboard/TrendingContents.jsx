@@ -7,17 +7,19 @@ import Cookies from 'js-cookie'
 import axios from 'axios'
 
 const TrendingContents = () => {
-    const {data,isLoading,isError,error,isFetching} = useQuery({
-        queryKey:['trending'],
-        queryFn:async()=>await axios.get('https://styleitafrica.pythonanywhere.com/api/trending',{
+  const getTrending = async()=> await axios.get('https://styleitafrica.pythonanywhere.com/api/trending',{
             headers:{
               Authorization:`Bearer ${Cookies.get('token')}`,
               'Content-Type': 'application/json',
               Accept:'application/json'
             }
-          }),
+          })
+    const {data,isLoading,error} = useQuery({
+        queryKey:['trending'],
+        queryFn:getTrending,
           staleTime:1
         })
+        console.log(data,'trend')
   return (
     <div>
       { 

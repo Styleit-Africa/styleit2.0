@@ -16,8 +16,8 @@ import { useAuth } from "@/store/useAuth";
 const Header = ()=>{
     
     const {user} = useAuth()
-    console.log(user)
-    const {setIsSidebarOpened,isSidebarOpened,setIsAdminOpened} = useGlobalStore()
+    const {setIsSidebarOpened,isSidebarOpened,setIsAdminOpened
+        ,isNavbarOpened,setIsNavbarOpened} = useGlobalStore()
     return( 
         <header  className="relative z-20 shadow-[2px_0px_10px_#ccc]  py-5 px-5 md:px-0 font-[400] font-[helvetica]">
           {
@@ -25,11 +25,11 @@ const Header = ()=>{
             (
         <div>
 
-<div className="flex justify-between md:hidden">
-                <div>
+    <div className="flex justify-between md:hidden">
+                <div >
                 <img src={m_logo} alt="logo"  />
                 </div>
-                <div>
+                <div onClick={()=>setIsNavbarOpened()}>
                 <img src={hamburger} alt="" />
                 </div>
             </div>
@@ -42,7 +42,7 @@ const Header = ()=>{
                         <NavLink to="/" className={({isActive})=>isActive ? 'relative after:content-[" "] after:w-2/3 after:block  after:mx-auto after:mt-0.5 after:h-0.5 rounded-lg after:bg-primary ':''}>Home</NavLink> 
                     </li>
                     <li>
-                        <NavLink to="/fashionDesigner" data-testid="fashion-designer" className={({isActive})=>isActive ? 'relative after:content-[" "] after:w-2/3 after:block  after:mx-auto after:mt-0.5 after:h-0.5 rounded-lg after:bg-primary ':''}>Fashion designers</NavLink>
+                        <NavLink to="/fashionDesigners" data-testid="fashion-designer" className={({isActive})=>isActive ? 'relative after:content-[" "] after:w-2/3 after:block  after:mx-auto after:mt-0.5 after:h-0.5 rounded-lg after:bg-primary ':''}>Fashion designers</NavLink>
                     </li>
                     <li>
                         <NavLink to="/trending"  data-testid="trending" className={({isActive})=>isActive ? 'relative after:content-[" "] after:w-2/3 after:block  after:mx-auto after:mt-0.5 after:h-0.5 rounded-lg after:bg-primary ':''}>Trending</NavLink>

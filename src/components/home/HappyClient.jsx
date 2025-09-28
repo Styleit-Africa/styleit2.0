@@ -46,7 +46,7 @@ const HappyClient = () => {
                  {happyClients.map((client,index) => (
                  <CarouselItem key={index} className=" lg:basis-1/2 xl:basis-1/2 ">
                          <CardContent className="relative font-lato font-[400] min- h-[260px]  my-4 mx-1  rounded-3xl pt-16 pb-4 px-4  text-center border-[2px]l shadow-[1px_1px_6px_#ccc]">
-                                         <p className="text-md md:text-2xl text-left pl-3 md:pr-9 mb-7">" {client.feedback.comment}"</p>
+                                         <p className="text-md md:text-2xl text-left pl-3 md:pr-9 mb-7">{client.feedback.comment}</p>
                                          <div className=" absolute bottom-4 right-4 flex gap-2 items-end w-[max-content] ">
                                              <h6 className="text-2xl mb-2">{client.name}</h6>
                                              <img src={client.imageUrl} alt=""  className="w-[70px] mr-5"/>

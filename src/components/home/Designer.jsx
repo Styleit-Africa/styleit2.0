@@ -5,13 +5,19 @@ import angelina from '../../images/angelina.png';
 import bobby from '../../images/bobby.png';
 import sandra from '../../images/sandra.png';
 import starIcon from '../../images/star.png';
+import { useGlobalStore } from "@/store/global/useGlobal";
+import SearchModal from "../global/imageGallery/SearchModal";
 
 const Designer =()=>{
+  const {searchModal,setSearchModal,creators} = useGlobalStore()
     return(
         <section className=' md:min-h-[900px]  bg-gradient-to-tl to-primary font-lato to-[50%] from-[50%] md:to-[54.2%] from-white md:from-[54.7%] relative -z-2 '>
+        {
+          searchModal&&<SearchModal creators={creators} page='home' />
+        }
         <article className='container'>
       
-      <div className='  mx-auto lg:mx-0 xl:max-w-auto  flex flex-col md:gap-12 xl:gap-0  lg:flex-row items-start   text-light '>
+      <div className='  px-4 xl:px-0 mx-auto lg:mx-0 xl:max-w-auto  flex flex-col md:gap-12 xl:gap-0  lg:flex-row items-start   text-light '>
            <div className='w-auto md:basis-[59%] pt-6 md:pt-28  '>
               <h1 className='text-2xl md:text-[2.1rem] leading-[1.4]  font-[500] md:pr-32 '>Looking For A Professional Fashion Designer?</h1>
                 <p className=' text-lg md:text-[1.4rem] w-[75%] sm:w-[85%] md:max-w-[480px] leading-[1.5] md:font-[500] mt-4'>
@@ -22,7 +28,7 @@ const Designer =()=>{
                 {/* search */}
                 <form className='mt-6  '>
                   <div className='flex'>
-                    <input type='text'
+                    <input type='text' onClick={()=>setSearchModal(true)}
                      className='text-[black] rounded-l-lg block w-full sm:w-[400px] z-30 text-dark-400 outline-none font-lato py-7 md:py-[2.2rem] pl-7 md:pl-16
                      placeholder:text-lg placeholder:font-[helvetica] placeholder:font-[400] shadow-sm shadow-primary md:shadow-none placeholder-secondary' 
                     placeholder="search fashion designers here" />

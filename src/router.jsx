@@ -5,7 +5,7 @@ import Layout from './layouts/Layout';
 import Login from './pages/auth/Login';
 import SignUp from './pages/auth/SignUp';
 import Dashboard from './pages/dashboard/Dashboard';
-import Trending from './pages/Trending';
+import TrendingPage from './pages/TrendingPage';
 import Subscriptions from './pages/creator/Subscriptions';
 import History from './pages/creator/History';
 import ShowSubscription from './components/dashboard/creator/ShowSubscription.jsx';
@@ -15,7 +15,7 @@ import ProfilePage from './pages/creator/ProfilePage';
 import BookingPage from './pages/creator/BookingPage';
 import PostPage from './pages/creator/PostPage';
 import Blogs from "./pages/Blogs";
-import FashionDesigner from "./pages/FashionDesigner";
+import FashionDesigner from "./pages/FashionDesigners";
 import EditProfilePage from "./pages/creator/EditProfilePage";
 import ClientLayout from "./layouts/ClientLayout";
 import AppointmentDetails from "./pages/client/AppointmentDetails";
@@ -49,6 +49,11 @@ import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
 import AccountVerificationPage from "./pages/auth/AccountVerificationPage";
 import ResendActivationLinkPage from "./pages/auth/ResendActivationLinkPage";
 import ViewTrendingPost from "./pages/ViewTrendingPost";
+import AllDesignersPage from "./components/dashboard/creator/fashionDesigners/AllFashionDesigners";
+import FashionDesigners from "./pages/FashionDesigners";
+import CreatePostPage from "./pages/creator/CreatePostPage";
+import FrequentlyAskedQuestionsPage from "./pages/FrequentlyAskedQuestionsPage";
+import ViewSearchPostPage from "./pages/ViewSearchPostPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -57,14 +62,18 @@ const router = createBrowserRouter(
           <Route path="/login" element={<Login/>}/>
           <Route path="/signUp" element={<SignUp/>}/>
           <Route path='/dashboard' element={<Dashboard/>} />
-          <Route path='/trending' element={<Trending/>} />
+          <Route path='/trending' element={<TrendingPage/>} />
           <Route path='/trending/:id' element={<ViewTrendingPost/>} />
+          <Route path='/trending/:id/view' element={<ViewSearchPostPage/>} />
           <Route path='/blogs' element={<Blogs/>} />
-          <Route path='/fashionDesigner' element={<FashionDesigner/>} />
+          <Route path='/faqs' element={<FrequentlyAskedQuestionsPage/>} />
+          <Route path='/fashionDesigners' element={<AllDesignersPage/>} />
+          {/* <Route path='/all-fashion-designers' element={<AllDesignersPage/>} /> */}
             <Route path='verifyAccount' element={<AccountVerificationPage/>} />
             <Route path='resendVerificationLink' element={<ResendActivationLinkPage/>} />
           <Route path='/creator' element={<CreatorLayout/>}>
             <Route path='profile' element={<ProfilePage/>} />
+            <Route path='create-post' element={<CreatePostPage/>} />
             <Route path='profile/edit' element={<EditProfilePage/>} />
             <Route path='bookings' element={<BookingPage/>} />
             <Route path='posts' element={<PostPage/>} />

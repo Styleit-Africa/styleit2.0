@@ -4,6 +4,8 @@ import Designer from "../components/home/Designer";
 import mark from '../images/mark.png'
 import NewLetter from "@/components/home/NewLetter";
 import HappyClient from "@/components/home/HappyClient";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/global/Navbar";
 
 
 const Home =()=>{
@@ -12,7 +14,7 @@ const Home =()=>{
             <Designer/>
             <Trending/>
 
-           <section className="container">
+           <section className="px-4 lg:px-0 container">
                 <h3 className="text-center text-4xl mt-36 mb-14 text-primary font-lato font-[700]">Benefits of working with us</h3>
                     <article className="flex flex-col md:flex-row justify-center gap-5">
                         <div className="flex-[0.5] shadow-[1px_1px_6px_#ccc] rounded-2xl">
@@ -27,7 +29,7 @@ const Home =()=>{
                             </div>
                                 <div className="px-10 mt-8 mb-6">
                                     <button className="w-full bg-primary py-6 text-white
-                                     text-[1.4rem] font-[700] font-lato capitalize rounded-2xl ">get started</button>
+                                     text-[1.4rem] font-[700] font-lato capitalize rounded-2xl "><Link to='/signUp'>get started</Link></button>
                                 </div>
                         </div>
                         <div className="flex-[0.5] shadow-[1px_1px_6px_#ccc] rounded-2xl font-lato font-[400]">
@@ -48,7 +50,7 @@ const Home =()=>{
                             </div>
                                 <div className="px-10 mt-8 mb-6">
                                     <button className="w-full bg-primary py-6 text-white
-                                     text-[1.4rem] font-[700] font-lato capitalize rounded-2xl ">get started</button>
+                                     text-[1.4rem] font-[700] font-lato capitalize rounded-2xl "><Link to='/signUp'>get started</Link></button>
                                 </div>
                         </div>
                     </article>

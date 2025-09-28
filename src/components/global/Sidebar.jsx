@@ -24,7 +24,7 @@ import { useQuery } from '@tanstack/react-query'
 const Sidebar = () => {
 
     const {user} = useAuth()
-    console.log(user)
+    // console.log(user)
     const navigate = useNavigate()
     const {logout} = useAuth()
     const {setIsSidebarOpened} = useGlobalStore();

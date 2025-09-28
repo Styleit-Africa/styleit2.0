@@ -24,7 +24,7 @@ const ViewTrendingPost = () => {
       console.log(value)
     }
   return (
-    <section>
+        <section data-testid="view-trending-post" className="py-24 px-4 md:px-0 font-lato">
         <TrendingContents/>
         {
             showTrending&& <div  className={` font-lato py-6  flex justify-center items-center bg-[rgba(0,0,0,0.1)]  z-40  fixed top-0  overflow-hidden  transition-all duration-300 bottom-0  right-0 w-full `}>

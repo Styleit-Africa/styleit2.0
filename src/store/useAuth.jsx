@@ -75,5 +75,6 @@ export const useAuth = create((set,get)=>({
         Cookies.remove('user')
         Cookies.remove('creator')
         set({token:null,user:null,isLoading:false})
+        
     }
 }))

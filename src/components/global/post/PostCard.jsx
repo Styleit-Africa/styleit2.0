@@ -32,8 +32,9 @@ const PostCard=({data,post,follow,userProfile}) => {
     const {storeFollow} = useCreatorStore();
 
     const queryClient = useQueryClient()
-
- console.log(userProfile)
+      // console.log(post,'posts')
+      // console.log(post.img,'posts')
+//  console.log(userProfile)
       const {mutate:followMutation} = useMutation({
         mutationFn:storeFollow,
         onSuccess:()=>{
@@ -125,7 +126,9 @@ const PostCard=({data,post,follow,userProfile}) => {
         {/* <Image src={post.img[0]?.url} className="mt-4" />
         */}
         {/* <Image src={postImage} className="mt-4" />  */}
-        <ImageGallery/>
+        {
+          post?.img&&post?.img?.length !== 0&&<ImageGallery _images={post.img}/>
+        }
         {/* <PostCardImages/> */}
         <PostActivities
          comments={post.comments} 
