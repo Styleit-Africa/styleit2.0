@@ -17,20 +17,62 @@ export const useAuth = create((set,get)=>({
         const {role} = get()
         console.log(role,'role')
         set({isLoading:true})
+        let response;
         try{
-           const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/${role==='designer'?'designer':'user/customer'}/login`,data)
-            if(response.status == 200){
-                console.log(response?.data?.customer)
-                const getToken = role==='designer'?response.data.token:response.data.access_token
-                const getUser = role==='designer'?{...response?.data?.creator,role:'designer'}:
-                {...response?.data?.customer,role:'client'}
-                Cookies.set('token',getToken)
-                Cookies.set('user',JSON.stringify(getUser))
-                set({
-                    token:getToken,
-                    isLoading:false,error:null,user:getUser})
-                    console.log(response)
-                    return response
+
+            switch(role){
+                case 'designer':
+                         response = await axios.post('https://styleitafrica.pythonanywhere.com/api/designer/login',data)
+                        if(response.status == 200){
+                    console.log(response?.data?.customer)
+                    const getToken = response.data.token
+                    // :response.data.access_token
+                    const getUser = {...response?.data?.creator,role:'designer'}
+                    // {...response?.data?.customer,role:'client'}
+                    Cookies.set('token',getToken)
+                    Cookies.set('user',JSON.stringify(getUser))
+                    set({
+                        token:getToken,
+                        isLoading:false,error:null,user:getUser})
+                        console.log(response)
+                        return response
+                }
+                break;
+                case 'client':
+                     response = await axios.post('https://styleitafrica.pythonanywhere.com/api/user/customer/login',data)
+                      if(response.status == 200){
+                    console.log(response?.data?.customer)
+                    const getToken = response.data.access_token
+                    const getUser = {...response?.data?.customer,role:'client'}
+                    Cookies.set('token',getToken)
+                    Cookies.set('user',JSON.stringify(getUser))
+                    set({
+                        token:getToken,
+                        isLoading:false,error:null,user:getUser})
+                        console.log(response)
+                        return response
+                }
+                
+                break;
+                case 'admin':
+                     response = await axios.post('https://styleitafrica.pythonanywhere.com/api/admin/login/',data)
+                     console.log(response)
+                      if(response.status == 200){
+                            console.log(response.data.token)
+                            const getToken = response.data.token
+                            const getUser = {name:'Uthman Fatai',email:'fatai@gmail.com', role:'admin'}
+                            Cookies.set('token',getToken)
+                            Cookies.set('user',JSON.stringify(getUser))
+                            set({
+                                token:getToken,isLoading:false,
+                                error:null,user:getUser})
+                                console.log(response)
+                                return response
+                        }
+                break;
+
+
+
             }
        }catch(e){
         console.log(e)
@@ -40,6 +82,44 @@ export const useAuth = create((set,get)=>({
        return e.response;
        }
     }, 
+    // login:async(data)=>{
+    //     const {role} = get()
+    //     console.log(role,'role')
+    //     set({isLoading:true})
+    //     try{
+
+    //         switch(role){
+    //             case 'creator':
+    //                 const response = await axios.post('https://styleitafrica.pythonanywhere.com/api/designer/login',data)
+    //     //    const response = await axios.post(https://styleitafrica.pythonanywhere.com/api/'user/customer/login,data)
+
+
+    //         }
+    //        const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/${role==='designer'?'designer':'user/customer'}/login`,data)
+
+
+
+    //         if(response.status == 200){
+    //             console.log(response?.data?.customer)
+    //             const getToken = role==='designer'?response.data.token:response.data.access_token
+    //             const getUser = role==='designer'?{...response?.data?.creator,role:'designer'}:
+    //             {...response?.data?.customer,role:'client'}
+    //             Cookies.set('token',getToken)
+    //             Cookies.set('user',JSON.stringify(getUser))
+    //             set({
+    //                 token:getToken,
+    //                 isLoading:false,error:null,user:getUser})
+    //                 console.log(response)
+    //                 return response
+    //         }
+    //    }catch(e){
+    //     console.log(e)
+    //     if(e.status === 400){
+    //             set({isLoading:false,status:e.status,error:e.response.data.error})
+    //    }
+    //    return e.response;
+    //    }
+    // }, 
     signUp:async(data)=>{
         const {role} = get()
         set({isLoading:true})
