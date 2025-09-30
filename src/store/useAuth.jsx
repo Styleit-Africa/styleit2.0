@@ -10,6 +10,7 @@ export const useAuth = create((set,get)=>({
     error:null,
     role:null,
     isLoading:false,
+    setIsLoading:(isLoading)=>set({isLoading}),
     setRole:(role)=>{
         set({role})
     },
@@ -60,7 +61,7 @@ export const useAuth = create((set,get)=>({
                       if(response.status == 200){
                             console.log(response.data.token)
                             const getToken = response.data.token
-                            const getUser = {name:'Uthman Fatai',email:'fatai@gmail.com', role:'admin'}
+                            const getUser = {...response.data.admin,role:'admin'}
                             Cookies.set('token',getToken)
                             Cookies.set('user',JSON.stringify(getUser))
                             set({

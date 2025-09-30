@@ -25,21 +25,16 @@ import { Lock, Mail, AlertCircle, Loader2, Shield, X } from 'lucide-react';
 import { useAuth } from '@/store/useAuth';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { adminLoginSchema } from '@/validations/authValidation';
 
 // Form validation schema
-const loginSchema = z.object({
-  email: z.string().email({ message: 'Please enter a valid email address' }),
-  pwd: z.string().min(6, { message: 'Password must be at least 6 characters' }),
-});
 
 export default function AdminLoginForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const {setRole,role,token,login} = useAuth();
+  const {setRole,isLoading,setIsLoading,token,login} = useAuth();
 
   const form = useForm({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(adminLoginSchema),
     defaultValues: {
       email: 'fatai@gmail.com',
       pwd: '12345678',
@@ -47,6 +42,7 @@ export default function AdminLoginForm() {
   });
 
   const onSubmit = async (data) => {
+    setIsLoading(true)
        const response = await login(data);
          if(response?.status === 200){
              toast("Logged in successfully", {
@@ -55,6 +51,8 @@ export default function AdminLoginForm() {
               },
             })
          }
+    setIsLoading(false)
+
   };
 
 
@@ -76,19 +74,19 @@ export default function AdminLoginForm() {
           </div>
           <CardTitle className="text-2xl font-bold  text-center">Admin Login</CardTitle>
           <CardDescription className="text-center">
-            Enter your credentials to access the admin panel
+            Enter your credentials to access the admin dashboard
           </CardDescription>
         </CardHeader>
 
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              {error && (
+              {/* {error && (
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>{error}</AlertDescription>
                 </Alert>
-              )}
+              )} */}
 
               <FormField
                 control={form.control}
