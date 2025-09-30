@@ -11,7 +11,8 @@ import { Link, useLocation } from 'react-router-dom'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Cookies from 'js-cookie' 
-import { editFormSchema } from '@/validations/editFormValidation'
+import { designerEditFormSchema } from '@/validations/designerEditFormValidation'
+import { clientEditFormSchema } from '@/validations/clientEditFormValidation'
 import UserProfileLoader from './loaders/ProfileLoaders'
 import { toast } from 'sonner'
 import { X } from 'lucide-react'
@@ -19,12 +20,11 @@ import { useAuth } from '@/store/useAuth'
 
 const EditProfileForm = ({ isEditable, title }) => {
   const { pathname } = useLocation();
-  const {role} = useAuth();
-  console.log(role)
+  const {user} = useAuth();
 
-  const { data, isLoading, isError, error, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['editProfile'],
-    queryFn: async () => await axios.get(`https://styleitafrica.pythonanywhere.com/api/${role==='designer'?'designer':'customer'}/profile`, {
+    queryFn: async () => await axios.get(`https://styleitafrica.pythonanywhere.com/api/${user.role==='designer'?'designer':'customer'}/profile`, {
       headers: {
         Authorization: `Bearer ${Cookies.get('token')}`,
         'Content-Type': 'application/json',
@@ -35,8 +35,10 @@ const EditProfileForm = ({ isEditable, title }) => {
 
   console.log(data)
 
+  const validation =  user.role === 'designer'?designerEditFormSchema:clientEditFormSchema
+
   const form = useForm({
-    resolver: zodResolver(editFormSchema),
+    resolver: zodResolver(validation),
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -53,7 +55,7 @@ const EditProfileForm = ({ isEditable, title }) => {
   useEffect(() => {
     let formValues;
     if (data?.data) {
-        if(role === 'designer'){
+        if(user.role === 'designer'){
           formValues = {
            firstName: data.data.creator?.firstName || '',
            lastName: data.data.creator?.lastName || '',
@@ -87,7 +89,7 @@ const EditProfileForm = ({ isEditable, title }) => {
   }, [data, form])
 
   const updateProfile = async(data)=>{
-    return  await axios.put(`https://styleitafrica.pythonanywhere.com/api/${role==='designer'?'designer':'customer'}/profile`,data,{
+    return  await axios.put(`https://styleitafrica.pythonanywhere.com/api/${user.role==='designer'?'designer':'customer'}/profile`,data,{
      headers: {
         Authorization: `Bearer ${Cookies.get('token')}`,
         'Content-Type': 'application/json',
@@ -110,6 +112,7 @@ const EditProfileForm = ({ isEditable, title }) => {
             label: <X size={16} />,
           },
         })
+    console.log(data)
   }
   
   return (
@@ -252,7 +255,8 @@ const EditProfileForm = ({ isEditable, title }) => {
                 />
               </div>
 
-              <div className='relative mt-8 md:mt-10'>
+              {
+                user.role === 'designer'&& <div className='relative mt-8 md:mt-10'>
                 <FormField
                   control={form.control}
                   name="bank"
@@ -273,7 +277,8 @@ const EditProfileForm = ({ isEditable, title }) => {
                     </FormItem>
                   )}
                 />
-              </div>
+              </div> 
+              }
             </div>
 
             <div className='flex-[0.48] -mt-3.5 md:mt-0 mb-8 md:mb-0'>
@@ -348,7 +353,8 @@ const EditProfileForm = ({ isEditable, title }) => {
                 </div>
               </div>
 
-              <div className='relative mt-8 md:mt-10'>
+              {
+                 user.role === 'designer'&& <div className='relative mt-8 md:mt-10'>
                 <FormField
                   control={form.control}
                   name="bank_acc"
@@ -370,6 +376,8 @@ const EditProfileForm = ({ isEditable, title }) => {
                   )}
                 />
               </div>
+              }
+
             </div>
           </div>
 
