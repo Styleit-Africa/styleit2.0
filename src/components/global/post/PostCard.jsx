@@ -46,7 +46,7 @@ const PostCard=({data,post,follow,userProfile}) => {
     }
      const handleUnFollow = async()=>{
          try{
-           const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/unfollow/${data.userId}/`,{
+           const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/unfollow/${data?.userId}/`,{
           headers: {
                  Authorization: `Bearer ${Cookies.get('token')}`,
                  'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ const PostCard=({data,post,follow,userProfile}) => {
   return (
     <div className='max-w-[480px] mx-auto mt-10'>
       {
-        showReport&&<Report user={{creator:data.creator}} setShowReport={setShowReport}/>
+        showReport&&<Report user={{creator:data?.creator}} setShowReport={setShowReport}/>
       }
     <div className='relative border border-gray-200 rounded-2xl  text-sm  p-3.5'>
         {

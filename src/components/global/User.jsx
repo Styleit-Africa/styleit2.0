@@ -12,12 +12,12 @@ const User = ({userProps}) => {
        {indicator.isIndicator && <Indicator className={indicator.styles}/>}
     </div>
     {
-        name.fullName ? 
-        <p className={name.styles}>{name.userProfile?.fname} {name.userProfile?.lname}</p>
-        :<p className={name.styles}>{name.userProfile?.lname} </p>
         // name.fullName ? 
-        // <p className={name.styles}>{name.userProfile.firstName} {name.userProfile.lastName}</p>
-        // :<p className={name.styles}>{name.userProfile.lastName} </p>
+        // <p className={name.styles}>{name.userProfile?.fname} {name.userProfile?.lname}</p>
+        // :<p className={name.styles}>{name.userProfile?.lname} </p>
+        name.fullName ? 
+        <p className={name.styles}>{name.userProfile?.firstName} {name.userProfile?.lastName}</p>
+        :<p className={name.styles}>{name.userProfile?.lastName} </p>
        
     }
 
