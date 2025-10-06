@@ -13,7 +13,6 @@ This platform serves as a bridge between fashion designers and potential clients
 
 ### For Designers
 - **Portfolio Management**: Upload and organize fashion designs with high-quality images
-- **Collection Showcase**: Create themed collections and lookbooks
 - **Client Communication**: Receive and respond to booking requests
 - **Profile Customization**: Showcase expertise and style specialties
 ### For Clients
