@@ -25,8 +25,6 @@ const Appointments = () => {
         staleTime:5
   })
 
-  console.log(data)
-  console.log(error)
   return (
     <section className='container  px-4 xl:px-0'>
        <h1 className='text-center text-xl font-[700] capitalize my-9'>appointment details</h1>

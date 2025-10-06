@@ -14,12 +14,9 @@ import gallery from '@/images/gallery-add.png'
 const MyPostForm = () => {
       const [postData,setPostData] = useState({title:'',body:''})
     const [images,setImages] = useState([])
-    const [sliceImages,setSlicedImages] = useState([])
     const [serverImages,setServerImages] = useState([])
     const [showSlicedImages,setShowSlicedImages] = useState(false)
-    const post = useRef(null)
     const scrollableRef = useRef(null) // New ref for the scrollable container
-    const parentRef = useRef(null)
     const {setPostModal} = useGlobalStore(state=>state)
     const handleUpload = (e) => {
         const files = e.target.files

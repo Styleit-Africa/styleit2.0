@@ -9,7 +9,8 @@ import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query'
 // import { useGlobalStore } from '@/store/global/useGlobal'
 
 const PostActivities = (activitiesData) => {
-  const {post,share,comments,isCommentOpened,setIsCommentOpened,likePost} = activitiesData
+  const {post,share,comments,isCommentOpened,
+    setIsCommentOpened,likePost,setPostId} = activitiesData
 
         const queryClient = useQueryClient();
         const {mutate} = useMutation({
@@ -27,13 +28,18 @@ const PostActivities = (activitiesData) => {
       share.setIsShared(true)
     }
 
+
+    const handleComment = ()=>{
+      setIsCommentOpened(!isCommentOpened)
+      setPostId(post.id)
+    }
   return (
     <div className='flex justify-between text-primary my-3'>
         <div className='flex gap-[0.1rem] items-center hover:cursor-pointer' onClick={()=>handleLike(post.id)}>
             <p className='text-xs'>{post.likes_Count}</p>
             <Image src={like} className='w-4 h-4'/>
         </div>
-        <div  data-testid="toggle-comment-button" className='flex gap-[0.1rem] items-center hover:cursor-pointer' onClick={()=>(setIsCommentOpened(!isCommentOpened))}>
+        <div  data-testid="toggle-comment-button" className='flex gap-[0.1rem] items-center hover:cursor-pointer' onClick={handleComment}>
             <p className='text-xs'>{comments?.length}</p>
             <Image src={message} className='w-4 h-4'/>
         </div>

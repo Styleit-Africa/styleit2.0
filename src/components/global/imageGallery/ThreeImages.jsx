@@ -3,7 +3,7 @@ import React from 'react'
 
 const ThreeImages = ({images,openModal}) => {
   return (
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-auto mx-auto">
           <div className="grid grid-cols-2 gap-4 mb-4">
             <img
               src={images[0]}
