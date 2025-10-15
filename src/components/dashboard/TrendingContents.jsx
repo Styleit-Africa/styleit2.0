@@ -60,6 +60,7 @@ const TrendingContents = ({pageParam=1}) => {
             follow={true} 
             userProfile={userProfile}/>
       }
+      
       <div ref={ref}>{isFetchingNextPage&&<TrendingPostLoader/>}</div>
     </div>
   )

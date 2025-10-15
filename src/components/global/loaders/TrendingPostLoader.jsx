@@ -21,10 +21,8 @@ const TrendingPostLoader = () => {
           <Skeleton className="h-[9px] w-[100px] bg-gradient-to-tr from-primary to-sidebar " />
                
 
-                <div data-testid="options-icon" className='relative  w-[25px] self-start h-[29px] cursor-pointer' onClick={()=>setIsReportOpened(!isReportOpened)}>
-                <Skeleton className='h-1 w-1 absolute bottom-2 right-0  bg-black'/>
-                <Skeleton className='h-1 w-1 absolute bottom-4 right-0  bg-black'/>
-                <Skeleton className='h-1 w-1 absolute bottom-6 right-0  bg-black'/>
+                <div data-testid="options-icon" className='relative  w-[25px] self-start h-[29px] cursor-pointer'>
+                <Skeleton className='h-8 w-3 absolute bottom-2 right-0  bg-gradient-to-tr from-primary to-sidebar '/>
                 </div>
             </div>
             }
