@@ -17,7 +17,6 @@ const TrendingContents = () => {
     const {data,isLoading,error} = useQuery({
         queryKey:['trending'],
         queryFn:getTrending,
-          staleTime:1
         })
         console.log(data,'trend')
   return (

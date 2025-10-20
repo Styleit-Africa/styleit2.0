@@ -5,7 +5,7 @@ import React from 'react'
 
 const AdminClientProfilePage = () => {
   return (
-    <section  data-testid="admin-creator-profile">
+    <section  data-testid="admin-client-profile">
         <LastSeen/>
         <UserInformation/>
     </section>

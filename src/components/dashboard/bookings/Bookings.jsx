@@ -21,7 +21,7 @@ const Bookings = () => {
   const {data,isLoading,error} = useQuery({
         queryKey:['bookings'],
         queryFn:getBookings,
-        staleTime:5
+        staleTime:1000*2*60
   })
 
  console.log(data)

@@ -118,7 +118,7 @@ const BookAppointment = () => {
   const {data:designerData,isLoading,error:err} = useQuery({
         queryKey:['designers'],
         queryFn:getDesigners,
-        staleTime:5
+        staleTime:1000*10*60
   })
 
   const filterDesigners = ()=>{

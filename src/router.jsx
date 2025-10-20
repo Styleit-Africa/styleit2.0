@@ -103,7 +103,7 @@ const router = createBrowserRouter(
               <Route path=":id/b" element={<AdminSingleClientBookingPage/>} />
               <Route path=":id/p" element={<CreatorSinglePaymentPage/>} />
               <Route path=":id/s" element={<CreatorSingleSubscriptionPage/>} />
-              <Route path=":id/profile/ct" element={<AdminCreatorProfilePage/>} />
+              <Route path=":id/profile/ct" element={<AdminClientProfilePage/>} />
               <Route path=":id/profile/cn" element={<AdminCreatorProfilePage/>} />
             </Route>
             <Route path='creators' element={<AdminCreatorLayout/>} >

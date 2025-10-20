@@ -22,7 +22,7 @@ const Appointments = () => {
   const {data,isLoading,error} = useQuery({
         queryKey:['appointment'],
         queryFn:getAppointments,
-        staleTime:5
+        staleTime:1000*5*60
   })
 
   console.log(data)
