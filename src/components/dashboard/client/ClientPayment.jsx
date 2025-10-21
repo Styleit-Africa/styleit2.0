@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,10 +8,10 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Label } from '@/components/ui/label';
 import { CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { clientPaymentSchema } from '@/validations/ClientPaymentSchema';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@/store/useAuth';
 import Image from '@/components/global/Image';
-import mlogo from '../../../images/m_logo.png'
+import mlogo from '../../../images/m_logo.png';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
@@ -24,7 +23,6 @@ export default function ClientPayment() {
     register,
     handleSubmit,
     formState,
-    reset,
     setValue,
     watch
   } = useForm({
@@ -33,43 +31,42 @@ export default function ClientPayment() {
       custid: '',
       desiid: '',
       amount: '',
-      charges: ''
     }
   });
-  
+  const navigate = useNavigate()
   const { name, bookingId, designerId } = useParams();
   const { user } = useAuth();
 
-  // Watch the amount field for changes
   const amount = watch('amount');
 
-  // Calculate charges whenever amount changes
-  useEffect(() => {
-    if (amount && !isNaN(Number(amount))) {
-      const calculatedCharges = (Number(amount) * 0.12).toFixed(2);
-      setValue('charges', calculatedCharges);
-    } else {
-      setValue('charges', '');
-    }
-  }, [amount, setValue]);
+  // Automatically calculate VAT and total
+ useEffect(() => {
+  if (amount && !isNaN(Number(amount))) {
+    const vat = (Number(amount) * 0.12).toFixed(2);
+    const total = (Number(amount) + Number(vat)).toFixed(2);
+    setValue('charges', vat);
+    setValue('total', total);
+  } else {
+    setValue('charges', '');
+    setValue('total', '');
+  }
+}, [amount, setValue]);
+
 
   const onSubmit = async (values) => {
-    console.log('Form values:', values);
-
     const data = {
-      custid: user.id,
-      desiid: Number(designerId),
+      custid: user.id.toString(),
+      desiid: designerId,
       amount: values.amount,
-      charges: values.charges || ''
+      charges: (values.amount*0.12).toFixed(0).toString(),
     };
-    
-    console.log('Processed data:', data);
-
+    console.log(data,'here')
+    const total = (Number(amount) + (0.12*amount)).toFixed(0);
+      
     setIsSubmitting(true);
     
     try {
-      const response = await axios.post(
-        `https://styleitafrica.pythonanywhere.com/api/custpayment/${Number(bookingId)}`,
+   const response =  await axios.post(`https://styleitafrica.pythonanywhere.com/api/custpayment/${Number(bookingId)}/`,
         data,
         {
           headers: {
@@ -80,15 +77,24 @@ export default function ClientPayment() {
         }
       );
       console.log(response)
+      if(response.status === 201){
+        const userDetails = {
+          name,
+          total,
+          charges:data.charges,
+          amount: data.amount,
+          reference_no:response?.data.reference_no
+  
+        }
+          localStorage.setItem('userDetails',JSON.stringify(userDetails))
+          navigate(`/client/payment/${name}/${bookingId}/${designerId}/confirm_payment`)
+      }
       
       setSubmitStatus({
         type: 'success',
-        message: 'Payment submitted successfully!'
+        message: 'Payment initialized successfully!'
       });
-      
-      
     } catch (error) {
-      console.log('Error:', error);
       setSubmitStatus({
         type: 'error',
         message: error.response?.data?.message || 'Failed to submit payment'
@@ -99,12 +105,8 @@ export default function ClientPayment() {
   };
 
   useEffect(() => {
-    if (name) {
-      setValue('desiid', name);
-    }
-    if (user?.id) {
-      setValue('custid', user.id.toString());
-    }
+    if (name) setValue('desiid', name);
+    if (user?.id) setValue('custid', user.id.toString());
   }, [name, user, setValue]);
 
   return (
@@ -119,22 +121,7 @@ export default function ClientPayment() {
         </CardHeader>
         <CardContent>
           <form className="mb-4">
-            <div className="space-y-2 hidden">
-              <Label htmlFor="custid">Customer ID</Label>
-              <Input
-                id="custid"
-                placeholder="Enter customer ID"
-                {...register('custid')}
-                className={`py-6 ${formState.errors.custid ? 'border-red-500' : ''}`}
-              />
-              {formState.errors.custid && (
-                <p className="text-sm text-red-500 flex items-center gap-1">
-                  <AlertCircle className="h-3 w-3" />
-                  {formState.errors.custid.message}
-                </p>
-              )}
-            </div>
-
+            
             <div className="space-y-2">
               <Label htmlFor="desiid">Destination</Label>
               <Input
@@ -169,7 +156,7 @@ export default function ClientPayment() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="charges">Charges (12% of Amount)</Label>
+              <Label htmlFor="charges">Charges (12% VAT)</Label>
               <Input
                 id="charges"
                 type="text"
@@ -186,14 +173,26 @@ export default function ClientPayment() {
               )}
             </div>
 
+            <div className="space-y-2">
+              <Label htmlFor="total">Total Amount</Label>
+              <Input
+                id="total"
+                type="text"
+                placeholder="0.00"
+                {...register('total')}
+                disabled
+                className="py-6 bg-gray-100"
+              />
+            </div>
+
             {submitStatus && (
-              <Alert className={submitStatus.type === 'success' ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50'}>
+              <Alert className={submitStatus.type === 'success' ? 'mt-4 border-green-500 bg-green-50' : 'mt-4 border-red-500 bg-red-50'}>
                 {submitStatus.type === 'success' ? (
                   <CheckCircle2 className="h-4 w-4 text-green-600" />
                 ) : (
                   <AlertCircle className="h-4 w-4 text-red-600" />
                 )}
-                <AlertDescription className={submitStatus.type === 'success' ? 'text-green-800' : 'text-red-800'}>
+                <AlertDescription className={submitStatus.type === 'success' ? 'mt-4 text-green-800' : 'mt-4 text-red-800'}>
                   {submitStatus.message}
                 </AlertDescription>
               </Alert>

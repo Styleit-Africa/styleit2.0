@@ -31,7 +31,7 @@ const SharePostContainer = ({setIsShared,post}) => {
             })
   }
   return (
-     <div  className={`py-6  px-4 flex justify-center items-center bg-[rgba(0,0,0,0.1)]  z-[999]  fixed top-0  overflow-hidden  transition-all duration-300 bottom-0  right-0 w-full `}>
+     <div  className={`py-6  px-4 flex justify-center items-center bg-[rgba(0,0,0,0.1)]   z-[999]  fixed top-0  overflow-hidden  transition-all duration-300 bottom-0  right-0 w-full `}>
         <div className='bg-white w-full md:w-[700px] relative  shadow-lg rounded-lg pt-5 pb-10 px-5'>
        <div className='flex justify-between items-center px-5 my-3'>
         <div>

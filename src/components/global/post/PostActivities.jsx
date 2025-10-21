@@ -30,7 +30,7 @@ const PostActivities = (activitiesData) => {
 
 
     const handleComment = ()=>{
-      setIsCommentOpened(!isCommentOpened)
+      // setIsCommentOpened(!isCommentOpened)
       setPostId(post.id)
     }
   return (

@@ -1,6 +1,6 @@
 import TrendingContents from '@/components/dashboard/TrendingContents';
 import Image from '@/components/global/Image';
-import { MoreHorizontal, X } from 'lucide-react';
+import { CommandIcon, MoreHorizontal, X } from 'lucide-react';
 import React, { useState } from 'react'
 import postImage from '@/images/post_i.png'
 import profile from '@/images/profile_i.png'
@@ -23,11 +23,11 @@ import { Input } from '@/components/ui/input';
 import { usePost } from '@/store/usePost';
 import SharePostContainer from './SharePostContainer';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useComment } from '@/store/useComment';
 
 const ViewPostDetails = ({post,setPostId}) => {
-      const {id} = useParams();
-        const [showTrending,setShowTrending] = useState(true);
         const {isShared,setIsShared,likePost} = usePost();
+        const {setComment,storeComment} = useComment()
         const [isOver,setIsOver] = useState(false)
         const handleOverFlow = (value)=>{
           setIsOver(value)
@@ -55,6 +55,18 @@ const ViewPostDetails = ({post,setPostId}) => {
       const handleLike = async(id)=>{
         mutate(id)
     }
+
+
+     const {mutate:commentMutation} = useMutation({
+            mutationFn: storeComment,
+            onSuccess:()=>{
+                queryClient.invalidateQueries('trending')
+            }
+        })
+        const handleComment = async(id)=>{
+                commentMutation(id)
+        }
+        
 
   return (
      <div  className={` font-lato py-6  flex justify-center items-center px-8 lg:px-0 bg-[rgba(0,0,0,0.1)]  z-40  fixed top-0  overflow-hidden  transition-all duration-300 bottom-0  right-0 w-full `}>
@@ -100,17 +112,14 @@ const ViewPostDetails = ({post,setPostId}) => {
            </div>
           
           <div className='mt-5'>
-                {/* <h3 className='text-md font-bold'>i love it</h3> */}
                 <h3 className='text-md font-bold'>{post.title}</h3>
                 <p className='mb-3'>{post.content}</p>
-                {/* <p className='mb-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, dolor. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus dolorem magni optio fugit iure soluta?</p> */}
-                {/* <Image src={postImage} className='w-full rounded-md'/> */}
+               
                 {
           post?.img&&post?.img?.length !== 0&&<ImageGallery _images={post.img}/>
         }
           </div>
 
-          {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, numquam dolor, alias quibusdam distinctio, exercitationem nemo quaerat adipisci nam fugit placeat dolore unde doloribus facere sequi pariatur. Autem beatae voluptates commodi neque cum officia itaque eligendi, numquam delectus voluptatem, animi provident eius omnis aspernatur enim accusantium quae? Impedit totam fugiat ad molestias officia laborum atque iusto ducimus quas possimus adipisci vel esse quod aspernatur repudiandae, eius hic est dolores dolor! Illo cum quibusdam ipsum similique ex mollitia reiciendis asperiores. Rerum beatae maxime adipisci temporibus itaque architecto eius reprehenderit, est nihil ut sed maiores consequatur commodi, totam, consequuntur hic asperiores aliquid! */}
    <div className='flex justify-between text-primary my-3'>
         <div className='flex gap-[0.1rem] items-center hover:cursor-pointer'  onClick={()=>handleLike(post.id)} >
             <p className='text-xs'>{post.likes_Count}</p>
@@ -126,17 +135,21 @@ const ViewPostDetails = ({post,setPostId}) => {
         </div>
 
     </div>
-    <h1 className='text-lg capitalize font-[500] mt-3'>comments</h1>
-        <CommentContainer userProfile={post.creator} post={post} />
+    <h1 className='text-lg capitalize font-[500] mt-3'>comments ({post.Comment_Count})</h1>
+        {
+          post?.comments.length === 0 ? <div className='text-center mt-3'>
+                  <h1 className='font-[500] text-2xl'>Be the first to comment on this post</h1>
+                  <CommandIcon className='w-52 h-52 mx-auto text-pink-200'/>
+          </div>:
+          <CommentContainer userProfile={post.creator} post={post} />
+        }
 
            </div>
           {/* footer */}
              <div className={`relative ${isOver&&'pr-4'} mt-3`}>
         <Input type="text" onChange={(e)=>setComment(e.target.value)}  className="h-16 rounded-3xl border border-gray-200  focus-visible:ring-0"/>
-        <Image src={send} className={` absolute top-3.5 md:top-4 right-3 ${isOver&&'right-7'} w-5 h-5 md:w-7 md:h-7 `}/>
-          {/* // onClick={()=>handleComment(pathname==='/trending'?post.id:post.postId)}/>  */}
+        <Image src={send} onClick={()=>handleComment(post.id)} className={` absolute top-3.5 md:top-4 right-3 ${isOver&&'right-7'} w-5 h-5 md:w-7 md:h-7 `}/>
         </div>
-       
           </div>
         </div>
         {

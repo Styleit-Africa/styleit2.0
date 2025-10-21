@@ -21,7 +21,6 @@ import { useComment } from '@/store/useComment'
 import { useCreatorStore } from '@/store/useCreator'
 import PostDescription from './PostDescription'
 import ImageGallery from '../imageGallery/ImageGallery'
-import ViewTrendingPost from '@/pages/ViewTrendingPost'
 import ViewPostDetails from './ViewPostDetails'
 
 
@@ -35,9 +34,6 @@ const PostCard=({data,post,follow,userProfile}) => {
     const {storeFollow} = useCreatorStore();
 
     const queryClient = useQueryClient()
-      // console.log(post,'posts')
-      // console.log(post.img,'posts')
-//  console.log(userProfile)
       const {mutate:followMutation} = useMutation({
         mutationFn:storeFollow,
         onSuccess:()=>{
@@ -59,6 +55,7 @@ const PostCard=({data,post,follow,userProfile}) => {
         withCredentials:true
       })
          }catch(e){
+          console.error(e)
          }
     }
 
@@ -68,11 +65,13 @@ const PostCard=({data,post,follow,userProfile}) => {
         mutationFn:storeComment,
         onSuccess:()=>{
             queryClient.invalidateQueries('trending')
-            // queryClient.invalidateQueries('myPosts')
         }
     })
     const handleComment = async(id)=>{
             mutate(id)
+            console.log(isCommentOpened)
+          setIsCommentOpened(!isCommentOpened)
+
     }
     
     const {mutate:deleteMutation} = useMutation({
@@ -142,10 +141,11 @@ const PostCard=({data,post,follow,userProfile}) => {
          isCommentOpened={isCommentOpened} 
          setIsCommentOpened={setIsCommentOpened}
          share={{isShared,setIsShared}}  />
-        <div className='relative'>
-        <Input type="text" onChange={(e)=>setComment(e.target.value)}  className="h-12 rounded-2xl border border-gray-200  focus-visible:ring-0"/>
-        <Image src={send} className='absolute top-3.5 md:top-2.5 right-2.5 w-5 h-5 md:w-7 md:h-7 '
-          onClick={()=>handleComment(pathname==='/trending'?post.id:post.postId)}/> 
+        <div className='relative' onClick={()=>setIsCommentOpened(!isCommentOpened)}>
+            <Input type="text" onChange={(e)=>setComment(e.target.value)}  
+            className="h-12 rounded-2xl border border-gray-200  focus-visible:ring-0"/>
+            <Image src={send} className='absolute top-3.5 md:top-2.5 right-2.5 w-5 h-5 md:w-7 md:h-7 '
+              onClick={()=>handleComment(pathname==='/trending'?post.id:post.postId)}/> 
         </div>
     </div>
     {/* {

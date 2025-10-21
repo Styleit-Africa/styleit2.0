@@ -3,7 +3,7 @@ import React from "react"
 
 const TrendingPage = ()=>{
     return(
-        <section data-testid="trending-page" className="py-20 px-4  font-lato">
+        <section data-testid="trending-page" className="pt-20 pb-32 px-4  font-lato">
             <TrendingContents/>
         </section>
     )

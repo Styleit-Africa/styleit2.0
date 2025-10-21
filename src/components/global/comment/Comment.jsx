@@ -7,12 +7,10 @@ import send from '../../../images/send.png'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const Comment = ({comment,userProfile,post}) => {
-    const [commentId,setCommentId] = useState(null)
+const Comment = ({comment,commentId,setCommentId,userProfile,post}) => {
     const [reply,setReply] = useState('')
-    
+
     const handleReply = async(postId,comment_id)=>{
-        console.log(reply)
         const data = {comrep:reply}
         console.log(data,Cookies.get('token'))
         const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/reply/${postId}/${comment_id}/`,data,{
@@ -25,6 +23,7 @@ const Comment = ({comment,userProfile,post}) => {
         console.log(response)
     }
 
+   
   return (
     <div>
           <div className='mt-3 bg-lPinkl w-[fit-content] flex gap-2 '>
@@ -42,27 +41,26 @@ const Comment = ({comment,userProfile,post}) => {
                            <div>
                              <div className='py-2 px-3 rounded-2xl bg-lPink'> 
                                 <h1 className='capitalize font-[500]'>{userProfile.firstName} {userProfile.lastName}</h1>
-                                <p className='text-md'>{comment.body} Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet veniam quasi ad alias pariatur? Deleniti dolores, iusto, quae nisi explicabo et debitis nam distinctio unde quia voluptate alias, numquam provident dicta enim totam minus suscipit sit beatae esse quas sunt? Vitae, temporibus? Aspernatur sed iure mollitia excepturi temporibus. Reiciendis, voluptates! </p>
-                                {/* <p className='text-md'>{comment.body}</p> */}
+                                <p className='text-md'>{comment.body}</p>
                             </div>
                                      <div className='flex gap-3'>
                         <span>21m</span>
-                         <button className='text-primary' onClick={()=>setCommentId(comment.id)}>reply</button>
+                         <button className='text-primary' onClick={()=>setCommentId(comment.com_id)}>reply</button>
                        </div>
                            </div>
                            
                         </div>
-                {
-                commentId === comment.id &&  <div className='relative'>
-                <Input onChange={(e)=>setReply(e.target.value)} type="text" className="ml-auto h-16 max-w-[600px] rounded-2xl border border-gray-200  focus-visible:ring-0"/>
-                <Image src={send} className='absolute top-3.5 md:top-4 right-2.5 w-5 h-5 md:w-7 md:h-7 ' onClick={()=>handleReply(post.id,comment.com_id)} /> 
-                </div>
-                }
 
                 {
                   comment.client_reply&&<div className="ml-auto py-2 px-4 max-w-[200px] rounded-2xl bg-lPink w-[fit-content]">
                 <p>{comment.client_reply} </p>
         </div>
+                }
+                {
+                commentId == comment.com_id &&  <div className='my-2 relative'>
+                <Input onChange={(e)=>setReply(e.target.value)} type="text" className="ml-auto h-16 max-w-[600px] rounded-2xl border border-gray-200  focus-visible:ring-0"/>
+                <Image src={send} className='absolute top-3.5 md:top-4 right-2.5 w-5 h-5 md:w-7 md:h-7 ' onClick={()=>handleReply(post.id,comment.com_id)} /> 
+                </div>
                 }
         
 

@@ -14,15 +14,8 @@ export const clientPaymentSchema = z.object({
     })
     .refine((val) => Number(val) > 0, {
       message: 'Amount must be greater than 0'
-    }),
-  charges: z.string()
-    .min(1, 'Charges is required')
-    .refine((val) => !isNaN(Number(val)), {
-      message: 'Charges must be a valid number'
     })
-    .refine((val) => Number(val) >= 0, {
-      message: 'Charges must be 0 or greater'
-    })
+ 
 });
 
 
