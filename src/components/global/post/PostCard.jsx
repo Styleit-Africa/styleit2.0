@@ -21,6 +21,8 @@ import { useComment } from '@/store/useComment'
 import { useCreatorStore } from '@/store/useCreator'
 import PostDescription from './PostDescription'
 import ImageGallery from '../imageGallery/ImageGallery'
+import ViewTrendingPost from '@/pages/ViewTrendingPost'
+import ViewPostDetails from './ViewPostDetails'
 
 
 const PostCard=({data,post,follow,userProfile}) => {
@@ -28,7 +30,8 @@ const PostCard=({data,post,follow,userProfile}) => {
     const [isReportOpened,setIsReportOpened] = useState(false)//needed for individual component
     const {showReport,setShowReport,isShared,setIsShared,deletePost,likePost
       } = usePost();
-    const {setComment,isCommentOpened,setIsCommentOpened,storeComment} = useComment()
+    const {setComment,isCommentOpened,setIsCommentOpened,storeComment} = useComment();
+    const [postId,setPostId] = useState(null);
     const {storeFollow} = useCreatorStore();
 
     const queryClient = useQueryClient()
@@ -46,7 +49,7 @@ const PostCard=({data,post,follow,userProfile}) => {
     }
      const handleUnFollow = async()=>{
          try{
-           const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/unfollow/${data.userId}/`,{
+           const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/unfollow/${data?.userId}/`,{
           headers: {
                  Authorization: `Bearer ${Cookies.get('token')}`,
                  'Content-Type': 'application/json',
@@ -85,7 +88,10 @@ const PostCard=({data,post,follow,userProfile}) => {
   return (
     <div className='max-w-[480px] mx-auto mt-10'>
       {
-        showReport&&<Report user={{creator:data.creator}} setShowReport={setShowReport}/>
+        postId === post.id &&<ViewPostDetails setPostId={setPostId} post={post} />
+      }
+      {
+        showReport&&<Report user={{creator:data?.creator}} setShowReport={setShowReport}/>
       }
     <div className='relative border border-gray-200 rounded-2xl  text-sm  p-3.5'>
         {
@@ -123,9 +129,7 @@ const PostCard=({data,post,follow,userProfile}) => {
         </div>
         <PostTitle title={post.postTitle}/>
         <PostDescription description={post.content}/>
-        {/* <Image src={post.img[0]?.url} className="mt-4" />
-        */}
-        {/* <Image src={postImage} className="mt-4" />  */}
+       {/* post images */}
         {
           post?.img&&post?.img?.length !== 0&&<ImageGallery _images={post.img}/>
         }
@@ -134,6 +138,7 @@ const PostCard=({data,post,follow,userProfile}) => {
          comments={post.comments} 
          likePost={likePost}
          post={post} 
+         setPostId={setPostId}
          isCommentOpened={isCommentOpened} 
          setIsCommentOpened={setIsCommentOpened}
          share={{isShared,setIsShared}}  />
@@ -143,9 +148,9 @@ const PostCard=({data,post,follow,userProfile}) => {
           onClick={()=>handleComment(pathname==='/trending'?post.id:post.postId)}/> 
         </div>
     </div>
-    {
+    {/* {
         isCommentOpened&&<CommentContainer  userProfile={userProfile} postComments={post.comments} />
-    }
+    } */}
     {
       isShared&&<SharePostContainer setIsShared={setIsShared} post={post}/>
     }

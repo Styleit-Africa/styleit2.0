@@ -1,9 +1,12 @@
+import ClientPayment from '@/components/dashboard/client/ClientPayment'
 import React from 'react'
 
-const ClientPayment = () => {
+const ClientPaymentPage = () => {
   return (
-    <section data-testid="client-payment-page">ClientPayment</section>
+    <section data-testid="client-payment-page">
+      <ClientPayment/>
+    </section>
   )
 }
 
-export default ClientPayment
+export default ClientPaymentPage

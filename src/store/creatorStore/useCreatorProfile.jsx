@@ -5,8 +5,6 @@ import { changeDateFormat, sortItems } from '@/lib/utils';
 
 export const useCreatorStore = create((set,get)=>({
    
-    
-
     setCreatorPayments:(creatorPayments)=>{
         const {searchData} = useGlobalStore.getState();
         set(state=>({
