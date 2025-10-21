@@ -55,6 +55,7 @@ import CreatePostPage from "./pages/creator/CreatePostPage";
 import FrequentlyAskedQuestionsPage from "./pages/FrequentlyAskedQuestionsPage";
 import ViewSearchPostPage from "./pages/ViewSearchPostPage";
 import ClientPaymentPage from "./pages/client/ClientPayment";
+import AdminLoginPage from "./pages/admin/admin/AdminLoginPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -97,6 +98,7 @@ const router = createBrowserRouter(
             <Route path='taskPayment' element={<TaskPaymentPage/>} />
           </Route>
           {/* admin */}
+              <Route path='/admin/login' element={<AdminLoginPage/>} />
           <Route path='/admin' element={<AdminLayout/>}>
             <Route path='dashboard' element={<AdminDashboardLayout/>} >
               <Route index element={<DashboardPage/>} />

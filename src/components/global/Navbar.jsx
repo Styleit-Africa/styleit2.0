@@ -20,7 +20,12 @@ const handleLogout = ()=>{
     setIsNavbarOpened()
     logout()
 
-    navigate('/login')
+    if(user.role === 'admin'){
+        navigate('/admin/login')
+    }else{
+        navigate('/login')
+
+    }
 }
  
 
