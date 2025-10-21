@@ -20,10 +20,7 @@ const Header = ()=>{
         ,isNavbarOpened,setIsNavbarOpened} = useGlobalStore()
     return( 
         <header  className="relative z-20 shadow-[2px_0px_10px_#ccc]  py-5 px-5 md:px-0 font-[400] font-[helvetica]">
-          {
-            user?.role !== 'admin' ?
-            (
-        <div>
+      
 
     <div className="flex justify-between md:hidden">
                 <div >
@@ -81,15 +78,7 @@ const Header = ()=>{
                     </div>
            
                 </div>
-          </div>
-            ):
-            (
-                <div>
-                    <button onClick={()=>setIsAdminOpened()}>open</button>
-                </div>
-            )
-            
-          }
+           
         </header>
     )
 }

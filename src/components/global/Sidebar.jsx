@@ -46,7 +46,12 @@ const Sidebar = () => {
     const handleLogout = ()=>{
         logout()
         setIsSidebarOpened()
-        navigate('/login')
+        if(user.role === 'admin'){
+          navigate('/admin/login')
+        }else{
+          navigate('/login')
+
+        }
 
     }
 
