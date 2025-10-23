@@ -14,7 +14,7 @@ const AppointmentCard = ({appointment}) => {
               <Accepted appointment={appointment}/>
             }
             {
-              appointment.status === 'paid'&& <p role='completed' className='text-le text-center capitalize mt-5 text-blue-600 font-[500]'>payment completed</p>
+              appointment.status === 'paid'&& <p role='completed' className='text-center capitalize mt-5 text-blue-600 font-[500]'>payment completed</p>
             }
         </div>
   )

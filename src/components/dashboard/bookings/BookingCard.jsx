@@ -9,7 +9,7 @@ import DeclineBookingModal from './DeclineBookingModal';
 
 const BookingCard = ({appointment,page}) => {
   const [isDeclined,setIsDeclined] = useState(false)
-    console.log(appointment,'here')
+    console.log(appointment.status,'here')
 
      const updateAppointmentStatus = async(data)=>{
 
@@ -38,25 +38,27 @@ const BookingCard = ({appointment,page}) => {
 
       }
       const {mutate,data,isLoading,error} = useMutation({
-        mutationFn:updateAppointmentStatus
-      })
-      console.log(data)
-      const updateAppointment = async(value)=>{
-        mutate(value)
-        if(value.action === 'accept'&&data?.status === 200){
+        mutationFn:updateAppointmentStatus,
+        onSuccess:(_data,value)=>{
+            if(value.action === 'accept'&&_data?.status === 200){
            toast("appointment accepted successfully", {
                 action: {
                 label: <X size={16} />,
               },
             })
         }
-        if(value.action === 'decline'&&data?.status === 200){
+        if(value.action === 'decline'&&_data?.status === 200){
            toast("appointment declined successfully", {
                 action: {
                 label: <X size={16} />,
               },
             })
         }
+        }
+      })
+      const updateAppointment = async(value)=>{
+      mutate(value)
+       
       }
 
    
@@ -74,10 +76,10 @@ const BookingCard = ({appointment,page}) => {
             <p className='text-sm md:text-[1rem] text-gray-500 mt-3.5'><span className='mr-3 text-black  font-[700] capitalize '>collection time:</span>{appointment.collectionTime}</p>
             {
               page === 'bookings'&&<div className='mt-4'>
-              <Button onClick={()=>updateAppointment({action:'accept'})} 
+              <Button onClick={()=>updateAppointment({action:'accept'})} disabled={appointment.status === 'accept'?true:false}
               className="bg-green-700 hover:bg-green-800 px-5  md:px-8 py-6 md:py-5 mr-4 md:mr-2 text-white capitalize rounded-xl"> 
                 {isLoading?<Loader className='animate-spin' />:'accept'}</Button>
-              <Button onClick={()=>setIsDeclined(true)} 
+              <Button onClick={()=>setIsDeclined(true)} disabled={appointment.status === 'decline'? true:false}
               className="bg-red-600 hover:bg-red-800 px-5  md:px-8 py-6 md:py-5 text-white capitalize rounded-xl"> 
                 {isLoading?<Loader className='animate-spin' />:'decline'}</Button>
               </div>
@@ -89,23 +91,6 @@ const BookingCard = ({appointment,page}) => {
             }
       </div>
       
-
-//  <div role='booking-card' className={`${page!=='AppointmentDetails'&&'shadow px-3 md:px-5 py-4'} basis-[max-content] rounded-xl `}>
-//             {
-//             page !== 'AppointmentDetails'&&
-//             <p className='text-sm md:text-[1rem] text-gray-500 '><span className='mr-3 text-black  font-[700] capitalize '>name:</span>{name}</p>
-//             }
-//             <p className='text-sm md:text-[1rem] text-gray-500 mt-3.5'><span className='mr-3 text-black  font-[700] capitalize '>booking date:</span>{_bookingDate}</p>
-//             <p className='text-sm md:text-[1rem] text-gray-500 mt-3.5'><span className='mr-3 text-black  font-[700] capitalize '>booking time:</span>{_bookingTime}</p>
-//             <p className='text-sm md:text-[1rem] text-gray-500 mt-3.5'><span className='mr-3 text-black  font-[700] capitalize '>collection date:</span>{_collectionDate}</p>
-//             <p className='text-sm md:text-[1rem] text-gray-500 mt-3.5'><span className='mr-3 text-black  font-[700] capitalize '>collection time:</span>{_collectionTime}</p>
-//             {
-//               page === 'bookings'&&<div className='mt-4'>
-//               <Button className="bg-green-700 hover:bg-green-800 px-5  md:px-8 py-6 md:py-5 mr-4 md:mr-2 text-white capitalize rounded-xl">accept</Button>
-//               <Button className="bg-red-600 hover:bg-red-800 px-5  md:px-8 py-6 md:py-5 text-white capitalize rounded-xl">decline</Button>
-//               </div>
-//             }
-//         </div>
     )
 }
 
