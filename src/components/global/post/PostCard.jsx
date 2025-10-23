@@ -21,6 +21,7 @@ import { useComment } from '@/store/useComment'
 import { useCreatorStore } from '@/store/useCreator'
 import PostDescription from './PostDescription'
 import ImageGallery from '../imageGallery/ImageGallery'
+import ViewPostDetails from './ViewPostDetails'
 
 
 const PostCard=({data,post,follow,userProfile}) => {
@@ -28,13 +29,11 @@ const PostCard=({data,post,follow,userProfile}) => {
     const [isReportOpened,setIsReportOpened] = useState(false)//needed for individual component
     const {showReport,setShowReport,isShared,setIsShared,deletePost,likePost
       } = usePost();
-    const {setComment,isCommentOpened,setIsCommentOpened,storeComment} = useComment()
+    const {setComment,isCommentOpened,setIsCommentOpened,storeComment} = useComment();
+    const [postId,setPostId] = useState(null);
     const {storeFollow} = useCreatorStore();
 
     const queryClient = useQueryClient()
-      // console.log(post,'posts')
-      // console.log(post.img,'posts')
-//  console.log(userProfile)
       const {mutate:followMutation} = useMutation({
         mutationFn:storeFollow,
         onSuccess:()=>{
@@ -46,7 +45,7 @@ const PostCard=({data,post,follow,userProfile}) => {
     }
      const handleUnFollow = async()=>{
          try{
-           const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/unfollow/${data.userId}/`,{
+           const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/unfollow/${data?.userId}/`,{
           headers: {
                  Authorization: `Bearer ${Cookies.get('token')}`,
                  'Content-Type': 'application/json',
@@ -56,6 +55,7 @@ const PostCard=({data,post,follow,userProfile}) => {
         withCredentials:true
       })
          }catch(e){
+          console.error(e)
          }
     }
 
@@ -65,11 +65,13 @@ const PostCard=({data,post,follow,userProfile}) => {
         mutationFn:storeComment,
         onSuccess:()=>{
             queryClient.invalidateQueries('trending')
-            // queryClient.invalidateQueries('myPosts')
         }
     })
     const handleComment = async(id)=>{
             mutate(id)
+            console.log(isCommentOpened)
+          setIsCommentOpened(!isCommentOpened)
+
     }
     
     const {mutate:deleteMutation} = useMutation({
@@ -85,7 +87,10 @@ const PostCard=({data,post,follow,userProfile}) => {
   return (
     <div className='max-w-[480px] mx-auto mt-10'>
       {
-        showReport&&<Report user={{creator:data.creator}} setShowReport={setShowReport}/>
+        postId === post.id &&<ViewPostDetails setPostId={setPostId} post={post} />
+      }
+      {
+        showReport&&<Report user={{creator:data?.creator}} setShowReport={setShowReport}/>
       }
     <div className='relative border border-gray-200 rounded-2xl  text-sm  p-3.5'>
         {
@@ -123,9 +128,7 @@ const PostCard=({data,post,follow,userProfile}) => {
         </div>
         <PostTitle title={post.postTitle}/>
         <PostDescription description={post.content}/>
-        {/* <Image src={post.img[0]?.url} className="mt-4" />
-        */}
-        {/* <Image src={postImage} className="mt-4" />  */}
+       {/* post images */}
         {
           post?.img&&post?.img?.length !== 0&&<ImageGallery _images={post.img}/>
         }
@@ -134,18 +137,20 @@ const PostCard=({data,post,follow,userProfile}) => {
          comments={post.comments} 
          likePost={likePost}
          post={post} 
+         setPostId={setPostId}
          isCommentOpened={isCommentOpened} 
          setIsCommentOpened={setIsCommentOpened}
          share={{isShared,setIsShared}}  />
-        <div className='relative'>
-        <Input type="text" onChange={(e)=>setComment(e.target.value)}  className="h-12 rounded-2xl border border-gray-200  focus-visible:ring-0"/>
-        <Image src={send} className='absolute top-3.5 md:top-2.5 right-2.5 w-5 h-5 md:w-7 md:h-7 '
-          onClick={()=>handleComment(pathname==='/trending'?post.id:post.postId)}/> 
+        <div className='relative' onClick={()=>setIsCommentOpened(!isCommentOpened)}>
+            <Input type="text" onChange={(e)=>setComment(e.target.value)}  
+            className="h-12 rounded-2xl border border-gray-200  focus-visible:ring-0"/>
+            <Image src={send} className='absolute top-3.5 md:top-2.5 right-2.5 w-5 h-5 md:w-7 md:h-7 '
+              onClick={()=>handleComment(pathname==='/trending'?post.id:post.postId)}/> 
         </div>
     </div>
-    {
+    {/* {
         isCommentOpened&&<CommentContainer  userProfile={userProfile} postComments={post.comments} />
-    }
+    } */}
     {
       isShared&&<SharePostContainer setIsShared={setIsShared} post={post}/>
     }

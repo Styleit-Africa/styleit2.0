@@ -4,6 +4,7 @@ import AppointmentMessage from './AppointmentMessage'
 import Accepted from './Accepted'
 
 const AppointmentCard = ({appointment}) => {
+  console.log(appointment)
   return (
         <div role="appointment-card" className='w-full md:w-suto md:basis-[36%] lg:basis-[26%] xl:basis-[24%] border px-3 md:px-4 rounded-xl pt-4 pb-5'>
             <AppointmentMessage appointment={appointment} />

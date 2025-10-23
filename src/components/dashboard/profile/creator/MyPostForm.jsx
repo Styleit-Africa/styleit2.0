@@ -14,12 +14,9 @@ import gallery from '@/images/gallery-add.png'
 const MyPostForm = () => {
       const [postData,setPostData] = useState({title:'',body:''})
     const [images,setImages] = useState([])
-    const [sliceImages,setSlicedImages] = useState([])
     const [serverImages,setServerImages] = useState([])
     const [showSlicedImages,setShowSlicedImages] = useState(false)
-    const post = useRef(null)
-    const scrollableRef = useRef(null) // New ref for the scrollable container
-    const parentRef = useRef(null)
+    const scrollableRef = useRef(null) //  ref for the scrollable container
     const {setPostModal} = useGlobalStore(state=>state)
     const handleUpload = (e) => {
         const files = e.target.files
@@ -76,6 +73,44 @@ const MyPostForm = () => {
             queryClient.invalidateQueries('myPosts')
         }
     })
+
+//     const storePost = (data) => {
+//   return axios.post('https://styleitafrica.pythonanywhere.com/api/posting', data, {
+//     headers: {
+//       Authorization: `Bearer ${Cookies.get('token')}`,
+//       'Content-Type': 'multipart/form-data'
+//     }
+//   });
+// };
+
+// const queryClient = useQueryClient();
+
+// const { mutate, data } = useMutation({
+//   mutationFn: storePost,
+//   onMutate: async (newPost) => {
+//     // Cancel outgoing refetches
+//     await queryClient.cancelQueries({ queryKey: ['myPosts'] });
+    
+//     // Snapshot previous value
+//     const previousPosts = queryClient.getQueryData(['myPosts']);
+    
+//     // Optimistically update
+//     queryClient.setQueryData(['myPosts'], (old) => 
+//       old ? [newPost, ...old] : [newPost]
+//     );
+    
+//     // Return context for rollback
+//     return { previousPosts };
+//   },
+//   onError: (err, newPost, context) => {
+//     // Rollback on error
+//     queryClient.setQueryData(['myPosts'], context.previousPosts);
+//   },
+//   onSettled: () => {
+//     // Refetch after mutation
+//     queryClient.invalidateQueries({ queryKey: ['myPosts'] });
+//   }
+// });
 
    const handlePost = async(e)=>{
     e.preventDefault()

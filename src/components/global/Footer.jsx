@@ -15,9 +15,9 @@ const Footer =()=>{
     const year = new Date().getFullYear();
     const path = pathname.split('/');
     const showSubscribe = nonSubscriptionPages.includes(path[path.length-1]);
-    
+    console.log(path[1])
     return(
-        <footer className="px-5  bg-secondary text-white font-lato font-[400] pt-8 md:pt-12 pb-5">
+        <footer className={`px-5  bg-secondary text-white font-lato font-[400] pt-8 md:pt-12 pb-5 ${path[1] === 'trending'&&'hidden'}`}>
             <div className="container">
                 {
                    showSubscribe||<Subscribe/>

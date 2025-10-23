@@ -14,33 +14,6 @@ const ImageGallery = ({_images}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = _images.map(img=>img?.url)
-  // console.log(images[0]?.url,'ims')
-  // console.log(_images)
-
-  // Sample images - replace with your actual image URLs
-  // const images = [
-  //   'https://picsum.photos/400/300?random=1',
-  //   'https://picsum.photos/400/300?random=2',
-  //   'https://picsum.photos/400/300?random=3',
-  //   // 'https://picsum.photos/400/300?random=4',
-  //   // 'https://picsum.photos/400/300?random=5',
-  //   // 'https://picsum.photos/400/300?random=6',
-  //   // 'https://picsum.photos/400/300?random=7',
-  //   // 'https://picsum.photos/400/300?random=8',
-  //   // 'https://picsum.photos/400/300?random=9',
-  //   // postImage,
-  //   // postImage,
-  //   // postImage,
-  //   // postImage,
-  //   // postImage,
-  //   // postImage,
-  //   // postImage,
-  //   // postImage,
-  //   // postImage,
-  //   // postImage,
-
-  // ];
-
   const openModal = (index) => {
     setCurrentImageIndex(index);
     setIsModalOpen(true);

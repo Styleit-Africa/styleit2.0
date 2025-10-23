@@ -23,7 +23,7 @@ import LikedPosts from "./pages/client/LikedPosts";
 import Settings from "./pages/client/Settings";
 import Reports from "./pages/client/Reports";
 import BookAppointmentPage from "./pages/client/BookAppointmentPage";
-import ClientPayment from "./pages/client/ClientPayment";
+import ClientPayment from "./pages/client/ClientPaymentPage";
 import TaskPaymentPage from "./pages/client/TaskPaymentPage";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminCreatorLayout from "./layouts/AdminCreatorLayout";
@@ -54,6 +54,10 @@ import FashionDesigners from "./pages/FashionDesigners";
 import CreatePostPage from "./pages/creator/CreatePostPage";
 import FrequentlyAskedQuestionsPage from "./pages/FrequentlyAskedQuestionsPage";
 import ViewSearchPostPage from "./pages/ViewSearchPostPage";
+import ClientPaymentPage from "./pages/client/ClientPaymentPage";
+import ClientConfirmPaymentPage from "./pages/client/ClientConfirmPaymentPage ";
+
+// import ClientPaymentPage from "./pages/client/ClientPayment";}
 import AdminLoginPage from "./pages/admin/admin/AdminLoginPage";
 
 const router = createBrowserRouter(
@@ -83,6 +87,7 @@ const router = createBrowserRouter(
             <Route path='subscriptions/:id' element={<ShowSubscription/>} />
             <Route path='subscriptions/:id/proceed' element={<ProceedSubscription/>} />
           </Route>
+          {/* client */}
           <Route path='/client' element={<ClientLayout/>}>
             <Route path='profile' element={<ProfilePage/>} />
             <Route path='profile/edit' element={<EditProfilePage/>} />
@@ -91,7 +96,9 @@ const router = createBrowserRouter(
             <Route path='settings' element={<Settings/>} />
             <Route path='reportIssues' element={<Reports/>} />
             <Route path='bookAppointment' element={<BookAppointmentPage/>} />
-            <Route path='payment' element={<ClientPayment/>} />
+            <Route path='payment/:name/:bookingId/:designerId' element={<ClientPaymentPage/>} />
+            <Route path='payment/:name/:bookingId/:designerId/confirm_payment' element={<ClientConfirmPaymentPage/>} />
+            {/* <Route path='payment/confirm' element={<ClientConfirmPaymentPage/>} /> */}
             <Route path='taskPayment' element={<TaskPaymentPage/>} />
           </Route>
           {/* admin */}
