@@ -17,7 +17,7 @@ const DeclineBookingModal = ({updateAppointment,setIsDeclined}) => {
     
        <div className="bg-white  shadow-md rounded-md relative z-50">
             <div className="border-b-[1px] border-gray-300 pdy-1 px-4">
-                   <div className='max-w-[400px] ml-auto  flex items-center justify-between'>
+                   <div className='max-w-[700px] ml-auto  flex items-center justify-between'>
                       <h1 className='font-bold text-xl'>Reasons to decline this appointment</h1>
                 <X
                 className='cursor-pointer h-16 w-16 scale-[0.5] transition-all duration-300 hover:scale-[0.7]' 

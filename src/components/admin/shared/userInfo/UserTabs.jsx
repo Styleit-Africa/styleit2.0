@@ -1,8 +1,11 @@
 import { Button } from '@/components/ui/button'
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 const UserTabs = ({currentTab,handleTabs}) => {
-    const role = 'creator'
+    const {pathname} = useLocation();
+
+    const role = pathname.includes('creator')
   return (
     <div>
          <div className='flex mx-auto md:ml-0 pb-5 gap-4 w-[95%] overflow-x-auto md:w-[max-content] overflow-auto'>
@@ -11,7 +14,7 @@ const UserTabs = ({currentTab,handleTabs}) => {
             <Button className={`px-6 md:px-10 py-6 shadow-none capitalize text-md md:text-lg text-lightGray rounded-md bg-sidebar 
                 ${currentTab === 'loginDetails'&&'bg-primary text-white' } `} onClick={()=>handleTabs('loginDetails')}>login details</Button>
                {
-                role === 'creator'&& <Button className={`px-6 md:px-10 py-6 shadow-none capitalize text-md md:text-lg text-lightGray rounded-md bg-sidebar 
+                role&& <Button className={`px-6 md:px-10 py-6 shadow-none capitalize text-md md:text-lg text-lightGray rounded-md bg-sidebar 
                     ${currentTab === 'ratingsAndReviews'&&'bg-primary text-white' } `} onClick={()=>handleTabs('ratingsAndReviews')}>ratings and reviews</Button>
                }
         </div>

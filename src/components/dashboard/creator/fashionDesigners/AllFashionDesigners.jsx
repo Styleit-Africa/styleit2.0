@@ -22,7 +22,7 @@ const AllDesignersPage = () => {
     const {data,isLoading,isError,error,isFetching} = useQuery({
         queryKey:['allDesigners'],
         queryFn:getDesigners,
-          staleTime:1
+        staleTime:1000*10*60
         })
 
         console.log(data?.data?.designers)

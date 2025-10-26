@@ -13,7 +13,6 @@ const AdminClientLayout =()=>{
   const {id} = useParams();
   const {pathname} = useLocation();
   const path = pathname.split('/');
-  console.log(path)
 
   const handleSort = (e)=>{
     if(pathname.endsWith('clients')||pathname.endsWith(id)){
@@ -22,7 +21,6 @@ const AdminClientLayout =()=>{
       sortBookings(e.target.dataset.id)
     }else if(pathname.endsWith('complaints%20&%20disputes')||pathname.endsWith(id)){
       sortComplainants(e.target.dataset.id)
-      console.log(pathname)
     }
   }
   

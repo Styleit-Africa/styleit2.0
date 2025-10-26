@@ -39,7 +39,7 @@ const Sidebar = () => {
             },
             withCredentials:true
           }),
-          staleTime:1
+        staleTime:1000*30*60
         })
 
 

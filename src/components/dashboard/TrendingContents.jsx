@@ -17,7 +17,6 @@ const TrendingContents = ({pageParam=1}) => {
               Accept:'application/json'
             }
           })
-
           return response.data
   }
 

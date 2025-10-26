@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { CheckCircle2, ArrowLeft } from 'lucide-react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -12,13 +12,14 @@ import Cookies from 'js-cookie';
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const { name, bookingId, designerId } = useParams();
+  const navigate = useNavigate();
   const paymentDetails = JSON.parse(localStorage.getItem('userDetails'))
   
 
-  const handleConfirm = async() => {
+  const handleConfirmPayment = async() => {
        try {
             const response =  await axios.post(`https://styleitafrica.pythonanywhere.com/api/confirm_payment/${Number(bookingId)}/`,
-            {refno:"2480526"},
+            {refno:paymentDetails.reference_no},
             {
               headers: {
                 Authorization: `Bearer ${Cookies.get('token')}`,
@@ -27,13 +28,10 @@ import Cookies from 'js-cookie';
               withCredentials: true  
             }
       );
-      
-      console.log(response)
       if(response.status === 201){
         setIsSubmitting(true)
-        navigate(response.data.authorization_url)
+        window.location.href = response.data.authorization_url
       }
-          // navigate(`/client/payment/${name}/${bookingId}/${designerId}/confirm_payment`)
     
       setSubmitStatus({
         type: 'success',
@@ -136,7 +134,7 @@ import Cookies from 'js-cookie';
               <Button 
                 type="button"
                 className="w-full sm:w-1/2 bg-primary hover:bg-green-700 text-white py-6"
-                onClick={handleConfirm}
+                onClick={handleConfirmPayment}
               >
                 <CheckCircle2 className="mr-2 h-4 w-4" />
                 Confirm Payment
