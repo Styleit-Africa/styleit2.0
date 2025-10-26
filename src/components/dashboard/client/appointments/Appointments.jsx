@@ -21,7 +21,7 @@ const Appointments = () => {
   const {data,isLoading,error} = useQuery({
         queryKey:['appointment'],
         queryFn:getAppointments,
-        staleTime:1000*5
+        staleTime:1
   })
 
   return (

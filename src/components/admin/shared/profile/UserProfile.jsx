@@ -11,8 +11,11 @@ import { Button } from '@/components/ui/button';
 import UserProfileCard from './UserProfileCard';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import SingleLoader from '@/components/global/loaders/SIngleLoader';
+import { toast } from 'sonner';
+import { X } from 'lucide-react';
+import { useAdminClientStore } from '@/store/admin/clientStore/useAdminClient';
 
 const UserProfile = ({user={
         id:1,
@@ -33,26 +36,17 @@ const UserProfile = ({user={
       personalInfo:true,
       address:true, 
     })
+    
+    const {getClientDetails} = useAdminClientStore();
     const {id} = useParams();
 
-      const getClient = async()=> {
-        const response = await axios.get(`https://styleitafrica.pythonanywhere.com/api/customers/${id}/`,{
-            headers:{
-              Authorization:`Bearer ${Cookies.get('token')}`,
-              'Content-Type': 'application/json',
-              Accept:'application/json'
-            }
-          })
-          return response?.data
-    }
     const {data,isLoading,error} = useQuery({
         queryKey:['single-client',id],
-        queryFn:getClient,
+        queryFn:()=>getClientDetails(id),
         staleTime: 1000 * 60 * 10,
         refetchOnWindowFocus: false
         })
-        console.log(data?.client,'ones')
-        console.log(error,'ones')
+       
     
     const [currentId,setCurrentId] = useState(null)
     // const user = creators.find(creator=>creator.id==id)
@@ -87,7 +81,7 @@ const UserProfile = ({user={
                         businessName:data?.client?.businessName||'no business name key',
                         country:data?.client?.country,
                         state:data?.client?.state,
-                        street:data?.client?.street,
+                        street:data?.client?.address,
                         lga:data?.client?.lga,
                         username:data?.client?.username,
                         picture:data?.client?.profilePicture,
@@ -116,7 +110,7 @@ const UserProfile = ({user={
         }
     }
     const handleActivation =  async()=> {
-        const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/activat/`,{cus_id:id},{
+        const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/activat/`,{cust_id:id},{
             headers:{
               Authorization:`Bearer ${Cookies.get('token')}`,
               'Content-Type': 'application/json',
@@ -126,15 +120,27 @@ const UserProfile = ({user={
           return response?.data
     }
 
+    const queryClient = useQueryClient();
     const {data:activation,mutate:accountActivation} = useMutation({
-        mutationFn:handleActivation
+        mutationFn:handleActivation,
+        onSuccess:(response)=>{
+          
+          queryClient.invalidateQueries('single-client')
+           if(response.success){
+             toast("Account activated successfully", {
+                action: {
+                label: <X size={16} />,
+              },
+            })
+         }
+          
+        }
         
     })
-    console.log(activation)
 
     
     const handleDeactivation =  async()=> {
-        const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/activat/`,{cus_id:id},{
+        const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/deactivat/`,{cust_id:id},{
             headers:{
               Authorization:`Bearer ${Cookies.get('token')}`,
               'Content-Type': 'application/json',
@@ -145,23 +151,79 @@ const UserProfile = ({user={
     }
 
     const {data:deactivation,mutate:accountDeactivation} = useMutation({
-        mutationFn:handleDeactivation
+        mutationFn:handleDeactivation,
+          onSuccess:(response)=>{
+          
+          queryClient.invalidateQueries('single-client')
+           if(response.status === 'success'){
+             toast("Account deactivated successfully", {
+                action: {
+                label: <X size={16} />,
+              },
+            })
+         }
+          
+        }
         
     })
-    console.log(activation)
+    // console.log(activation)
+    console.log(deactivation)
 
     const handleAccount = (value)=>{
       if(value === 'activate'){
         accountActivation();
       }else{
         accountDeactivation();
-
       }
     }
     const onSubmit = (values)=>{
 
         console.log(values)
       }
+      
+//   {
+//                 creators.map(creator=>{
+//                     return(
+//                         <li className="relative" data-role="creators">
+//                             <div className={`${creator.status=='approved'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-green-500'}
+//                              ${creator.status=='banned'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-red-500'}
+//                              ${creator.status=='pending'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-yellow-500'}
+//                               ${creator.status=='suspended'&&'border-y-[3px] md:border-y-0 md:border-x-[3px] border-black'}
+//                              flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center mt-5 shadow-md capitalize p-5 rounded-md relative`}>
+                              
+//                                 <div className='flex items-end md:items-center justify-between  w-full md:w-auto md:basis-[15%]'>
+//                                 <p className='font-[700] capitalize md:hidden'>name:</p>
+//                                 <div className='flex items-center gap-3 '>
+//                                 <Image src={userPicture} className="w-[50px] h-[50px] rounded-full"/>
+//                                <p data-testid={`name-${creator.id}`}  >{creator.name}</p>
+//                                </div>
+//                                 </div>
+//                                 <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
+//                                 <p className='font-[700] capitalize md:hidden'>email:</p>
+//                                 <p data-testid={`email-${creator.id}`} >{creator.email}</p>
+//                                 </div>
+//                                 <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
+//                                 <p className='font-[700] capitalize md:hidden'>gender:</p>
+//                                 <p data-testid={`gender-${creator.id}`} className='basis-[15%]'>{creator.gender}</p>
+//                                 </div>
+//                                 <div className='flex justify-between  w-full md:w-auto md:basis-[15%]'>
+//                                 <p className='font-[700] capitalize md:hidden'>status:</p>
+//                                 <p data-testid={`status-${creator.id}`} className={`basis-[15%]  ${creator.status=='pending'&&' md:border-y-0  text-yellow-500'}  ${creator.status=='approved'&&' md:border-y-0  text-green-500'} ${creator.status=='banned'&&' md:border-y-0  text-red-500'} ${creator.status=='suspended'&&' md:border-y-0  text-black'} `}>{creator.status}</p>
+//                                 </div>
+//                                 <p className='basis-[15%]' data-testid={`actionButton-${creator.id}`} ><MoreHorizontal className='cursor-pointer'
+                                //  onClick={()=>handleOptions(creator.id)}/> </p>
+//                             </div>
+
+//                             {id === creator.id&& <div data-testid={`menu-${creator.id}`} className='shadow-lg flex gap-3  py-5 z-30 px-4 bg-white rounded-md w-[max-content] absolute top-6 right-0'>
+//                                 <Link to={`${creator.id}/profile/ct`}><Eye  className='text-green-500 text-lg'/></Link>
+//                                 <Trash2 className='text-red-500 text-lg'/>
+//                                 <UserX  className='text-red-500 text-lg'/>
+//                             </div> }
+                           
+//                         </li>
+//                     )
+//                 })
+//             }
   return (
     <div>
              <Form {...form} data-testid="edit-profile-form ">
@@ -179,9 +241,10 @@ const UserProfile = ({user={
                                       }
                             </div>
                             <div>
-                                    <p className='text-lg font-[700] capitalize'>{user.name}</p>
-                                    <p className='font-[500] capitalize'>{pathname.includes('clients')?'client':'creator'}</p>
-                                    <p className='text-sm text-green-500 capitalize'>{data?.client.status}</p>
+                                    <p className='capitalize'>full name: {data?.client?.lastname}  {data?.client?.firstname} </p>
+                                    <p className='capitalize'>user: {pathname.includes('clients')?'client':'creator'}</p>
+                                    <p className='capitalize'>status: <span className={`${ data?.client.status ==='actived' ? 'text-green-500':'text-red-500'}`}>{data?.client.status}</span> </p>
+                                    <p className='capitalize'>access: <span className={`${ data?.client.access ==='actived' ? 'text-green-500':'text-red-500'}`}>{data?.client.access}</span> </p>
                             </div>
                             </div> 
                             
@@ -474,11 +537,11 @@ const UserProfile = ({user={
                                                           
                                               
                       </UserProfileCard>
-                  <div className='capitalize flex gap-4 w-[max-content] mx-auto mt-5'>
-                    <Button className="bg-sidebar hover:bg-sidebar capitalize text-lightGray px-8 py-6" onClick={()=>handleAccount('activate')}>activate</Button>
-                    <Button className="bg-sidebar hover:bg-sidebar capitalize text-lightGray px-8 py-6" onClick={()=>handleAccount('deactivate')}>deactivate</Button>
-                    <Button className="bg-sidebar hover:bg-sidebar text-lightGray px-8 py-6">Submit all</Button>
-                    <Button className="bg-sidebar hover:bg-sidebar text-lightGray px-8 py-6"  data-id='all' onClick={(e)=>handleEdit(e)}>Edit all</Button>
+                  <div className='capitalize md:flex  md:flex-row gap-4 w-[max-content] mx-auto mt-5'>
+                    <Button disabled={data?.client.access ==='actived'?true:false} className={` bg-sidebar mb-2 md:mb-0 w-full md:w-auto  hover:bg-sidebar capitalize text-lightGray px-8 py-6 ${data?.client.access ==='actived'?'cursor-not-allowed':'cursor-pointer'}`} onClick={()=>handleAccount('activate')}>activate</Button>
+                    <Button disabled={data?.client.access ==='actived'?false:true} className="bg-sidebar mb-2 md:mb-0 w-full md:w-auto hover:bg-sidebar capitalize text-lightGray px-8 py-6" onClick={()=>handleAccount('deactivate')}>deactivate</Button>
+                    <Button className="bg-sidebar mb-2 md:mb-0 w-full md:w-auto hover:bg-sidebar text-lightGray px-8 py-6">Submit all</Button>
+                    <Button className="bg-sidebar mb-2 md:mb-0 w-full md:w-auto hover:bg-sidebar text-lightGray px-8 py-6"  data-id='all' onClick={(e)=>handleEdit(e)}>Edit all</Button>
                   </div>
                                   </form>
                               </Form>

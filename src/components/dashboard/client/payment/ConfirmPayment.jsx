@@ -16,7 +16,7 @@ import Cookies from 'js-cookie';
   const paymentDetails = JSON.parse(localStorage.getItem('userDetails'))
   
 
-  const handleConfirm = async() => {
+  const handleConfirmPayment = async() => {
        try {
             const response =  await axios.post(`https://styleitafrica.pythonanywhere.com/api/confirm_payment/${Number(bookingId)}/`,
             {refno:paymentDetails.reference_no},
@@ -28,12 +28,10 @@ import Cookies from 'js-cookie';
               withCredentials: true  
             }
       );
-      console.log('/'+response.data.authorization_url)
       if(response.status === 201){
         setIsSubmitting(true)
         window.location.href = response.data.authorization_url
       }
-          // navigate(`/client/payment/${name}/${bookingId}/${designerId}/confirm_payment`)
     
       setSubmitStatus({
         type: 'success',
@@ -136,7 +134,7 @@ import Cookies from 'js-cookie';
               <Button 
                 type="button"
                 className="w-full sm:w-1/2 bg-primary hover:bg-green-700 text-white py-6"
-                onClick={handleConfirm}
+                onClick={handleConfirmPayment}
               >
                 <CheckCircle2 className="mr-2 h-4 w-4" />
                 Confirm Payment

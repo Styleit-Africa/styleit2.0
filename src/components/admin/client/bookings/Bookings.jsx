@@ -6,10 +6,14 @@ import userPicture from '@/images/profile_i.png'
 import { bookings as bookingData } from '@/static/adminData'
 import { useClientStore } from '@/store/useClient'
 import { useGlobalStore } from '@/store/global/useGlobal'
+import { useAdminClientStore } from '@/store/admin/clientStore/useAdminClient'
+import { useQuery } from '@tanstack/react-query'
+import AdminUserLoader from '@/components/global/loaders/AdminUserLoader'
 
 const Bookings = () => {
     const [id,setId] = useState(null)
     const {bookings,setBookings} = useClientStore(state=>state);
+    const {getBookings} = useAdminClientStore();
    console.log(bookings)
     const {searchData} = useGlobalStore(state=>state);
     const filterBookings = ()=>{
@@ -38,6 +42,14 @@ const Bookings = () => {
             setId(bookingId)
         }
     }
+
+     const {data,isLoading,isError,error} = useQuery({
+        queryKey:['bookings'],
+        queryFn:getBookings,
+        staleTime: 1000 * 60 * 3,
+        })
+        console.log(data)
+        console.log(error,'errorr')
     
   return (
     <div className='font-lato  w-full'>
@@ -48,12 +60,142 @@ const Bookings = () => {
             <li className='basis-[16%]'>status</li>
             <li className='basis-[10%]'>action</li>
         </ul> 
-        <ul>
+
+        
+      
+      {
+        isError?(
+           <div>
+
+                <div className='mx-auto max-w-3xl my-3 rounded-md shadow-md text-center py-28'>
+                    <h1 className='textx-lg font-bold'>Error</h1>
+                    {
+                        error?.message === 'Network Error'? <p>You are offline</p>:<p>{error?.message}</p>
+                    }
+                </div>
+            </div>
+        ):(
+             <div>
+                {
+                    isLoading?<AdminUserLoader/>: <ul>
             {
+                data?.appointments?.map(booking=>{
+                    return(
+                        <li key={booking.id} className="relative mt-20 md:mt-0">
+                            <div  className={`${booking.status=='accept'&&' shadow-sm shadow-green-300 '} 
+                        ${booking.status=='decline'&&' shadow-sm shadow-red-300'}
+                        ${booking.status=='completed'&&' shadow-sm shadow-blue-300'}
+                        ${booking.status=='pending'&&' shadow-sm shadow-yellow-300'}
+                          mt-5 shadow-md capitalize p-5 rounded-md relative`}>
+                              
+                              <div className='flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center'>
+                                <div className='flex items-end md:items-center justify-between  w-full md:w-auto md:basis-[20%]'>
+                                <p className='font-[700] capitalize md:hidden'>name:</p>
+                                <div className='flex items-center gap-3 '>
+                                <Image src={userPicture} className="w-[50px] h-[50px] rounded-full"/>
+                               {/* <p data-testid={`name-${booking.id}`}  >{booking.name}</p> */}
+                               <p data-testid={`name-${booking.id}`}  >{booking.client_firstname}</p>
+                               </div>
+                                </div>
+                              
+                                <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
+                                <p className='font-[700] capitalize md:hidden'>collection date:</p>
+                                <p data-testid={`collectionDate-${booking.id}`} >{booking.collection_date}</p>
+                                </div>
+                             
+                                <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
+                                <p className='font-[700] capitalize md:hidden'>booking date:</p>
+                                <p data-testid={`bookingDate-${booking.id}`} >{booking.booking_date}</p>
+                                </div>
+                                <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
+                                <p className='font-[700] capitalize md:hidden'>status:</p>
+                                <p data-testid={`status-${booking.id}`} className={`basis-[16%] ${booking.status=='accept'&&' md:border-r-0  text-green-500'}
+                                 ${booking.status=='decline'&&' md:border-r-0  text-red-500'}  ${booking.status=='completed'&&' md:border-r-0  text-blue-500'}
+                                 ${booking.status=='pending'&&' md:border-r-0  text-yellow-500'} `}>{booking.status}</p>
+                                </div>
+                                <p data-testid={`actionButton-${booking.id}`} className='basis-[10%] hidden md:block' >
+                                    <ChevronRight className={`transition-all duration-300 ${id === booking.id&& 'rotate-90'} cursor-pointer`}
+                               onClick={()=>handleAction(booking.id)}/> </p>
+                            </div>
+
+                          {id === booking.id&& <div data-testid='otherColumns' className='mt-8 md:max-w-[800px]'>
+                            <ul className=' hidden md:flex flex-row justify-between capitalize w-full font-[700] p-3 '>
+                            <li className='basis-[16%]'>receiver</li>
+                            <li className='basis-[25%]'>collection time</li> 
+                            <li className='basis-[20%]'>booking time</li>
+                        </ul>
+                           
+                              <div className='flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center '>
+                                <div className='flex justify-between  w-full md:w-auto md:basis-[25%]'>
+                                <p data-testid={`receiver-${booking.id}`} >{booking.receiver} </p>
+                                </div>
+                                <div className='flex justify-between  w-full md:w-auto md:basis-[25%]'>
+                                <p className='font-[700] capitalize md:hidden'>collection time:</p>
+                                <p data-testid={`collectionTime-${booking.id}`} className='basis-[16%]'>{booking.collectionTime}</p>
+                                </div>
+                                <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
+                                <p className='font-[700] capitalize md:hidden'>booking time:</p>
+                                <p data-testid={`bookingTime-${booking.id}`} className='basis-[16%]'>{booking.booking_time}</p>
+                                </div>
+                            </div>
+                            
+                            <Link to={`${booking.id}/b`} className='text-center capitalize  block text-primary mt-7 animate-bounce pr-4'>view all</Link>
+                           
+                          </div>
+                               }
+
+                               <div className='mt-3 md:max-w-[800px] md:hidden'>
+                            <ul className=' hidden md:flex flex-row justify-between capitalize w-full font-[700] p-3 '>
+                            <li className='basis-[16%]'>receiver</li>
+                            <li className='basis-[25%]'>collection time</li> 
+                            <li className='basis-[20%]'>booking time</li>
+                        </ul>
+                           
+                              <div className='flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center '>
+                              
+                              
+                                <div className='flex justify-between  w-full md:w-auto md:basis-[25%]'>
+                                <p className='font-[700] capitalize md:hidden'>receiver:</p>
+                                <p data-testid={`gender-${booking.id}`} >{booking.receiver} </p>
+                                </div>
+                                <div className='flex justify-between  w-full md:w-auto md:basis-[25%]'>
+                                <p className='font-[700] capitalize md:hidden'>collection time:</p>
+                                <p data-testid={`gender-${booking.id}`} className='basis-[16%]'>{booking.collectionTime}</p>
+                                </div>
+                                <div className='flex justify-between  w-full md:w-auto md:basis-[16%]'>
+                                <p className='font-[700] capitalize md:hidden'>booking time:</p>
+                                <p data-testid={`gender-${booking.id}`} className='basis-[16%]'>{booking.booking_time}</p>
+                                </div>
+                            </div>
+                            
+                            <Link to={`${booking.id}`} className='text-center capitalize  block text-primary mt-7 animate-bounce pr-4'>view all</Link>
+                                
+                           
+                          </div>
+                            </div>
+                           
+                        </li>
+                       
+                    )
+
+                })
+            }
+        </ul>
+                }
+             </div>
+        )
+      }
+    </div>
+  )
+}
+
+export default Bookings
+
+{/* {
                 bookings.map(booking=>{
                     return(
                         <li key={booking.id} className="relative mt-20 md:mt-0">
-                            <div  className={`${booking.status=='accepted'&&' shadow-sm shadow-green-300 '} 
+                            <div  className={`${booking.status=='acceptd'&&' shadow-sm shadow-green-300 '} 
                         ${booking.status=='declined'&&' shadow-sm shadow-red-300'}
                         ${booking.status=='completed'&&' shadow-sm shadow-blue-300'}
                         ${booking.status=='pending'&&' shadow-sm shadow-yellow-300'}
@@ -149,10 +291,4 @@ const Bookings = () => {
                     )
 
                 })
-            }
-        </ul>
-    </div>
-  )
-}
-
-export default Bookings
+            } */}
