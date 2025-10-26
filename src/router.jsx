@@ -57,7 +57,7 @@ import ViewSearchPostPage from "./pages/ViewSearchPostPage";
 import ClientPaymentPage from "./pages/client/ClientPaymentPage";
 import ClientConfirmPaymentPage from "./pages/client/ClientConfirmPaymentPage ";
 
-{// import ClientPaymentPage from "./pages/client/ClientPayment";}
+import ClientPaymentPage from "./pages/client/ClientPayment";
 import AdminLoginPage from "./pages/admin/admin/AdminLoginPage";
 
 const router = createBrowserRouter(
