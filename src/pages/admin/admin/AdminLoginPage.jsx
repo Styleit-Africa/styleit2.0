@@ -3,7 +3,7 @@ import React from 'react'
 
 const AdminLoginPage = () => {
   return (
-    <section className='px-4'>
+    <section>
         <AdminLoginForm/>
     </section>
   )

@@ -1,4 +1,3 @@
-import { appointments } from '@/static/data'
 import React from 'react'
 import AppointmentCard from './appointmentCard'
 import axios from 'axios'
@@ -22,7 +21,7 @@ const Appointments = () => {
   const {data,isLoading,error} = useQuery({
         queryKey:['appointment'],
         queryFn:getAppointments,
-        staleTime:5
+        staleTime:1
   })
 
   return (

@@ -5,7 +5,6 @@ import { Link, useLocation } from 'react-router-dom'
 const AdminLink = ({link}) => {
     const [isChildrenOpened,setIsChildrenOpened] = useState(false)
     const {pathname} = useLocation()
-    console.log(pathname.split('http://localhost:5173'))
     const path = pathname.split('http://localhost:5173')
     const locate = pathname.split('/')[2]
     

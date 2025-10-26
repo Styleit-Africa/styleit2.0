@@ -2,7 +2,6 @@ import { admins, period } from '@/static/adminData'
 import React from 'react'
 import StaffActivityIcon from '../superAdmin/staff/StaffActivityIcon'
 import AdminPeriodActivities from './AdminPeriodActivities'
-import { ActivitySquareIcon, LockKeyholeOpen, Trash2, TrashIcon } from 'lucide-react'
 
 const AdminActivities = ({currentAdmin}) => {
   return (

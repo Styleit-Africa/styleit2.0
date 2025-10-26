@@ -21,7 +21,7 @@ const Post = () => {
               Accept:'application/json'
             }
           }),
-          staleTime:1
+        staleTime:1000*10*60
         })
         // console.log(data)
   return (

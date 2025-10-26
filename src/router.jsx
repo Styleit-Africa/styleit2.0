@@ -15,7 +15,6 @@ import ProfilePage from './pages/creator/ProfilePage';
 import BookingPage from './pages/creator/BookingPage';
 import PostPage from './pages/creator/PostPage';
 import Blogs from "./pages/Blogs";
-import FashionDesigner from "./pages/FashionDesigners";
 import EditProfilePage from "./pages/creator/EditProfilePage";
 import ClientLayout from "./layouts/ClientLayout";
 import AppointmentDetails from "./pages/client/AppointmentDetails";
@@ -23,7 +22,6 @@ import LikedPosts from "./pages/client/LikedPosts";
 import Settings from "./pages/client/Settings";
 import Reports from "./pages/client/Reports";
 import BookAppointmentPage from "./pages/client/BookAppointmentPage";
-import ClientPayment from "./pages/client/ClientPaymentPage";
 import TaskPaymentPage from "./pages/client/TaskPaymentPage";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminCreatorLayout from "./layouts/AdminCreatorLayout";
@@ -57,7 +55,6 @@ import ViewSearchPostPage from "./pages/ViewSearchPostPage";
 import ClientPaymentPage from "./pages/client/ClientPaymentPage";
 import ClientConfirmPaymentPage from "./pages/client/ClientConfirmPaymentPage ";
 
-{// import ClientPaymentPage from "./pages/client/ClientPayment";}
 import AdminLoginPage from "./pages/admin/admin/AdminLoginPage";
 
 const router = createBrowserRouter(
@@ -73,7 +70,6 @@ const router = createBrowserRouter(
           <Route path='/blogs' element={<Blogs/>} />
           <Route path='/faqs' element={<FrequentlyAskedQuestionsPage/>} />
           <Route path='/fashionDesigners' element={<AllDesignersPage/>} />
-          {/* <Route path='/all-fashion-designers' element={<AllDesignersPage/>} /> */}
             <Route path='verifyAccount' element={<AccountVerificationPage/>} />
             <Route path='resendVerificationLink' element={<ResendActivationLinkPage/>} />
           <Route path='/creator' element={<CreatorLayout/>}>
@@ -110,7 +106,7 @@ const router = createBrowserRouter(
               <Route path=":id/b" element={<AdminSingleClientBookingPage/>} />
               <Route path=":id/p" element={<CreatorSinglePaymentPage/>} />
               <Route path=":id/s" element={<CreatorSingleSubscriptionPage/>} />
-              <Route path=":id/profile/ct" element={<AdminCreatorProfilePage/>} />
+              <Route path=":id/profile/ct" element={<AdminClientProfilePage/>} />
               <Route path=":id/profile/cn" element={<AdminCreatorProfilePage/>} />
             </Route>
             <Route path='creators' element={<AdminCreatorLayout/>} >

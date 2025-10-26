@@ -21,10 +21,12 @@ const Bookings = () => {
   const {data,isLoading,error} = useQuery({
         queryKey:['bookings'],
         queryFn:getBookings,
-        staleTime:5
+        staleTime:1
+        // staleTime:1000*2*60
   })
 
  console.log(data)
+ console.log(error,'booking')
   return (
    <div className="container font-lato  px-4 xl:px-0 pb-16">
        <h1 className='text-center text-xl font-[700] capitalize my-9'>appointment list</h1>
