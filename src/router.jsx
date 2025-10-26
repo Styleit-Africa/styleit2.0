@@ -54,6 +54,7 @@ import ViewSearchPostPage from "./pages/ViewSearchPostPage";
 import ClientPaymentPage from "./pages/client/ClientPaymentPage";
 import ClientConfirmPaymentPage from "./pages/client/ClientConfirmPaymentPage ";
 import AdminLoginPage from "./pages/admin/admin/AdminLoginPage";
+import FashionDesigners from "./pages/FashionDesigners"
 
 const router = createBrowserRouter(
     createRoutesFromElements(
