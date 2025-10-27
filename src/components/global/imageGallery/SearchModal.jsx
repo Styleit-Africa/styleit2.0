@@ -5,6 +5,7 @@ import { Search, X } from 'lucide-react';
 import SearchedCreators from '@/components/dashboard/searchItems/SearchedCreators';
 import SearchedPosts from '@/components/dashboard/searchItems/SearchedPosts';
 import m_logo from '../../../images/m_logo.png'
+import { useQuery } from '@tanstack/react-query';
 
 
 const SearchModal = ({page,creators}) => {
@@ -13,9 +14,27 @@ const SearchModal = ({page,creators}) => {
         userDashboardSearchData,setUserDashboardSearchData} = useGlobalStore();
 
     useEffect(()=>{
-        searchCreators()
         searchPosts()
+        searchCreators()
     },[userDashboardSearchData])
+
+    
+  const {data,error,isLoading} = useQuery({
+        queryKey:['search-creators',userDashboardSearchData],
+        queryFn:searchCreators,
+        staleTime:1000*60*5,
+        enabled: !!userDashboardSearchData,
+        onSuccess: () => console.log("Fetched from API"),
+      })
+  const {data:searchPostData,error:postError,isLoading:isPostLoading} = useQuery({
+        queryKey:['search-post',userDashboardSearchData],
+        queryFn:searchPosts,
+        staleTime:1000*60*5,
+        enabled: !!userDashboardSearchData,
+        onSuccess: () => console.log("Fetched from API,post"),
+      })
+      console.log(searchPostData)
+ 
   return (
     <section>
             {
@@ -55,10 +74,10 @@ const SearchModal = ({page,creators}) => {
         
                   <div className="h-[400px] overflow-y-scroll py-4 mt-4">
                     {
-                      tabValue === 'designers'&& <SearchedCreators creators={creators}/>
+                      tabValue === 'designers'&& <SearchedCreators isLoading={isLoading} creators={data?.results}/>
                     }
                     {
-                      tabValue === 'posts'&&  <SearchedPosts />
+                      tabValue === 'posts'&&  <SearchedPosts isLoading={isPostLoading} posts={searchPostData?.results} />
                     }
                   
                   </div>
@@ -66,7 +85,7 @@ const SearchModal = ({page,creators}) => {
                }
                 {
                 page === 'home'&&<div className='mt-10'>
-                    <SearchedCreators creators={creators}/>
+                    <SearchedCreators isLoading={isLoading} creators={data?.results}/>
                 </div>
                 }
                </div>

@@ -13,8 +13,6 @@ export const useGlobalStore = create((set,get)=>({
       set({isNavbarOpened:!isNavbarOpened})
     },
     userDashboardSearchData:'',
-    creators:[],
-    posts:[],
     setCreators:(creators)=>{
         set({creators})
     },
@@ -36,15 +34,13 @@ export const useGlobalStore = create((set,get)=>({
               Accept:'application/json'
             }
       })
-      console.log(response.data.results,'search')
-      console.log(response.data,'search')
-      setCreators(response.data.results)
+      return response?.data
      }catch(e){
       console.log(e,'e2')
      }
   },
     searchPosts:async()=>{
-        const {userDashboardSearchData,setPosts} = get();
+        const {userDashboardSearchData} = get();
      try{
       const response = await axios.post('https://styleitafrica.pythonanywhere.com/api/postsearch/',{
     search:userDashboardSearchData
@@ -55,8 +51,7 @@ export const useGlobalStore = create((set,get)=>({
               Accept:'application/json'
             }
       })
-      console.log(response.data.results,'search')
-      setPosts(response.data.results)
+      return response?.data
      }catch(e){
       console.log(e,'e2')
      }

@@ -94,7 +94,6 @@ const ViewPostDetails = ({post,setPostId}) => {
            <div>
             <h2 className='capitalize text-md font-bold'> {post.creator.firstName}  {post.creator.lastName}</h2>
             <p className='text-md'>{month} {d} at {hour}:{minute} AM</p>
-            {/* <p className='text-md'>August 9 at 10:30 AM</p> */}
            </div>
            </div>
             
@@ -108,13 +107,10 @@ const ViewPostDetails = ({post,setPostId}) => {
             </TooltipContent>
             </Tooltip>
            </TooltipProvider>
-
            </div>
-          
           <div className='mt-5'>
                 <h3 className='text-md font-bold'>{post.title}</h3>
                 <p className='mb-3'>{post.content}</p>
-               
                 {
           post?.img&&post?.img?.length !== 0&&<ImageGallery _images={post.img}/>
         }

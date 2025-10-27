@@ -16,29 +16,24 @@ import send from '../../../images/send.png'
 import { Input } from '@/components/ui/input'
 import { useGlobalStore } from '@/store/global/useGlobal'
 import { Link } from 'react-router-dom'
+import TrendingPostLoader from '@/components/global/loaders/TrendingPostLoader'
+import ImageGallery from '@/components/global/imageGallery/ImageGallery'
 
 
-
-const SearchedPosts = () => {
-
-  const {userDashboardSearchData,searchPosts,searchCreators,posts} = useGlobalStore()
-
-  useEffect(()=>{
-    searchCreators()
-    searchPosts()
-
-  },[userDashboardSearchData])
+const SearchedPosts = ({posts=[],isLoading}) => {
 
   return (
    <div>
-        {
+       {
+          isLoading?<TrendingPostLoader/>:
+          <>
+               {
           posts.length === 0 ? <div>
                 <h1>No posts found</h1>
           </div>:
            posts.map(post=>(
-            <Link to={`/trending/${post.id}/view`} key={post.id}>
 
-                 <div className='max-w-[480px] mx-auto mt-10'>
+                 <div  key={post.id} className='max-w-[480px] mx-auto mt-10'>
    
     <div className='relative border border-gray-200 rounded-2xl  text-sm  p-3.5'>
      
@@ -64,16 +59,14 @@ const SearchedPosts = () => {
         <PostTitle title={post.title}/>
         <PostDescription description={post.content}/>
         {
-          // post?.img&&post?.img?.length !== 0&&<ImageGallery _images={post.img}/>
+          post?.image&&post?.image?.length !== 0&&<ImageGallery _images={post.image}/>
         }
-        {/* <PostCardImages/> */}
         <PostActivities
          comments={post.Comment_count} 
          likePost={0}
          post={post} 
          isCommentOpened={false} 
          setIsCommentOpened={()=>{}}
-        //  share={{isShared,setIsShared}} 
           />
         <div className='relative'>
         <Input type="text"   className="h-12 rounded-2xl border border-gray-200  focus-visible:ring-0"/>
@@ -82,9 +75,10 @@ const SearchedPosts = () => {
         </div>
     </div>
 </div>
-            </Link>
            ))
         }
+          </>
+       }
    </div>
   )
 }

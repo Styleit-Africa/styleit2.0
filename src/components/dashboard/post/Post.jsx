@@ -1,7 +1,6 @@
-import PostListLoader from '@/components/global/loaders/PostListLoader'
+import TrendingPostLoader from '@/components/global/loaders/TrendingPostLoader'
 import CreatePost from '@/components/global/post/CreatePost'
 import PostContainer from '@/components/global/post/PostContainer'
-import { sortByDate, sortItems } from '@/lib/utils'
 import { useGlobalStore } from '@/store/global/useGlobal'
 import { useAuth } from '@/store/useAuth'
 import { useQuery } from '@tanstack/react-query'
@@ -23,19 +22,19 @@ const Post = () => {
           }),
         staleTime:1000*10*60
         })
-        // console.log(data)
+        console.log(data)
   return (
     <section className='px-4 xl:px-0'>
       <CreatePost />
       {
           isLoading ?
-               <PostListLoader/>:
+               <TrendingPostLoader/>:
                (
                 <div>
                   {
                     data?.data?.posts?.length === 0 ? <div className="shadow-md max-w-[800px] mx-auto rounded-lg py-24 text-center text-xl mt-12 text-gray-400">
            Get started by creating posts to attract clients. <span className='text-primary cursor-pointer' onClick={()=>setPostModal()}>Create posts</span>
-      </div>: <PostContainer data={data?.data}  follow={true} />
+      </div>: <PostContainer pages={data?.data.posts}  follow={true} />
                   }
                 </div>
                )

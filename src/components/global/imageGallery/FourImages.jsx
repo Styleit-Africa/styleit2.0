@@ -2,6 +2,7 @@
 import React from 'react'
 
 const FourImages = ({images,openModal}) => {
+  console.log(images)
    return (
         <div className="grid grid-cols-2 gap-2 max-w-auto mx-auto">
           {images.map((img, index) => (
