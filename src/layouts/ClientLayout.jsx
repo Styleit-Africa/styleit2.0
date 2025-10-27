@@ -6,7 +6,6 @@ import Cookies from "js-cookie";
 
 const ClientLayout =()=>{
  const navigate = useNavigate();
-  // console.log(JSON.parse(Cookies.get('user')),'here')
   if(JSON.stringify(Cookies.get('user'))?.status === 'deactived'){
     navigate('/verifyAccount')
   }

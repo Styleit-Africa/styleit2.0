@@ -9,12 +9,12 @@ import calendar_2 from '../../../images/calendar-edit_2.png'
 import icon_n2 from '../../../images/icon_n2.png'
 import Image from '@/components/global/Image'
 import { NavLink, useLocation } from 'react-router-dom'
-import { useAuthService } from '@/store/useAuthService'
+import { useAuth } from '@/store/useAuth'
 
 
 const LinkTabs = () => {
     const location = useLocation();
-    const {user} = useAuthService(state=>state)
+    const {user} = useAuth(state=>state)
     // console.log(user,'here')
   return (
     <div className='flex-1 md:flex-initial'>

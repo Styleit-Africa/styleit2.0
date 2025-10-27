@@ -99,7 +99,16 @@ const EditProfileForm = ({ isEditable, title }) => {
   }
 
   const {mutate} = useMutation({
-    mutationFn:updateProfile
+    mutationFn:updateProfile,
+    onSuccess:(response)=>{
+      if(response.status === 200){
+         toast("Profile updated successfully", {
+            action: {
+            label: <X size={16} />,
+          },
+        })
+      }
+    }
   })
 
   const handleSubmit = async(e,values) => {
@@ -107,12 +116,7 @@ const EditProfileForm = ({ isEditable, title }) => {
     const data = {fname:values.firstName,email:values.email,lname:values.lastName,profile_pic:values.image,
       phone:values.mobile,address:values.address,bankName:values.bank,accountNo:values.bank_acc}
       mutate(data)
-    toast("Profile updated successfully", {
-            action: {
-            label: <X size={16} />,
-          },
-        })
-    console.log(data)
+   
   }
   
   return (

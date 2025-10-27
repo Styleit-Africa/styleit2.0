@@ -71,10 +71,16 @@ export const useAuth = create((set,get)=>({
                 break;
             }
        }catch(e){
+        console.log(e.message)
         if(e.status === 400||e.status === 401){
-                set({isLoading:false,status:e.status,error:e.response.data.error})
+                set({isLoading:false,status:e.status,error:e.response.data.error||e.message})
        }
-       return e.response;
+       if(e.message == "Network Error"){
+        console.log('yes')
+        set({isLoading:false,status:e.status,error:e.response.data.error||e.message})
+
+       }
+    //    return e.response;
        }
     }, 
     signUp:async(data)=>{

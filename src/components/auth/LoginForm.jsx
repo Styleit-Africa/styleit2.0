@@ -42,9 +42,8 @@ const LoginForm = ({reasons,header,image})=> {
         email:values.email,
         pwd:values.password
     }
-          console.log(isLoading)
-
-         const result = await login(data);
+    
+    const result = await login(data);
          if(result?.status === 200 && user?.status === 'actived'){
              toast("Logged in successfully", {
                 action: {

@@ -94,7 +94,6 @@ const router = createBrowserRouter(
             <Route path='bookAppointment' element={<BookAppointmentPage/>} />
             <Route path='payment/:name/:bookingId/:designerId' element={<ClientPaymentPage/>} />
             <Route path='payment/:name/:bookingId/:designerId/confirm_payment' element={<ClientConfirmPaymentPage/>} />
-            {/* <Route path='payment/confirm' element={<ClientConfirmPaymentPage/>} /> */}
             <Route path='taskPayment' element={<TaskPaymentPage/>} />
           </Route>
           {/* admin */}
