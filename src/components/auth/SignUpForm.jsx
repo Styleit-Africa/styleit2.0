@@ -35,7 +35,6 @@ import { Loader } from 'lucide-react'
 const SignUpForm = ({reasons,header,image})=> {
   const [picture,setPicture] = useState(upload);
   const {role} = useAuth();
-  console.log(role)
   const {signUp,isLoading} = useAuth();
   const navigate = useNavigate()
   const handleUpload = (e) => {
@@ -324,7 +323,7 @@ const validateUser = role ==='client'?clientRegisterSchema:designerRegisterSchem
 
 <FormField
         control={form.control}
-        name="image" // Name should match the zod schema field
+        name="image" 
         render={({ field }) => (
           <FormItem>
             <FormControl>
@@ -393,7 +392,7 @@ const validateUser = role ==='client'?clientRegisterSchema:designerRegisterSchem
                                 </FormItem>
                             )}/>
                          
-                    <Button type="submit" className='w-full md:w-3/4 md:ml-8  text-white rounded-xl text-lg py-6'>
+                    <Button type="submit" disabled={isLoading} className='w-full md:w-3/4 md:ml-8  text-white rounded-xl text-lg py-6'>
                        {isLoading?<Loader className='animate-spin' />:'Sign Up'} </Button>
                     <p className="text-secondary mb-5 md:hidden text-center  block">Already have an account ? <Link to='/login' className='text-primary capitalize font-[500]'>login</Link></p>             
                

@@ -18,12 +18,11 @@ import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
 import { loginSchema } from '@/validations/authValidation'
 import Reasons from '@/components/auth/Reasons'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuthService } from '../../store/useAuthService'
 import Join from '@/components/auth/Join'
-import axios from 'axios'
 import { useAuth } from '@/store/useAuth'
-import { Backpack, DessertIcon, Loader, LucideTrash, X } from 'lucide-react'
+import {Loader, X } from 'lucide-react'
 import { toast } from 'sonner'
 
 
@@ -38,12 +37,13 @@ const LoginForm = ({reasons,header,image})=> {
   })
   const {isLoginForm} = useAuthService((state)=>state)
   const {login,error,token,user,isLoading,role} = useAuth(state=>state)
-  console.log(role)
   const onSubmit = async(values)=>{
     const data = {
         email:values.email,
         pwd:values.password
     }
+          console.log(isLoading)
+
          const result = await login(data);
          if(result?.status === 200 && user?.status === 'actived'){
              toast("Logged in successfully", {
@@ -51,6 +51,12 @@ const LoginForm = ({reasons,header,image})=> {
                 label: <X size={16} />,
               },
             })
+         }
+         if(result?.status === 401){
+          form.setError('email',{
+            type:'manual',
+            message:'Invalid email or password'
+          })
          }
   }
 
@@ -77,8 +83,6 @@ const LoginForm = ({reasons,header,image})=> {
   return (
 
     <section className='md:pl-4 lg:pl-0'>
-          
-
         {!isLoginForm? <Join page="login" header="Log in as"/> :<div className='flex flex-col md:flex-row max-w-[900px] mx-auto  pt-20'>
         <Reasons reasons={reasons} image={image} isSignUp={false} header={header}/>
 

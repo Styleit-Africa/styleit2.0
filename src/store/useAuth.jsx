@@ -16,33 +16,30 @@ export const useAuth = create((set,get)=>({
     },
     login:async(data)=>{
         const {role} = get()
-        console.log(role,'role')
         set({isLoading:true})
         let response;
         try{
 
             switch(role){
                 case 'designer':
-                         response = await axios.post('https://styleitafrica.pythonanywhere.com/api/designer/login',data)
+                    response = await axios.post('https://styleitafrica.pythonanywhere.com/api/designer/login',data)
                         if(response.status == 200){
-                    console.log(response?.data?.customer)
-                    const getToken = response.data.token
-                    // :response.data.access_token
-                    const getUser = {...response?.data?.creator,role:'designer'}
-                    // {...response?.data?.customer,role:'client'}
-                    Cookies.set('token',getToken)
-                    Cookies.set('user',JSON.stringify(getUser))
-                    set({
-                        token:getToken,
-                        isLoading:false,error:null,user:getUser})
-                        console.log(response)
-                        return response
-                }
+                        const getToken = response.data.token
+                        const getUser = {...response?.data?.creator,role:'designer'}
+                        Cookies.set('token',getToken)
+                        Cookies.set('user',JSON.stringify(getUser))
+                        set({
+                            token:getToken,
+                            isLoading:false,error:null,user:getUser})
+                            return response
+                    }
+                        if(response.status == 401){
+                            set({isLoading:false})
+                        }
                 break;
                 case 'client':
                      response = await axios.post('https://styleitafrica.pythonanywhere.com/api/user/customer/login',data)
                       if(response.status == 200){
-                    console.log(response?.data?.customer)
                     const getToken = response.data.access_token
                     const getUser = {...response?.data?.customer,role:'client'}
                     Cookies.set('token',getToken)
@@ -50,16 +47,15 @@ export const useAuth = create((set,get)=>({
                     set({
                         token:getToken,
                         isLoading:false,error:null,user:getUser})
-                        console.log(response)
                         return response
                 }
-                
+                if(response.status == 401){
+                            set({isLoading:false})
+                        }
                 break;
                 case 'admin':
                      response = await axios.post('https://styleitafrica.pythonanywhere.com/api/admin/login/',data)
-                     console.log(response)
                       if(response.status == 200){
-                            console.log(response.data.token)
                             const getToken = response.data.token
                             const getUser = {...response.data.admin,role:'admin'}
                             Cookies.set('token',getToken)
@@ -67,60 +63,20 @@ export const useAuth = create((set,get)=>({
                             set({
                                 token:getToken,isLoading:false,
                                 error:null,user:getUser})
-                                console.log(response)
                                 return response
                         }
+                        if(response.status == 401){
+                            set({isLoading:false})
+                        }
                 break;
-
-
-
             }
        }catch(e){
-        console.log(e)
-        if(e.status === 400){
+        if(e.status === 400||e.status === 401){
                 set({isLoading:false,status:e.status,error:e.response.data.error})
        }
        return e.response;
        }
     }, 
-    // login:async(data)=>{
-    //     const {role} = get()
-    //     console.log(role,'role')
-    //     set({isLoading:true})
-    //     try{
-
-    //         switch(role){
-    //             case 'creator':
-    //                 const response = await axios.post('https://styleitafrica.pythonanywhere.com/api/designer/login',data)
-    //     //    const response = await axios.post(https://styleitafrica.pythonanywhere.com/api/'user/customer/login,data)
-
-
-    //         }
-    //        const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/${role==='designer'?'designer':'user/customer'}/login`,data)
-
-
-
-    //         if(response.status == 200){
-    //             console.log(response?.data?.customer)
-    //             const getToken = role==='designer'?response.data.token:response.data.access_token
-    //             const getUser = role==='designer'?{...response?.data?.creator,role:'designer'}:
-    //             {...response?.data?.customer,role:'client'}
-    //             Cookies.set('token',getToken)
-    //             Cookies.set('user',JSON.stringify(getUser))
-    //             set({
-    //                 token:getToken,
-    //                 isLoading:false,error:null,user:getUser})
-    //                 console.log(response)
-    //                 return response
-    //         }
-    //    }catch(e){
-    //     console.log(e)
-    //     if(e.status === 400){
-    //             set({isLoading:false,status:e.status,error:e.response.data.error})
-    //    }
-    //    return e.response;
-    //    }
-    // }, 
     signUp:async(data)=>{
         const {role} = get()
         set({isLoading:true})
@@ -142,12 +98,10 @@ export const useAuth = create((set,get)=>({
                     {...response?.data.customer,role:'client'},error:null})
                 return response;
             }
-            console.log(response)
        }catch(e){ 
-        if(e.status === 400){
+        if(e.status === 400||e.status === 401||e.status===409){
                 set({isLoading:false,error:e.response.data.error})
         } 
-        console.log(e)
             return e.response
        }
     },
