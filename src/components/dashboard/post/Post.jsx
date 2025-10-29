@@ -22,7 +22,7 @@ const Post = () => {
           }),
         staleTime:1000*10*60
         })
-        console.log(data)
+        console.log(data,'here')
   return (
     <section className='px-4 xl:px-0'>
       <CreatePost />
@@ -34,7 +34,9 @@ const Post = () => {
                   {
                     data?.data?.posts?.length === 0 ? <div className="shadow-md max-w-[800px] mx-auto rounded-lg py-24 text-center text-xl mt-12 text-gray-400">
            Get started by creating posts to attract clients. <span className='text-primary cursor-pointer' onClick={()=>setPostModal()}>Create posts</span>
-      </div>: <PostContainer pages={data?.data.posts}  follow={true} />
+      </div>: 
+      
+      <PostContainer pages={data?.data.posts}  follow={true} />
                   }
                 </div>
                )

@@ -97,6 +97,16 @@ const router = createBrowserRouter(
             <Route path='taskPayment' element={<TaskPaymentPage/>} />
           </Route>
           {/* admin */}
+            {/* client */}
+            <Route path='clients' element={<AdminClientLayout/>} >
+                <Route index element={<AdminClientsPage/>}/>
+                <Route path="bookings" element={<AdminClientBookingPage/>}/>
+                <Route path="bookings/:id/b" element={<AdminSingleClientBookingPage/>}/>
+                <Route path=":id/profile/cn" element={<AdminClientProfilePage/>}/>
+                <Route path="complaints & disputes" element={<AdminClientComplaints/>}/>
+                <Route path="complaints & disputes/:id" element={<AdminSingleClientComplaints/>}/>
+                <Route path="activities" element={<AdminClientActivitiesPage/>}/>
+            </Route>
               <Route path='/admin/login' element={<AdminLoginPage/>} />
           <Route path='/admin' element={<AdminLayout/>}>
             <Route path='dashboard' element={<AdminDashboardLayout/>} >
@@ -108,6 +118,7 @@ const router = createBrowserRouter(
               <Route path=":id/profile/ct" element={<AdminClientProfilePage/>} />
               <Route path=":id/profile/cn" element={<AdminCreatorProfilePage/>} />
             </Route>
+            {/* creator */}
             <Route path='creators' element={<AdminCreatorLayout/>} >
                 <Route index element={<AdminCreatorsPage/>}/>
                 <Route path="subscriptions" element={<CreatorSubscriptionPage/>}/>
@@ -117,16 +128,6 @@ const router = createBrowserRouter(
                 <Route path="payments/:id/p" element={<CreatorSinglePaymentPage/>}/>
             </Route>
 
-            {/* client */}
-            <Route path='clients' element={<AdminClientLayout/>} >
-                <Route index element={<AdminClientsPage/>}/>
-                <Route path="bookings" element={<AdminClientBookingPage/>}/>
-                <Route path="bookings/:id/b" element={<AdminSingleClientBookingPage/>}/>
-                <Route path=":id/profile/cn" element={<AdminClientProfilePage/>}/>
-                <Route path="complaints & disputes" element={<AdminClientComplaints/>}/>
-                <Route path="complaints & disputes/:id" element={<AdminSingleClientComplaints/>}/>
-                <Route path="activities" element={<AdminClientActivitiesPage/>}/>
-            </Route>
             <Route path='admin' element={<AdminClientLayout/>} >
                 <Route index element={<AdminPage/>}/>
                 <Route path="staffActivities/" element={<StaffActivitiesPage/>}/>

@@ -9,6 +9,7 @@ const PostContainer = ({pages,userProfile,follow})=>{
  
     return(
         <div>
+            {/* for treending page */}
             {
                 location?
                 <div>
@@ -19,9 +20,6 @@ const PostContainer = ({pages,userProfile,follow})=>{
                                 return(
                                     <PostCard
                                      follow={follow} 
-                                    //  data={data}
-                                    //  userProfile={pathname !== '/creator/posts'?data?.creator:
-                                    //     {firstName:user?.firstName,lastName:user?.lastName,businessname:user?.businessName}} 
                                     userProfile={{firstName:'uthman',lastName:'fatai'}}
                                         post={post} key={post.id}
                                     
@@ -32,14 +30,12 @@ const PostContainer = ({pages,userProfile,follow})=>{
             }
                 </div>
             : <div>
+                {/* for creator profile */}
                 {
                     pages.map(post=>{
                                 return(
                                     <PostCard
                                      follow={follow} 
-                                    //  data={data}
-                                    //  userProfile={pathname !== '/creator/posts'?data?.creator:
-                                    //     {firstName:user?.firstName,lastName:user?.lastName,businessname:user?.businessName}} 
                                     userProfile={{firstName:'uthman',lastName:'fatai'}}
                                         post={post} key={post.id}
                                     

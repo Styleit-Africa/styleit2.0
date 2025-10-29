@@ -31,7 +31,6 @@ const ViewPostDetails = ({post,setPostId}) => {
         const [isOver,setIsOver] = useState(false)
         const handleOverFlow = (value)=>{
           setIsOver(value)
-          console.log(value)
         }
 
         const date = new Date(post.created_at);
@@ -75,7 +74,7 @@ const ViewPostDetails = ({post,setPostId}) => {
           {/* header */}
            <div className="border-b-[1px] border-gray-300  px-4">
              <div className='max-w-[440px] ml-auto  flex items-center justify-between'>
-                <h1 className='font-bold text-xl capitalize'>{post.creator.firstName}'s Post</h1>
+                <h1 className='font-bold text-xl capitalize'>{post?.creator?.firstName||'name'}'s Post</h1>
           <X className='cursor-pointer h-16 w-16 scale-[0.5] transition-all duration-300 hover:scale-[0.7]'
            onClick={()=>setPostId(null)}/>
             </div>
@@ -92,7 +91,7 @@ const ViewPostDetails = ({post,setPostId}) => {
            </div>
 
            <div>
-            <h2 className='capitalize text-md font-bold'> {post.creator.firstName}  {post.creator.lastName}</h2>
+            <h2 className='capitalize text-md font-bold'> {post?.creator?.firstName||'first'}  {post?.creator?.lastName||'last'}</h2>
             <p className='text-md'>{month} {d} at {hour}:{minute} AM</p>
            </div>
            </div>

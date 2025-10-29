@@ -6,6 +6,8 @@ import SearchedCreators from '@/components/dashboard/searchItems/SearchedCreator
 import SearchedPosts from '@/components/dashboard/searchItems/SearchedPosts';
 import m_logo from '../../../images/m_logo.png'
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 const SearchModal = ({page,creators}) => {
@@ -24,16 +26,15 @@ const SearchModal = ({page,creators}) => {
         queryFn:searchCreators,
         staleTime:1000*60*5,
         enabled: !!userDashboardSearchData,
-        onSuccess: () => console.log("Fetched from API"),
       })
   const {data:searchPostData,error:postError,isLoading:isPostLoading} = useQuery({
         queryKey:['search-post',userDashboardSearchData],
         queryFn:searchPosts,
         staleTime:1000*60*5,
         enabled: !!userDashboardSearchData,
-        onSuccess: () => console.log("Fetched from API,post"),
       })
       console.log(searchPostData)
+   
  
   return (
     <section>

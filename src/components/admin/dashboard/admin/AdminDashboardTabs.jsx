@@ -1,10 +1,11 @@
 import { adminDashboardTabs, dadmins } from '@/static/adminData'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import OverflowHandler from '../../shared/OverflowHandler'
 
-
 const  AdminDashboardTabs = ({setAdmins}) => {
+
     const [currentIndex,setCurrentIndex] = useState(0)
+    
         const updateSearchData = (tab,index)=>{
             setCurrentIndex(index)
            const currentTabData = dadmins.filter(admin=>admin.status === tab);

@@ -5,6 +5,7 @@ const PostDescription = ({description}) => {
     const slicedValue = description.slice(0,150)
 
     return(
+        // <p>hello</p>
         <p className={`mb-2 ${description.length > 152&&'cursor-pointer'}`} onClick={()=>setIsOpened(!isOpened)}>{isOpened?description: <span>{slicedValue} {description.length > 152&&'...'}</span> }</p>
     )
 }

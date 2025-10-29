@@ -40,11 +40,6 @@ const MyPostForm = () => {
         }
     }, [images])
     
-    const handleSlicedImages = ()=>{
-        setSlicedImages(images.slice(3,images.length))
-        setShowSlicedImages(!showSlicedImages)
-    }
-    
     const removeImage = (item)=>{
         if(images.length === 1 || images.length === 4){
             setShowSlicedImages(false)
@@ -58,59 +53,48 @@ const MyPostForm = () => {
     }
 
     const storePost = async(data)=>{
-        return await axios.post('https://styleitafrica.pythonanywhere.com/api/posting',data,{
+        const response =  await axios.post('https://styleitafrica.pythonanywhere.com/api/posting',data,{
           headers: {
                  Authorization: `Bearer ${Cookies.get('token')}`,
                  'Content-Type': 'multipart/form-data'
         }
       })
+      return response.data;
     }
 
     const queryClient = useQueryClient();
       const {mutate,data} = useMutation({
         mutationFn:storePost,
-        onSuccess:()=>{
-            queryClient.invalidateQueries('myPosts')
+         onMutate: async (newPost) => {
+        await queryClient.cancelQueries(["myPosts"]);
+        console.log(newPost.body)
+
+      const previousPosts = queryClient.getQueryData(["myPosts"]);
+      const _queryClient = queryClient.getQueryData(['gfhjfj'])
+      console.log(previousPosts)
+
+      // Optimistically update cached posts
+      queryClient.setQueryData(["myPosts"], (old) =>{
+        console.log(old,'old')
+        const ex = {...old.data,posts:[...old.data.posts,{postTitle:postData.title,content:postData.body}]}
+        console.log(ex)
+        
+        return {
+            ...old,
+            data:{...old.data,posts:[...old.data.posts,{postTitle:postData.title,content:postData.body}]}
+
         }
+      });
+
+      // Return rollback function data
+      return { previousPosts };
+    },
+    
+    onSettled: () => {
+        queryClient.invalidateQueries({ queryKey: ['myPosts'] })
+    },
     })
 
-//     const storePost = (data) => {
-//   return axios.post('https://styleitafrica.pythonanywhere.com/api/posting', data, {
-//     headers: {
-//       Authorization: `Bearer ${Cookies.get('token')}`,
-//       'Content-Type': 'multipart/form-data'
-//     }
-//   });
-// };
-
-// const queryClient = useQueryClient();
-
-// const { mutate, data } = useMutation({
-//   mutationFn: storePost,
-//   onMutate: async (newPost) => {
-//     // Cancel outgoing refetches
-//     await queryClient.cancelQueries({ queryKey: ['myPosts'] });
-    
-//     // Snapshot previous value
-//     const previousPosts = queryClient.getQueryData(['myPosts']);
-    
-//     // Optimistically update
-//     queryClient.setQueryData(['myPosts'], (old) => 
-//       old ? [newPost, ...old] : [newPost]
-//     );
-    
-//     // Return context for rollback
-//     return { previousPosts };
-//   },
-//   onError: (err, newPost, context) => {
-//     // Rollback on error
-//     queryClient.setQueryData(['myPosts'], context.previousPosts);
-//   },
-//   onSettled: () => {
-//     // Refetch after mutation
-//     queryClient.invalidateQueries({ queryKey: ['myPosts'] });
-//   }
-// });
 
    const handlePost = async(e)=>{
     e.preventDefault()
@@ -123,7 +107,6 @@ const MyPostForm = () => {
     formData.append("body", postData.body); 
     
    mutate(formData)
-   console.log(data)
    }
   return (
     <div>

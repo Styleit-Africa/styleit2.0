@@ -127,12 +127,12 @@ const PostCard=({data,post,follow,userProfile}) => {
             }
         </div>
         <PostTitle title={post.postTitle}/>
-        <PostDescription description={post.content}/>
+        {/* <PostDescription description={post.content}/> */}
+        <p>{post.content}</p>
        {/* post images */}
         {
           post?.img&&post?.img?.length !== 0&&<ImageGallery _images={post.img}/>
         }
-        {/* <PostCardImages/> */}
         <PostActivities
          comments={post.comments} 
          likePost={likePost}

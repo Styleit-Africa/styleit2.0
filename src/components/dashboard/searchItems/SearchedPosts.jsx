@@ -14,8 +14,6 @@ import PostDescription from '@/components/global/post/PostDescription'
 import profileImage from '../../../images/profile_i.png'
 import send from '../../../images/send.png'
 import { Input } from '@/components/ui/input'
-import { useGlobalStore } from '@/store/global/useGlobal'
-import { Link } from 'react-router-dom'
 import TrendingPostLoader from '@/components/global/loaders/TrendingPostLoader'
 import ImageGallery from '@/components/global/imageGallery/ImageGallery'
 

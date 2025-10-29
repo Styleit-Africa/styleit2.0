@@ -39,6 +39,26 @@ const Clients = () => {
         filterClients()
     },[searchItem])
 
+//        const getAdminData = async()=>{
+//      try{
+//       const response = await axios.get('https://styleitafrica.pythonanywhere.com/api/staffactivity/',{
+//             headers:{
+//               Authorization:`Bearer ${Cookies.get('token')}`,
+//               'Content-Type': 'application/json',
+//               Accept:'application/json'
+//             }
+//       })
+//       console.log(response,'admin')
+//       return response?.data
+//      }catch(e){
+//       console.log(e,'e2')
+//      }
+//   }
+
+//   useEffect(()=>{
+//     getAdminData()
+//   },[])
+
       
     const handleOptions = (creatorId)=>{
         if(id === creatorId){
