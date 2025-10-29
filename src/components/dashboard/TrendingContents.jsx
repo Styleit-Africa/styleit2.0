@@ -29,12 +29,11 @@ const TrendingContents = ({pageParam=1}) => {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
-    status} = useInfiniteQuery({
+    } = useInfiniteQuery({
         queryKey:['trending'],
         queryFn:getTrending,
         initialPageParam:0,
         getNextPageParam: (lastPage, pages) =>{
-          console.log('last page '+lastPage)
               if (lastPage.has_next) {
             return lastPage.page + 1;
           }

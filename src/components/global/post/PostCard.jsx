@@ -86,6 +86,7 @@ const PostCard=({data,post,follow,userProfile}) => {
     }    
   return (
     <div className='max-w-[480px] mx-auto mt-10'>
+      {/* post details */}
       {
         postId === post.id &&<ViewPostDetails setPostId={setPostId} post={post} />
       }
@@ -127,8 +128,7 @@ const PostCard=({data,post,follow,userProfile}) => {
             }
         </div>
         <PostTitle title={post.postTitle}/>
-        {/* <PostDescription description={post.content}/> */}
-        <p>{post.content}</p>
+        <PostDescription description={post.content}/>
        {/* post images */}
         {
           post?.img&&post?.img?.length !== 0&&<ImageGallery _images={post.img}/>
@@ -142,15 +142,14 @@ const PostCard=({data,post,follow,userProfile}) => {
          setIsCommentOpened={setIsCommentOpened}
          share={{isShared,setIsShared}}  />
         <div className='relative' onClick={()=>setIsCommentOpened(!isCommentOpened)}>
-            <Input type="text" onChange={(e)=>setComment(e.target.value)}  
-            className="h-12 rounded-2xl border border-gray-200  focus-visible:ring-0"/>
+            <div  onClick={()=>setPostId(post.id)}
+            className="h-12 rounded-2xl cursor-pointer border border-gray-200  focus-visible:ring-0"></div>
+            {/* <Input type="text" onChange={(e)=>setComment(e.target.value)}  onClick={()=>setPostId(post.id)}
+            className="h-12 rounded-2xl border border-gray-200  focus-visible:ring-0"/> */}
             <Image src={send} className='absolute top-3.5 md:top-2.5 right-2.5 w-5 h-5 md:w-7 md:h-7 '
               onClick={()=>handleComment(pathname==='/trending'?post.id:post.postId)}/> 
         </div>
     </div>
-    {/* {
-        isCommentOpened&&<CommentContainer  userProfile={userProfile} postComments={post.comments} />
-    } */}
     {
       isShared&&<SharePostContainer setIsShared={setIsShared} post={post}/>
     }

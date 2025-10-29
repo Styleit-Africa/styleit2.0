@@ -27,7 +27,7 @@ import { useComment } from '@/store/useComment';
 
 const ViewPostDetails = ({post,setPostId}) => {
         const {isShared,setIsShared,likePost} = usePost();
-        const {setComment,storeComment} = useComment()
+        const {setComment,storeComment,comment} = useComment()
         const [isOver,setIsOver] = useState(false)
         const handleOverFlow = (value)=>{
           setIsOver(value)
@@ -58,8 +58,26 @@ const ViewPostDetails = ({post,setPostId}) => {
 
      const {mutate:commentMutation} = useMutation({
             mutationFn: storeComment,
-            onSuccess:()=>{
-                queryClient.invalidateQueries('trending')
+            onMutate:async()=>{
+              await queryClient.cancelQueries({queryKey:['trending']})
+
+              const previousPosts = queryClient.getQueryData(['trending']);
+              queryClient.setQueryData(['trending'],(old)=>{
+                const pages = old.pages.map(page=>{
+                  page.posts.map(post=>{
+                    post.comments.push({body:comment,client_reply:'',creator_reply:''})
+                  })
+                })
+                return {
+                  ...old,
+                  pages
+                }
+              })
+              return {previousPosts}
+
+            },
+            onSettled:()=>{
+              queryClient.invalidateQueries(['trending'])
             }
         })
         const handleComment = async(id)=>{

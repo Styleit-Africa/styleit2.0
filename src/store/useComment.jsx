@@ -15,7 +15,6 @@ export const useComment = create((set,get)=>({
     },
     storeComment: async(id)=>{
         const {comment} = get();
-        console.log(comment,'comment')
        return await axios.post(`https://styleitafrica.pythonanywhere.com/api/comment/${id}/`,{comment},{
           headers: {
                  Authorization: `Bearer ${Cookies.get('token')}`,

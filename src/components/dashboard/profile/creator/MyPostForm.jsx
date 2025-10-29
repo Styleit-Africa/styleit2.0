@@ -6,7 +6,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import Image from '@/components/global/Image'
-import Indicator from '@/components/global/Indicator'
 import ImageGallery from '@/components/global/imageGallery/ImageGallery'
 import { Button } from '@/components/ui/button'
 import gallery from '@/images/gallery-add.png'
@@ -70,22 +69,13 @@ const MyPostForm = () => {
         console.log(newPost.body)
 
       const previousPosts = queryClient.getQueryData(["myPosts"]);
-      const _queryClient = queryClient.getQueryData(['gfhjfj'])
-      console.log(previousPosts)
-
       // Optimistically update cached posts
       queryClient.setQueryData(["myPosts"], (old) =>{
-        console.log(old,'old')
-        const ex = {...old.data,posts:[...old.data.posts,{postTitle:postData.title,content:postData.body}]}
-        console.log(ex)
-        
         return {
             ...old,
             data:{...old.data,posts:[...old.data.posts,{postTitle:postData.title,content:postData.body}]}
-
         }
       });
-
       // Return rollback function data
       return { previousPosts };
     },
