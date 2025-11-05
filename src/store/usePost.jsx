@@ -41,6 +41,6 @@ export const usePost = create((set,get)=>({
                     'Content-Type': 'application/json',
                       Accept:'application/json',
             }
-          }),    
+          })
 
 }))

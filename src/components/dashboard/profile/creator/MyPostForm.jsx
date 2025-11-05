@@ -66,7 +66,6 @@ const MyPostForm = () => {
         mutationFn:storePost,
          onMutate: async (newPost) => {
         await queryClient.cancelQueries(["myPosts"]);
-        console.log(newPost.body)
 
       const previousPosts = queryClient.getQueryData(["myPosts"]);
       // Optimistically update cached posts

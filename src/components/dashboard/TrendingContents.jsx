@@ -34,7 +34,7 @@ const TrendingContents = ({pageParam=1}) => {
         queryFn:getTrending,
         initialPageParam:0,
         getNextPageParam: (lastPage, pages) =>{
-              if (lastPage.has_next) {
+              if (lastPage?.has_next) {
             return lastPage.page + 1;
           }
           return undefined; // stop fetching

@@ -22,6 +22,7 @@ import { useCreatorStore } from '@/store/useCreator'
 import PostDescription from './PostDescription'
 import ImageGallery from '../imageGallery/ImageGallery'
 import ViewPostDetails from './ViewPostDetails'
+import CreatorPostDetails from './CreatorPostDetails'
 
 
 const PostCard=({data,post,follow,userProfile}) => {
@@ -83,13 +84,23 @@ const PostCard=({data,post,follow,userProfile}) => {
 
     const handleDeletePost = (id)=>{
             deleteMutation(id)
-    }    
+    } 
+    
+    const handleCommentModal = (id)=>{
+      setPostId(id)
+    }
+    console.log(pathname,'name')
+
   return (
     <div className='max-w-[480px] mx-auto mt-10'>
       {/* post details */}
       {
-        postId === post.id &&<ViewPostDetails setPostId={setPostId} post={post} />
+        postId === post.id&&pathname==='/trending'&&<ViewPostDetails setPostId={setPostId} post={post} />
       }
+      {
+        postId === post.id&&pathname==='/creator/posts'&&<CreatorPostDetails setPostId={setPostId} _post={post} />
+      }
+
       {
         showReport&&<Report user={{creator:data?.creator}} setShowReport={setShowReport}/>
       }
@@ -140,12 +151,11 @@ const PostCard=({data,post,follow,userProfile}) => {
          setPostId={setPostId}
          isCommentOpened={isCommentOpened} 
          setIsCommentOpened={setIsCommentOpened}
-         share={{isShared,setIsShared}}  />
+         share={{isShared,setIsShared}} />
         <div className='relative' onClick={()=>setIsCommentOpened(!isCommentOpened)}>
-            <div  onClick={()=>setPostId(post.id)}
+            <div  onClick={()=>handleCommentModal(post.id)}
             className="h-12 rounded-2xl cursor-pointer border border-gray-200  focus-visible:ring-0"></div>
-            {/* <Input type="text" onChange={(e)=>setComment(e.target.value)}  onClick={()=>setPostId(post.id)}
-            className="h-12 rounded-2xl border border-gray-200  focus-visible:ring-0"/> */}
+           
             <Image src={send} className='absolute top-3.5 md:top-2.5 right-2.5 w-5 h-5 md:w-7 md:h-7 '
               onClick={()=>handleComment(pathname==='/trending'?post.id:post.postId)}/> 
         </div>

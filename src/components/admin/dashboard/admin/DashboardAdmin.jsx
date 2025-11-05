@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Creators from '../../creator/Creators'
 import Admin from './Admins'
 import AdminDashboardTabs from './AdminDashboardTabs'
 import { dadmins } from '@/static/adminData'

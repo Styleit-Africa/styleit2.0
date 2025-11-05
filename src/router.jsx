@@ -97,6 +97,8 @@ const router = createBrowserRouter(
             <Route path='taskPayment' element={<TaskPaymentPage/>} />
           </Route>
           {/* admin */}
+              <Route path='/admin/login' element={<AdminLoginPage/>} />
+          <Route path='/admin' element={<AdminLayout/>}>
             {/* client */}
             <Route path='clients' element={<AdminClientLayout/>} >
                 <Route index element={<AdminClientsPage/>}/>
@@ -107,8 +109,6 @@ const router = createBrowserRouter(
                 <Route path="complaints & disputes/:id" element={<AdminSingleClientComplaints/>}/>
                 <Route path="activities" element={<AdminClientActivitiesPage/>}/>
             </Route>
-              <Route path='/admin/login' element={<AdminLoginPage/>} />
-          <Route path='/admin' element={<AdminLayout/>}>
             <Route path='dashboard' element={<AdminDashboardLayout/>} >
               <Route index element={<DashboardPage/>} />
               <Route path=":id/profile" element={<AdminPage/>} />
@@ -118,7 +118,6 @@ const router = createBrowserRouter(
               <Route path=":id/profile/ct" element={<AdminClientProfilePage/>} />
               <Route path=":id/profile/cn" element={<AdminCreatorProfilePage/>} />
             </Route>
-            {/* creator */}
             <Route path='creators' element={<AdminCreatorLayout/>} >
                 <Route index element={<AdminCreatorsPage/>}/>
                 <Route path="subscriptions" element={<CreatorSubscriptionPage/>}/>

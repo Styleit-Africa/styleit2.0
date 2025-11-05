@@ -6,24 +6,24 @@ import { Input } from '@/components/ui/input'
 import send from '../../../images/send.png'
 import Comment from './Comment'
 import { useLocation } from 'react-router-dom'
+import CreatorPostComments from './CreatorPostComments'
 
 
-const CommentContainer = ({userProfile,post}) => {
+const CreatorPostCommentContainer = ({userProfile,post}) => {
       const [commentId,setCommentId] = useState(null)
-      const {pathname} = useLocation()
 
-      const getComment = pathname === '/trending'?post.comments:post.post_comment
+
       
     
   return (
     <div data-testid="comment-container">
+      container
         {
-            // post?.comments.map(comment=>{
-            getComment.map(comment=>{
+            post.post_comment.map(comment=>{
                 return (
                     <div key={comment.id}>
                             
-                      <Comment userProfile={userProfile} 
+                      <CreatorPostComments userProfile={userProfile} 
                       commentId={commentId} setCommentId={setCommentId}
                         comment={comment} post={post} />
                     </div>
@@ -35,4 +35,4 @@ const CommentContainer = ({userProfile,post}) => {
   )
 }
 
-export default CommentContainer
+export default CreatorPostCommentContainer

@@ -7,7 +7,7 @@ import send from '../../../images/send.png'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const Comment = ({comment,commentId,setCommentId,userProfile,post}) => {
+const CreatorPostComments = ({comment,commentId,setCommentId,userProfile,post}) => {
     const [reply,setReply] = useState('')
 
     const handleReply = async(postId,comment_id)=>{
@@ -20,23 +20,15 @@ const Comment = ({comment,commentId,setCommentId,userProfile,post}) => {
                          Accept:'application/json'
                 }
               });
-        console.log(response)
     }
+    console.log(comment)
 
-   
+
   return (
     <div>
           <div className='mt-3 bg-lPinkl w-[fit-content] flex gap-2 '>
-                            {/* <User
-                                userProps={{
-                                        name:{userProfile,fullName:false,styles:'text-black font-[500]'},
-                                        indicator:{isIndicator:false,styles:'h-2 w-2 absolute bottom-2 right-0 rounded-full bg-green-300 '},
-                                        image:{profileImage,styles:'w-[28px] h-[28px]'},
-                                        container:' flex items-center gap-3 font-[500] text-xs font-lato'
-                            }}/> */}
                             <div className='basis-[25%]'>
                             <Image src={profileImage} className='w-[40px] h-[40px] rounded-full '/>
-
                             </div>
                            <div>
                              <div className='py-2 px-3 rounded-2xl bg-lPink'> 
@@ -49,7 +41,6 @@ const Comment = ({comment,commentId,setCommentId,userProfile,post}) => {
                        </div>
                            </div>
                         </div>
-
                 {
                   comment.client_reply&&<div className="ml-auto py-2 px-4 max-w-[200px] rounded-2xl bg-lPink w-[fit-content]">
                 <p>{comment.client_reply} </p>
@@ -67,4 +58,4 @@ const Comment = ({comment,commentId,setCommentId,userProfile,post}) => {
   )
 }
 
-export default Comment
+export default CreatorPostComments
