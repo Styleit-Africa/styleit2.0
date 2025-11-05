@@ -13,54 +13,70 @@ import { ThumbsDown, ThumbsUp } from 'lucide-react'
 const PostActivities = (activitiesData) => {
   const {post,share,comments,likePost,setPostId} = activitiesData
     const {user} = useAuth();
-    console.log(user.role)
-
         const queryClient = useQueryClient();
-        const {mutate} = useMutation({
-            mutationFn:likePost,
-          onMutate:async(id)=>{
-            await queryClient.cancelQueries(['trending'])
-            //the data contains two array of user id
-            const updateLikeId = (post)=>{
-              console.log(post,'post')
-              if(user.role == 'designer'){
-                if(post.creator_id_likes.includes(user.designer_id)){
-                  post.likes_count - 1
-                  post.creator_id_likes.filter(id=>id !== user.designer_id)
-                }else{
-                  post.creator_id_likes.push(user.designer_id)
-                  post.likes_count + 1
-                }
-              }else{
-                if(post.client_id_likes.includes(user.id)){
-                  post.client_id_likes.filter(id=>id !== user.id)
-                  post.likes_count - 1
-                }else{
-                  post.client_id_likes.push(user.designer_id)
-                  post.likes_count + 1
-                }
-              }
-            }
-            const previousPosts = queryClient.getQueryData(['trending'])
-            queryClient.setQueryData(['trending'],(postData)=>{
-              const pages = postData.pages.map(page=>{
-                page.posts.map(post=>{
-                  updateLikeId(post)
-                  //  post.creator_id_likes.push(user.designer_id)
-                  // return page
-                })
-              })
-              console.log(postData)
-              return {
-                ...postData,pages
-              }
-            })
-            return {previousPosts}
-          }, onSettled:()=>{
-              queryClient.invalidateQueries(['trending'])
-            }
-        })
-
+       const {mutate} = useMutation({
+  mutationFn: likePost,
+  onMutate: async(id) => {
+    await queryClient.cancelQueries(['trending'])
+    
+    const updateLikeId = (post) => {
+      // Only update the post that matches the clicked post ID
+      if(post.id !== id) return post;
+      
+      if(user.role === 'designer') {
+        if(post.creator_id_likes.includes(user.designer_id)) {
+          // Unlike - remove user ID and decrease count
+          post.creator_id_likes = post.creator_id_likes.filter(userId => userId !== user.designer_id)
+          post.likes_Count = post.likes_Count - 1
+        } else {
+          // Like - add user ID and increase count
+          post.creator_id_likes = [...post.creator_id_likes, user.designer_id]
+          post.likes_Count = post.likes_Count + 1
+        }
+      } else {
+        if(post.client_id_likes.includes(user.id)) {
+          // Unlike
+          post.client_id_likes = post.client_id_likes.filter(userId => userId !== user.id)
+          post.likes_Count = post.likes_Count - 1
+        } else {
+          // Like
+          post.client_id_likes = [...post.client_id_likes, user.id]
+          post.likes_Count = post.likes_Count + 1
+        }
+      }
+      return post
+    }
+    
+    const previousPosts = queryClient.getQueryData(['trending'])
+    
+    queryClient.setQueryData(['trending'], (postData) => {
+      if(!postData) return postData;
+      
+      const pages = postData.pages.map(page => {
+        return {
+          ...page,
+          posts: page.posts.map(post => updateLikeId(post))
+        }
+      })
+      
+      return {
+        ...postData,
+        pages
+      }
+    })
+    
+    return { previousPosts }
+  },
+  onError: (err, variables, context) => {
+    // Rollback on error
+    if(context?.previousPosts) {
+      queryClient.setQueryData(['trending'], context.previousPosts)
+    }
+  },
+  onSettled: () => {
+    queryClient.invalidateQueries(['trending'])
+  }
+})
       const handleLike = async(id)=>{
         mutate(id)
     }

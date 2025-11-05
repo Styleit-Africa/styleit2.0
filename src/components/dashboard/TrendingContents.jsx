@@ -59,7 +59,7 @@ const TrendingContents = ({pageParam=1}) => {
             userProfile={userProfile}/>
       }
       
-      <div ref={ref}>{isFetchingNextPage&&<TrendingPostLoader/>}</div>
+      <div className='mb-40' ref={ref}>{isFetchingNextPage&&<TrendingPostLoader/>}</div>
     </div>
   )
 }
