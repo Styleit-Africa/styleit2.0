@@ -3,10 +3,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { CheckCircle2, ArrowLeft } from 'lucide-react';
+import { CheckCircle2, ArrowLeft, Loader, X } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { toast } from 'sonner';
 
  const ConfirmPayment = ()=> {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,6 +18,7 @@ import Cookies from 'js-cookie';
   
 
   const handleConfirmPayment = async() => {
+        setIsSubmitting(true)
        try {
             const response =  await axios.post(`https://styleitafrica.pythonanywhere.com/api/confirm_payment/${Number(bookingId)}/`,
             {refno:paymentDetails.reference_no},
@@ -29,8 +31,15 @@ import Cookies from 'js-cookie';
             }
       );
       if(response.status === 201){
-        setIsSubmitting(true)
         window.location.href = response.data.authorization_url
+      }
+      console.log(response)
+      if(response.status === 200){
+         toast(`${response.data.message}`, {
+              action: {
+              label: <X size={16} />,
+            },
+          })
       }
     
       setSubmitStatus({
@@ -133,10 +142,13 @@ import Cookies from 'js-cookie';
               
               <Button 
                 type="button"
+                disabled={isSubmitting}
                 className="w-full sm:w-1/2 bg-primary hover:bg-green-700 text-white py-6"
                 onClick={handleConfirmPayment}
               >
-                <CheckCircle2 className="mr-2 h-4 w-4" />
+                {
+                  isSubmitting?<Loader className='animate-spin'/>:<CheckCircle2 className="mr-2 h-4 w-4" />
+                }
                 Confirm Payment
               </Button>
             </div>
