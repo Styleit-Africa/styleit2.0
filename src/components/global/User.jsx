@@ -1,10 +1,14 @@
 import React from 'react'
 import Image from './Image'
 import Indicator from './Indicator'
+import { useAuth } from '@/store/useAuth'
+import { useLocation } from 'react-router-dom'
 
 
 const User = ({userProps}) => {
     const {image,indicator,name,container} = userProps
+    const {user} = useAuth();
+    const{pathname} = useLocation()
   return (
     <div className={container}>
     <div className=' relative '>
@@ -21,11 +25,6 @@ const User = ({userProps}) => {
        
     }
 
-    {
-      //  name.fullName ? 
-      //   <p className={name.styles}>{name.userProfile.fname} {name.userProfile.lname}</p>
-      //   :<p className={name.styles}>{name.userProfile.lname} </p>
-    }
 </div>
   )
 }

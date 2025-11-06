@@ -20,7 +20,6 @@ const PostContainer = ({pages,userProfile,follow})=>{
                                 return(
                                     <PostCard
                                      follow={follow} 
-                                    userProfile={{firstName:'uthman',lastName:'fatai'}}
                                         post={post} key={post.id}
                                     
                                     />

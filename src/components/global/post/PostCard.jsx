@@ -23,6 +23,9 @@ import PostDescription from './PostDescription'
 import ImageGallery from '../imageGallery/ImageGallery'
 import ViewPostDetails from './ViewPostDetails'
 import CreatorPostDetails from './CreatorPostDetails'
+import CreatorPostActivities from './CreatorPostActivities'
+import { X } from 'lucide-react'
+import { toast } from 'sonner'
 
 
 const PostCard=({data,post,follow,userProfile}) => {
@@ -41,6 +44,7 @@ const PostCard=({data,post,follow,userProfile}) => {
             queryClient.invalidateQueries('following')
         }
     })
+    console.log(userProfile)
      const handleFollow = async(id)=>{
       followMutation(id)
     }
@@ -77,19 +81,42 @@ const PostCard=({data,post,follow,userProfile}) => {
     
     const {mutate:deleteMutation} = useMutation({
       mutationFn:deletePost,
-        onSuccess:()=>{
-            queryClient.invalidateQueries('myPosts')
+        onSuccess:(response)=>{
+          console.log(response,'res')
+        if(response?.status === 200){
+                toast("post deleted successfully", {
+                    action: {
+                    label: <X size={16} />,
+                  },
+                })
+            }
+            
+        },
+        onMutate:async(id)=>{
+          await queryClient.cancelQueries({queryKey:['myPosts']})
+          const previousPosts = queryClient.getQueryData(['myPosts'])
+          queryClient.setQueryData(['myPosts'],(prevPosts)=>{
+            const posts = prevPosts.data.posts.filter(post=>post.postId !== id)
+            return{
+              ...prevPosts,
+              data:{...prevPosts.data,posts}
+            }
+          })
+          return {previousPosts}
+        },
+        onSettled:()=>{
+          queryClient.invalidateQueries(['myPosts'])
         }
     })
 
-    const handleDeletePost = (id)=>{
+    const handleDeletePost = async(id)=>{
             deleteMutation(id)
     } 
     
     const handleCommentModal = (id)=>{
       setPostId(id)
     }
-    console.log(pathname,'name')
+
 
   return (
     <div className='max-w-[480px] mx-auto mt-10'>
@@ -102,19 +129,21 @@ const PostCard=({data,post,follow,userProfile}) => {
       }
 
       {
-        showReport&&<Report user={{creator:data?.creator}} setShowReport={setShowReport}/>
+        showReport&&<Report user={post.creator} setShowReport={setShowReport}/>
       }
     <div className='relative border border-gray-200 rounded-2xl  text-sm  p-3.5'>
         {
             isReportOpened&&<div data-testid="options" className='absolute right-6 top-7 rounded-3xl bg-transparent  backdrop-filter backdrop-blur-md text-white pl-5 py-5 w-[200px] '>
-            <p className='capitalize text-lg cursor-pointer text-red-500 font-[500]' onClick={()=>handleDeletePost(post.postId)}>delete</p>
+            {
+              pathname !== '/trending'&&<p className='capitalize text-lg cursor-pointer text-red-500 font-[500]' onClick={()=>handleDeletePost(post.postId)}>delete</p>
+            }
             <p className='capitalize text-lg cursor-pointer text-yellow-500 font-[500]' onClick={()=>setShowReport(true)}>report</p>
         </div>
         }
         <div className='flex justify-between items-center '>
         <User
         userProps={{
-                name:{userProfile,fullName:false,styles:'text-black capitalize font-[500]'},
+                name:{userProfile:post?.creator,fullName:false,styles:'text-black capitalize font-[500]'},
                 indicator:{isIndicator:false,styles:'h-2 w-2 absolute bottom-2 right-0 rounded-full bg-green-300 '},
                 image:{profileImage,styles:'w-[35px] h-[35px]'},
                 container:' flex items-center gap-3 font-[700] text-lg font-lato'
@@ -144,14 +173,22 @@ const PostCard=({data,post,follow,userProfile}) => {
         {
           post?.img&&post?.img?.length !== 0&&<ImageGallery _images={post.img}/>
         }
-        <PostActivities
+
+          {
+            pathname ==='/trending'?  <PostActivities
          comments={post.comments} 
          likePost={likePost}
          post={post} 
          setPostId={setPostId}
-         isCommentOpened={isCommentOpened} 
-         setIsCommentOpened={setIsCommentOpened}
+         share={{isShared,setIsShared}} />:
+         <CreatorPostActivities
+         comments={post.comments} 
+         likePost={likePost}
+         post={post} 
+         setPostId={setPostId}
          share={{isShared,setIsShared}} />
+
+          }
         <div className='relative' onClick={()=>setIsCommentOpened(!isCommentOpened)}>
             <div  onClick={()=>handleCommentModal(post.id)}
             className="h-12 rounded-2xl cursor-pointer border border-gray-200  focus-visible:ring-0"></div>

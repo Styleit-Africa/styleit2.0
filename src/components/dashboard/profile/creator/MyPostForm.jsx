@@ -9,6 +9,8 @@ import Image from '@/components/global/Image'
 import ImageGallery from '@/components/global/imageGallery/ImageGallery'
 import { Button } from '@/components/ui/button'
 import gallery from '@/images/gallery-add.png'
+import { X } from 'lucide-react'
+import { toast } from 'sonner'
 
 const MyPostForm = () => {
       const [postData,setPostData] = useState({title:'',body:''})
@@ -64,6 +66,16 @@ const MyPostForm = () => {
     const queryClient = useQueryClient();
       const {mutate,data} = useMutation({
         mutationFn:storePost,
+         onSuccess:(response)=>{
+          console.log(response,'res')
+        if(response?.status === 200){
+                toast("post created successfully", {
+                    action: {
+                    label: <X size={16} />,
+                  },
+                })
+            }
+        },
          onMutate: async (newPost) => {
         await queryClient.cancelQueries(["myPosts"]);
 
@@ -72,7 +84,7 @@ const MyPostForm = () => {
       queryClient.setQueryData(["myPosts"], (old) =>{
         return {
             ...old,
-            data:{...old.data,posts:[...old.data.posts,{postTitle:postData.title,content:postData.body}]}
+            data:{...old.data,posts:[{postTitle:postData.title,content:postData.body,img:images},...old.data.posts]}
         }
       });
       // Return rollback function data

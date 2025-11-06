@@ -30,7 +30,7 @@ export const usePost = create((set,get)=>({
     
             }
           })
-          console.log(response)
+            return response
              }catch(e){
                 console.log(e)
              }

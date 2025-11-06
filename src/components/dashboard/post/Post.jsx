@@ -22,7 +22,6 @@ const Post = () => {
           }),
         staleTime:1000*10*60
         })
-        console.log(data,'here')
   return (
     <section className='px-4 xl:px-0'>
       <CreatePost />
