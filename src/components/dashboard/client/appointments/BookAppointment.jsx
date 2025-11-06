@@ -139,8 +139,7 @@ const BookAppointment = () => {
     
     
     <div>
-{/* 
-      <ImageGallery/> */}
+
         <Form {...form} className='' data-testid="edit-profile-form ">
                       <form onSubmit={form.handleSubmit(onSubmit)}  className="space-y-5 mt-6 md:mt-11 mb-20 px-4 xl:px-0">
                  
@@ -175,7 +174,6 @@ const BookAppointment = () => {
                   <SelectItem 
                     key={designer.creator_id} 
                     value={designer.creator+' '+designer.creator_id} // Use designer name as value
-                    // value={designer.creator_id} // Use designer name as value
                     className='p-3 relative border shadow-md mt-3 rounded-md'
                     onClick={()=>handleDesignerSelection(designer.creator_id)} 
                   >

@@ -26,10 +26,12 @@ import CreatorPostDetails from './CreatorPostDetails'
 import CreatorPostActivities from './CreatorPostActivities'
 import { X } from 'lucide-react'
 import { toast } from 'sonner'
+import { useAuth } from '@/store/useAuth'
 
 
 const PostCard=({data,post,follow,userProfile}) => {
     const {pathname} = useLocation()
+    const {user} = useAuth();
     const [isReportOpened,setIsReportOpened] = useState(false)//needed for individual component
     const {showReport,setShowReport,isShared,setIsShared,deletePost,likePost
       } = usePost();
@@ -143,7 +145,7 @@ const PostCard=({data,post,follow,userProfile}) => {
         <div className='flex justify-between items-center '>
         <User
         userProps={{
-                name:{userProfile:post?.creator,fullName:false,styles:'text-black capitalize font-[500]'},
+                name:{userProfile: pathname==='/trending'?post?.creator:user,fullName:false,styles:'text-black capitalize font-[500]'},
                 indicator:{isIndicator:false,styles:'h-2 w-2 absolute bottom-2 right-0 rounded-full bg-green-300 '},
                 image:{profileImage,styles:'w-[35px] h-[35px]'},
                 container:' flex items-center gap-3 font-[700] text-lg font-lato'
@@ -154,7 +156,7 @@ const PostCard=({data,post,follow,userProfile}) => {
 
             <div className='flex items-center '  >
                 {
-                follow&&
+                pathname==='/trending'&&
                 <Button onClick={()=>handleFollow(post.creator.creator_id)} className="text-primary -mt-1.5  p-0 bg-white hover:bg-white shadow-none block text-lg">Follow</Button>
                 }
 

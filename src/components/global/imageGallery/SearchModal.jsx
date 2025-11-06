@@ -73,7 +73,7 @@ const SearchModal = ({page,creators}) => {
                     </div>
                    
         
-                  <div className="h-[400px] overflow-y-scroll py-4 mt-4">
+                  <div className="h-[400px] overflow-y-auto py-4 mt-4">
                     {
                       tabValue === 'designers'&& <SearchedCreators isLoading={isLoading} creators={data?.results}/>
                     }
@@ -85,7 +85,7 @@ const SearchModal = ({page,creators}) => {
                 </div>
                }
                 {
-                page === 'home'&&<div className='mt-10'>
+                page === 'home'&&<div className='mt-10 h-[400px] overflow-y-auto'>
                     <SearchedCreators isLoading={isLoading} creators={data?.results}/>
                 </div>
                 }

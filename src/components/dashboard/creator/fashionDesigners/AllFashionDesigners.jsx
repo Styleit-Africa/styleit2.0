@@ -4,6 +4,7 @@ import FashionDesignerCard from './FashionDesignerCard';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import PostListLoader from '@/components/global/loaders/PostListLoader';
 
 const AllDesignersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -306,7 +307,7 @@ const AllDesignersPage = () => {
 
         {/* Designers Grid */}
        {
-        isLoading ? <div>Loading...</div>:
+        isLoading ? <PostListLoader/>:
          <div className="flex flex-wrap justify-center gap-6 mb-12">
             {currentDesigners.map((designer) => (
             <FashionDesignerCard key={designer.id} designer={designer}/>

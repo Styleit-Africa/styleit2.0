@@ -22,7 +22,6 @@ const Bookings = () => {
         queryKey:['bookings'],
         queryFn:getBookings,
         staleTime:1
-        // staleTime:1000*2*60
   })
 
  console.log(data)

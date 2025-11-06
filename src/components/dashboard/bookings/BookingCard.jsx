@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Loader, X } from 'lucide-react';
@@ -37,6 +37,7 @@ const BookingCard = ({appointment,page}) => {
       }
 
       }
+      const queryClient = useQueryClient();
       const {mutate,data,isLoading,error} = useMutation({
         mutationFn:updateAppointmentStatus,
         onSuccess:(_data,value)=>{
@@ -54,6 +55,7 @@ const BookingCard = ({appointment,page}) => {
               },
             })
         }
+        queryClient.invalidateQueries(['appointment'])
         }
       })
       const updateAppointment = async(value)=>{

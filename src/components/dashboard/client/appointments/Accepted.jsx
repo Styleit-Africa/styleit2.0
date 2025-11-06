@@ -3,11 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Accepted = ({appointment}) => {
-  console.log(appointment)
-  const user = {
-    name:'uthman fatail',
-    id:34
-  }
   return (
     <div className='mt-3' role='accepted'>
         <p role="negotiate" className='bg-s_primary py-2 px-5 text-sm mb-5 rounded'>if negotiatiotion is sealed, kindly make payment below</p>
