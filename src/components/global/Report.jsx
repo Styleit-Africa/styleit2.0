@@ -49,7 +49,6 @@ console.log(authUser)
   const {mutate,data,error,isPending} = useMutation({
     mutationFn:report,
     onSuccess:(response)=>{
-          console.log(response,'res')
         if(response?.status === 201){
           setShowReport(false)
           toast("Report", {
@@ -59,11 +58,8 @@ console.log(authUser)
             },
           })
             }
-        },
-            
-
+        }
   })
-  console.log(isPending)
 
   const handleReport = ()=>{
     mutate(reportData)
@@ -78,7 +74,7 @@ console.log(authUser)
 
   return (
     <div className='px-5 font-lato py-6  flex justify-center  gap-3 bg-[rgba(0,0,0,0.1)]  items-center z-[999]  fixed top-0  bottom-0 left-0 right-0  overflow-hidden  '>
-       <div className="bg-white  shadow-md rounded-md relative z-50">
+       <div className="bg-white  shadow-md rounded-md relative z-50 mx-20">
             <div className="border-b-[1px] border-gray-300 pdy-1 px-4">
                    <div className='max-w-[400px] ml-auto  flex items-center justify-between'>
                       <h1 className='font-bold text-xl'>Report {user.lastName}'s Post</h1>

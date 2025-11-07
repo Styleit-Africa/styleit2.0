@@ -33,9 +33,8 @@ const EditProfileForm = ({ isEditable, title }) => {
     })
   })
 
-  console.log(data)
 
-  const validation =  user.role === 'designer'?designerEditFormSchema:clientEditFormSchema
+  const validation =  user?.role === 'designer'?designerEditFormSchema:clientEditFormSchema
 
   const form = useForm({
     resolver: zodResolver(validation),
@@ -55,7 +54,7 @@ const EditProfileForm = ({ isEditable, title }) => {
   useEffect(() => {
     let formValues;
     if (data?.data) {
-        if(user.role === 'designer'){
+        if(user?.role === 'designer'){
           formValues = {
            firstName: data.data.creator?.firstName || '',
            lastName: data.data.creator?.lastName || '',
@@ -89,7 +88,7 @@ const EditProfileForm = ({ isEditable, title }) => {
   }, [data, form])
 
   const updateProfile = async(data)=>{
-    return  await axios.put(`https://styleitafrica.pythonanywhere.com/api/${user.role==='designer'?'designer':'customer'}/profile`,data,{
+    return  await axios.put(`https://styleitafrica.pythonanywhere.com/api/${user?.role==='designer'?'designer':'customer'}/profile`,data,{
      headers: {
         Authorization: `Bearer ${Cookies.get('token')}`,
         'Content-Type': 'application/json',
@@ -260,7 +259,7 @@ const EditProfileForm = ({ isEditable, title }) => {
               </div>
 
               {
-                user.role === 'designer'&& <div className='relative mt-8 md:mt-10'>
+                user?.role === 'designer'&& <div className='relative mt-8 md:mt-10'>
                 <FormField
                   control={form.control}
                   name="bank"
@@ -358,7 +357,7 @@ const EditProfileForm = ({ isEditable, title }) => {
               </div>
 
               {
-                 user.role === 'designer'&& <div className='relative mt-8 md:mt-10'>
+                 user?.role === 'designer'&& <div className='relative mt-8 md:mt-10'>
                 <FormField
                   control={form.control}
                   name="bank_acc"

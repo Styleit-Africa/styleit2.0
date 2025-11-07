@@ -73,11 +73,11 @@ export const useAuth = create((set,get)=>({
        }catch(e){
         console.log(e.message)
         if(e.status === 400||e.status === 401){
-                set({isLoading:false,status:e.status,error:e.response.data.error||e.message})
+                set({isLoading:false,status:e.status,error:e.response?.data.error||e.message})
        }
        if(e.message == "Network Error"){
         console.log('yes')
-        set({isLoading:false,status:e.status,error:e.response?.data.error||e.message})
+        set({isLoading:false,status:e.status,error:e.response?.data.error||'You are offline'})
 
        }
        }

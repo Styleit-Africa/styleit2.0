@@ -1,17 +1,16 @@
 import { sidebarLinks, userProfile } from '@/static/data'
-import React, { useState } from 'react'
+import React from 'react'
 import Image from './Image'
 import User from './User'
 import { Button } from '../ui/button'
 import userEdit from '../../images/user-edit_2.png'
 import icon from '../../images/icon.png'
-import logout from '../../images/logout.png'
+import logout  from '../../images/logout.png'
 import profileImage from '../../images/profile_i.png'
 import Followers from './Followers'
 import { Link, useNavigate } from 'react-router-dom'
 import SidebarLinks from './SidebarLinks'
 import BankDetails from './BankDetails'
-import { useAuthService } from '@/store/useAuthService'
 import { useGlobalStore } from '@/store/global/useGlobal'
 import { useAuth } from '@/store/useAuth'
 import axios from 'axios'
@@ -24,9 +23,8 @@ import { useQuery } from '@tanstack/react-query'
 const Sidebar = () => {
 
     const {user} = useAuth()
-    // console.log(user)
     const navigate = useNavigate()
-    const {logout} = useAuth()
+    const {logout:logoutFn} = useAuth()
     const {setIsSidebarOpened} = useGlobalStore();
 
       const {data,isLoading,isError} = useQuery({
@@ -44,7 +42,7 @@ const Sidebar = () => {
 
 
     const handleLogout = ()=>{
-        logout()
+        logoutFn()
         setIsSidebarOpened()
         if(user.role === 'admin'){
           navigate('/admin/login')
