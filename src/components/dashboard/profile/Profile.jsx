@@ -32,13 +32,13 @@ const Profile = () => {
       isError ? <h1 className='m-4 p-24 shadow-md text-center text-xl rounded-lg'>We are currently in maintenance mode kindly try again later</h1>:(
         <div>
               {
-          user.role === 'client' ?
+          user?.role === 'client' ?
           (
             <EditProfileForm isEditable={false} title="Profile"/>
           ):(
             <div className='my-12  mx-4 xl:mx-0'>
             <CreatorDetails creatorDetails={{creator:data?.data?.creator,isError,isLoading}} />
-           {user.role === 'designer'&& <MyPost  postData={{posts:data?.data?.posts,isLoading,isError}} />}
+           {user?.role === 'designer'&& <MyPost  postData={{posts:data?.data?.posts,isLoading,isError}} />}
           </div>
           )
         }

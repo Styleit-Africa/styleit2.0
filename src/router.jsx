@@ -57,6 +57,7 @@ import ClientConfirmPaymentPage from "./pages/client/ClientConfirmPaymentPage ";
 
 import AdminLoginPage from "./pages/admin/admin/AdminLoginPage";
 import FashionDesignersPage from "./pages/FashionDesignersPage";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -137,6 +138,7 @@ const router = createBrowserRouter(
                 <Route path="staffActivities/" element={<StaffActivitiesPage/>}/>
             </Route>
           </Route>
+          <Route path="*" element={<NotFound/>} />
       </Route>
     )
 )
