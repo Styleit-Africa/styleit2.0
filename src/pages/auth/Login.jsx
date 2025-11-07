@@ -12,21 +12,9 @@ import { useAuth } from '@/store/useAuth'
 
 
 const Login = ()=> {
-  const form = useForm({
-    resolver:zodResolver(loginSchema),
-    defaultValues:{
-        email:'',
-        password:''
-    }
-  })
 
-  const {isLoginForm,setIsLoginForm} = useAuthService((state)=>state)
+  const {isLoginForm} = useAuthService((state)=>state)
   const {role} = useAuth();
-  console.log(role)
-
-  const onSubmit = (values)=>{
-    console.log(values)
-  }
 
   return (
 

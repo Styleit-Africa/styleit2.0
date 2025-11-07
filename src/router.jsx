@@ -47,8 +47,8 @@ import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
 import AccountVerificationPage from "./pages/auth/AccountVerificationPage";
 import ResendActivationLinkPage from "./pages/auth/ResendActivationLinkPage";
 import ViewTrendingPost from "./pages/ViewTrendingPost";
-import AllDesignersPage from "./components/dashboard/creator/fashionDesigners/AllFashionDesigners";
-import FashionDesigners from "./pages/FashionDesigners";
+// import AllDesignersPage from "./components/dashboard/creator/fashionDesigners/AllFashionDesigners";
+// import FashionDesigners from "./pages/FashionDesignersPage";
 import CreatePostPage from "./pages/creator/CreatePostPage";
 import FrequentlyAskedQuestionsPage from "./pages/FrequentlyAskedQuestionsPage";
 import ViewSearchPostPage from "./pages/ViewSearchPostPage";
@@ -56,6 +56,7 @@ import ClientPaymentPage from "./pages/client/ClientPaymentPage";
 import ClientConfirmPaymentPage from "./pages/client/ClientConfirmPaymentPage ";
 
 import AdminLoginPage from "./pages/admin/admin/AdminLoginPage";
+import FashionDesignersPage from "./pages/FashionDesignersPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -69,7 +70,7 @@ const router = createBrowserRouter(
           <Route path='/trending/:id/view' element={<ViewSearchPostPage/>} />
           <Route path='/blogs' element={<Blogs/>} />
           <Route path='/faqs' element={<FrequentlyAskedQuestionsPage/>} />
-          <Route path='/fashionDesigners' element={<AllDesignersPage/>} />
+          <Route path='/fashionDesigners' element={<FashionDesignersPage/>} />
             <Route path='verifyAccount' element={<AccountVerificationPage/>} />
             <Route path='resendVerificationLink' element={<ResendActivationLinkPage/>} />
           <Route path='/creator' element={<CreatorLayout/>}>

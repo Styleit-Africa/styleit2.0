@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import PostListLoader from '@/components/global/loaders/PostListLoader';
 
-const AllDesignersPage = () => {
+const AllFashionDesigners = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterSpecialty, setFilterSpecialty] = useState('all');
@@ -364,4 +364,4 @@ const AllDesignersPage = () => {
   );
 };
 
-export default AllDesignersPage;
+export default AllFashionDesigners;

@@ -6,7 +6,7 @@
 
 
 .container{
-  @apply  max-w-[1115px]  mx-auto;
+  @apply  max-w-[1100px]  mx-auto;
 }
 
 .check{

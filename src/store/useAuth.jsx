@@ -77,10 +77,9 @@ export const useAuth = create((set,get)=>({
        }
        if(e.message == "Network Error"){
         console.log('yes')
-        set({isLoading:false,status:e.status,error:e.response.data.error||e.message})
+        set({isLoading:false,status:e.status,error:e.response?.data.error||e.message})
 
        }
-    //    return e.response;
        }
     }, 
     signUp:async(data)=>{
