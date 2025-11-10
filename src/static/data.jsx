@@ -366,13 +366,7 @@ const sidebarLinks = {
             name:'Settings',
             icon:setting,
             route:'/settings'
-        },
-        {
-            id:5,
-            name:'Report issues',
-            icon:sms,
-            route:'/reportIssues'
-        },
+        }
     ],
 }
 

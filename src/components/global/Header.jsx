@@ -47,9 +47,7 @@ const Header = ()=>{
                     <li>
                         <img src={logo} alt="" className="w-[90px] lg:w-[115px]" />
                     </li>
-                    <li>
-                        <NavLink to="/blogs"  data-testid="blogs" className={({isActive})=>isActive ? 'relative after:content-[" "] after:w-2/3 after:block  after:mx-auto after:mt-0.5 after:h-0.5 rounded-lg after:bg-primary ':''}>Blog</NavLink>
-                    </li>
+                   
                     </ul>
 
                     <div>

@@ -69,7 +69,6 @@ const router = createBrowserRouter(
           <Route path='/trending' element={<TrendingPage/>} />
           <Route path='/trending/:id' element={<ViewTrendingPost/>} />
           <Route path='/trending/:id/view' element={<ViewSearchPostPage/>} />
-          <Route path='/blogs' element={<Blogs/>} />
           <Route path='/faqs' element={<FrequentlyAskedQuestionsPage/>} />
           <Route path='/fashionDesigners' element={<FashionDesignersPage/>} />
             <Route path='verifyAccount' element={<AccountVerificationPage/>} />
@@ -92,7 +91,6 @@ const router = createBrowserRouter(
             <Route path='likedPosts' element={<LikedPosts/>} />
             <Route path='appointmentDetails' element={<AppointmentDetails/>} />
             <Route path='settings' element={<Settings/>} />
-            <Route path='reportIssues' element={<Reports/>} />
             <Route path='bookAppointment' element={<BookAppointmentPage/>} />
             <Route path='payment/:name/:bookingId/:designerId' element={<ClientPaymentPage/>} />
             <Route path='payment/:name/:bookingId/:designerId/confirm_payment' element={<ClientConfirmPaymentPage/>} />
