@@ -27,7 +27,9 @@ export const postImages = [postImage,postImage,profile,postImage,postImage,postI
   const navItems = [
     { name: 'Home', route: '/' },
     { name: 'trending', route: '/trending' },
-    { name: 'fashion designer', route: '/fashionDesigners' }
+    { name: 'fashion designer', route: '/fashionDesigners' },
+    { name: 'login', route: '/login' },
+    { name: 'sign Up', route: '/signUp' },
   ];
  
   const dashboardLinks = [

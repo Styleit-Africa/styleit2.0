@@ -34,7 +34,6 @@ const handleLogout = ()=>{
         <div className='font-lato md:hidden'>
               <nav className='px-5 font-lato py-6  flex justify-center  gap-3 bg-[rgba(0,0,0,0.1)]   z-[999]  fixed top-0  bottom-0 left-0 right-0  overflow-hidden transition-all duration-300 '>
             
-            {/* <div className="overflow-hidden  bg-white  w-[1200px] shadow-md rounded-md relative z-50 py-6"> */}
             <div className="overflow-hidden  bg-gradient-to-tl to-white font-lato to-[50%] from-[50%] md:to-[54.2%] from-pink-50 md:from-[54.7%]  text-white w-[1200px] shadow-md rounded-md relative z-50 py-6">
                {/* header */}
             <div className="flex justify-between items-center mb-3 border-b-2 pb-2 border-gray-200 px-5">
