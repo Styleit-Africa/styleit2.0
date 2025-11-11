@@ -1,8 +1,37 @@
-import React from "react"
+import axios from "axios"
+import Cookies from "js-cookie"
+import { Loader } from "lucide-react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 
 const SubscriptionCard = ({subscription,subscriptions,isShow,btnContent})=>{
+    const [isPending,setIsPending] = useState(false);
+    
+    const subscribe = async()=>{
+          setIsPending(true)
+
+             try{
+                  const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/designer/sub`,{plan:`${subscription.amount}`},{
+              headers: {
+                     Authorization: `Bearer ${Cookies.get('token')}`,
+                     'Content-Type': 'application/json',
+                     Accept:'application/json'
+    
+            }
+          })
+          setIsPending(false)
+          console.log(response)
+            return response
+             }catch(e){
+                console.log(e)
+             }
+    }
+    // useEffect(()=>{
+    //     subscribe()
+    // },[])
+   
+    // to={`/creator/subscriptions/${subscription.id}/${btnContent === 'Pay now'? 'pay':'proceed'}`}
     return(
         
         <div className={ ` p-5 rounded-xl mt-8 text-center shadow-md ${isShow&&'shadow-none'}`}>
@@ -12,8 +41,16 @@ const SubscriptionCard = ({subscription,subscriptions,isShow,btnContent})=>{
         
         {
             isShow ? 
-            <Link to={`/creator/subscriptions/${subscription.id}/${btnContent === 'Pay now'? 'pay':'proceed'}`} className='capitalize font-[500] text-lg px-0 py-4 rounded-xl block
-                w-full mt-9 bg-primary text-white hover:bg-white hover:border hover:border-primary hover:text-primary'>{btnContent}</Link>
+                <div>
+                                <button onClick={subscribe}
+             disabled={isPending} className='capitalize font-[500] text-lg px-0 py-4 rounded-xl block
+                w-full mt-9 bg-primary text-white hover:bg-white hover:border hover:border-primary hover:text-primary cursor-pointer'> {isPending?<span className="flex items-center justify-center gap-2"><Loader/> processing...</span>:btnContent}</button>
+                                {/* <Link
+    to={`/creator/subscriptions/${subscription.id}/${btnContent === 'Pay now'? 'pay':'proceed'}`}
+                                
+             className='capitalize font-[500] text-lg px-0 py-4 rounded-xl block
+                w-full mt-9 bg-primary text-white hover:bg-white hover:border hover:border-primary hover:text-primary cursor-pointer'> {btnContent}</Link> */}
+                </div>
             :
             <Link to={`/creator/subscriptions/${subscription.id}`} className={`capitalize block ont-[500] text-lg px-0 py-4 rounded-xl  border border-primary
                 w-full mt-9 ${subscription.amount > subscriptions[1].amount ? ' bg-primary text-white hover:bg-[#ffffff] hover:text-[#FF617C]':'bg-white  hover:bg-primary hover:text-white'}`}>{btnContent}</Link>
