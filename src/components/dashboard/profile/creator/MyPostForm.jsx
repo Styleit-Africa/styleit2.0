@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import gallery from '@/images/gallery-add.png'
 import { X } from 'lucide-react'
 import { toast } from 'sonner'
+import { usePost } from '@/store/usePost'
 
 const MyPostForm = () => {
       const [postData,setPostData] = useState({title:'',body:''})
@@ -19,6 +20,7 @@ const MyPostForm = () => {
     const [showSlicedImages,setShowSlicedImages] = useState(false)
     const scrollableRef = useRef(null) //  ref for the scrollable container
     const {setPostModal} = useGlobalStore(state=>state)
+    const {storePost} = usePost();
     const handleUpload = (e) => {
         const files = e.target.files
         if (!files) return ;
@@ -53,15 +55,7 @@ const MyPostForm = () => {
         setShowSlicedImages(false)
     }
 
-    const storePost = async(data)=>{
-        const response =  await axios.post('https://styleitafrica.pythonanywhere.com/api/posting',data,{
-          headers: {
-                 Authorization: `Bearer ${Cookies.get('token')}`,
-                 'Content-Type': 'multipart/form-data'
-        }
-      })
-      return response.data;
-    }
+   
 
     const queryClient = useQueryClient();
       const {mutate,data} = useMutation({
@@ -76,7 +70,7 @@ const MyPostForm = () => {
                 })
             }
         },
-         onMutate: async (newPost) => {
+         onMutate: async () => {
         await queryClient.cancelQueries(["myPosts"]);
 
       const previousPosts = queryClient.getQueryData(["myPosts"]);

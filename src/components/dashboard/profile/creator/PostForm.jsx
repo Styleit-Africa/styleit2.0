@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Upload, X, Trash2 } from "lucide-react";
+import { usePost } from "@/store/usePost";
+import { toast } from "sonner";
 
 export default function PostForm() {
   const [images, setImages] = useState([]);
+  const [serverImages, setServerImages] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const {storePost} = usePost();
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
+    setServerImages([...serverImages,files])
     const newImages = files.map((file) => ({
       file,
       preview: URL.createObjectURL(file),
@@ -23,9 +28,34 @@ export default function PostForm() {
     setImages([]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log({ title, description, images });
+    console.log({ title, description, serverImages });
+     e.preventDefault()
+    const formData = new FormData();
+    serverImages.forEach((imageFile) => {
+    formData.append("img", imageFile); 
+  });
+    formData.append("title", title); 
+    formData.append("body", description); 
+    console.log(formData)
+    
+    const response = await storePost(formData);
+    console.log(response)
+    if(response?.status === 400){
+        toast("complete all fields", {
+            action: {
+            label: <X size={16} />,
+          },
+        })
+    }
+    if(response?.status === 200){
+        toast("post created successfully", {
+            action: {
+            label: <X size={16} />,
+          },
+        })
+    }
     // Add API request here
   };
 

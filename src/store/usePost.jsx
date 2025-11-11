@@ -20,6 +20,15 @@ export const usePost = create((set,get)=>({
     setShowReport:(value)=>{
         set({showReport:value})
     },
+     storePost:async(data)=>{
+        const response =  await axios.post('https://styleitafrica.pythonanywhere.com/api/posting',data,{
+          headers: {
+                 Authorization: `Bearer ${Cookies.get('token')}`,
+                 'Content-Type': 'multipart/form-data'
+        }
+      })
+      return response.data;
+    },
     deletePost:async(postid)=>{
              try{
                   const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/trashit/`,{postid},{
