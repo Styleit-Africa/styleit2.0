@@ -21,6 +21,7 @@ export const usePost = create((set,get)=>({
         set({showReport:value})
     },
      storePost:async(data)=>{
+      console.log(data,'store')
         const response =  await axios.post('https://styleitafrica.pythonanywhere.com/api/posting',data,{
           headers: {
                  Authorization: `Bearer ${Cookies.get('token')}`,

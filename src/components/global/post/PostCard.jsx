@@ -46,7 +46,6 @@ const PostCard=({data,post,follow,userProfile}) => {
             queryClient.invalidateQueries('following')
         }
     })
-    console.log(userProfile)
      const handleFollow = async(id)=>{
       followMutation(id)
     }

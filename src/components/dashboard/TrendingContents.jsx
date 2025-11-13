@@ -8,9 +8,9 @@ import axios from 'axios'
 import { useInView } from 'react-intersection-observer'
 import TrendingPostLoader from '../global/loaders/TrendingPostLoader'
 
-const TrendingContents = ({pageParam=1}) => {
+const TrendingContents = () => {
   const getTrending = async()=> {
-          const response =  await axios.get(`https://styleitafrica.pythonanywhere.com/api/trending?page=${pageParam}`,{
+          const response =  await axios.get(`https://styleitafrica.pythonanywhere.com/api/trending`,{
             headers:{
               Authorization:`Bearer ${Cookies.get('token')}`,
               'Content-Type': 'application/json',

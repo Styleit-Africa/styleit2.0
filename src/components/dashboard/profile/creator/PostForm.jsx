@@ -10,15 +10,15 @@ export default function PostForm() {
   const [description, setDescription] = useState("");
   const {storePost} = usePost();
 
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    setServerImages([...serverImages,files])
-    const newImages = files.map((file) => ({
-      file,
-      preview: URL.createObjectURL(file),
-    }));
-    setImages((prev) => [...prev, ...newImages]);
-  };
+ const handleUpload = (e) => {
+        const files = e.target.files
+        if (!files) return ;
+        const imageUrls = Array.from(files).map((file)=>{
+            return {img_id:new Date().getTime().toString(),url:URL.createObjectURL(file)}
+        })
+        setServerImages([...files])
+        setImages([...images,...imageUrls])
+    }
 
   const removeImage = (index) => {
     setImages((prev) => prev.filter((_, i) => i !== index));
@@ -100,7 +100,7 @@ export default function PostForm() {
               accept="image/*"
               multiple
               className="hidden"
-              onChange={handleImageChange}
+              onChange={handleUpload}
             />
           </label>
         </div>
@@ -127,7 +127,7 @@ export default function PostForm() {
                   className="relative group rounded-lg overflow-hidden shadow"
                 >
                   <img
-                    src={img.preview}
+                    src={img.url}
                     alt="preview"
                     className="w-full h-24 object-cover"
                   />

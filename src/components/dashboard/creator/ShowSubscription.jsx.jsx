@@ -6,13 +6,24 @@ import { useParams } from 'react-router-dom';
 import SubscriptionHeader from './SubscriptionHeader';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { Card, CardContent } from '@/components/ui/card';
+import { CreditCard } from 'lucide-react';
 
 const ShowSubscription = () => {
     const {id} = useParams();
     const singleSubscription = subscriptions.find(subscription=>subscription.id == id);
 
     if(singleSubscription == undefined){
-        return <h1>Subsription is currently not available</h1>
+        return (
+
+              <Card>
+                <CardContent className="flex flex-col items-center justify-center py-12">
+                <CreditCard className="w-12 h-12 text-slate-300 mb-4" />
+                <p className="text-slate-500">Subsription is currently not available</p>
+                </CardContent>
+            </Card>
+    )
+        
     }
 
     console.log(singleSubscription)

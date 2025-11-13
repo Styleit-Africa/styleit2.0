@@ -70,7 +70,7 @@ const MyPostForm = () => {
                 })
             }
         },
-         onMutate: async () => {
+         onMutate: async (data) => {
         await queryClient.cancelQueries(["myPosts"]);
 
       const previousPosts = queryClient.getQueryData(["myPosts"]);
@@ -88,8 +88,7 @@ const MyPostForm = () => {
     onSettled: () => {
         queryClient.invalidateQueries({ queryKey: ['myPosts'] })
     },
-    })
-
+    }) 
 
    const handlePost = async(e)=>{
     e.preventDefault()
@@ -98,6 +97,7 @@ const MyPostForm = () => {
     serverImages.forEach((imageFile) => {
     formData.append("img", imageFile); 
   });
+    // formData.append("img", serverImages[0]); 
     formData.append("title", postData.title); 
     formData.append("body", postData.body); 
     
@@ -130,4 +130,4 @@ const MyPostForm = () => {
   )
 }
 
-export default MyPostForm
+export default MyPostForm 
