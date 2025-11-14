@@ -6,7 +6,7 @@ const TrendingPostLoader = () => {
    <div>
       {
         Array(5).fill(0).map(load=>(
-          <div className='max-w-[480px] mx-auto mt-10'>
+          <div key={load} className='max-w-[480px] mx-auto mt-10'>
      
     <div className='relative border border-gray-200 rounded-2xl  text-sm  p-3.5'>
       

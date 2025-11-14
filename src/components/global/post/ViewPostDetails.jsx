@@ -1,10 +1,7 @@
-import TrendingContents from '@/components/dashboard/TrendingContents';
 import Image from '@/components/global/Image';
 import { CommandIcon, MoreHorizontal, X } from 'lucide-react';
-import React, { useState } from 'react'
-import postImage from '@/images/post_i.png'
+import React, { useEffect, useRef, useState } from 'react'
 import profile from '@/images/profile_i.png'
-import { useParams } from 'react-router-dom'
 import like from '@/images/like.png'
 import shareIcon  from '@/images/share.png'
 import message from '@/images/message.png';
@@ -27,6 +24,7 @@ import { useComment } from '@/store/useComment';
 
 const ViewPostDetails = ({post,setPostId}) => {
         const {isShared,setIsShared,likePost} = usePost();
+        const commentInput = useRef(null)
         const {setComment,storeComment,comment} = useComment()
         const [isOver,setIsOver] = useState(false)
         const handleOverFlow = (value)=>{
@@ -38,7 +36,6 @@ const ViewPostDetails = ({post,setPostId}) => {
         const d = date.getDate();
         const hour = date.getHours()
         const minute = date.getMinutes()
-        console.log(month)
         const handleShare = ()=>{
             setIsShared(true)
       }
@@ -55,34 +52,74 @@ const ViewPostDetails = ({post,setPostId}) => {
         mutate(id)
     }
 
+    useEffect(()=>{
+      if (commentInput?.current) {
+        commentInput.current.focus()
+      }
+    },[])
 
-     const {mutate:commentMutation} = useMutation({
-            mutationFn: storeComment,
-            onMutate:async()=>{
-              await queryClient.cancelQueries({queryKey:['trending']})
 
-              const previousPosts = queryClient.getQueryData(['trending']);
-              queryClient.setQueryData(['trending'],(old)=>{
-                const pages = old.pages.map(page=>{
-                  page.posts.map(post=>{
-                    post.comments.push({body:comment,client_reply:'',creator_reply:''})
-                  })
-                })
-                return {
-                  ...old,
-                  pages
-                }
-              })
-              return {previousPosts}
-
-            },
-            onSettled:()=>{
-              queryClient.invalidateQueries(['trending'])
+    
+    const {mutate: commentMutation, isPending} = useMutation({
+    mutationFn:storeComment,
+    onMutate: async({postId, commentText}) => {
+        await queryClient.cancelQueries({queryKey: ['trending']})
+        
+        const previousPosts = queryClient.getQueryData(['trending']);
+        
+        queryClient.setQueryData(['trending'], (old) => {
+            if (!old || !old.pages) return old;
+            
+            return {
+                ...old,
+                pages: old.pages.map(page => ({
+                    ...page,
+                    posts: page.posts.map(p => {
+                        if (p.id === postId) {
+                            return {
+                                ...p,
+                                Comment_Count: p.Comment_Count + 1,
+                                comments: [
+                                    ...p.comments,
+                                    {
+                                        body: commentText,
+                                        client_reply: '',
+                                        creator_reply: '',
+                                        id: `temp-${Date.now()}`,
+                                        created_at: new Date().toISOString()
+                                    }
+                                ]
+                            }
+                        }
+                        return p;
+                    })
+                }))
             }
         })
-        const handleComment = async(id)=>{
-                commentMutation(id)
+        
+        return {previousPosts}
+    },
+    onError: (err, variables, context) => {
+        console.error('Comment error:', err)
+        if (context?.previousPosts) {
+            queryClient.setQueryData(['trending'], context.previousPosts)
         }
+    },
+    onSettled: () => {
+        queryClient.invalidateQueries({queryKey: ['trending']})
+    }
+})
+
+const handleComment = (postId) => {
+    if (!comment || !comment.trim()) {
+        return;
+    }
+    commentMutation({
+        postId, 
+        commentText: comment
+    })
+    setComment('') 
+}
         
 
   return (
@@ -92,7 +129,7 @@ const ViewPostDetails = ({post,setPostId}) => {
           {/* header */}
            <div className="border-b-[1px] border-gray-300  px-4">
              <div className='max-w-[440px] ml-auto  flex items-center justify-between'>
-                <h1 className='font-bold text-xl capitalize'>{post?.creator?.firstName||'name'}'s Post</h1>
+                <h1 className='font-bold text-xl capitalize'>{post?.creator?.firstName}'s Post</h1>
           <X className='cursor-pointer h-16 w-16 scale-[0.5] transition-all duration-300 hover:scale-[0.7]'
            onClick={()=>setPostId(null)}/>
             </div>
@@ -109,8 +146,8 @@ const ViewPostDetails = ({post,setPostId}) => {
            </div>
 
            <div>
-            <h2 className='capitalize text-md font-bold'> {post?.creator?.firstName||'first'}  {post?.creator?.lastName||'last'}</h2>
-            <p className='text-md'>{month} {d} at {hour}:{minute} AM</p>
+            <h2 className='capitalize text-sm md:text-md font-bold'> {post?.creator?.firstName}  {post?.creator?.lastName}</h2>
+            <p className='text-sm md:text-md'>{month} {d} at {hour}:{minute} AM</p>
            </div>
            </div>
             
@@ -138,7 +175,7 @@ const ViewPostDetails = ({post,setPostId}) => {
             <p className='text-xs'>{post.likes_Count}</p>
             <Image src={like} className='w-4 h-4'/>
         </div>
-        <div  data-testid="toggle-comment-button" className='flex gap-[0.1rem] items-center hover:cursor-pointer' onClick={()=>(setIsCommentOpened(!isCommentOpened))}>
+        <div  data-testid="toggle-comment-button" className='flex gap-[0.1rem] items-center '>
             <p className='text-xs'>{post.Comment_Count}</p>
             <Image src={message} className='w-4 h-4'/>
         </div>
@@ -151,7 +188,7 @@ const ViewPostDetails = ({post,setPostId}) => {
     <h1 className='text-lg capitalize font-[500] mt-3'>comments ({post.Comment_Count})</h1>
         {
           post?.comments.length === 0 ? <div className='text-center mt-3'>
-                  <h1 className='font-[500] text-2xl'>Be the first to comment on this post</h1>
+                  <h1 className='font-[500] text-md md:text-2xl'>Be the first to comment on this post</h1>
                   <CommandIcon className='w-52 h-52 mx-auto text-pink-200'/>
           </div>:
           <CommentContainer userProfile={post.creator} post={post} />
@@ -160,8 +197,29 @@ const ViewPostDetails = ({post,setPostId}) => {
            </div>
           {/* footer */}
              <div className={`relative ${isOver&&'pr-4'} mt-3`}>
-        <Input type="text" onChange={(e)=>setComment(e.target.value)}  className="h-16 rounded-3xl border border-gray-200  focus-visible:ring-0"/>
-        <Image src={send} onClick={()=>handleComment(post.id)} className={` absolute top-3.5 md:top-4 right-3 ${isOver&&'right-7'} w-5 h-5 md:w-7 md:h-7 `}/>
+        <Input 
+          type="text" 
+          ref={commentInput} 
+          value={comment}
+          onChange={(e)=>{
+            setComment(e.target.value)
+            console.log(comment)
+          }}  
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault()
+              handleComment(post.id)
+            }
+          }}
+          placeholder="Write a comment..."
+          disabled={isPending}
+          className="h-16 rounded-3xl border border-gray-200 focus-visible:ring-0"
+        />
+        <Image 
+          src={send} 
+          onClick={()=>handleComment(post.id)} 
+          className={`absolute top-[1.2rem] md:top-[1rem] lg:top-4 right-3 ${isOver&&'right-7'} w-5 h-5 md:w-7 md:h-7 cursor-pointer ${isPending ? 'opacity-50' : ''}`}
+        />
         </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ const CommentContainer = ({userProfile,post}) => {
             // post?.comments.map(comment=>{
             getComment.map(comment=>{
                 return (
-                    <div key={comment.id}>
+                    <div key={comment.com_id}>
                             
                       <Comment userProfile={userProfile} 
                       commentId={commentId} setCommentId={setCommentId}
