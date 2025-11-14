@@ -19,7 +19,7 @@ import { useClientStore } from '@/store/useClient';
 
 const SubscriptionHistory = () => {
     const [page, setPage] = useState(1)
-    const PAGES_TO_SHOW = 10
+    const PAGES_TO_SHOW = 3
 
     const {getSubscriptionHistories} = useClientStore()
 
@@ -142,7 +142,7 @@ const SubscriptionHistory = () => {
                 <div className="mt-8">
                     <Pagination>
                         <PaginationContent>
-                            <PaginationItem>
+                            <PaginationItem className='hidden md:block'>
                                 <PaginationPrevious 
                                     onClick={(e) => {
                                         e.preventDefault()
@@ -206,7 +206,7 @@ const SubscriptionHistory = () => {
                                 </>
                             )}
 
-                            <PaginationItem>
+                            <PaginationItem className='hidden md:block'>
                                 <PaginationNext 
                                     onClick={(e) => {
                                         e.preventDefault()
@@ -217,7 +217,30 @@ const SubscriptionHistory = () => {
                             </PaginationItem>
                         </PaginationContent>
                     </Pagination>
-                <p className="text-slate-600">Page {page} of {totalPages}</p>
+                    <Pagination className='mt-4'>
+                        <PaginationContent>
+                            
+                                <PaginationItem className='md:hidden'>
+                                <PaginationPrevious 
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        handlePageChange(page - 1)
+                                    }}
+                                    className={`bg-primary text-white ${page === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
+                                />
+                            </PaginationItem>
+                             <PaginationItem className=' md:hidden'>
+                                <PaginationNext 
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        handlePageChange(page + 1)
+                                    }}
+                                    className={`bg-primary text-white ${page === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}`}
+                                />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
+                <p className="text-slate-600 text-center md:text-left mt-4">Page {page} of {totalPages}</p>
 
                 </div>
             )}
