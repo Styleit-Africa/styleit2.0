@@ -1,8 +1,24 @@
+import CreatorLoader from '@/components/global/loaders/CreatorLoader'
 import { Button } from '@/components/ui/button'
 import { subscriptionDetails, subscriptions } from '@/static/data'
-import React from 'react'
+import { useCreatorStore } from '@/store/creatorStore/useCreator'
+import React, { useEffect, useState } from 'react'
 
 const SubscriptionDetails = () => {
+    const {getSubscriptionHistories} = useCreatorStore()
+    const [_subscriptionDetails,setSubscriptionDetails] = useState([])
+    const [isLoading,setIsLoading] = useState(true)
+    console.log(getSubscriptionHistories)
+    const getData = async()=>{
+      const data = await getSubscriptionHistories(1);
+      setIsLoading(false)
+      setSubscriptionDetails(data?.subscriptions)
+      console.log(data)
+    }
+
+    useEffect(()=>{
+      getData()
+    },[])
   return (
     <section className='mt-12'>
         <h2 className='text-center text-xl font-[700] capitalize mb-5'>subscription details</h2>
@@ -18,6 +34,28 @@ const SubscriptionDetails = () => {
                 
             </div>
             <div>
+
+              {
+                isLoading?<CreatorLoader/>: <div>
+                 {
+                    subscriptionDetails.map(detail=>{
+                        return(
+                        <div className='flex justify-between capitalize '>
+                          'hello'
+                            {/* <p className='mt-4 basis-[15%]'>{detail.date}</p>
+                            <p className='mt-4 basis-[15%]'>{detail.time}</p>
+                            <p className='mt-4 basis-[15%]'>{detail.planType}</p>
+                            <p className='mt-4 basis-[15%]'>{detail.startDate}</p>
+                            <p className='mt-4 basis-[15%]'>{detail.endDate}</p>
+                            <p className='mt-4 basis-[15%]'>{detail.paymentStatus}</p>
+                            <p className='mt-4 basis-[15%]'>{detail.subStatus}</p> */}
+                        </div>
+                        )
+                    })
+                }
+                  
+                </div>
+              }
             {
                     subscriptionDetails.map(detail=>{
                         return(

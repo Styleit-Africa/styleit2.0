@@ -15,17 +15,32 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
-import { useClientStore } from '@/store/useClient';
+// import { useCreatorStore } from '@/store/creatorStore/useCreator';
 
 const SubscriptionHistory = () => {
     const [page, setPage] = useState(1)
     const PAGES_TO_SHOW = 3
+    const getSubscriptionHistories = async(page) => {
+        try {
+            const response = await axios.get(`https://styleitafrica.pythonanywhere.com/api/designer/subplan?page=${page}`, {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                }
+            })
+            console.log(response,'res')
+            return response.data
+        } catch(e) {
+            console.log(e)
+        }
+    }
 
-    const {getSubscriptionHistories} = useClientStore()
+    // const {getSubscriptionHistories} = useCreatorStore()
 
     const { data, isLoading } = useQuery({
         queryKey: ['subscription-histories', page],
-        queryFn: async() =>await getSubscriptionHistories(page)
+        queryFn:() => getSubscriptionHistories(page)
     })
 
     // Calculate which pages to display

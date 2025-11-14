@@ -1,10 +1,12 @@
 import Image from '@/components/global/Image'
+import { useGlobalStore } from '@/store/global/useGlobal'
 import { Heart, Star } from 'lucide-react'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const FashionDesignerCard = ({designer}) => {
-  const [readMore,setReadMore] = useState(false)
+  const [readMore,setReadMore] = useState(false);
+  const {setSearchModal} = useGlobalStore();
   const description = `  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum temporibus voluptate molestias?`
   return (
      <div className="mt-10 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 w-72 relative pt-16">
@@ -50,7 +52,7 @@ const FashionDesignerCard = ({designer}) => {
                 //   onClick={() => handleBookAppointment(designer.name)}
                   className="w-full bg-primary hover:bg-[#fd526f] text-white px-6 py-3 rounded-full font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
                 >
-                  <Link to='/client/bookAppointment'>Book Appointment</Link>
+                  <Link onClick={()=>setSearchModal(false)} to='/client/bookAppointment'>Book Appointment</Link>
                 </button>
               </div>
             </div>

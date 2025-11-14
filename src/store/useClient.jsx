@@ -665,18 +665,5 @@ export const useClientStore = create((set,get)=>({
       const sortedComplainants =  sortItems(complaints,sortData)
         set({complaints:sortedComplainants})  
     },
-    getSubscriptionHistories:async(page) => {
-        try {
-            const response = await axios.get(`https://styleitafrica.pythonanywhere.com/api/designer/subplan?page=${page}`, {
-                headers: {
-                    Authorization: `Bearer ${Cookies.get('token')}`,
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json'
-                }
-            })
-            return response.data
-        } catch(e) {
-            console.log(e)
-        }
-    }
+  
 }))

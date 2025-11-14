@@ -6,8 +6,6 @@ import SearchedCreators from '@/components/dashboard/searchItems/SearchedCreator
 import SearchedPosts from '@/components/dashboard/searchItems/SearchedPosts';
 import m_logo from '../../../images/m_logo.png'
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import Cookies from 'js-cookie';
 
 
 const SearchModal = ({page,creators}) => {

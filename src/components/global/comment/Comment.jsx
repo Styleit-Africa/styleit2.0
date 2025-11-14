@@ -27,20 +27,13 @@ const Comment = ({comment,commentId,setCommentId,userProfile,post}) => {
   return (
     <div>
           <div className='mt-3 bg-lPinkl w-[fit-content] flex gap-2 '>
-                            {/* <User
-                                userProps={{
-                                        name:{userProfile,fullName:false,styles:'text-black font-[500]'},
-                                        indicator:{isIndicator:false,styles:'h-2 w-2 absolute bottom-2 right-0 rounded-full bg-green-300 '},
-                                        image:{profileImage,styles:'w-[28px] h-[28px]'},
-                                        container:' flex items-center gap-3 font-[500] text-xs font-lato'
-                            }}/> */}
                             <div className='basis-[25%]'>
                             <Image src={profileImage} className='w-[40px] h-[40px] rounded-full '/>
 
                             </div>
                            <div>
                              <div className='py-2 px-3 rounded-2xl bg-lPink'> 
-                                <h1 className='capitalize font-[500]'>{userProfile.firstName} {userProfile.lastName}</h1>
+                                <h1 className='capitalize font-[500] text-sm md:text-md '>{userProfile.firstName} {userProfile.lastName}</h1>
                                 <p className='text-md'>{comment.body}</p>
                             </div>
                                      <div className='flex gap-3'>
