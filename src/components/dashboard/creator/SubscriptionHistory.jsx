@@ -25,7 +25,7 @@ const SubscriptionHistory = () => {
 
     const { data, isLoading } = useQuery({
         queryKey: ['subscription-histories', page],
-        queryFn: () => getSubscriptionHistories(page)
+        queryFn: async() =>await getSubscriptionHistories(page)
     })
 
     // Calculate which pages to display

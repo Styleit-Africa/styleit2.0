@@ -1,11 +1,8 @@
-import { Button } from '@/components/ui/button'
 import { subscriptions } from '@/static/data'
-import React, { useEffect } from 'react'
+import React from 'react'
 import SubscriptionCard from './SubscriptionCard';
 import { useParams } from 'react-router-dom';
 import SubscriptionHeader from './SubscriptionHeader';
-import axios from 'axios';
-import Cookies from 'js-cookie';
 import { Card, CardContent } from '@/components/ui/card';
 import { CreditCard } from 'lucide-react';
 
