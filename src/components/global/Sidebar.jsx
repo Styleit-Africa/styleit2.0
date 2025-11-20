@@ -1,5 +1,5 @@
 import { sidebarLinks, userProfile } from '@/static/data'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from './Image'
 import User from './User'
 import { Button } from '../ui/button'
@@ -52,6 +52,22 @@ const Sidebar = () => {
         }
 
     }
+
+  const getAccountDetails = async()=>{
+     const response = await axios.get(`https://styleitafrica.pythonanywhere.com/api/designer/bankdetail/`,{
+          headers:{
+            Authorization:`Bearer ${Cookies.get('token')}`,
+            'Content-Type': 'application/json',
+            Accept:'application/json'
+          },
+          withCredentials:true
+        })
+        console.log(response,'bank')
+      }
+
+    useEffect(()=>{
+      getAccountDetails()
+    },[])
 
   return (
     <div className='w-72 ml-auto p-5 md:pb-9 rounded-l-xl bg-sidebar  font-lato relative z-50 cursor-auto '>

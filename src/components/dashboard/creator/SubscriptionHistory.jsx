@@ -36,6 +36,8 @@ const SubscriptionHistory = () => {
         }
     }
 
+  
+
     // const {getSubscriptionHistories} = useCreatorStore()
 
     const { data, isLoading } = useQuery({

@@ -20,16 +20,26 @@ export const usePost = create((set,get)=>({
     setShowReport:(value)=>{
         set({showReport:value})
     },
-     storePost:async(data)=>{
-      console.log(data,'store')
-        const response =  await axios.post('https://styleitafrica.pythonanywhere.com/api/posting',data,{
-          headers: {
-                 Authorization: `Bearer ${Cookies.get('token')}`,
-                 'Content-Type': 'multipart/form-data'
-        }
-      })
-      return response.data;
-    },
+     storePost: async (data) => {
+      try {
+        const response = await axios.post(
+          'https://styleitafrica.pythonanywhere.com/api/posting',
+          data,
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get('token')}`,
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        );
+        return { status: response.status, data: response.data };
+      } catch (error) {
+        return { 
+          status: error.response?.status || 500, 
+          data: error.response?.data || { message: 'Network error' }
+        };
+      }
+  },
     deletePost:async(postid)=>{
              try{
                   const response = await axios.post(`https://styleitafrica.pythonanywhere.com/api/trashit/`,{postid},{

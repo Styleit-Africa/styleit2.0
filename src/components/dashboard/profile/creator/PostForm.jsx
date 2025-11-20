@@ -10,16 +10,30 @@ export default function PostForm() {
   const [description, setDescription] = useState("");
   const {storePost} = usePost();
 
- const handleUpload = (e) => {
-        const files = e.target.files
-        if (!files) return ;
-        const imageUrls = Array.from(files).map((file)=>{
-            return {img_id:new Date().getTime().toString(),url:URL.createObjectURL(file)}
-        })
-        setServerImages([...files])
-        setImages([...images,...imageUrls])
-    }
+//  const handleUpload = (e) => {
+//         const files = e.target.files
+//         if (!files) return ;
+//         const imageUrls = Array.from(files).map((file)=>{
+//             return {img_id:new Date().getTime().toString(),url:URL.createObjectURL(file)}
+//         })
+//         setServerImages([...files])
+//         setImages([...images,...imageUrls])
+//     }
 
+const handleUpload = (e) => {
+  const files = e.target.files;
+  if (!files) return;
+  
+  const imageUrls = Array.from(files).map((file) => {
+    return {
+      img_id: new Date().getTime().toString() + Math.random(),
+      url: URL.createObjectURL(file)
+    };
+  });
+  
+  setServerImages([...serverImages, ...files]); 
+  setImages([...images, ...imageUrls]);
+};
   const removeImage = (index) => {
     setImages((prev) => prev.filter((_, i) => i !== index));
   };
@@ -28,36 +42,66 @@ export default function PostForm() {
     setImages([]);
   };
 
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-    console.log({ title, description, serverImages });
-     e.preventDefault()
-    const formData = new FormData();
-    serverImages.forEach((imageFile) => {
-    formData.append("img", imageFile); 
+  const handleSubmit = async (e) => {
+  e.preventDefault(); 
+  
+  const formData = new FormData();
+  serverImages.forEach((imageFile) => {
+    formData.append("img", imageFile);
   });
-    formData.append("title", title); 
-    formData.append("body", description); 
-    console.log(formData)
+  formData.append("title", title);
+  formData.append("body", description);
+  
+  const response = await storePost(formData);
+  
+  if (response?.status === 400) {
+    toast("Complete all fields", {
+      action: {
+        label: <X size={16} />,
+      },
+    });
+  }
+  if (response?.status === 201) {
+    toast("Post created successfully", {
+      action: {
+        label: <X size={16} />,
+      },
+    });
+    // Reset form
+    setTitle("");
+    setDescription("");
+    setImages([]);
+    setServerImages([]);
+  }
+};
+
+  // const handleSubmit = async(e) => {
+  //   e.preventDefault();
+  //    e.preventDefault()
+  //   const formData = new FormData();
+  //   serverImages.forEach((imageFile) => {
+  //   formData.append("img", imageFile); 
+  // });
+  //   formData.append("title", title); 
+  //   formData.append("body", description); 
     
-    const response = await storePost(formData);
-    console.log(response)
-    if(response?.status === 400){
-        toast("complete all fields", {
-            action: {
-            label: <X size={16} />,
-          },
-        })
-    }
-    if(response?.status === 200){
-        toast("post created successfully", {
-            action: {
-            label: <X size={16} />,
-          },
-        })
-    }
-    // Add API request here
-  };
+  //   console.log(serverImages[0])
+  //   const response = await storePost(formData);
+  //   if(response?.status === 400){
+  //       toast("complete all fields", {
+  //           action: {
+  //           label: <X size={16} />,
+  //         },
+  //       })
+  //   }
+  //   if(response?.status === 200){
+  //       toast("post created successfully", {
+  //           action: {
+  //           label: <X size={16} />,
+  //         },
+  //       })
+  //   }
+  // };
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow-lg">

@@ -21,6 +21,7 @@ import { usePost } from '@/store/usePost';
 import SharePostContainer from './SharePostContainer';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useComment } from '@/store/useComment';
+import PostLikeButton from './PostLikeButton';
 
 const ViewPostDetails = ({post,setPostId}) => {
         const {isShared,setIsShared,likePost} = usePost();
@@ -30,6 +31,7 @@ const ViewPostDetails = ({post,setPostId}) => {
         const handleOverFlow = (value)=>{
           setIsOver(value)
         }
+        console.log(post)
 
         const date = new Date(post.created_at);
         const month = months[date.getMonth()]
@@ -43,12 +45,65 @@ const ViewPostDetails = ({post,setPostId}) => {
         const queryClient = useQueryClient();
         const {mutate} = useMutation({
             mutationFn:likePost,
-          onSuccess:()=>{
-              queryClient.invalidateQueries('trending')
-          }
+          // onSuccess:()=>{
+          //     queryClient.invalidateQueries('trending')
+          // },
+           onMutate: async(id) => {
+    await queryClient.cancelQueries(['trending'])
+    
+    const updateLikeId = (post) => {
+      console.log('ui')
+      // Only update the post that matches the clicked post ID
+      if(post.id !== id) return post;
+      
+      if(user.role === 'designer') {
+        if(post.creator_id_likes.includes(user.designer_id)) {
+          // Unlike - remove user ID and decrease count
+          post.creator_id_likes = post.creator_id_likes.filter(userId => userId !== user.designer_id)
+          post.likes_Count = post.likes_Count - 1
+        } else {
+          // Like - add user ID and increase count
+          post.creator_id_likes = [...post.creator_id_likes, user.designer_id]
+          post.likes_Count = post.likes_Count + 1
+        }
+      } else {
+        if(post.client_id_likes.includes(user.id)) {
+          // Unlike
+          post.client_id_likes = post.client_id_likes.filter(userId => userId !== user.id)
+          post.likes_Count = post.likes_Count - 1
+        } else {
+          // Like
+          post.client_id_likes = [...post.client_id_likes, user.id]
+          post.likes_Count = post.likes_Count + 1
+        }
+      }
+      return post
+    }
+    
+    const previousPosts = queryClient.getQueryData(['trending'])
+    
+    queryClient.setQueryData(['trending'], (postData) => {
+      if(!postData) return postData;
+      
+      const pages = postData.pages.map(page => {
+        return {
+          ...page,
+          posts: page.posts.map(post => updateLikeId(post))
+        }
+      })
+      
+      return {
+        ...postData,
+        pages
+      }
+    })
+    
+    return { previousPosts }
+  },
         })
 
       const handleLike = async(id)=>{
+        console.log('old','old')
         mutate(id)
     }
 
@@ -171,10 +226,10 @@ const handleComment = (postId) => {
           </div>
 
    <div className='flex justify-between text-primary my-3'>
-        <div className='flex gap-[0.1rem] items-center hover:cursor-pointer'  onClick={()=>handleLike(post.id)} >
-            <p className='text-xs'>{post.likes_Count}</p>
-            <Image src={like} className='w-4 h-4'/>
-        </div>
+          <PostLikeButton
+          handleLike={handleLike}
+          post={post}
+          />
         <div  data-testid="toggle-comment-button" className='flex gap-[0.1rem] items-center '>
             <p className='text-xs'>{post.Comment_Count}</p>
             <Image src={message} className='w-4 h-4'/>

@@ -8,6 +8,7 @@ import axios from 'axios'
 import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '@/store/useAuth'
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
+import PostLikeButton from './PostLikeButton'
 // import { useGlobalStore } from '@/store/global/useGlobal'
 
 const PostActivities = (activitiesData) => {
@@ -92,37 +93,10 @@ const PostActivities = (activitiesData) => {
   return (
     <div className='flex justify-between text-primary my-3'>
           
-          {/* client like buttons */}
-        {
-          user.role === 'client'&&<div>
-            {
-             post?.client_id_likes.includes(user.id)?<div className='flex gap-[0.1rem] items-center hover:cursor-pointer' onClick={()=>handleLike(post.id)}>
-            <p className='text-xs'>{post?.likes_Count}</p>
-          <Image src={like} className='w-4 h-4 rotate-180'/>
-        </div>:<div className='flex gap-[0.1rem] items-center hover:cursor-pointer' onClick={()=>handleLike(post.id)}>
-            <p className='text-xs'>{post?.likes_Count}</p>
-            <Image src={like} className='w-4 h-4'/>
-        </div>
-            }
-          </div>
-        }
-
-          {/* designer like buttons */}
-
-
-        {
-          user.role === 'designer'&&<div>
-            {
-             post.creator_id_likes.includes(user.designer_id)?<div className='flex gap-[0.1rem] items-center hover:cursor-pointer' onClick={()=>handleLike(post.id)}>
-            <p className='text-xs'>{post.likes_Count}</p>
-          <Image src={like} className='w-4 h-4 rotate-180'/>
-        </div>:<div className='flex gap-[0.1rem] items-center hover:cursor-pointer' onClick={()=>handleLike(post.id)}>
-            <p className='text-xs'>{post.likes_Count}</p>
-            <Image src={like} className='w-4 h-4'/>
-        </div>
-            }
-          </div>
-        }
+       <PostLikeButton 
+       handleLike={handleLike}
+       post={post}
+       />
         <div  data-testid="toggle-comment-button" className='flex gap-[0.1rem] items-center hover:cursor-pointer' onClick={handleComment}>
             <p className='text-xs'>{comments?.length}</p>
             <Image src={message} className='w-4 h-4'/>

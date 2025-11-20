@@ -11,7 +11,6 @@ import { useAuth } from '@/store/useAuth'
 const Profile = () => {
 
   const {user} = useAuth()
-  console.log(user,'user')
   const {data,isLoading,isError} = useQuery({
         queryKey:['profile'],
         queryFn:async()=>await axios.get(`https://styleitafrica.pythonanywhere.com/api/${user.role==='designer'?'designer':'customer'}/profile`,{
@@ -24,6 +23,7 @@ const Profile = () => {
           }),
         staleTime:1000*10*60
         })
+        console.log(data)
 
        
   return (

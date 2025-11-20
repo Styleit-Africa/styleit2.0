@@ -52,7 +52,9 @@ const FashionDesignerCard = ({designer}) => {
                 //   onClick={() => handleBookAppointment(designer.name)}
                   className="w-full bg-primary hover:bg-[#fd526f] text-white px-6 py-3 rounded-full font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
                 >
-                  <Link onClick={()=>setSearchModal(false)} to='/client/bookAppointment'>Book Appointment</Link>
+                  <Link onClick={()=>{
+                    setSearchModal(false)
+                  }} to='/client/bookAppointment'>Book Appointment</Link>
                 </button>
               </div>
             </div>
