@@ -23,7 +23,7 @@ const Profile = () => {
           }),
         staleTime:1000*10*60
         })
-        console.log(data)
+        console.log(data,'profile')
 
        
   return (

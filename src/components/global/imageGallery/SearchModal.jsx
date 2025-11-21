@@ -12,12 +12,6 @@ const SearchModal = ({page,creators}) => {
     const [tabValue,setTabValue] = useState('designers')
     const {searchModal,setSearchModal,searchCreators,searchPosts,
         userDashboardSearchData,setUserDashboardSearchData} = useGlobalStore();
-
-    useEffect(()=>{
-        searchPosts()
-        searchCreators()
-    },[userDashboardSearchData])
-
     
   const {data,error,isLoading} = useQuery({
         queryKey:['search-creators',userDashboardSearchData],

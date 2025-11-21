@@ -22,9 +22,11 @@ import SharePostContainer from './SharePostContainer';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useComment } from '@/store/useComment';
 import PostLikeButton from './PostLikeButton';
+import { useAuth } from '@/store/useAuth';
 
 const ViewPostDetails = ({post,setPostId}) => {
         const {isShared,setIsShared,likePost} = usePost();
+        const {user} = useAuth();
         const commentInput = useRef(null)
         const {setComment,storeComment,comment} = useComment()
         const [isOver,setIsOver] = useState(false)
@@ -58,10 +60,13 @@ const ViewPostDetails = ({post,setPostId}) => {
       
       if(user.role === 'designer') {
         if(post.creator_id_likes.includes(user.designer_id)) {
+          console.log('designer')
           // Unlike - remove user ID and decrease count
           post.creator_id_likes = post.creator_id_likes.filter(userId => userId !== user.designer_id)
           post.likes_Count = post.likes_Count - 1
         } else {
+          console.log('client')
+
           // Like - add user ID and increase count
           post.creator_id_likes = [...post.creator_id_likes, user.designer_id]
           post.likes_Count = post.likes_Count + 1
